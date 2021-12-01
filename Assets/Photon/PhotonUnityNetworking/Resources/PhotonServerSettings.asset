@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AppSettings:
     AppIdRealtime: 
+    AppIdFusion: 
     AppIdChat: 
     AppIdVoice: 
     AppVersion: 
@@ -37,6 +38,9 @@ MonoBehaviour:
   - CreatePlayer
   - DestroyRing
   - DestroyRpc
+  - DestroySpaceship
+  - Fire
+  - RespawnSpaceship
   - RPC_LoadedGameScene
   - startGame
   - stopGame
