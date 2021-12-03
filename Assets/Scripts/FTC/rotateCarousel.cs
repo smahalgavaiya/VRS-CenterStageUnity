@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,19 +11,33 @@ public class rotateCarousel : MonoBehaviour
     bool isSpinning;
     RobotController controller;
 
+    [SerializeField] bool redTeam;
+
     [SerializeField] float baseRotateSpeed = 0.2f;
+
+    float timer, timerSet = 3;
+
+    bool gameStarted;
+
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        
+        timer = timerSet;
+
+        RobotGameManager.rg.gameStart += StartGame;
+    }
+
+    void StartGame()
+    {
+        gameStarted = true;
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        if (!gameStarted) return;
         if (hasDuck && isSpinning)
         {
             if(controller == null) controller = FindObjectOfType<RobotController>(); 
@@ -30,6 +45,28 @@ public class rotateCarousel : MonoBehaviour
             float speed = controller.rightTrigger;
             transform.eulerAngles += dir * Time.deltaTime * (baseRotateSpeed + speed);
 
+        }
+        if(!hasDuck && !isSpinning)
+        {
+            timer -= Time.deltaTime;
+            if(timer < 0)
+            {
+                SpawnNewDuck();
+                timer = timerSet;
+            }
+        }
+        
+    }
+
+    void SpawnNewDuck()
+    {
+        if (!gameStarted) return;
+        if (redTeam)
+        {
+            RobotGameManager.rg.SpawnNewDuck(RobotGameManager.rg.redCarouselDuckSpawn);
+        }else
+        {
+            RobotGameManager.rg.SpawnNewDuck(RobotGameManager.rg.blueCarouselDuckSpawn);
         }
     }
 
@@ -56,6 +93,7 @@ public class rotateCarousel : MonoBehaviour
         if (collision.collider.tag == "Duck" && !hasDuck)
         {
             hasDuck = true;
+            timer = timerSet;
         }
     }
 

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,46 +13,67 @@ public class RobotGameManager : MonoBehaviour
     [SerializeField] Transform[] blueTeamDuckSpawns, redTeamDuckSpawns;
     [SerializeField] Transform blueSpawn, redSpawn;
     [SerializeField] Transform blueItemSpawn, redItemSpawn;
-    [SerializeField] Transform redCarouselDuckSpawn, blueCarouselDuckSpawn;
+    public Transform redCarouselDuckSpawn, blueCarouselDuckSpawn;
 
+    [SerializeField] Transform objectHolder;
     List<GameObject> spawnedItems;
 
     [SerializeField] float itemOffset;
 
     GameTimer timer;
 
+    public Action gameStart;
+
     public ScoreKeeper scoreKeeper;
 
     bool gameStarted;
+
+    static RobotGameManager _rg;
+
+    public static RobotGameManager rg
+    {
+        get
+        {
+            return _rg;
+        }
+    }
+
+    private void Awake()
+    {
+        _rg = this;
+
+        if (!scoreKeeper)
+        {
+            scoreKeeper = GameObject.Find("ScoreKeeper").GetComponent<ScoreKeeper>();
+        }
+
+    }
 
     void Start()
     {
         spawnedItems = new List<GameObject>();
         timer = FindObjectOfType<GameTimer>();
-       // SpawnRobots();
-    }
-
-    private void Awake()
-    {
-        if (!scoreKeeper)
-        {
-            scoreKeeper = GameObject.Find("ScoreKeeper").GetComponent<ScoreKeeper>();
-        }
+         SpawnRobots();
     }
 
     void SpawnRobots()
     {
-        Instantiate(robot, blueSpawn.position, Quaternion.identity);
+        Instantiate(robot, blueSpawn.position, blueSpawn.rotation);
     }
 
     void SpawnDucks()
     {
-        int spawnIndex = Random.Range(0, 3);
+        int spawnIndex = UnityEngine.Random.Range(0, 3);
 
         SpawnItem(duck, blueTeamDuckSpawns[spawnIndex].position);
         SpawnItem(duck, redCarouselDuckSpawn.position);
         SpawnItem(duck, redTeamDuckSpawns[spawnIndex].position );
         SpawnItem(duck, blueCarouselDuckSpawn.position);
+    }
+
+    public void SpawnNewDuck(Transform carousel)
+    {
+        SpawnItem(duck, carousel.position);
     }
 
     void SpawnWarehouseItems()
@@ -60,7 +82,7 @@ public class RobotGameManager : MonoBehaviour
         {
             for (int j = 0; j < numObjectsToSpawn[i]; j++)
             {
-                Vector3 offset = new Vector3(Random.Range(-itemOffset, itemOffset), 0, Random.Range(-itemOffset, itemOffset));
+                Vector3 offset = new Vector3(UnityEngine.Random.Range(-itemOffset, itemOffset), 0, UnityEngine.Random.Range(-itemOffset, itemOffset));
                 SpawnItem(objectsToSpawnInWarehouse[i], blueItemSpawn.position + offset);
             }
         }
@@ -69,7 +91,7 @@ public class RobotGameManager : MonoBehaviour
         {
             for (int j = 0; j < numObjectsToSpawn[i]; j++)
             {
-                Vector3 offset = new Vector3(Random.Range(-itemOffset, itemOffset), 0, Random.Range(-itemOffset, itemOffset));
+                Vector3 offset = new Vector3(UnityEngine.Random.Range(-itemOffset, itemOffset), 0, UnityEngine.Random.Range(-itemOffset, itemOffset));
                 SpawnItem(objectsToSpawnInWarehouse[i], redItemSpawn.position + offset);
             }
         }
@@ -78,6 +100,9 @@ public class RobotGameManager : MonoBehaviour
     public void StartGame()
     {
         if (gameStarted) return;
+
+        if(gameStart != null)gameStart();
+
         SpawnDucks();
         SpawnWarehouseItems();
         GameObject.FindGameObjectWithTag("JointHub").BroadcastMessage("Reset");
@@ -102,6 +127,6 @@ public class RobotGameManager : MonoBehaviour
 
     void SpawnItem(GameObject objToSpawn,Vector3 pos)
     {
-        spawnedItems.Add(Instantiate(objToSpawn, pos, objToSpawn.transform.rotation));
+        spawnedItems.Add(Instantiate(objToSpawn, pos, objToSpawn.transform.rotation, objectHolder));
     }
 }
