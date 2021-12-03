@@ -364,7 +364,7 @@ public class UserManager : MonoBehaviour
         // Game type
         if (websiteCommands.gameType != currentGameType)
         {
-            gameTimer.setGameType(websiteCommands.gameType);
+           // gameTimer.setGameType(websiteCommands.gameType);
             currentGameType = websiteCommands.gameType;
             if (currentGameType == "teleop")
             {

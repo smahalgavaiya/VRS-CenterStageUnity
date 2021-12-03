@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class RobotGameManager : MonoBehaviour
 {
@@ -20,13 +21,23 @@ public class RobotGameManager : MonoBehaviour
 
     [SerializeField] float itemOffset;
 
-    GameTimer timer;
-
     public Action gameStart;
 
-    public ScoreKeeper scoreKeeper;
+    ScoreKeeper scoreKeeper;
 
-    bool gameStarted;
+    AudioManager audioManager;
+
+    bool gameStarted,roundStarted,gameOver;
+
+    [SerializeField]TextMeshProUGUI timerText, roundNumText;
+
+    float roundTimer;
+    [SerializeField] float[] roundTimes;
+    [SerializeField] float delayBetweenRounds = 5f;
+
+    int currentRound = 0;
+    [SerializeField] int maxRounds = 3;
+
 
     static RobotGameManager _rg;
 
@@ -46,14 +57,75 @@ public class RobotGameManager : MonoBehaviour
         {
             scoreKeeper = GameObject.Find("ScoreKeeper").GetComponent<ScoreKeeper>();
         }
+        audioManager = FindObjectOfType<AudioManager>();
 
+        timerText.text = "-:--";
     }
 
     void Start()
     {
         spawnedItems = new List<GameObject>();
-        timer = FindObjectOfType<GameTimer>();
-         SpawnRobots();
+        SpawnRobots();
+    }
+
+    private void Update()
+    {
+        if (roundStarted)
+        {
+            if(roundTimer > 0)
+            {
+                roundTimer -= Time.deltaTime;
+
+                timerText.text = (int)(roundTimer / 60) +":" + (int)(roundTimer % 60);
+            }
+            else
+            {
+                timerText.text = "0:00";
+                EndRound();
+            }
+        }
+    }
+
+    void StartRound()
+    {
+
+        currentRound++;
+
+        roundTimer = roundTimes[currentRound - 1];
+
+        roundNumText.text = "Round: " + currentRound;
+
+        StartCoroutine(DelayBeforeRoundStart());
+    }
+
+    IEnumerator DelayBeforeRoundStart()
+    {
+        RobotController[] robots = FindObjectsOfType<RobotController>();
+        foreach (RobotController robot in robots) robot.ReturnToStart();
+
+        audioManager.playCountDown();
+        yield return new WaitForSeconds(3f);
+
+        foreach (RobotController robot in robots) robot.ActivateRobot();
+
+        audioManager.playStartAuto();
+        roundStarted = true;
+    }
+
+    void EndRound()
+    {
+        audioManager.playEndMatch();
+
+        roundStarted = false;
+
+        StartCoroutine(DelayBetweenRounds());
+    }
+
+    IEnumerator DelayBetweenRounds()
+    {
+        yield return new WaitForSeconds(delayBetweenRounds);
+
+        StartRound();
     }
 
     void SpawnRobots()
@@ -111,9 +183,12 @@ public class RobotGameManager : MonoBehaviour
         GameObject[] g = GameObject.FindGameObjectsWithTag("Box");
         foreach (GameObject G in g) { G.BroadcastMessage("Reset"); }
 
-        timer.StartGame();
         scoreKeeper.resetScore();
         gameStarted = true;
+
+        StartRound();
+
+        print("Started");
     }
 
     public void EndGame()

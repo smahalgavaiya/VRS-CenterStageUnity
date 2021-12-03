@@ -59,6 +59,9 @@ public class RobotController : MonoBehaviour
 
     private Transform posiiton;
 
+    Vector3 startPos;
+    Vector3 startRot;
+
     private float previousRealTime;
 
     [Header("Subsystem Controls")]
@@ -71,8 +74,13 @@ public class RobotController : MonoBehaviour
     private AudioManager audioManager;
     private RobotSoundControl robotSoundControl;
 
+    public bool canMove = true;
+
     private void Awake()
     {
+        startPos = transform.position;
+        startRot = transform.eulerAngles;
+
         if(!intake)intake = transform.Find("Intake").gameObject;
         if(!arm)arm = transform.Find("slide mount:1").gameObject;
 
@@ -117,6 +125,19 @@ public class RobotController : MonoBehaviour
         controls.GamePlay.TurnRight.canceled += ctx => angularVelocity = 0f;
 
         
+    }
+
+    public void ReturnToStart()
+    {
+        canMove = false;
+        transform.position = startPos;
+        transform.eulerAngles = startRot;
+
+    }
+
+    public void ActivateRobot()
+    {
+        canMove = true;
     }
 
     private void OnEnable()
@@ -275,6 +296,8 @@ public class RobotController : MonoBehaviour
 
     private void Update()
     {
+        if (!canMove) return;
+
         if (!Photon.Pun.PhotonNetwork.IsConnected)
         {
             driveRobot();

@@ -61,7 +61,6 @@ public class FieldManager : MonoBehaviourPunCallbacks, IInRoomCallbacks
             }
 
             cam.switchCamera(MultiplayerSetting.multiplayerSetting.getCamSetup());
-            gameTimer.setGameType(MultiplayerSetting.multiplayerSetting.getGameType());
         }
         else
         {

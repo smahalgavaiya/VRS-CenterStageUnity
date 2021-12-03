@@ -66,6 +66,8 @@ public class RobotControllerUdp : MonoBehaviour
     private Thread sendThread;
     private Thread receiveThread;
 
+    public bool canMove;
+
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -245,6 +247,8 @@ public class RobotControllerUdp : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (!canMove) return;
+
         driveRobot();
         shooterControl.Commands.Process();
         intakeControl.Commands.Process();
