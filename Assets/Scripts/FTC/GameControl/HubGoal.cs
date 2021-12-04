@@ -5,7 +5,6 @@ using UnityEngine;
 public class HubGoal : MonoBehaviour
 {
     public ScoreKeeper scoreKeeper;
-    public GameTimer gameTimer;
 
     bool isBalanced=true;
 
@@ -23,12 +22,14 @@ public class HubGoal : MonoBehaviour
             scoreKeeper = GameObject.Find("ScoreKeeper").GetComponent<ScoreKeeper>();
             
         }
-        if (!gameTimer) {
-            gameTimer = GameObject.Find("ScoreKeeper").GetComponent<GameTimer>();
-        }
 
         if (parent.name.ToLower().Contains("red")) { team = "Red"; }
         if (parent.name.ToLower().Contains("blue")) { team = "Blue"; }
+    }
+
+    private void Start()
+    {
+        RobotGameManager.rg.gameOver += GameOver;
     }
 
     private void Update()
@@ -47,8 +48,6 @@ public class HubGoal : MonoBehaviour
                 deltaBal = isBalanced;
             }
         }
-
-        if (gameTimer.getTimer() <= 0f && !gamovr) { GameOver(); }
     }
 
    // List<Collider> CountedBalancedColliders = new List<Collider>();

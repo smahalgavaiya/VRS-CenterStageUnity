@@ -22,12 +22,13 @@ public class RobotGameManager : MonoBehaviour
     [SerializeField] float itemOffset;
 
     public Action gameStart;
+    public Action gameOver;
 
     ScoreKeeper scoreKeeper;
 
     AudioManager audioManager;
 
-    bool gameStarted,roundStarted,gameOver;
+    bool gameStarted,roundStarted,gameEnd;
 
     [SerializeField]TextMeshProUGUI timerText, roundNumText;
 
@@ -89,6 +90,8 @@ public class RobotGameManager : MonoBehaviour
 
     void StartRound()
     {
+        FindObjectOfType<CountDownText>().CountDown();
+
         currentRound++;
 
         roundTimer = roundTimes[currentRound - 1];
@@ -197,6 +200,10 @@ public class RobotGameManager : MonoBehaviour
     public void EndGame()
     {
         gameStarted = false;
+        gameEnd = true;
+
+        gameOver();
+
         foreach (GameObject obj in spawnedItems)
         {
             Destroy(obj);
