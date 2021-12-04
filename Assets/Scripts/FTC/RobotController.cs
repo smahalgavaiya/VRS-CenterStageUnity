@@ -81,8 +81,8 @@ public class RobotController : MonoBehaviour
         startPos = transform.position;
         startRot = transform.eulerAngles;
 
-        if(!intake)intake = transform.Find("Intake").gameObject;
-        if(!arm)arm = transform.Find("slide mount:1").gameObject;
+        if (!intake) intake = transform.Find("Intake").gameObject;
+        if (!arm) arm = transform.Find("slide mount:1").gameObject;
 
         controls = new PlayerControls();
 
@@ -101,30 +101,29 @@ public class RobotController : MonoBehaviour
 
         //Driving Controls
         controls.GamePlay.DriveForward.started += ctx => usingJoystick = true;
-        controls.GamePlay.DriveForward.performed += ctx => linearVelocityX = -1.5f*ctx.ReadValue<float>();
+        controls.GamePlay.DriveForward.performed += ctx => linearVelocityX = -1.5f * ctx.ReadValue<float>();
         controls.GamePlay.DriveForward.canceled += ctx => linearVelocityX = 0f;
 
         controls.GamePlay.DriveBack.started += ctx => usingJoystick = true;
-        controls.GamePlay.DriveBack.performed += ctx => linearVelocityX = 1.5f*ctx.ReadValue<float>();
+        controls.GamePlay.DriveBack.performed += ctx => linearVelocityX = 1.5f * ctx.ReadValue<float>();
         controls.GamePlay.DriveBack.canceled += ctx => linearVelocityX = 0f;
 
         controls.GamePlay.DriveLeft.started += ctx => usingJoystick = true;
-        controls.GamePlay.DriveLeft.performed += ctx => linearVelocityY = 1.5f*ctx.ReadValue<float>();
+        controls.GamePlay.DriveLeft.performed += ctx => linearVelocityY = 1.5f * ctx.ReadValue<float>();
         controls.GamePlay.DriveLeft.canceled += ctx => linearVelocityY = 0f;
 
         controls.GamePlay.DriveRight.started += ctx => usingJoystick = true;
-        controls.GamePlay.DriveRight.performed += ctx => linearVelocityY = -1.5f*ctx.ReadValue<float>();
+        controls.GamePlay.DriveRight.performed += ctx => linearVelocityY = -1.5f * ctx.ReadValue<float>();
         controls.GamePlay.DriveRight.canceled += ctx => linearVelocityY = 0f;
 
         controls.GamePlay.TurnLeft.started += ctx => usingJoystick = true;
-        controls.GamePlay.TurnLeft.performed += ctx => angularVelocity = 6*ctx.ReadValue<float>();
+        controls.GamePlay.TurnLeft.performed += ctx => angularVelocity = 6 * ctx.ReadValue<float>();
         controls.GamePlay.TurnLeft.canceled += ctx => angularVelocity = 0f;
 
         controls.GamePlay.TurnRight.started += ctx => usingJoystick = true;
-        controls.GamePlay.TurnRight.performed += ctx => angularVelocity = -6*ctx.ReadValue<float>();
+        controls.GamePlay.TurnRight.performed += ctx => angularVelocity = -6 * ctx.ReadValue<float>();
         controls.GamePlay.TurnRight.canceled += ctx => angularVelocity = 0f;
 
-        
     }
 
     public void ReturnToStart()
@@ -132,7 +131,6 @@ public class RobotController : MonoBehaviour
         canMove = false;
         transform.position = startPos;
         transform.eulerAngles = startRot;
-
     }
 
     public void ActivateRobot()
@@ -190,11 +188,6 @@ public class RobotController : MonoBehaviour
         {
             armControl.RotateArmBackward();
         });
-        
-    }
-
-    private void OnDestroy()
-    {
 
     }
 

@@ -72,11 +72,12 @@ public class RobotGameManager : MonoBehaviour
     {
         if (roundStarted)
         {
-            if(roundTimer > 0)
+            if (roundTimer > 0)
             {
                 roundTimer -= Time.deltaTime;
 
-                timerText.text = (int)(roundTimer / 60) +":" + (int)(roundTimer % 60);
+                if (((roundTimer % 60) < 10)) timerText.text = (int)(roundTimer / 60) + ":0" + (int)(roundTimer % 60);
+                else timerText.text = (int)(roundTimer / 60) + ":" + (int)(roundTimer % 60);
             }
             else
             {
@@ -88,10 +89,12 @@ public class RobotGameManager : MonoBehaviour
 
     void StartRound()
     {
-
         currentRound++;
 
         roundTimer = roundTimes[currentRound - 1];
+       
+        if (((roundTimer % 60) < 10)) timerText.text = (int)(roundTimer / 60) + ":0" + (int)(roundTimer % 60);
+        else timerText.text = (int)(roundTimer / 60) + ":" + (int)(roundTimer % 60);
 
         roundNumText.text = "Round: " + currentRound;
 
