@@ -74,7 +74,11 @@ public class RobotController : MonoBehaviour
     private AudioManager audioManager;
     private RobotSoundControl robotSoundControl;
 
+    Vector3 moveGoal;
+
     public bool canMove = true;
+
+    [SerializeField] float accelSpeed = 3;
 
     private void Awake()
     {
@@ -196,16 +200,28 @@ public class RobotController : MonoBehaviour
         // Strafer Drivetrain Control
         if (!usingJoystick)
         {
-            linearVelocityX = ((frontLeftWheelCmd + frontRightWheelCmd + backLeftWheelCmd + backRightWheelCmd) / 4) * ((motorRPM / 60) * 2 * wheelRadius * Mathf.PI);
-            linearVelocityY = ((-frontLeftWheelCmd + frontRightWheelCmd + backLeftWheelCmd - backRightWheelCmd) / 4) * ((motorRPM / 60) * 2 * wheelRadius * Mathf.PI);
+
+            //linearVelocityX = ((frontLeftWheelCmd + frontRightWheelCmd + backLeftWheelCmd + backRightWheelCmd) / 4) * ((motorRPM / 60) * 2 * wheelRadius * Mathf.PI);
+            linearVelocityX = transform.forward.x * Input.GetAxisRaw("Vertical");
+            //linearVelocityY = ((-frontLeftWheelCmd + frontRightWheelCmd + backLeftWheelCmd - backRightWheelCmd) / 4) * ((motorRPM / 60) * 2 * wheelRadius * Mathf.PI);
+            linearVelocityY = transform.forward.z * Input.GetAxisRaw("Vertical");
             angularVelocity = (((-frontLeftWheelCmd + frontRightWheelCmd - backLeftWheelCmd + backRightWheelCmd) / 3) * ((motorRPM / 60) * 2 * wheelRadius * Mathf.PI) / (Mathf.PI * wheelSeparationWidth)) * 2 * Mathf.PI;
+       
         }
         // Apply Local Velocity to Rigid Body        
         var locVel = transform.InverseTransformDirection(rb.velocity);
-        locVel.x = -linearVelocityY;
+        locVel.x = -linearVelocityY ;
         locVel.y = 0f;
-        locVel.z = -linearVelocityX;
-        rb.velocity = transform.TransformDirection(locVel);
+        locVel.z = -linearVelocityX ;
+
+
+
+        moveGoal = Vector3.Lerp(moveGoal,transform.TransformDirection(locVel), accelSpeed * Time.deltaTime);
+        moveGoal.y = 0;
+        rb.velocity = moveGoal;
+        //  rb.velocity = transform.TransformDirection(locVel);
+        
+
         //Apply Angular Velocity to Rigid Body
         rb.angularVelocity = new Vector3(0f, -angularVelocity, 0f);
         //Encoder Calculations 
