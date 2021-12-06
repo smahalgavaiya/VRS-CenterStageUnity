@@ -305,6 +305,8 @@ public class RobotController : MonoBehaviour
 
     private void Update()
     {
+        LockRotation();
+
         if (!canMove) return;
 
         if (!Photon.Pun.PhotonNetwork.IsConnected)
@@ -322,6 +324,11 @@ public class RobotController : MonoBehaviour
             armControl.Commands.Process();
             intakeControl.Commands.Process();
         }
+    }
+
+    void LockRotation()
+    {
+        transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, 0);
     }
 
     void OnCollisionEnter(Collision collision)
