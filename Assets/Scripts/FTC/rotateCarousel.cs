@@ -26,7 +26,7 @@ public class rotateCarousel : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         timer = timerSet;
 
-        RobotGameManager.rg.gameStart += StartGame;
+        RobotGameManager.rg.GameStart += StartGame;
     }
 
     void StartGame()
@@ -58,9 +58,10 @@ public class rotateCarousel : MonoBehaviour
         
     }
 
+
     void SpawnNewDuck()
     {
-        if (!gameStarted) return;
+        if (!gameStarted || hasDuck) return;
         if (redTeam)
         {
             RobotGameManager.rg.SpawnNewDuck(RobotGameManager.rg.redCarouselDuckSpawn);

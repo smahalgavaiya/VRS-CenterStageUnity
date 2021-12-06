@@ -29,7 +29,7 @@ public class HubGoal : MonoBehaviour
 
     private void Start()
     {
-        RobotGameManager.rg.gameOver += GameOver;
+        RobotGameManager.rg.GameOver += GameOver;
     }
 
     private void Update()

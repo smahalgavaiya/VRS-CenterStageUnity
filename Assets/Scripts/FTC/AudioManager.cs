@@ -33,71 +33,64 @@ public class AudioManager : MonoBehaviour
 
     public bool playCountDown()
     {
-        if (!playedCountDown)
-        {
+
             countDown.Play();
             playedCountDown = true;
-        }
+        
         return countDown.isPlaying;
     }
 
     public bool playCountDown2()
     {
-        if (!playedCountDown2)
-        {
+
             countDown2.Play();
             playedCountDown2 = true;
-        }
+        
         return countDown2.isPlaying;
     }
 
     public bool playStartAuto()
     {
-        if (!playedStartAuto)
-        {
+
             startAuto.Play();
             playedStartAuto = true;
-        }
+        
         return startAuto.isPlaying;
     }
 
     public bool playEndAuto()
     {
-        if (!playedEndAuto)
-        {
+
             endAuto.Play();
             playedEndAuto = true;
-        }
+        
         return endAuto.isPlaying;
     }
 
     public bool playStartTeleop()
     {
-        if (!playedStartTeleop)
-        {
+
             startTeleop.Play();
             playedStartTeleop = true;
-        }
+        
         return startTeleop.isPlaying;
     }
 
     public bool playStartEndGame()
     {
-        if (!playedStartEndGame)
-        {
+
             startEndGame.Play();
             playedStartEndGame = true;
-        }
+        
         return startEndGame.isPlaying;
     }
 
     public bool playEndMatch()
     {
-        if (!playedEndMatch)
-        {
+
             endMatch.Play();
             playedEndMatch = true;
-        }
+        
         return endMatch.isPlaying;
     }
 
