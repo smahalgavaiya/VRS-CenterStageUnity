@@ -62,8 +62,6 @@ public class RobotController : MonoBehaviour
     Vector3 startPos;
     Vector3 startRot;
 
-    private float previousRealTime;
-
     [Header("Subsystem Controls")]
     public GameObject arm;
     public GameObject intake;
@@ -75,10 +73,11 @@ public class RobotController : MonoBehaviour
     private RobotSoundControl robotSoundControl;
 
     Vector3 moveGoal;
+    float rotGoal;
 
     public bool canMove = true;
 
-    [SerializeField] float accelSpeed = 3;
+    [SerializeField] float accelSpeed = 3,rotSpeed = 2;
 
     private void Awake()
     {
@@ -157,9 +156,8 @@ public class RobotController : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         robotSoundControl = GetComponent<RobotSoundControl>();
 
-        audioManager = GameObject.Find("ScoreKeeper").GetComponent<AudioManager>();
+        audioManager = FindObjectOfType<AudioManager>();
 
-        previousRealTime = Time.realtimeSinceStartup;
         Console.WriteLine("Started.....");
 
         intakeControl = intake.GetComponent<IntakeControl>();
@@ -220,10 +218,11 @@ public class RobotController : MonoBehaviour
         moveGoal.y = 0;
         rb.velocity = moveGoal;
         //  rb.velocity = transform.TransformDirection(locVel);
-        
+
+        rotGoal = Mathf.Lerp(rotGoal, angularVelocity, rotSpeed * Time.deltaTime);
 
         //Apply Angular Velocity to Rigid Body
-        rb.angularVelocity = new Vector3(0f, -angularVelocity, 0f);
+        rb.angularVelocity = new Vector3(0f, -rotGoal, 0f);
         //Encoder Calculations 
         frontLeftWheelEnc += (motorRPM / 60) * frontLeftWheelCmd * Time.deltaTime * encoderTicksPerRev * drivetrainGearRatio;
         frontRightWheelEnc += (motorRPM / 60) * frontRightWheelCmd * Time.deltaTime * encoderTicksPerRev * drivetrainGearRatio;
