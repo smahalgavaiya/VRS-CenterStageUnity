@@ -50,10 +50,9 @@ public class HubGoal : MonoBehaviour
         }
     }
 
-   // List<Collider> CountedBalancedColliders = new List<Collider>();
     List<Collider> Countedcolliders = new List<Collider>();
     bool active = false;
-    private void OnTriggerStay(Collider collider)
+    private void OnTriggerEnter(Collider collider)
     {
         //in game score
         if ((collider.tag == "Cube" || collider.tag == "Ball" || collider.tag == "Duck") && HubLevel <4 && !Countedcolliders.Contains(collider))
@@ -113,6 +112,30 @@ public class HubGoal : MonoBehaviour
         }
         CountedBalancedColliders.Add(collider);
         Destroy(collider.gameObject);*/
+    }
+
+    private void OnTriggerExit(Collider collider)
+    {
+        if ((collider.tag == "Cube" || collider.tag == "Ball" || collider.tag == "Duck") && HubLevel < 4 && !Countedcolliders.Contains(collider))
+        {
+            if (team == "Blue")
+            {
+                active = false;
+                if (HubLevel == 1) { scoreKeeper.addScoreBlue(-scoreKeeper.HubLevel1Score); }
+                if (HubLevel == 2) { scoreKeeper.addScoreBlue(-scoreKeeper.HubLevel2Score); }
+                if (HubLevel == 3) { scoreKeeper.addScoreBlue(-scoreKeeper.HubLevel3Score); }
+            }
+
+            if (team == "Red")
+            {
+                active = true;
+                if (HubLevel == 1) { scoreKeeper.addScoreRed(-scoreKeeper.HubLevel1Score); }
+                if (HubLevel == 2) { scoreKeeper.addScoreRed(-scoreKeeper.HubLevel2Score); }
+                if (HubLevel == 3) { scoreKeeper.addScoreRed(-scoreKeeper.HubLevel3Score); }
+            }
+
+            if(Countedcolliders.Contains(collider))Countedcolliders.Remove(collider);
+        }
     }
 
     public void GameOver()

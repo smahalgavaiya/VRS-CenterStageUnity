@@ -134,6 +134,8 @@ public class RobotController : MonoBehaviour
         canMove = false;
         transform.position = startPos;
         transform.eulerAngles = startRot;
+        rb.angularVelocity = Vector3.zero;
+        rb.velocity = Vector3.zero;
     }
 
     public void ActivateRobot()

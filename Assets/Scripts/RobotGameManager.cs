@@ -136,7 +136,7 @@ public class RobotGameManager : MonoBehaviour
         SpawnWarehouseItems();
 
         RobotController[] robots = FindObjectsOfType<RobotController>();
-        if(currentRound == 0)foreach (RobotController robot in robots) robot.ReturnToStart();
+        if(currentRound  < 2)foreach (RobotController robot in robots) robot.ReturnToStart();
 
         audioManager.playCountDown();
         yield return new WaitForSeconds(3f);
