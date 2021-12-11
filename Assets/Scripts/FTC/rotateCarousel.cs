@@ -19,6 +19,8 @@ public class rotateCarousel : MonoBehaviour
 
     bool gameStarted;
 
+    [SerializeField] int team;
+
 
     // Start is called before the first frame update
     void Start()
@@ -62,6 +64,7 @@ public class rotateCarousel : MonoBehaviour
     void SpawnNewDuck()
     {
         if (!gameStarted || hasDuck) return;
+
         if (redTeam)
         {
             RobotGameManager.rg.SpawnNewDuck(RobotGameManager.rg.redCarouselDuckSpawn);

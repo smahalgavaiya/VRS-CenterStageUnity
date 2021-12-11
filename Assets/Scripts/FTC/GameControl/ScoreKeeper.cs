@@ -17,6 +17,8 @@ public class ScoreKeeper : MonoBehaviour
     public int HubLevel2Score;
     public int HubLevel3Score;
 
+    public int HubScore;
+
     public int BalancedHubScore;
     public int UnbalancedHubScore;
     public float BalanceThreshold;
@@ -24,13 +26,33 @@ public class ScoreKeeper : MonoBehaviour
     public int StoragePartialScore;
     public int StorageCompleteScore;
     public int WarehousePartialScore;
+    public int WarehousePartialEndScore;
     public int WarehouseCompleteScore;
+    public int WarehouseCompleteEndScore;
+    public int duckDropScore;
+    public int duckDropEndScore;
+
 
     public int DuckScore;
    
     private bool freeze = true;
 
     public Light[] lights;
+
+    static ScoreKeeper _sk;
+
+    public static ScoreKeeper sk
+    {
+        get
+        {
+            return _sk;
+        }
+    }
+
+    private void Awake()
+    {
+        _sk = this;
+    }
 
     public void addScoreRed(int points)
     {
@@ -50,6 +72,8 @@ public class ScoreKeeper : MonoBehaviour
 
     public void addScoreBlue(int points)
     {
+        print(points);
+
         if (!freeze)
         {
             blueScore += points;

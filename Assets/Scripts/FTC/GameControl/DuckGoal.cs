@@ -34,23 +34,23 @@ public class DuckGoal : MonoBehaviour
 
     private void OnTriggerEnter(Collider collider)
     {
-        if (gameTimer.getTimer() > 30) { return; }
+
         if (collider.tag != "duck") { return; }
-        if (team == "Blue") { scoreKeeper.addScoreBlue(scoreKeeper.DuckScore); }
-        if (team == "Red") { scoreKeeper.addScoreRed(scoreKeeper.DuckScore); }
+        if (team == "Red")
+        {
+            if (RobotGameManager.rg.currentRound < 3) ScoreKeeper.sk.addScoreBlue(ScoreKeeper.sk.duckDropScore);
+            else ScoreKeeper.sk.addScoreBlue(ScoreKeeper.sk.duckDropEndScore);
+        }
+        else
+        {
+            if (RobotGameManager.rg.currentRound < 3) ScoreKeeper.sk.addScoreRed(ScoreKeeper.sk.duckDropScore);
+            else ScoreKeeper.sk.addScoreRed(ScoreKeeper.sk.duckDropEndScore);
+        }
 
     }
     private void OnTriggerStay(Collider collider)
     {
-        if (gameTimer.getTimer() <= 0)
-        {
-            if (collider.tag == "Duck")
-            {
-                if (team == "Blue") { scoreKeeper.addScoreBlue(scoreKeeper.DuckScore); }
-                if (team == "Red") { scoreKeeper.addScoreRed(scoreKeeper.DuckScore); }
-                Destroy(collider.gameObject);
-            }
-        }
+
     }
 
     void GameOver()

@@ -72,6 +72,10 @@ public class RobotController : MonoBehaviour
     private AudioManager audioManager;
     private RobotSoundControl robotSoundControl;
 
+    bool partiallyParked, parkedInWarehouse;
+
+    [SerializeField] int teamIndex;
+
     Vector3 moveGoal;
     float rotGoal;
 
@@ -141,6 +145,11 @@ public class RobotController : MonoBehaviour
     public void ActivateRobot()
     {
         canMove = true;
+    }
+
+    public void DeactivateRobot()
+    {
+        canMove = false;
     }
 
     private void OnEnable()
@@ -302,7 +311,38 @@ public class RobotController : MonoBehaviour
         motorPower8 = x;
     }
 
- 
+ public void AddParkedScore()
+    {
+        if (parkedInWarehouse)
+        {
+            if (partiallyParked)
+            {
+                if (teamIndex == 0)
+                {
+                    if (RobotGameManager.rg.currentRound == 1) ScoreKeeper.sk.addScoreBlue(ScoreKeeper.sk.WarehousePartialScore);
+                    else if (RobotGameManager.rg.currentRound == 3) ScoreKeeper.sk.addScoreBlue(ScoreKeeper.sk.WarehousePartialEndScore);
+                }
+                else
+                {
+                    if (RobotGameManager.rg.currentRound == 1) ScoreKeeper.sk.addScoreRed(ScoreKeeper.sk.WarehousePartialScore);
+                    else if (RobotGameManager.rg.currentRound == 3) ScoreKeeper.sk.addScoreRed(ScoreKeeper.sk.WarehousePartialEndScore);
+                }
+            }
+            else
+            {
+                if (teamIndex == 0)
+                {
+                    if (RobotGameManager.rg.currentRound == 1) ScoreKeeper.sk.addScoreBlue(ScoreKeeper.sk.WarehouseCompleteScore);
+                    else if (RobotGameManager.rg.currentRound == 3) ScoreKeeper.sk.addScoreBlue(ScoreKeeper.sk.WarehouseCompleteEndScore);
+                }
+                else
+                {
+                    if (RobotGameManager.rg.currentRound == 1) ScoreKeeper.sk.addScoreRed(ScoreKeeper.sk.WarehouseCompleteScore);
+                    else if (RobotGameManager.rg.currentRound == 3) ScoreKeeper.sk.addScoreRed(ScoreKeeper.sk.WarehouseCompleteEndScore);
+                }
+            }
+        }
+    }
 
     private void Update()
     {
@@ -337,6 +377,44 @@ public class RobotController : MonoBehaviour
         if (collision.gameObject.tag != "Floor")
         {
             //robotSoundControl.playRobotImpact();
+        }
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.tag == "Warehouse")
+        {
+            if (!parkedInWarehouse)
+            {
+                parkedInWarehouse = true;
+            }
+        }
+
+        if (other.tag == "Partial")
+        {
+            if (!partiallyParked)
+            {
+                partiallyParked = true;
+            }
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.tag == "Warehouse")
+        {
+            if (parkedInWarehouse)
+            {
+                parkedInWarehouse = false;
+            }
+        }
+
+        if (other.tag == "Partial")
+        {
+            if (!partiallyParked)
+            {
+                partiallyParked = false;
+            }
         }
     }
 

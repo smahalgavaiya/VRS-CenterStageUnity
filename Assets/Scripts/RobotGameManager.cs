@@ -11,7 +11,7 @@ public class RobotGameManager : MonoBehaviour
     [SerializeField] int[] numObjectsToSpawn;
 
     [SerializeField] GameObject duck;
-    [SerializeField] Transform[] blueTeamDuckSpawns, redTeamDuckSpawns;
+    [SerializeField] Transform[] blueTeamDuckSpawns, blueTeamDuckSpawns2, redTeamDuckSpawns, redTeamDuckSpawns2;
     [SerializeField] Transform blueSpawn, redSpawn;
     [SerializeField] Transform blueItemSpawn, redItemSpawn;
     public Transform redCarouselDuckSpawn, blueCarouselDuckSpawn;
@@ -24,8 +24,6 @@ public class RobotGameManager : MonoBehaviour
     public Action GameStart;
     public Action GameOver;
 
-    ScoreKeeper scoreKeeper;
-
     AudioManager audioManager;
 
     bool gameStarted,roundStarted,gameOver;
@@ -36,8 +34,9 @@ public class RobotGameManager : MonoBehaviour
     [SerializeField] float[] roundTimes;
     [SerializeField] float delayBetweenRounds = 5f;
 
-    int currentRound = 0;
+    public int currentRound = 0;
     [SerializeField] int maxRounds = 3;
+    [SerializeField] string[] roundNames;
 
 
     static RobotGameManager _rg;
@@ -54,10 +53,6 @@ public class RobotGameManager : MonoBehaviour
     {
         _rg = this;
 
-        if (!scoreKeeper)
-        {
-            scoreKeeper = GameObject.Find("ScoreKeeper").GetComponent<ScoreKeeper>();
-        }
         audioManager = FindObjectOfType<AudioManager>();
 
         timerText.text = "-:--";
@@ -100,7 +95,7 @@ public class RobotGameManager : MonoBehaviour
             if (((roundTimer % 60) < 10)) timerText.text = (int)(roundTimer / 60) + ":0" + (int)(roundTimer % 60);
             else timerText.text = (int)(roundTimer / 60) + ":" + (int)(roundTimer % 60);
 
-            roundNumText.text = "Round: " + currentRound;
+            roundNumText.text = "Round: " + roundNames[currentRound - 1];
             switch (currentRound)
             {
                 case 1:
@@ -132,13 +127,12 @@ public class RobotGameManager : MonoBehaviour
 
     IEnumerator DelayBeforeFirstRoundStart()
     {
-        SpawnRandomDucks();
-        SpawnWarehouseItems();
 
-        RobotController[] robots = FindObjectsOfType<RobotController>();
-        if(currentRound  < 2)foreach (RobotController robot in robots) robot.ReturnToStart();
 
         audioManager.playCountDown();
+
+        RobotController[] robots = FindObjectsOfType<RobotController>();
+
         yield return new WaitForSeconds(3f);
 
         foreach (RobotController robot in robots) robot.ActivateRobot();
@@ -149,11 +143,7 @@ public class RobotGameManager : MonoBehaviour
 
     IEnumerator DelayBeforeSecondRoundStart()
     {
-        SpawnRandomDucks();
-        SpawnWarehouseItems();
-
         RobotController[] robots = FindObjectsOfType<RobotController>();
-        foreach (RobotController robot in robots) robot.ReturnToStart();
 
         audioManager.playCountDown2();
         yield return new WaitForSeconds(3f);
@@ -166,11 +156,9 @@ public class RobotGameManager : MonoBehaviour
 
     IEnumerator DelayBeforeFinalRoundStart()
     {
-        SpawnRandomDucks();
-        SpawnWarehouseItems();
+ 
 
         RobotController[] robots = FindObjectsOfType<RobotController>();
-        foreach (RobotController robot in robots) robot.ReturnToStart();
 
         audioManager.playCountDown2();
         yield return new WaitForSeconds(3f);
@@ -183,11 +171,23 @@ public class RobotGameManager : MonoBehaviour
 
     void EndRound()
     {
+        HubGoal[] hubs = FindObjectsOfType<HubGoal>();
+        foreach (HubGoal hub in hubs) hub.GameOver();
+
+        BoxGoal[] boxes = FindObjectsOfType<BoxGoal>();
+        foreach (BoxGoal box in boxes) box.AddScore(currentRound - 1);
+
         audioManager.playEndMatch();
 
         roundStarted = false;
 
         StartCoroutine(DelayBetweenRounds());
+        if (currentRound < 2)
+        {
+            RobotController[] robots = FindObjectsOfType<RobotController>();
+            foreach (RobotController robot in robots) robot.DeactivateRobot();
+            foreach (RobotController robot in robots) robot.AddParkedScore();
+        }
     }
 
     IEnumerator DelayBetweenRounds()
@@ -207,8 +207,10 @@ public class RobotGameManager : MonoBehaviour
         int spawnIndex = UnityEngine.Random.Range(0, 3);
 
         SpawnItem(duck, blueTeamDuckSpawns[spawnIndex].position);
+        SpawnItem(duck, blueTeamDuckSpawns2[spawnIndex].position);
         SpawnItem(duck, redCarouselDuckSpawn.position);
         SpawnItem(duck, redTeamDuckSpawns[spawnIndex].position );
+        SpawnItem(duck, redTeamDuckSpawns2[spawnIndex].position);
         SpawnItem(duck, blueCarouselDuckSpawn.position);
     }
 
@@ -261,7 +263,13 @@ public class RobotGameManager : MonoBehaviour
     {
         if (gameStarted) return;
 
-        if(GameStart != null)GameStart();
+        SpawnRandomDucks();
+        SpawnWarehouseItems();
+
+        RobotController[] robots = FindObjectsOfType<RobotController>();
+        foreach (RobotController robot in robots) robot.ReturnToStart();
+
+        if (GameStart != null)GameStart();
 
 
         GameObject.FindGameObjectWithTag("JointHub").BroadcastMessage("Reset");
@@ -270,7 +278,7 @@ public class RobotGameManager : MonoBehaviour
         GameObject[] g = GameObject.FindGameObjectsWithTag("Box");
         foreach (GameObject G in g) { G.BroadcastMessage("Reset"); }
 
-        scoreKeeper.resetScore();
+        ScoreKeeper.sk.resetScore();
         gameStarted = true;
 
         IncrementRound();
@@ -278,17 +286,15 @@ public class RobotGameManager : MonoBehaviour
 
     public void EndGame()
     {
-if (!gameStarted) audioManager.playEndMatch();
+        RobotController[] robots = FindObjectsOfType<RobotController>();
+        foreach (RobotController robot in robots) robot.AddParkedScore();
+
+        if (!gameStarted) audioManager.playEndMatch();
 
         gameStarted = false;
         gameOver = true;
 
         GameOver();
-
-        foreach (GameObject obj in spawnedItems)
-        {
-            Destroy(obj);
-        }
     }
 
     void SpawnItem(GameObject objToSpawn,Vector3 pos)

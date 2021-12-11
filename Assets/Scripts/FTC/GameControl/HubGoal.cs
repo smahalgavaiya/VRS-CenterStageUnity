@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class HubGoal : MonoBehaviour
 {
-    public ScoreKeeper scoreKeeper;
-
     bool isBalanced=true;
 
     public Transform parent;
@@ -18,10 +16,6 @@ public class HubGoal : MonoBehaviour
 
     private void Awake()
     {
-        if (!scoreKeeper) {
-            scoreKeeper = GameObject.Find("ScoreKeeper").GetComponent<ScoreKeeper>();
-            
-        }
 
         if (parent.name.ToLower().Contains("red")) { team = "Red"; }
         if (parent.name.ToLower().Contains("blue")) { team = "Blue"; }
@@ -38,10 +32,10 @@ public class HubGoal : MonoBehaviour
         {
             bool deltaBal = isBalanced;
             int balScore = 0;
-            if (parent.localEulerAngles.x > scoreKeeper.BalanceThreshold) { balScore += 1; }
-            if (parent.localEulerAngles.x < -scoreKeeper.BalanceThreshold) { balScore += 1; }
-            if (parent.localEulerAngles.z > scoreKeeper.BalanceThreshold) { balScore += 1; }
-            if (parent.localEulerAngles.z < -scoreKeeper.BalanceThreshold) { balScore += 1; }
+            if (parent.localEulerAngles.x > ScoreKeeper.sk.BalanceThreshold) { balScore += 1; }
+            if (parent.localEulerAngles.x < -ScoreKeeper.sk.BalanceThreshold) { balScore += 1; }
+            if (parent.localEulerAngles.z > ScoreKeeper.sk.BalanceThreshold) { balScore += 1; }
+            if (parent.localEulerAngles.z < -ScoreKeeper.sk.BalanceThreshold) { balScore += 1; }
             if (balScore > 0) { isBalanced = false; } else { isBalanced = true; }
             if (deltaBal != isBalanced)
             {
@@ -59,18 +53,22 @@ public class HubGoal : MonoBehaviour
         {
             if (team == "Blue")
             {
+
+
                 active = true;
-                if (HubLevel == 1) { scoreKeeper.addScoreBlue(scoreKeeper.HubLevel1Score); }
-                if (HubLevel == 2) { scoreKeeper.addScoreBlue(scoreKeeper.HubLevel2Score); }
-                if (HubLevel == 3) { scoreKeeper.addScoreBlue(scoreKeeper.HubLevel3Score); }
+                if (HubLevel == 1) { ScoreKeeper.sk.addScoreBlue(ScoreKeeper.sk.HubLevel1Score); }
+                if (HubLevel == 2) { ScoreKeeper.sk.addScoreBlue(ScoreKeeper.sk.HubLevel2Score); }
+                if (HubLevel == 3) { ScoreKeeper.sk.addScoreBlue(ScoreKeeper.sk.HubLevel3Score); }
             }
         
             if (team == "Red")
             {
+
+
                 active = true;
-                if (HubLevel == 1) { scoreKeeper.addScoreRed(scoreKeeper.HubLevel1Score); }
-                if (HubLevel == 2) { scoreKeeper.addScoreRed(scoreKeeper.HubLevel2Score); }
-                if (HubLevel == 3) { scoreKeeper.addScoreRed(scoreKeeper.HubLevel3Score); }
+                if (HubLevel == 1) { ScoreKeeper.sk.addScoreRed(ScoreKeeper.sk.HubLevel1Score); }
+                if (HubLevel == 2) { ScoreKeeper.sk.addScoreRed(ScoreKeeper.sk.HubLevel2Score); }
+                if (HubLevel == 3) { ScoreKeeper.sk.addScoreRed(ScoreKeeper.sk.HubLevel3Score); }
             }
            
             Countedcolliders.Add(collider);
@@ -121,20 +119,43 @@ public class HubGoal : MonoBehaviour
             if (team == "Blue")
             {
                 active = false;
-                if (HubLevel == 1) { scoreKeeper.addScoreBlue(-scoreKeeper.HubLevel1Score); }
-                if (HubLevel == 2) { scoreKeeper.addScoreBlue(-scoreKeeper.HubLevel2Score); }
-                if (HubLevel == 3) { scoreKeeper.addScoreBlue(-scoreKeeper.HubLevel3Score); }
+
+                if (HubLevel == 1) { ScoreKeeper.sk.addScoreBlue(-ScoreKeeper.sk.HubLevel1Score); }
+                if (HubLevel == 2) { ScoreKeeper.sk.addScoreBlue(-ScoreKeeper.sk.HubLevel2Score); }
+                if (HubLevel == 3) { ScoreKeeper.sk.addScoreBlue(-ScoreKeeper.sk.HubLevel3Score); }
             }
 
             if (team == "Red")
             {
+
                 active = true;
-                if (HubLevel == 1) { scoreKeeper.addScoreRed(-scoreKeeper.HubLevel1Score); }
-                if (HubLevel == 2) { scoreKeeper.addScoreRed(-scoreKeeper.HubLevel2Score); }
-                if (HubLevel == 3) { scoreKeeper.addScoreRed(-scoreKeeper.HubLevel3Score); }
+                if (HubLevel == 1) { ScoreKeeper.sk.addScoreRed(-ScoreKeeper.sk.HubLevel1Score); }
+                if (HubLevel == 2) { ScoreKeeper.sk.addScoreRed(-ScoreKeeper.sk.HubLevel2Score); }
+                if (HubLevel == 3) { ScoreKeeper.sk.addScoreRed(-ScoreKeeper.sk.HubLevel3Score); }
             }
 
             if(Countedcolliders.Contains(collider))Countedcolliders.Remove(collider);
+        }
+    }
+
+    public void AddAutoScore()
+    {
+        if (Countedcolliders.Count > 0)
+        {
+            if (team == "Blue")
+            {
+                for (int i = 0; i < Countedcolliders.Count; i++)
+                {
+                    ScoreKeeper.sk.addScoreBlue(-ScoreKeeper.sk.HubScore);
+                }
+            }
+            else if (team == "Red")
+            {
+                for (int i = 0; i < Countedcolliders.Count; i++)
+                {
+                    ScoreKeeper.sk.addScoreRed(-ScoreKeeper.sk.HubScore);
+                }
+            }
         }
     }
 
@@ -147,12 +168,12 @@ public class HubGoal : MonoBehaviour
             if (team == "Blue")
             {
                 Debug.Log("HubGoal " + gameObject.name + " HUB#" + HubLevel + " " + team + " GameOver");
-                scoreKeeper.addScoreBlue(scoreKeeper.BalancedHubScore);
+                ScoreKeeper.sk.addScoreBlue(ScoreKeeper.sk.BalancedHubScore);
             }
             if (team == "Red")
             {
                 Debug.Log("HubGoal " + gameObject.name + " HUB#" + HubLevel + " " + team + " GameOver");
-                scoreKeeper.addScoreRed(scoreKeeper.BalancedHubScore);
+                ScoreKeeper.sk.addScoreRed(ScoreKeeper.sk.BalancedHubScore);
             }
         }
         if ( HubLevel == 4 && !gamovr && active)
@@ -160,12 +181,12 @@ public class HubGoal : MonoBehaviour
             if (transform.localEulerAngles.z < 0f)
             {
                 Debug.Log("HubGoal " + gameObject.name + " HUB#" + HubLevel + " " + team + " GameOver");
-                scoreKeeper.addScoreBlue(scoreKeeper.UnbalancedHubScore);
+                ScoreKeeper.sk.addScoreBlue(ScoreKeeper.sk.UnbalancedHubScore);
             }
             if (transform.localEulerAngles.z > 0f)
             {
                 Debug.Log("HubGoal " + gameObject.name + " HUB#" + HubLevel + " " + team + " GameOver");
-                scoreKeeper.addScoreRed(scoreKeeper.UnbalancedHubScore);
+                ScoreKeeper.sk.addScoreRed(ScoreKeeper.sk.UnbalancedHubScore);
             }
         }
         gamovr = true;
