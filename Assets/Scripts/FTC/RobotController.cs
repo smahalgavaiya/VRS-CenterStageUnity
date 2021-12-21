@@ -346,7 +346,7 @@ public class RobotController : MonoBehaviour
 
     private void Update()
     {
-        LockRotation();
+        ResetRotation();
 
         if (!canMove) return;
 
@@ -367,9 +367,9 @@ public class RobotController : MonoBehaviour
         }
     }
 
-    void LockRotation()
+    void ResetRotation()
     {
-        transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, 0);
+        rb.angularVelocity = new Vector3(-transform.eulerAngles.x, rb.angularVelocity.y, -transform.eulerAngles.z);
     }
 
     void OnCollisionEnter(Collision collision)
