@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 
+[RequireComponent(typeof(ObjectSpawnLocationTracker))]
 public class ObjectSpawnManager : MonoBehaviour
 {
 
@@ -26,7 +27,7 @@ public class SpawnableObjectAndPositionParent
 {
     public string objectSetName;
     public SpawnableObject spawnableObject;
-    public Transform objectSetPositionParent; // The parent transform for a set of locations on the field that
+    public Transform[] objectPositions; // The parent transform for a set of locations on the field that
     // should be filled by a set of the spawnableObject prefabs.
 }
 
