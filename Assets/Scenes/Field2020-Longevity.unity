@@ -281,6 +281,38 @@ Transform:
   m_Father: {fileID: 1686960388}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &49876869
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 49876870}
+  m_Layer: 0
+  m_Name: SpawnPositionTest
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &49876870
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 49876869}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 243854882}
+  - {fileID: 1998780729}
+  m_Father: {fileID: 835771674}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &54256904
 GameObject:
   m_ObjectHideFlags: 0
@@ -1402,6 +1434,36 @@ Transform:
   m_Children:
   - {fileID: 1907024017}
   m_Father: {fileID: 1546250433}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &243854881
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 243854882}
+  m_Layer: 0
+  m_Name: Cube
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &243854882
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 243854881}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.021424532, y: 0.33455455, z: -0.29178724}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 49876870}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &262336032
@@ -4864,7 +4926,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1aec1817d75efbc459da8d33abaae276, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnLocationParent: {fileID: 1513372434}
+  spawnLocationParent: {fileID: 49876869}
+  currentResourcesFolder: 2020
 --- !u!114 &809769523
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4877,8 +4940,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f09ca720a7ef8414ba200d9563ac62cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnableObjectAndPositionParents:
-  - objectSetName: Ducks
+  spawnableObjects:
+  - objectName: Cube
+    spawnableObject: {fileID: 11400000, guid: 04c04211e2ec53a45b5bd94b799f85b0, type: 2}
+    objectPositions:
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+  - objectName: Duck
     spawnableObject: {fileID: 11400000, guid: f7257dda7bdc2e94ebf66e1ef6506bd2, type: 2}
     objectPositions:
     - {fileID: 0}
@@ -4886,18 +4962,6 @@ MonoBehaviour:
     - {fileID: 0}
     - {fileID: 0}
     - {fileID: 0}
-  - objectSetName: 
-    spawnableObject: {fileID: 0}
-    objectPositions: []
-  - objectSetName: 
-    spawnableObject: {fileID: 0}
-    objectPositions: []
-  - objectSetName: 
-    spawnableObject: {fileID: 0}
-    objectPositions: []
-  - objectSetName: 
-    spawnableObject: {fileID: 0}
-    objectPositions: []
 --- !u!1 &813366620
 GameObject:
   m_ObjectHideFlags: 0
@@ -5173,6 +5237,7 @@ Transform:
   m_Children:
   - {fileID: 1376827025}
   - {fileID: 1513372435}
+  - {fileID: 49876870}
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -12282,6 +12347,36 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1996455781}
   m_Mesh: {fileID: 8604045607132181640, guid: aff3b3a3529c5ff46896e7c6685549d6, type: 3}
+--- !u!1 &1998780728
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1998780729}
+  m_Layer: 0
+  m_Name: Duck
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1998780729
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1998780728}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.021424532, y: 0.33455455, z: -0.29178724}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 49876870}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2012000977
 PrefabInstance:
   m_ObjectHideFlags: 0

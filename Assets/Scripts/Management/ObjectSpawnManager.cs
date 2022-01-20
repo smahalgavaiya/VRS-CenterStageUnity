@@ -7,7 +7,7 @@ using UnityEditor;
 public class ObjectSpawnManager : MonoBehaviour
 {
 
-    public SpawnableObjectAndPositionParent[] spawnableObjectAndPositionParents;
+    public SpawnableObjectData[] spawnableObjects;
 
     // Start is called before the first frame update
     void Start()
@@ -23,9 +23,9 @@ public class ObjectSpawnManager : MonoBehaviour
 }
 
 [System.Serializable]
-public class SpawnableObjectAndPositionParent
+public class SpawnableObjectData
 {
-    public string objectSetName;
+    public string objectName;
     public SpawnableObject spawnableObject;
     public Transform[] objectPositions; // The parent transform for a set of locations on the field that
     // should be filled by a set of the spawnableObject prefabs.

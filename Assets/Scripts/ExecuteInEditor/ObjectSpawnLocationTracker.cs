@@ -7,37 +7,46 @@ using UnityEditor;
 public class ObjectSpawnLocationTracker : MonoBehaviour
 {
     public GameObject spawnLocationParent;
+    public string currentResourcesFolder;
     ObjectSpawnManager objectSpawnManager;
     private void Start()
     {
+        objectSpawnManager = GetComponent<ObjectSpawnManager>();
     }
     // Update is called once per frame
     void Update()
     {
-        if (objectSpawnManager = null)
+
+    }
+
+    public void CreateObjectSpawnLocationEmptyObjects()
+    {
+        SpawnableObject[] spawnableObjects = Resources.LoadAll<SpawnableObject>("SpawnableObjects/" + currentResourcesFolder);
+
+        objectSpawnManager.spawnableObjects = new SpawnableObjectData[spawnableObjects.Length];
+
+        for (int i = 0; i < objectSpawnManager.spawnableObjects.Length; i++)
         {
-            objectSpawnManager = GetComponent<ObjectSpawnManager>();
+            objectSpawnManager.spawnableObjects[i] = new SpawnableObjectData();
+            objectSpawnManager.spawnableObjects[i].objectName = spawnableObjects[i].name;
+            objectSpawnManager.spawnableObjects[i].spawnableObject = spawnableObjects[i];
+            objectSpawnManager.spawnableObjects[i].objectPositions = new Transform[spawnableObjects[i].quantityToSpawn];
+        }
+
+        if (spawnLocationParent.transform.childCount > 0)
+        {
+            EditorUtility.DisplayDialog("Objects Already Exist!", "There seem to be child objects on the " + spawnLocationParent.name + " object already, either delete them or continue setting the objects manually", "Ok");
         }
 
         else
         {
-            return;
-        }
-
-
-
-    }
-
-    void CreateSpawnObjectTransforms()
-    {
-        foreach(SpawnableObjectAndPositionParent spawnableObjectAndPositionParent 
-            in objectSpawnManager.spawnableObjectAndPositionParents)
-        {
-            for (int i = 0; i < objectSpawnManager.transform.childCount; i++)
+            for (int i = 0; i < objectSpawnManager.spawnableObjects.Length; i++)
             {
-
+                GameObject newObject = new GameObject(objectSpawnManager.spawnableObjects[i].objectName);
+                newObject.transform.SetParent(spawnLocationParent.transform);
             }
-
         }
+
     }
 }
+
