@@ -44,6 +44,14 @@ public class ObjectSpawnLocationTracker : MonoBehaviour
             {
                 GameObject newObject = new GameObject(objectSpawnManager.spawnableObjects[i].objectName);
                 newObject.transform.SetParent(spawnLocationParent.transform);
+
+                for (int j = 0; j < objectSpawnManager.spawnableObjects[i].objectPositions.Length; j++)
+                {
+                    GameObject newObjectLocationTracker = new GameObject(objectSpawnManager.spawnableObjects[i].objectName + " Location Tracker" + j.ToString());
+                    newObjectLocationTracker.transform.SetParent(newObject.transform);
+                    objectSpawnManager.spawnableObjects[i].objectPositions[j] = newObjectLocationTracker.transform;
+
+                }
             }
         }
 
