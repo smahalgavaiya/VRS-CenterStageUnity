@@ -35,6 +35,7 @@ public class GoalZone : MonoBehaviour
             material = redZoneMaterial;
 
         GetComponent<GoalZoneColorSwitcher>().SetColor(material);
+        GetComponent<GoalZoneTapeMaker>().SetTapeColor(scoreZone);
     }
 }
 
