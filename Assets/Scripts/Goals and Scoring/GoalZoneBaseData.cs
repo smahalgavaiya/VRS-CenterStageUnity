@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(GoalZoneColorSwitcher))]
-public class GoalZone : MonoBehaviour
+public class GoalZoneBaseData : MonoBehaviour
 {
     public MaterialIndex materialIndex;
     public ScoreIndex scoreIndex;
@@ -12,6 +12,7 @@ public class GoalZone : MonoBehaviour
     public bool hideOnPlay;
 
     public ScoreZone scoreZone;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -31,7 +32,7 @@ public class GoalZone : MonoBehaviour
     private void OnValidate()
     {
         Material material;
-        if (scoreZone == ScoreZone.blue)
+        if (scoreZone == ScoreZone.Blue)
         {
             material = materialIndex.blueGoalMaterial;
             ScoreTracker = scoreIndex.blueScoreTracker;
@@ -45,12 +46,13 @@ public class GoalZone : MonoBehaviour
         GetComponent<GoalZoneColorSwitcher>().SetColor(material);
         GetComponent<GoalZoneTapeMaker>().SetTapeColor(scoreZone);
 
-
     }
 }
 
 public enum ScoreZone
 {
-    blue,
-    red
+    Blue,
+    Red,
+    Either
 }
+

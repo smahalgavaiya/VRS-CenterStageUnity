@@ -15,8 +15,9 @@ GameObject:
   - component: {fileID: 69250410538693109}
   - component: {fileID: 69250410538693106}
   - component: {fileID: 6084740869119018252}
+  - component: {fileID: 8773823468099009162}
   m_Layer: 0
-  m_Name: GoalZone
+  m_Name: GoalZoneDefault
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -151,6 +152,18 @@ MonoBehaviour:
   tapeHeight: 0
   materialIndex: {fileID: 11400000, guid: 30ac5fa6dc2da624aa23751cddd2c77d, type: 2}
   numberOfSides: 0
+--- !u!114 &8773823468099009162
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 69250410538693107}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3633f081415e6cc4c9132800567772d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &985090016406447186
 PrefabInstance:
   m_ObjectHideFlags: 0

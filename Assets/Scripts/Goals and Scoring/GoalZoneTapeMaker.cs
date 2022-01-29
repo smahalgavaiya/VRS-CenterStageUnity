@@ -111,10 +111,10 @@ public class GoalZoneTapeMaker : MonoBehaviour
         {
             switch (scoreZone)
             {
-                case ScoreZone.blue:
+                case ScoreZone.Blue:
                     tapeSide.GetComponent<Renderer>().material = materialIndex.blueTapeMaterial;
                     break;
-                case ScoreZone.red:
+                case ScoreZone.Red:
                     tapeSide.GetComponent<Renderer>().material = materialIndex.redTapeMaterial;
                     break;
             }

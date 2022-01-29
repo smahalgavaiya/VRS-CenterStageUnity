@@ -2,16 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(Collider))]
-public class ScoreTarget : MonoBehaviour
+public class GoalZoneScorer : MonoBehaviour
 {
     public RoundIndex roundIndex;
+    public ScoreIndex scoreIndex;
 
     [SerializeField]
-    public List<int> roundScores;
+    private List<ScoringObject> scoringObjects;
 
-
-    public ScoringObject[] scoringObjects;
     // Start is called before the first frame update
     void Start()
     {
@@ -25,3 +23,7 @@ public class ScoreTarget : MonoBehaviour
     }
 }
 
+public class RoundScoreData
+{
+    public ScoringObject ScoringObject { get; set; }
+}

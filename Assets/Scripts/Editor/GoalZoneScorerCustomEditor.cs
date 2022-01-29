@@ -3,28 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 
-[CustomEditor(typeof(ScoreTarget))]
-public class ScoreTargetCustomEditor : Editor
+[CustomEditor(typeof(GoalZoneScorer))]
+public class GoalZoneScorerCustomEditor : Editor
 {
-    ScoreTarget scoreTarget;
+    GoalZoneScorer goalZoneScorer;
     SerializedProperty roundScores;
     private void OnEnable()
     {
-        scoreTarget = (ScoreTarget)target;
+        goalZoneScorer = (GoalZoneScorer)target;
         roundScores = serializedObject.FindProperty("roundScores");
     }
 
     public override void OnInspectorGUI()
     {
-
-        if (scoreTarget.roundScores.Count < scoreTarget.roundIndex.rounds.Count)
-        {
-            scoreTarget.roundScores.Add(0);
-        }
-        else if (scoreTarget.roundScores.Count > scoreTarget.roundIndex.rounds.Count)
-        {
-            scoreTarget.roundScores.RemoveAt(scoreTarget.roundScores.Count - 1);
-        }
 
 
         EditorGUILayout.LabelField("Enter the point value per round for this object");
@@ -33,7 +24,7 @@ public class ScoreTargetCustomEditor : Editor
         {
             for (int i = 0; i < roundScores.arraySize; i++) {
                 EditorGUILayout.PropertyField(roundScores.GetArrayElementAtIndex(i), 
-                    new GUIContent(scoreTarget.roundIndex.rounds[i].roundName));
+                    new GUIContent(goalZoneScorer.roundIndex.rounds[i].roundName));
             }
         }
         catch
