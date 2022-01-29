@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 
-[RequireComponent(typeof(ObjectSpawnLocationTracker))]
-public class ObjectSpawnManager : MonoBehaviour
+[RequireComponent(typeof(ScoringObjectSpawnPositionTracker))]
+public class ScoringObjectSpawnManager : MonoBehaviour
 {
 
-    public SpawnableObjectData[] spawnableObjects;
+    public ScoringObjectData[] scoringObjects;
 
     // Start is called before the first frame update
     void Start()
@@ -23,10 +23,10 @@ public class ObjectSpawnManager : MonoBehaviour
 }
 
 [System.Serializable]
-public class SpawnableObjectData
+public class ScoringObjectData
 {
     public string objectName;
-    public SpawnableObject spawnableObject;
+    public ScoringObject scoringObject;
     public Transform[] objectPositions; // The parent transform for a set of locations on the field that
     // should be filled by a set of the spawnableObject prefabs.
 }

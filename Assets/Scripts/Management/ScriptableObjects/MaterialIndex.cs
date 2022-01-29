@@ -2,11 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Goals/Score Tracker")]
-public class ScoreTracker : ScriptableObject
+[CreateAssetMenu(menuName = "Index/Material Index")]
+public class MaterialIndex : ScriptableObject
 {
-    [SerializeField]
-    public int Score = 10;
+    public Material blueGoalMaterial;
+    public Material redGoalMaterial;
+
+    public Material blueTapeMaterial;
+    public Material redTapeMaterial;
     // Start is called before the first frame update
     void Start()
     {

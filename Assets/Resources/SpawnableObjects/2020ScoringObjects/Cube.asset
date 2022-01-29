@@ -9,7 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2b5cff9f910ce7940b282724203728ba, type: 3}
-  m_Name: RedScoreTracker 1
+  m_Script: {fileID: 11500000, guid: 8fe7a5f843dbc2a429f9ee4eebc8751c, type: 3}
+  m_Name: Cube
   m_EditorClassIdentifier: 
-  Score: 10
+  objectPrefab: {fileID: 4889519259361202102, guid: 31fa1cea5f756214ab64f80a38a9996f,
+    type: 3}
+  quantityToSpawn: 1
+  spawnType: 1

@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 
-[CustomEditor(typeof(ObjectSpawnLocationTracker))]
+[CustomEditor(typeof(ScoringObjectSpawnPositionTracker))]
 public class ObjectSpawnLocationTrackerCustomEditor : Editor
 {
-    ObjectSpawnLocationTracker objectSpawnLocationTracker;
+    ScoringObjectSpawnPositionTracker objectSpawnLocationTracker;
 
     private void OnEnable()
     {
-        objectSpawnLocationTracker = (ObjectSpawnLocationTracker)target;
+        objectSpawnLocationTracker = (ScoringObjectSpawnPositionTracker)target;
 
     }
 
@@ -19,7 +19,7 @@ public class ObjectSpawnLocationTrackerCustomEditor : Editor
         base.OnInspectorGUI();
         EditorGUILayout.Space();
 
-        if (GUILayout.Button("Create Spawn Location Empty Objects"))
+        if (GUILayout.Button("Create Score Object Location Empty Objects"))
         {
             objectSpawnLocationTracker.CreateObjectSpawnLocationEmptyObjects();
         }

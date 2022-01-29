@@ -9,8 +9,7 @@ public class GoalZoneTapeMaker : MonoBehaviour
     public GameObject[] tapeSides;
     public float tapeWidth;
     public float tapeHeight;
-    public Material blueTapeColor;
-    public Material redTapeColor;
+    public MaterialIndex materialIndex;
 
     [Range(0,4)]
     public int numberOfSides;
@@ -113,10 +112,10 @@ public class GoalZoneTapeMaker : MonoBehaviour
             switch (scoreZone)
             {
                 case ScoreZone.blue:
-                    tapeSide.GetComponent<Renderer>().material = blueTapeColor;
+                    tapeSide.GetComponent<Renderer>().material = materialIndex.blueTapeMaterial;
                     break;
                 case ScoreZone.red:
-                    tapeSide.GetComponent<Renderer>().material = redTapeColor;
+                    tapeSide.GetComponent<Renderer>().material = materialIndex.redTapeMaterial;
                     break;
             }
         }

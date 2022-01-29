@@ -6,17 +6,15 @@ using UnityEditor;
 [CustomEditor(typeof(ScoreTracker))]
 public class ScoreTrackerCustomEditor : Editor
 {
-    private SerializedProperty currentScore;
-    GUIContent label;
+    ScoreTracker scoreTracker;
+
     private void OnEnable()
     {
-        currentScore = serializedObject.FindProperty("Score");
-        label.text = currentScore.intValue.ToString();
-
+        scoreTracker = (ScoreTracker)target;
     }
     public override void OnInspectorGUI()
     {
-        EditorGUILayout.LabelField("Score: " + label.text);
-
+        base.OnInspectorGUI();
+        EditorGUILayout.LabelField("Score: " + scoreTracker.Score);
     }
 }

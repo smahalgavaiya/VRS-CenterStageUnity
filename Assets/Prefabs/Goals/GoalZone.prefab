@@ -114,8 +114,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6beb7c552af86214c826df4393650a33, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  redZoneMaterial: {fileID: 2100000, guid: 41d384610130b0e41bd7b6616bc823ef, type: 2}
-  blueZoneMaterial: {fileID: 2100000, guid: 86f7ec49fba4f2d4dbd8102f175555fe, type: 2}
+  materialIndex: {fileID: 11400000, guid: 30ac5fa6dc2da624aa23751cddd2c77d, type: 2}
+  scoreIndex: {fileID: 11400000, guid: 6a1054d5cd9ab4e4a975d016d7c21775, type: 2}
   hideOnPlay: 0
   scoreZone: 0
 --- !u!114 &69250410538693106
@@ -149,8 +149,7 @@ MonoBehaviour:
   - {fileID: 3661032310716659664}
   tapeWidth: 0
   tapeHeight: 0
-  blueTapeColor: {fileID: 2100000, guid: 02378a69a24cd934abd6af77209f799a, type: 2}
-  redTapeColor: {fileID: 2100000, guid: a74898dfa2709d143b3e9cc9c82de7d8, type: 2}
+  materialIndex: {fileID: 11400000, guid: 30ac5fa6dc2da624aa23751cddd2c77d, type: 2}
   numberOfSides: 0
 --- !u!1001 &985090016406447186
 PrefabInstance:
