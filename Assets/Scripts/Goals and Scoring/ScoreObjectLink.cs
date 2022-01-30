@@ -5,7 +5,7 @@ using UnityEngine;
 [ExecuteInEditMode]
 public class ScoreObjectLink : MonoBehaviour
 {
-    public ScoringObject ScoringObject_ { get; set; }
+    public ScoringObjectLocation ScoringObject_ { get; set; }
     public int Index { get; set; }
     public SpawnType SpawnType_ { get; set; }
 

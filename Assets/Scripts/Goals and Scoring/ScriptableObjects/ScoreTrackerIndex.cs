@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Index/Score Index")]
-public class ScoreIndex : ScriptableObject
+public class ScoreTrackerIndex : ScriptableObject
 {
     public ScoreTracker redScoreTracker;
     public ScoreTracker blueScoreTracker;

@@ -26,7 +26,7 @@ public class ScoringObjectSpawnManager : MonoBehaviour
 public class ScoringObjectData
 {
     public string objectName;
-    public ScoringObject scoringObject;
+    public ScoringObjectLocation scoringObject;
     public Transform[] objectPositions; // The parent transform for a set of locations on the field that
     // should be filled by a set of the spawnableObject prefabs.
 }

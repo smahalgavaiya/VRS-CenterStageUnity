@@ -3,23 +3,23 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 
-[CustomEditor(typeof(ScoringObject))]
+[CustomEditor(typeof(ScoringObjectLocation))]
 public class ScoringObjectCustomEditor : Editor
 {
-    SerializedProperty objectPrefab, quantityToSpawn, spawnType;
-    ScoringObject scoringObject;
+    SerializedProperty scoreObjectType, quantityToSpawn, spawnType;
+    ScoringObjectLocation scoringObject;
 
     public void OnEnable()
     {
-        scoringObject = (ScoringObject)target;
-        objectPrefab = serializedObject.FindProperty("objectPrefab");
+        scoringObject = (ScoringObjectLocation)target;
+        scoreObjectType = serializedObject.FindProperty("scoreObjectType");
         quantityToSpawn = serializedObject.FindProperty("quantityToSpawn");
         spawnType = serializedObject.FindProperty("spawnType");
     }
 
     public override void OnInspectorGUI()
     {
-        EditorGUILayout.PropertyField(objectPrefab);
+        EditorGUILayout.PropertyField(scoreObjectType);
         EditorGUILayout.PropertyField(quantityToSpawn);
         EditorGUILayout.PropertyField(spawnType);
 

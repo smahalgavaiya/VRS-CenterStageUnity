@@ -9,8 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 87b12543ea304b0488e274e1adb473a1, type: 3}
-  m_Name: ScoreIndex
+  m_Script: {fileID: 11500000, guid: c6ba2c5a7f726a54882d8cd547583c08, type: 3}
+  m_Name: CarouselDucks
   m_EditorClassIdentifier: 
-  redScoreTracker: {fileID: 11400000, guid: bbb965a835c76194fb579234a329ad37, type: 2}
-  blueScoreTracker: {fileID: 11400000, guid: 3371bba5e1850d948938eeaa437566a1, type: 2}
+  scoreObjectType: {fileID: 11400000, guid: 9a01483447d10fb489033ae970e13d7a, type: 2}
+  quantityToSpawn: 5
+  spawnType: 1
