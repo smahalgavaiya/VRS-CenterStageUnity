@@ -13,4 +13,11 @@ MonoBehaviour:
   m_Name: DefaultScoringGuide
   m_EditorClassIdentifier: 
   roundIndex: {fileID: 11400000, guid: abb6681a0ecca5f4bba7bed86db36db1, type: 2}
-  scoreObjectTypes: []
+  scoreObjectTypes:
+  - {fileID: 11400000, guid: 82dedc368b584bf40b5e487281afe901, type: 2}
+  - {fileID: 11400000, guid: 9a01483447d10fb489033ae970e13d7a, type: 2}
+  - {fileID: 11400000, guid: d650fa5df48bfb3458340d5046089161, type: 2}
+  scoresPerRoundPerType:
+  - scoresPerRound: 020000000300000005000000
+  - scoresPerRound: 050000000200000001000000
+  - scoresPerRound: 050000000700000008000000

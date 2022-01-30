@@ -7,14 +7,14 @@ using UnityEditor;
 public class ScoringGuideCustomEditor : Editor
 {
     ScoringGuide scoringGuide;
-    SerializedProperty roundIndex, scoreObjectTypes, scoresPerRound;
+    SerializedProperty roundIndex, scoreObjectTypes, scoresPerRoundPerType;
 
     private void OnEnable()
     {
         scoringGuide = (ScoringGuide)target;
         roundIndex = serializedObject.FindProperty("roundIndex");
         scoreObjectTypes = serializedObject.FindProperty("scoreObjectTypes");
-        scoresPerRound = serializedObject.FindProperty("scoresPerRound");
+        scoresPerRoundPerType = serializedObject.FindProperty("scoresPerRoundPerType");
     }
 
     public override void OnInspectorGUI()
@@ -28,25 +28,18 @@ public class ScoringGuideCustomEditor : Editor
             scoringGuide.scoreObjectTypes =
                 Resources.LoadAll<ScoreObjectType>("SpawnableObjects/Score Object Types");
 
+            scoringGuide.scoresPerRoundPerType = 
+                new ScorePerRoundPerType[scoringGuide.scoreObjectTypes.Length];
+
             for (int i = 0; i < scoringGuide.scoreObjectTypes.Length; i++)
             {
-                List<ScorePerRound> scorePerRound = new List<ScorePerRound>();
-
-                for (int j = 0; j < scoringGuide.roundIndex.rounds.Count; j++)
-                {
-                    scorePerRound.Add(
-                        new ScorePerRound()
-                        {
-                            RoundName = scoringGuide.roundIndex.rounds[i].roundName,
-                            RoundNumber = j
-                        });
-                }
+                scoringGuide.scoresPerRoundPerType[i] = new ScorePerRoundPerType();
+                scoringGuide.scoresPerRoundPerType[i].scoresPerRound =
+                    new int[scoringGuide.roundIndex.rounds.Count];
             }
-
         }
 
         EditorGUILayout.PropertyField(roundIndex);
-        EditorGUILayout.PropertyField(scoresPerRound);
 
         for (int i = 0; i < scoringGuide.scoreObjectTypes.Length; i++)
         {
@@ -54,9 +47,11 @@ public class ScoringGuideCustomEditor : Editor
 
             for (int j = 0; j < scoringGuide.roundIndex.rounds.Count; j++)
             {
-                EditorGUILayout.LabelField("Round: " + scoringGuide.roundIndex.rounds[j].roundName);
-                //EditorGUILayout.PropertyField(scoresPerRound.GetArrayElementAtIndex(i).GetArrayElementAtIndex(j));
+                string propertyLabel = "Round: " + scoringGuide.roundIndex.rounds[j].roundName;
+                EditorGUILayout.PropertyField(scoresPerRoundPerType.GetArrayElementAtIndex(i).FindPropertyRelative("scoresPerRound").GetArrayElementAtIndex(j), new GUIContent(propertyLabel));
             }
+
+            EditorGUILayout.Space();
 
         }
 

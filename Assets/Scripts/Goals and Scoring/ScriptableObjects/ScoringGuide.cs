@@ -7,13 +7,11 @@ public class ScoringGuide : ScriptableObject
 {
     public RoundIndex roundIndex;
     public ScoreObjectType[] scoreObjectTypes;
-    public List<ScorePerRound> scoresPerRound;
+    public ScorePerRoundPerType[] scoresPerRoundPerType;
 }
 
 [System.Serializable]
-public class ScorePerRound
+public class ScorePerRoundPerType
 {
-    public string RoundName { get;set;}
-    public int RoundNumber { get; set; }
-    public int Score { get;set;}
+    public int[] scoresPerRound;
 }
