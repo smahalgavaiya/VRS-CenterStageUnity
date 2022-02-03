@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e35162a2906b48945923f2e2ca0b8fb1, type: 3}
+  m_Name: DefaultScoringGuide
+  m_EditorClassIdentifier: 
+  roundIndex: {fileID: 11400000, guid: abb6681a0ecca5f4bba7bed86db36db1, type: 2}
+  scoreObjectTypes:
+  - {fileID: 11400000, guid: 82dedc368b584bf40b5e487281afe901, type: 2}
+  - {fileID: 11400000, guid: 9a01483447d10fb489033ae970e13d7a, type: 2}
+  - {fileID: 11400000, guid: d650fa5df48bfb3458340d5046089161, type: 2}
+  scoresPerRoundPerType:
+  - scoresPerRound: 020000000300000005000000
+  - scoresPerRound: 050000000200000001000000
+  - scoresPerRound: 050000000700000008000000

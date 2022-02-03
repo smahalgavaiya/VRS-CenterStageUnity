@@ -6,7 +6,9 @@ using UnityEngine;
 public class GoalZoneBaseData : MonoBehaviour
 {
     public MaterialIndex materialIndex;
-    public ScoreIndex scoreIndex;
+    public ScoreTrackerIndex scoreTrackerIndex;
+    public ScoringGuide scoringGuide;
+
     public ScoreTracker ScoreTracker { get; set; }
 
     public bool hideOnPlay;
@@ -35,12 +37,12 @@ public class GoalZoneBaseData : MonoBehaviour
         if (scoreZone == ScoreZone.Blue)
         {
             material = materialIndex.blueGoalMaterial;
-            ScoreTracker = scoreIndex.blueScoreTracker;
+            ScoreTracker = scoreTrackerIndex.blueScoreTracker;
         }
         else
         {
             material = materialIndex.redGoalMaterial;
-            ScoreTracker = scoreIndex.redScoreTracker;
+            ScoreTracker = scoreTrackerIndex.redScoreTracker;
         }
 
         GetComponent<GoalZoneColorSwitcher>().SetColor(material);
