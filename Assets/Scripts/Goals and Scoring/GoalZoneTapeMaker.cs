@@ -22,7 +22,6 @@ public class GoalZoneTapeMaker : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
         CheckCollisionWithFloorMaybeActivateTape();
         
         // Check if the number of sides has changed
@@ -70,25 +69,29 @@ public class GoalZoneTapeMaker : MonoBehaviour
                                 tapeSides[i].transform.position += 
                                     new Vector3(gameObject.transform.lossyScale.x / 2 + tapeWidth / 2, 0, 0);
                                 tapeSides[i].transform.localScale =
-                                    new Vector3(tapeWidth, tapeHeight, gameObject.transform.localScale.z + tapeWidth * 2);
+                                    new Vector3(tapeWidth / gameObject.transform.lossyScale.x , tapeHeight, 
+                                        1 + (2 * tapeWidth / gameObject.transform.localScale.z));
                                 break;
                             case 1:
                                 tapeSides[i].transform.position += 
                                     new Vector3(0, 0, gameObject.transform.lossyScale.z / 2 + tapeWidth / 2);
                                 tapeSides[i].transform.localScale =
-                                    new Vector3(gameObject.transform.localScale.x + tapeWidth * 2, tapeHeight, tapeWidth);
+                                    new Vector3(1 + (2 * tapeWidth / gameObject.transform.localScale.x), tapeHeight, 
+                                        tapeWidth / gameObject.transform.lossyScale.z);
                                 break;
                             case 2:
                                 tapeSides[i].transform.position -= 
                                     new Vector3(gameObject.transform.lossyScale.x / 2 + tapeWidth / 2, 0, 0);
                                 tapeSides[i].transform.localScale =
-                                    new Vector3(tapeWidth, tapeHeight, gameObject.transform.localScale.z + tapeWidth * 2);
+                                    new Vector3(tapeWidth / gameObject.transform.lossyScale.x, tapeHeight, 
+                                        1 + (2 * tapeWidth / gameObject.transform.localScale.z));
                                 break;
                             case 3:
                                 tapeSides[i].transform.position -= 
                                     new Vector3(0, 0, gameObject.transform.lossyScale.z / 2 + tapeWidth / 2);
                                 tapeSides[i].transform.localScale =
-                                    new Vector3(gameObject.transform.localScale.x + tapeWidth * 2, tapeHeight, tapeWidth);
+                                    new Vector3(1 + (2 * tapeWidth / gameObject.transform.localScale.x), tapeHeight, 
+                                        tapeWidth / gameObject.transform.lossyScale.z);
                                 break;
                         }
                     }
@@ -105,6 +108,7 @@ public class GoalZoneTapeMaker : MonoBehaviour
         }
     }
 
+    // Set tape color depending on team
     public void SetTapeColor(ScoreZone scoreZone)
     {
         foreach (GameObject tapeSide in tapeSides)

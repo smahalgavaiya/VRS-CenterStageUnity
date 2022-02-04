@@ -34,6 +34,7 @@ public class GoalZoneBaseData : MonoBehaviour
     private void OnValidate()
     {
         Material material;
+
         if (scoreZone == ScoreZone.Blue)
         {
             material = materialIndex.blueGoalMaterial;
