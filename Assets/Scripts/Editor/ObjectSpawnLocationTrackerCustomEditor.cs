@@ -6,22 +6,55 @@ using UnityEditor;
 [CustomEditor(typeof(ScoringObjectSpawnPositionTracker))]
 public class ObjectSpawnLocationTrackerCustomEditor : Editor
 {
-    ScoringObjectSpawnPositionTracker objectSpawnLocationTracker;
+    ScoringObjectSpawnPositionTracker scoringObjectSpawnPositionTracker;
 
     private void OnEnable()
     {
-        objectSpawnLocationTracker = (ScoringObjectSpawnPositionTracker)target;
+        scoringObjectSpawnPositionTracker = (ScoringObjectSpawnPositionTracker)target;
 
     }
 
     public override void OnInspectorGUI()
     {
         base.OnInspectorGUI();
+        EditorStyles.label.wordWrap = true;
+        EditorGUILayout.Space();
         EditorGUILayout.Space();
 
-        if (GUILayout.Button("Create Score Object Location Empty Objects"))
+        EditorGUILayout.LabelField("This button will create empty tracker objects based on the scoring zones in the Resources folder specified above.");
+        if (GUILayout.Button("Create score object location empty tracker objects"))
         {
-            objectSpawnLocationTracker.CreateObjectSpawnLocationEmptyObjects();
+            scoringObjectSpawnPositionTracker.CreateObjectSpawnLocationEmptyObjects();
+        }
+
+        EditorGUILayout.Space();
+        EditorGUILayout.Space();
+        EditorGUILayout.LabelField("By default, when you move the tracker objects around, their locations are saved to the Scoring Zone objects in the Resources folder specified above, so that you can easily save location data for different configurations. If you want to reset those values, hit this button.");
+
+        if (GUILayout.Button("Reset all locations to zero position."))
+        {
+            if (scoringObjectSpawnPositionTracker.spawnLocationParent.transform.childCount < 1)
+            {
+                if (EditorUtility.DisplayDialog("No tracker objects created", "No tracker objects created, would you like to create them now?", "Yes, create them", "No"))
+                {
+                    scoringObjectSpawnPositionTracker.CreateObjectSpawnLocationEmptyObjects();
+                } else
+                    return;
+            }
+            if (EditorUtility.DisplayDialog("Are you sure?", "This will reset ALL tracker locations to zero. If you only need to do a few, it's better to do them manually.", "Yes, reset them all.", "No thanks."));
+            {
+                // Get all scoring objects
+                for (int i = 0; i < scoringObjectSpawnPositionTracker.ScoringObjectSpawnManager_.scoringObjects.Length; i++)
+                {
+                    // Get all positions for those objects
+                    for (int j = 0; j < scoringObjectSpawnPositionTracker.ScoringObjectSpawnManager_.scoringObjects[i].objectPositions.Length; j++)
+                    {
+                        // Reset positions to zero
+                        scoringObjectSpawnPositionTracker.ScoringObjectSpawnManager_.scoringObjects[i].objectPositions[j].position = Vector3.zero;
+                    }
+                }
+
+            }
         }
 
     }

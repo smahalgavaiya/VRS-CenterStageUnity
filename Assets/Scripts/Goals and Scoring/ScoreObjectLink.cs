@@ -5,7 +5,7 @@ using UnityEngine;
 [ExecuteInEditMode]
 public class ScoreObjectLink : MonoBehaviour
 {
-    public ScoringObjectLocation ScoringObject_ { get; set; }
+    public ScoringObjectLocation ScoringObjectLocation_ { get; set; }
     public int Index { get; set; }
     public SpawnType SpawnType_ { get; set; }
 
@@ -14,7 +14,7 @@ public class ScoreObjectLink : MonoBehaviour
     {
         if (SpawnType_ == SpawnType.AtSpecificPoints)
         {
-            ScoringObject_.pointPositions[Index] = transform.position;
+            ScoringObjectLocation_.pointPositions[Index] = transform.position;
         }
     }
 }

@@ -47,7 +47,10 @@ public class GoalZoneBaseData : MonoBehaviour
         }
 
         GetComponent<GoalZoneColorSwitcher>().SetColor(material);
-        GetComponent<GoalZoneTapeMaker>().SetTapeColor(scoreZone);
+
+        // Set tape color if the Goal Zone Tape Maker is available
+        if (GetComponent<GoalZoneTapeMaker>())
+            GetComponent<GoalZoneTapeMaker>().SetTapeColor(scoreZone);
 
     }
 }

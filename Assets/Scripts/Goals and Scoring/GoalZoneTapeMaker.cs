@@ -6,22 +6,39 @@ using UnityEngine;
 [ExecuteInEditMode]
 public class GoalZoneTapeMaker : MonoBehaviour
 {
-    public GameObject[] tapeSides;
+    [Range(0,4)]
+    public int numberOfSides;
+
+    private GameObject[] tapeSides = new GameObject[4];
     public float tapeWidth;
     public float tapeHeight;
     public MaterialIndex materialIndex;
 
-    [Range(0,4)]
-    public int numberOfSides;
     int previousNumberOfSides;
+    private void OnEnable()
+    {
+        GetTapeSides();
+    }
     // Start is called before the first frame update
     void Start()
     {
     }
 
+    void GetTapeSides()
+    {
+        for (int i = 0; i < 4; i++)
+        {
+            tapeSides[i] = transform.GetChild(i).gameObject;
+        }
+    }
+
     // Update is called once per frame
     void Update()
     {
+        // If these are not defined
+        if (tapeSides[0] == null)
+            GetTapeSides();
+
         CheckCollisionWithFloorMaybeActivateTape();
         
         // Check if the number of sides has changed
@@ -111,6 +128,9 @@ public class GoalZoneTapeMaker : MonoBehaviour
     // Set tape color depending on team
     public void SetTapeColor(ScoreZone scoreZone)
     {
+        if (tapeSides[0] == null)
+            GetTapeSides();
+
         foreach (GameObject tapeSide in tapeSides)
         {
             switch (scoreZone)
