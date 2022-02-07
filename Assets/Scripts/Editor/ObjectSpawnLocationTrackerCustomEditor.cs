@@ -17,6 +17,13 @@ public class ObjectSpawnLocationTrackerCustomEditor : Editor
     public override void OnInspectorGUI()
     {
         base.OnInspectorGUI();
+        if (GUILayout.Button("Get or create path"))
+        {
+            string relativePath = "/Resources/SpawnableObjects/"; 
+            string folderPath = EditorUtility.OpenFolderPanel("Get or create path", "Assets" + relativePath, "");
+
+            scoringObjectSpawnPositionTracker.resourcesFolder = folderPath.Substring(Application.dataPath.Length + relativePath.Length);
+        }
         EditorStyles.label.wordWrap = true;
         EditorGUILayout.Space();
         EditorGUILayout.Space();
@@ -41,7 +48,7 @@ public class ObjectSpawnLocationTrackerCustomEditor : Editor
                 } else
                     return;
             }
-            if (EditorUtility.DisplayDialog("Are you sure?", "This will reset ALL tracker locations to zero. If you only need to do a few, it's better to do them manually.", "Yes, reset them all.", "No thanks."));
+            if (EditorUtility.DisplayDialog("Are you sure?", "This will reset ALL tracker locations to zero. If you only need to do a few, it's better to do them manually.", "Yes, reset them all.", "No thanks."))
             {
                 // Get all scoring objects
                 for (int i = 0; i < scoringObjectSpawnPositionTracker.ScoringObjectSpawnManager_.scoringObjects.Length; i++)
