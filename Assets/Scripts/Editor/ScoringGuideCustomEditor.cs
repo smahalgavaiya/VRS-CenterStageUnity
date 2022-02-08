@@ -25,12 +25,15 @@ public class ScoringGuideCustomEditor : Editor
 
         if (GUILayout.Button("Load Scoring Object Types"))
         {
+            // Load all the scoring object types from Resources
             scoringGuide.scoreObjectTypes =
-                Resources.LoadAll<ScoreObjectType>("SpawnableObjects/Score Object Types");
+                Resources.LoadAll<ScoreObjectType>("SpawnableObjects/ScoringObjectTypes");
 
+            // Set the number of scores per round, based on type
             scoringGuide.scoresPerRoundPerType = 
                 new ScorePerRoundPerType[scoringGuide.scoreObjectTypes.Length];
 
+            // Create new ScorePerRoundPerType classes and populate them with the number of scores per round
             for (int i = 0; i < scoringGuide.scoreObjectTypes.Length; i++)
             {
                 scoringGuide.scoresPerRoundPerType[i] = new ScorePerRoundPerType();
@@ -40,6 +43,9 @@ public class ScoringGuideCustomEditor : Editor
         }
 
         EditorGUILayout.PropertyField(roundIndex);
+
+        // Update the custom editor's serialized properties so they match the data they are serializing
+        serializedObject.Update();
 
         for (int i = 0; i < scoringGuide.scoreObjectTypes.Length; i++)
         {

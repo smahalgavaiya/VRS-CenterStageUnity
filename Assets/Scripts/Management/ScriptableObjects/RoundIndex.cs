@@ -6,6 +6,12 @@ using UnityEngine;
 public class RoundIndex : ScriptableObject
 {
     public List<Round> rounds;
+    public int currentRound;
+
+    public void ResetRounds()
+    {
+        currentRound = 0;
+    }
 }
 
 [System.Serializable]

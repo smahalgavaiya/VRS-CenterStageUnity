@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEditor;
 
 [CustomEditor(typeof(ScoringObjectLocation))]
-public class ScoringObjectCustomEditor : Editor
+public class ScoringObjectLocationCustomEditor : Editor
 {
     SerializedProperty scoreObjectType, quantityToSpawn, spawnType;
     ScoringObjectLocation scoringObject;

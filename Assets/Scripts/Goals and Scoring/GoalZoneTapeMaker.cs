@@ -126,7 +126,7 @@ public class GoalZoneTapeMaker : MonoBehaviour
     }
 
     // Set tape color depending on team
-    public void SetTapeColor(ScoreZone scoreZone)
+    public void SetTapeColor(ScoreZoneColor scoreZone)
     {
         if (tapeSides[0] == null)
             GetTapeSides();
@@ -135,10 +135,10 @@ public class GoalZoneTapeMaker : MonoBehaviour
         {
             switch (scoreZone)
             {
-                case ScoreZone.Blue:
+                case ScoreZoneColor.Blue:
                     tapeSide.GetComponent<Renderer>().material = materialIndex.blueTapeMaterial;
                     break;
-                case ScoreZone.Red:
+                case ScoreZoneColor.Red:
                     tapeSide.GetComponent<Renderer>().material = materialIndex.redTapeMaterial;
                     break;
             }

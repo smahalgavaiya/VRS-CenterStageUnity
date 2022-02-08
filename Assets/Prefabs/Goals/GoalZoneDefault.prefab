@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 69250410538693109}
   - component: {fileID: 69250410538693106}
   - component: {fileID: 6084740869119018252}
+  - component: {fileID: 4547080537856386058}
   m_Layer: 0
   m_Name: GoalZoneDefault
   m_TagString: Untagged
@@ -118,7 +119,7 @@ MonoBehaviour:
   scoreTrackerIndex: {fileID: 11400000, guid: 6a1054d5cd9ab4e4a975d016d7c21775, type: 2}
   scoringGuide: {fileID: 11400000, guid: 7349f391750411842a3afdf13de0af9d, type: 2}
   hideOnPlay: 0
-  scoreZone: 0
+  scoreZoneColor: 0
 --- !u!114 &69250410538693106
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -147,6 +148,18 @@ MonoBehaviour:
   tapeWidth: 0.05
   tapeHeight: 0.05
   materialIndex: {fileID: 11400000, guid: 30ac5fa6dc2da624aa23751cddd2c77d, type: 2}
+--- !u!114 &4547080537856386058
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 69250410538693107}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66055704a4d3e17459e0531fc84e1c39, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &985090016406447186
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -182,7 +195,7 @@ PrefabInstance:
     - target: {fileID: 4565459214076058488, guid: 843ada4ab4e13674ca928100b6323da3,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.02753222
+      value: -0.0275321
       objectReference: {fileID: 0}
     - target: {fileID: 4565459214076058488, guid: 843ada4ab4e13674ca928100b6323da3,
         type: 3}
@@ -282,7 +295,7 @@ PrefabInstance:
     - target: {fileID: 4565459214076058488, guid: 843ada4ab4e13674ca928100b6323da3,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.02753222
+      value: -0.0275321
       objectReference: {fileID: 0}
     - target: {fileID: 4565459214076058488, guid: 843ada4ab4e13674ca928100b6323da3,
         type: 3}
@@ -382,7 +395,7 @@ PrefabInstance:
     - target: {fileID: 4565459214076058488, guid: 843ada4ab4e13674ca928100b6323da3,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.02753222
+      value: -0.0275321
       objectReference: {fileID: 0}
     - target: {fileID: 4565459214076058488, guid: 843ada4ab4e13674ca928100b6323da3,
         type: 3}
@@ -482,7 +495,7 @@ PrefabInstance:
     - target: {fileID: 4565459214076058488, guid: 843ada4ab4e13674ca928100b6323da3,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.02753222
+      value: -0.0275321
       objectReference: {fileID: 0}
     - target: {fileID: 4565459214076058488, guid: 843ada4ab4e13674ca928100b6323da3,
         type: 3}

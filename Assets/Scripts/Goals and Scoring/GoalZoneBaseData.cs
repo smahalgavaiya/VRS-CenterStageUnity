@@ -13,7 +13,7 @@ public class GoalZoneBaseData : MonoBehaviour
 
     public bool hideOnPlay;
 
-    public ScoreZone scoreZone;
+    public ScoreZoneColor scoreZoneColor;
 
     // Start is called before the first frame update
     void Start()
@@ -35,7 +35,7 @@ public class GoalZoneBaseData : MonoBehaviour
     {
         Material material;
 
-        if (scoreZone == ScoreZone.Blue)
+        if (scoreZoneColor == ScoreZoneColor.Blue)
         {
             material = materialIndex.blueGoalMaterial;
             ScoreTracker = scoreTrackerIndex.blueScoreTracker;
@@ -50,12 +50,12 @@ public class GoalZoneBaseData : MonoBehaviour
 
         // Set tape color if the Goal Zone Tape Maker is available
         if (GetComponent<GoalZoneTapeMaker>())
-            GetComponent<GoalZoneTapeMaker>().SetTapeColor(scoreZone);
+            GetComponent<GoalZoneTapeMaker>().SetTapeColor(scoreZoneColor);
 
     }
 }
 
-public enum ScoreZone
+public enum ScoreZoneColor
 {
     Blue,
     Red,
