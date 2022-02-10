@@ -5,7 +5,6 @@ using UnityEditor;
 
 public class VRSMenu : MonoBehaviour
 {
-
     [MenuItem("VRS/Goal Objects/Cube Goal Zone")]
     static void CreateCubeGoal()
     {
@@ -103,6 +102,8 @@ public class PopupDialogForScoreObjectTypes : EditorWindow
             ScoreObjectType newScoreObjectType = CreateInstance<ScoreObjectType>();
             AssetDatabase.CreateAsset(newScoreObjectType, "Assets/Resources/SpawnableObjects/ScoringObjectTypes/" + assetName + ".asset");
             newScoreObjectType.objectPrefab = objectPrefab;
+            TagManager.CreateTag(newScoreObjectType.name);
+            newScoreObjectType.objectPrefab.tag = newScoreObjectType.name;
             this.Close();
         }
         

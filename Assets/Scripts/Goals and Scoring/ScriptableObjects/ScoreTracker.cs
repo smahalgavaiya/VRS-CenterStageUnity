@@ -12,4 +12,9 @@ public class ScoreTracker : ScriptableObject
         Score += amountToChange;
     }
 
+    public void ResetScore()
+    {
+        Score = 0;
+    }
+
 }

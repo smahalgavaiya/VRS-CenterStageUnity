@@ -42,7 +42,7 @@ public class GoalZoneScoreLink : MonoBehaviour
 
         foreach (ScoreObjectType objectType in scoringGuide.scoreObjectTypes)
         {
-            if (other.tag == objectType.ToString())
+            if (other.tag == objectType.name.ToString())
             {
                 scoreObjectTypeIndex = Array.FindIndex(scoringGuide.scoreObjectTypes, w => w.name == other.tag);
                 ChangeScore(scoreObjectTypeIndex, scoreDirection);

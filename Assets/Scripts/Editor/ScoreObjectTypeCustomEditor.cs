@@ -29,7 +29,7 @@ public class ScoreObjectTypeCustomEditor : Editor
         {
             try
             {
-                CreateTag(scoreObjectType.name);
+                TagManager.CreateTag(scoreObjectType.name);
                 scoreObjectType.objectPrefab.tag = scoreObjectType.name;
             } catch
             {
@@ -39,7 +39,11 @@ public class ScoreObjectTypeCustomEditor : Editor
         }
     }
 
-    void CreateTag(string tag) {
+}
+
+public static class TagManager
+{
+    public static void CreateTag(string tag) {
         var asset = AssetDatabase.LoadMainAssetAtPath("ProjectSettings/TagManager.asset");
         if (asset != null) { // sanity checking
             var so = new SerializedObject(asset);
