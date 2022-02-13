@@ -82,18 +82,6 @@ public class ScoringObjectSpawnPositionTracker : MonoBehaviour
                     //newObjectLocationTracker.AddComponent<MeshFilter>();
                     //newObjectLocationTracker.AddComponent<MeshRenderer>();
 
-                    //// Set the new tracker object mesh to the same as the scoring object type
-                    //try
-                    //{
-                    //    newObjectLocationTracker.GetComponent<MeshFilter>().mesh =
-                    //        scoringObjectSpawnManager.scoringObjects[i].scoringObject.scoreObjectType.objectPrefab.GetComponent<MeshFilter>().sharedMesh; 
-                    //}
-                    //catch
-                    //{
-                    //    newObjectLocationTracker.GetComponent<MeshFilter>().mesh =
-                    //        scoringObjectSpawnManager.scoringObjects[i].scoringObject.scoreObjectType.objectPrefab.GetComponentInChildren<MeshFilter>().sharedMesh; 
-                    //}
-
                     // Try to set the position of the tracker object
                     if (scoringObjectSpawnManager.scoringObjects[i].scoringObject.pointPositions[j] != null)
                         newObjectLocationTracker.transform.position = 

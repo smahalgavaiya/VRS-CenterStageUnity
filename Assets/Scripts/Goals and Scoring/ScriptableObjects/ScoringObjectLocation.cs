@@ -13,8 +13,6 @@ public class ScoringObjectLocation: ScriptableObject
     public List<Vector3> pointPositions { get; set; }
 
     public SpawnAreaBounds spawnAreaBounds { get; set; }
-
-
 }
 
 [System.Serializable]
@@ -25,8 +23,8 @@ public class SpawnAreaBounds
 
 public enum SpawnType
 {
-    StackedAtPoint,
-    AtSpecificPoints,
-    RandomOverArea,
-    RandomOverMultiplePoints
+    StackedAtPoint, // These spawn at a specific point, either infinitely or finitely
+    AtSpecificPoints, // These spawn one each at multiple points
+    RandomOverArea, // These spawn randomly over an area
+    RandomOverMultiplePoints// These spawn randomly over a series of points
 }

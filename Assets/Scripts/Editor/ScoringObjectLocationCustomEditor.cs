@@ -25,6 +25,8 @@ public class ScoringObjectLocationCustomEditor : Editor
 
         serializedObject.ApplyModifiedProperties();
 
+        // If it the locations are at specific points, create the vectors 
+        // required to store their locations
         if (scoringObject.spawnType == SpawnType.AtSpecificPoints)
         {
             if (scoringObject.pointPositions == null)

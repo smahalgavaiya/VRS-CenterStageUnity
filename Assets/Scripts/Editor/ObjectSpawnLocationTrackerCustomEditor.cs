@@ -11,7 +11,6 @@ public class ObjectSpawnLocationTrackerCustomEditor : Editor
     private void OnEnable()
     {
         scoringObjectSpawnPositionTracker = (ScoringObjectSpawnPositionTracker)target;
-
     }
 
     public override void OnInspectorGUI()
