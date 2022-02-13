@@ -10,15 +10,7 @@ public class MaterialIndex : ScriptableObject
 
     public Material blueTapeMaterial;
     public Material redTapeMaterial;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    // The material for tracker objects that show where objects will spawn
+    public Material trackerObjectMaterial;
 }

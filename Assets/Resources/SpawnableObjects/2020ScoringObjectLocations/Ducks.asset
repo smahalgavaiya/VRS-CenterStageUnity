@@ -10,8 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c6ba2c5a7f726a54882d8cd547583c08, type: 3}
-  m_Name: CarouselDucks
+  m_Name: Ducks
   m_EditorClassIdentifier: 
-  scoreObjectType: {fileID: 11400000, guid: 9a01483447d10fb489033ae970e13d7a, type: 2}
-  quantityToSpawn: 5
+  scoreObjectType: {fileID: 11400000, guid: 2c3e894ed173ef546948cffdca13fb06, type: 2}
+  quantityToSpawn: 6
   spawnType: 1
+  isScoringZone: 0
+  showTapeOnField: 0
+  numberOfPotentialPoints: 0

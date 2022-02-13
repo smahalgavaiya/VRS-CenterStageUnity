@@ -15,6 +15,7 @@ public class ObjectSpawnLocationTrackerCustomEditor : Editor
 
     public override void OnInspectorGUI()
     {
+        EditorGUIUtility.labelWidth = 160;
         base.OnInspectorGUI();
         if (GUILayout.Button("Get or create path"))
         {
@@ -22,6 +23,7 @@ public class ObjectSpawnLocationTrackerCustomEditor : Editor
             string folderPath = EditorUtility.OpenFolderPanel("Get or create path", "Assets" + relativePath, "");
 
             scoringObjectSpawnPositionTracker.resourcesFolder = folderPath.Substring(Application.dataPath.Length + relativePath.Length);
+            serializedObject.Update();
         }
         EditorStyles.label.wordWrap = true;
         EditorGUILayout.Space();
