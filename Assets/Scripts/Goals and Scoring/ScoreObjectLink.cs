@@ -5,16 +5,21 @@ using UnityEngine;
 [ExecuteInEditMode]
 public class ScoreObjectLink : MonoBehaviour
 {
-    public ScoringObjectLocation ScoringObjectLocation_ { get; set; }
+    public ScoringObjectLocation _ScoringObjectLocation { get; set; }
     public int Index { get; set; }
-    public SpawnType SpawnType_ { get; set; }
+    public SpawnType _SpawnType { get; set; }
 
     // Update is called once per frame
     void Update()
     {
-        if (SpawnType_ == SpawnType.AtSpecificPoints)
+        if (_SpawnType == SpawnType.AtSpecificPoints || _SpawnType == SpawnType.RandomOverMultiplePoints)
         {
-            ScoringObjectLocation_.pointPositions[Index] = transform.position;
+            _ScoringObjectLocation.pointPositions[Index] = transform.position;
+        }
+        else if (_SpawnType == SpawnType.RandomOverArea)
+        {
+            _ScoringObjectLocation.SpawnAreaCenter = transform.position;
+            _ScoringObjectLocation.SpawnScale = transform.localScale;
         }
     }
 }

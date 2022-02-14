@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 8718639432632317496}
   - component: {fileID: 8718639432632317499}
-  - component: {fileID: 8718639432632317498}
   m_Layer: 0
   m_Name: '@ScoringObjectSpawnManager'
   m_TagString: Untagged
@@ -46,32 +45,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnLocationParent: {fileID: 0}
   resourcesFolder: 2020ScoringObjects
---- !u!114 &8718639432632317498
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8718639432632317497}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f09ca720a7ef8414ba200d9563ac62cc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  scoringObjects:
-  - objectName: CarouselDucks
-    scoringObject: {fileID: 11400000, guid: e699181b7d46b344eb3afc77680b8ac1, type: 2}
-    objectPositions:
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
-  - objectName: CubeZone
-    scoringObject: {fileID: 11400000, guid: bc7cbb237061c4445be914752d06906a, type: 2}
-    objectPositions:
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
+  materialIndex: {fileID: 0}

@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DriverReceiver : MonoBehaviour
+public class DriveReceiver : MonoBehaviour
 {
-    public Driver driverLink;
+    public Drive driverLink;
     Rigidbody rigidbody;
     bool driveIsActive = false;
 

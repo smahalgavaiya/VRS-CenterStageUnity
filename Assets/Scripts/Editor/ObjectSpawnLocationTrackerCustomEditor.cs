@@ -23,6 +23,7 @@ public class ObjectSpawnLocationTrackerCustomEditor : Editor
             string folderPath = EditorUtility.OpenFolderPanel("Get or create path", "Assets" + relativePath, "");
 
             scoringObjectSpawnPositionTracker.resourcesFolder = folderPath.Substring(Application.dataPath.Length + relativePath.Length);
+            serializedObject.ApplyModifiedProperties();
             serializedObject.Update();
         }
         EditorStyles.label.wordWrap = true;
@@ -51,17 +52,10 @@ public class ObjectSpawnLocationTrackerCustomEditor : Editor
             }
             if (EditorUtility.DisplayDialog("Are you sure?", "This will reset ALL tracker locations to zero. If you only need to do a few, it's better to do them manually.", "Yes, reset them all.", "No thanks."))
             {
-                // Get all scoring objects
-                for (int i = 0; i < scoringObjectSpawnPositionTracker.ScoringObjectSpawnManager_.scoringObjects.Length; i++)
+                foreach(Transform trackerObjectTransform in scoringObjectSpawnPositionTracker.spawnLocationParent.transform.GetComponentsInChildren<Transform>())
                 {
-                    // Get all positions for those objects
-                    for (int j = 0; j < scoringObjectSpawnPositionTracker.ScoringObjectSpawnManager_.scoringObjects[i].objectPositions.Length; j++)
-                    {
-                        // Reset positions to zero
-                        scoringObjectSpawnPositionTracker.ScoringObjectSpawnManager_.scoringObjects[i].objectPositions[j].position = Vector3.zero;
-                    }
+                    trackerObjectTransform.position = Vector3.zero;
                 }
-
             }
         }
 

@@ -19,6 +19,7 @@ public class ScoringObjectLocationCustomEditor : Editor
         showTapeOnField = serializedObject.FindProperty("showTapeOnField");
         isScoringZone = serializedObject.FindProperty("isScoringZone");
         numberOfPotentialPoints = serializedObject.FindProperty("numberOfPotentialPoints");
+        EditorUtility.SetDirty(target);
     }
 
     public override void OnInspectorGUI()
@@ -50,9 +51,6 @@ public class ScoringObjectLocationCustomEditor : Editor
                     numberToUseForListCount = scoringObject.numberOfPotentialPoints;
                     break;
             }
-
-            if (scoringObject.pointPositions == null)
-                scoringObject.pointPositions = new List<Vector3>();
 
             while(scoringObject.pointPositions.Count < numberToUseForListCount)
             {
@@ -87,9 +85,8 @@ public class ScoringObjectLocationCustomEditor : Editor
 
             serializedObject.ApplyModifiedProperties();
 
-            EditorGUILayout.LabelField("Spawn Area Upper Bounds: " + scoringObject.spawnAreaBounds.upperBound.ToString());
-            EditorGUILayout.LabelField("Spawn Area Lower Bounds: " + scoringObject.spawnAreaBounds.lowerBound.ToString());
-            EditorGUILayout.LabelField("Spawn Area Center: " + scoringObject.spawnAreaCenter.ToString());
+            EditorGUILayout.LabelField("Spawn Area Scale: " + scoringObject.SpawnScale.ToString());
+            EditorGUILayout.LabelField("Spawn Area Center: " + scoringObject.SpawnAreaCenter.ToString());
         }
         else if (scoringObject.spawnType == SpawnType.StackedAtPoint)
         {

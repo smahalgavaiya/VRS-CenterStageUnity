@@ -13,8 +13,16 @@ MonoBehaviour:
   m_Name: Ducks
   m_EditorClassIdentifier: 
   scoreObjectType: {fileID: 11400000, guid: 2c3e894ed173ef546948cffdca13fb06, type: 2}
-  quantityToSpawn: 6
-  spawnType: 1
+  quantityToSpawn: 35
+  spawnType: 2
   isScoringZone: 0
   showTapeOnField: 0
-  numberOfPotentialPoints: 0
+  pointPositions:
+  - {x: 0, y: 0, z: 0}
+  - {x: 0.100000024, y: 0, z: 0}
+  - {x: 0.19999999, y: 0, z: 0}
+  - {x: 0.3, y: 0, z: 0}
+  - {x: 0.40000004, y: 0, z: 0}
+  - {x: 0.5, y: 0, z: 0}
+  - {x: 0.6000001, y: 0, z: 0}
+  numberOfPotentialPoints: 7

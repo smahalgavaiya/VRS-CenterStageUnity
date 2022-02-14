@@ -3,22 +3,22 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Props/Driver Link")]
-public class Driver : ScriptableObject
+public class Drive : ScriptableObject
 {
-    List<DriverReceiver> driverReceivers;
+    List<DriveReceiver> driverReceivers;
     public Vector3 driveAmount;
     public DriverType driverType;
     private void OnEnable()
     {
-        driverReceivers = new List<DriverReceiver>();
+        driverReceivers = new List<DriveReceiver>();
     }
 
-    public void RegisterDriverReceiver(DriverReceiver driverReceiver)
+    public void RegisterDriverReceiver(DriveReceiver driverReceiver)
     {
         driverReceivers.Add(driverReceiver);
     }
 
-    public void UnRegisterDriverReceiver(DriverReceiver driverReceiver)
+    public void UnRegisterDriverReceiver(DriveReceiver driverReceiver)
     {
         driverReceivers.Remove(driverReceiver);
     }
