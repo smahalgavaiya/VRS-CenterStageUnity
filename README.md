@@ -1,4 +1,5 @@
-# vFTC-LocalField
+# Virtual-FTC Constructor Kit
 
-This branch is now closed. Visit https://github.com/Virtual-FTC/ConstructorKit for up-to-date files.
+This repo contains a constructor kit for building the field, robots, etc.
+
 # FTC
