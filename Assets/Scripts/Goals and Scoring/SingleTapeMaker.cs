@@ -37,6 +37,8 @@ public class SingleTapeMaker : MonoBehaviour
                     tapePiece.name = "tape";
                     tapePiece.transform.SetParent(transform);
                     tapePiece.transform.position = Vector3.zero;
+                    tapePiece.GetComponent<BoxCollider>().enabled = false;
+                    tapePiece.AddComponent<StayInScene>();
                 }
 
                 tapePiece.transform.localScale = tapeScale;
