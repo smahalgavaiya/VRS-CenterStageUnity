@@ -6,21 +6,27 @@ using UnityEngine.Events;
 
 public class InputActionManager : MonoBehaviour
 {
+    public UnityEvent pickUpObject;
 
-    public UnityEvent testEvent, endTestEvent;
+    public Drive forwardBack, leftRight;
     // Start is called before the first frame update
     void Start()
     {
         
     }
 
-    public void OnTestAction(InputValue value)
+    public void OnMovement(InputValue value)
+    {
+        forwardBack.SendValue(value.Get<Vector2>().y);
+        leftRight.SendValue(value.Get<Vector2>().x);
+    }
+
+    public void OnPickUpObject(InputValue value)
     {
         if (value.isPressed)
-            testEvent.Invoke();
-        else
-            endTestEvent.Invoke();
+            pickUpObject.Invoke();
     }
+
 
     // Update is called once per frame
     void Update()

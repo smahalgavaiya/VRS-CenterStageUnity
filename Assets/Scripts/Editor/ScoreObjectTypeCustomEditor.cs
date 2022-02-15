@@ -10,11 +10,11 @@ public class ScoreObjectTypeCustomEditor : Editor
     private void OnEnable()
     {
         scoreObjectType = (ScoreObjectType)target;
-        EditorStyles.label.wordWrap = true;
     }
 
     public override void OnInspectorGUI()
     {
+        EditorStyles.label.wordWrap = true;
         base.OnInspectorGUI();
 
         EditorGUILayout.Space();
@@ -31,6 +31,10 @@ public class ScoreObjectTypeCustomEditor : Editor
             {
                 TagManager.CreateTag(scoreObjectType.name);
                 scoreObjectType.objectPrefab.tag = scoreObjectType.name;
+                foreach (Transform transform in scoreObjectType.objectPrefab.GetComponentsInChildren<Transform>())
+                {
+                    transform.tag = scoreObjectType.name;
+                }
             } catch
             {
                 EditorUtility.DisplayDialog("No prefab assigned", "You need to set an object prefab first", "ok");

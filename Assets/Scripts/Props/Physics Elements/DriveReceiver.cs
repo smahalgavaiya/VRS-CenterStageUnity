@@ -4,18 +4,19 @@ using UnityEngine;
 
 public class DriveReceiver : MonoBehaviour
 {
-    public Drive driverLink;
+    public Drive drive;
     Rigidbody rigidbody;
     bool driveIsActive = false;
+    float driveCoefficient = 0;
 
     private void Awake()
     {
-        driverLink.RegisterDriverReceiver(this);    
+        drive.RegisterDriveReceiver(this);    
     }
 
     private void OnDestroy()
     {
-        driverLink.UnRegisterDriverReceiver(this);
+        drive.UnRegisterDriveReceiver(this);
     }
 
     public void RegisterRigidbody()
@@ -33,40 +34,33 @@ public class DriveReceiver : MonoBehaviour
         }
     }
 
-    public void EnableDrive()
+    public void ReceiveDriveValue(float value)
     {
-        driveIsActive = true;
-    }
-    public void DisableDrive()
-    {
-        driveIsActive = false;
+        driveCoefficient = value;
     }
 
     private void Update()
     {
-        if (driveIsActive)
+        switch (drive.driverType)
         {
-            switch (driverLink.driverType)
-            {
-                case DriverType.Rotation:
-                    transform.Rotate(driverLink.driveAmount);
-                    break;
-                case DriverType.Translation:
-                    transform.Translate(driverLink.driveAmount);
-                    break;
-                case DriverType.RigidbodyMove:
-                    rigidbody.MovePosition(rigidbody.position + driverLink.driveAmount);
-                    break;
-                case DriverType.RigidbodyRotate:
-                    rigidbody.MoveRotation(rigidbody.rotation * Quaternion.Euler(driverLink.driveAmount));
-                    break;
-                case DriverType.Force:
-                    rigidbody.AddForce(driverLink.driveAmount);
-                    break;
-                case DriverType.Torque:
-                    rigidbody.AddTorque(driverLink.driveAmount);
-                    break;
-            }
+            case DriverType.Rotation:
+                transform.Rotate(drive.driveAmount * driveCoefficient);
+                break;
+            case DriverType.Translation:
+                transform.Translate(drive.driveAmount * driveCoefficient);
+                break;
+            case DriverType.RigidbodyMove:
+                rigidbody.MovePosition(rigidbody.position + drive.driveAmount * driveCoefficient);
+                break;
+            case DriverType.RigidbodyRotate:
+                rigidbody.MoveRotation(rigidbody.rotation * Quaternion.Euler(drive.driveAmount * driveCoefficient));
+                break;
+            case DriverType.Force:
+                rigidbody.AddForce(drive.driveAmount * driveCoefficient);
+                break;
+            case DriverType.Torque:
+                rigidbody.AddTorque(drive.driveAmount * driveCoefficient);
+                break;
         }
     }
 }

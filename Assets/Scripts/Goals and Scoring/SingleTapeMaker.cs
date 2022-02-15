@@ -6,6 +6,7 @@ using UnityEngine;
 public class SingleTapeMaker : MonoBehaviour
 {
     RaycastHit[] allHits;
+    [SerializeField]
     GameObject tapePiece;
     bool floorFound = false;
     public Vector3 tapeScale;
@@ -33,6 +34,7 @@ public class SingleTapeMaker : MonoBehaviour
                 if (tapePiece == null)
                 {
                     tapePiece = GameObject.CreatePrimitive(PrimitiveType.Cube);
+                    tapePiece.name = "tape";
                     tapePiece.transform.SetParent(transform);
                     tapePiece.transform.position = Vector3.zero;
                 }

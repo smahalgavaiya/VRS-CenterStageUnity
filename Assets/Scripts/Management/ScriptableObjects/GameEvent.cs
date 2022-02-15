@@ -23,7 +23,7 @@ public class GameEvent : ScriptableObject
     }
     public void Raise()
     {
-        for (int i = gameEventListeners.Count; i > -1; i--)
+        for (int i = gameEventListeners.Count - 1; i > -1; i--)
         {
             gameEventListeners[i].EventHeard.Invoke();
         }

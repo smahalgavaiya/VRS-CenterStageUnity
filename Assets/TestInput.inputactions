@@ -6,24 +6,88 @@
             "id": "a6d60010-21db-4130-95a6-f505549df0b4",
             "actions": [
                 {
-                    "name": "TestAction",
-                    "type": "Button",
+                    "name": "Movement",
+                    "type": "Value",
                     "id": "f6717ee5-6dc8-4b39-bc5b-d5d0bd33a339",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "PickUpObject",
+                    "type": "Button",
+                    "id": "645bdb5b-8ea9-4151-aa2b-b0f994471a16",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "Press(behavior=2)",
-                    "initialStateCheck": true
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
                 {
-                    "name": "",
-                    "id": "74ebafc4-a438-4795-ac03-f4b406909d32",
+                    "name": "2D Vector",
+                    "id": "81b19b64-cc40-4af4-bbb6-328f08b52511",
+                    "path": "2DVector",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Movement",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "up",
+                    "id": "319b6f17-6dd9-4f91-876d-a952601911e6",
                     "path": "<Keyboard>/w",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "TestAction",
+                    "action": "Movement",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "down",
+                    "id": "18c922ba-e8f0-499d-95ef-68594887a785",
+                    "path": "<Keyboard>/s",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Movement",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "left",
+                    "id": "8c491da0-21e2-4ae0-a788-5838f9ca047e",
+                    "path": "<Keyboard>/a",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Movement",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "right",
+                    "id": "a2679948-ab08-4e51-b5ae-e2c94ab681b6",
+                    "path": "<Keyboard>/d",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Movement",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "7af8501a-3d80-4b6f-84c2-21a5334ec49a",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "PickUpObject",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

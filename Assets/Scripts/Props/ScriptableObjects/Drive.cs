@@ -13,30 +13,22 @@ public class Drive : ScriptableObject
         driverReceivers = new List<DriveReceiver>();
     }
 
-    public void RegisterDriverReceiver(DriveReceiver driverReceiver)
+    public void RegisterDriveReceiver(DriveReceiver driverReceiver)
     {
         driverReceivers.Add(driverReceiver);
     }
 
-    public void UnRegisterDriverReceiver(DriveReceiver driverReceiver)
+    public void UnRegisterDriveReceiver(DriveReceiver driverReceiver)
     {
         driverReceivers.Remove(driverReceiver);
     }
 
-    public void ActivateDriver()
+    public void SendValue(float value)
     {
         // We go backwards so if we un-register one, it doesn't fowl up the list
         for (int i = driverReceivers.Count - 1; i > -1; i--)
         {
-            driverReceivers[i].EnableDrive();
-        }
-    }
-    public void DeActivateDriver()
-    {
-        // We go backwards so if we un-register one, it doesn't fowl up the list
-        for (int i = driverReceivers.Count - 1; i > -1; i--)
-        {
-            driverReceivers[i].DisableDrive();
+            driverReceivers[i].ReceiveDriveValue(value);
         }
     }
 }
