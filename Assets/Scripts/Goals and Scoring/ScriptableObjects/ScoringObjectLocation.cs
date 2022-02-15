@@ -12,6 +12,7 @@ public class ScoringObjectLocation: ScriptableObject
 
     public bool isScoringZone; // If this is a zone, is it also a scoring zone?
     public bool showTapeOnField; // Should we show tape on the field where this point or zone exists?
+    public Vector3 tapeScale;
 
     // For specific object locations, or random locations across a series of points
     public List<Vector3> pointPositions;

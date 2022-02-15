@@ -7,7 +7,7 @@ using UnityEditor;
 public class ScoringObjectLocationCustomEditor : Editor
 {
     SerializedProperty scoreObjectType, quantityToSpawn, spawnType, 
-        showTapeOnField, isScoringZone, numberOfPotentialPoints;
+        showTapeOnField, isScoringZone, numberOfPotentialPoints, tapeScale;
     ScoringObjectLocation scoringObject;
 
     public void OnEnable()
@@ -19,6 +19,7 @@ public class ScoringObjectLocationCustomEditor : Editor
         showTapeOnField = serializedObject.FindProperty("showTapeOnField");
         isScoringZone = serializedObject.FindProperty("isScoringZone");
         numberOfPotentialPoints = serializedObject.FindProperty("numberOfPotentialPoints");
+        tapeScale = serializedObject.FindProperty("tapeScale");
         EditorUtility.SetDirty(target);
     }
 
@@ -30,6 +31,8 @@ public class ScoringObjectLocationCustomEditor : Editor
         EditorGUILayout.PropertyField(spawnType);
         EditorGUILayout.PropertyField(quantityToSpawn);
         EditorGUILayout.PropertyField(showTapeOnField);
+        if (showTapeOnField.boolValue)
+            EditorGUILayout.PropertyField(tapeScale);
 
         serializedObject.ApplyModifiedProperties();
 

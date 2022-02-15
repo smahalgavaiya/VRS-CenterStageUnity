@@ -112,6 +112,8 @@ public class ScoringObjectSpawnPositionTracker : MonoBehaviour
             else 
                 newObjectLocationTracker.transform.position += new Vector3((float)j / 10, 0, 0);
 
+            CreateOrDestroyTape(scoringObjectLocation, newObjectLocationTracker);
+
             // Add the ScoreObjectLink so when we move it around the position data
             // propogates to the Score Object Location in Resources, thus allowing
             // us to save these locations between projects as data.
@@ -174,6 +176,8 @@ public class ScoringObjectSpawnPositionTracker : MonoBehaviour
             else 
                 newObjectLocationTracker.transform.position += new Vector3((float)j / 10, 0, 0);
 
+            CreateOrDestroyTape(scoringObjectLocation, newObjectLocationTracker);
+
             // Add the ScoreObjectLink so when we move it around the position data
             // propogates to the Score Object Location in Resources, thus allowing
             // us to save these locations between projects as data.
@@ -183,6 +187,19 @@ public class ScoringObjectSpawnPositionTracker : MonoBehaviour
             scoreObjectLink.Index = j;
 
             newObjectLocationTracker.transform.SetParent(newObject.transform);
+        }
+    }
+    void CreateOrDestroyTape(ScoringObjectLocation scoringObjectLocation, GameObject trackerObject)
+    {
+        if (scoringObjectLocation.showTapeOnField)
+        {
+            SingleTapeMaker singleTapeMaker = trackerObject.AddComponent<SingleTapeMaker>();
+            singleTapeMaker.tapeScale = scoringObjectLocation.tapeScale;
+        }
+        else
+        {
+            if (trackerObject.GetComponent<SingleTapeMaker>() != null)
+                DestroyImmediate(trackerObject.GetComponent<SingleTapeMaker>());
         }
     }
 

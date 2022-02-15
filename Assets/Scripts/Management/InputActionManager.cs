@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Events;
 
-public class TestInput : MonoBehaviour
+public class InputActionManager : MonoBehaviour
 {
 
     public UnityEvent testEvent, endTestEvent;
