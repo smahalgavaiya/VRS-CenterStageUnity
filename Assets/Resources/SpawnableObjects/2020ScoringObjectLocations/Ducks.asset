@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6ba2c5a7f726a54882d8cd547583c08, type: 3}
+  m_Name: Ducks
+  m_EditorClassIdentifier: 
+  scoreObjectType: {fileID: 11400000, guid: 2c3e894ed173ef546948cffdca13fb06, type: 2}
+  quantityToSpawn: 20
+  spawnType: 2
+  isScoringZone: 0
+  showTapeOnField: 0
+  tapeScale: {x: 3, y: 1, z: 3}
+  pointPositions:
+  - {x: 0.375, y: 0.14400005, z: 0.4519999}
+  - {x: -0.251, y: 0.17700005, z: 0.47000003}
+  - {x: 0.19999999, y: 0.16799998, z: 0}
+  numberOfPotentialPoints: 7
