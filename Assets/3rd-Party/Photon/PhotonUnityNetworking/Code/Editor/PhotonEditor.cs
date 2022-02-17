@@ -295,10 +295,10 @@ namespace Photon.Pun
                 return;
             }
 
-            //if (string.IsNullOrEmpty(PhotonNetwork.PhotonServerSettings.AppSettings.AppIdRealtime) && !PhotonNetwork.PhotonServerSettings.AppSettings.IsMasterServerAddress)
-            //{
-            //    EditorUtility.DisplayDialog(CurrentLang.SetupWizardWarningTitle, CurrentLang.SetupWizardWarningMessage, CurrentLang.OkButton);
-            //}
+            if (string.IsNullOrEmpty(PhotonNetwork.PhotonServerSettings.AppSettings.AppIdRealtime) && !PhotonNetwork.PhotonServerSettings.AppSettings.IsMasterServerAddress)
+            {
+                EditorUtility.DisplayDialog(CurrentLang.SetupWizardWarningTitle, CurrentLang.SetupWizardWarningMessage, CurrentLang.OkButton);
+            }
         }
 
 
