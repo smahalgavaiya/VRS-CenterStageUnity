@@ -49,4 +49,84 @@ The Scoring Object Type is a flexible data container that allows for future info
 
 Multiple systems dynamically draw on the Scoring Object Types in the SpawnableObjects folder. See Scoring Guides and Scoring Object Locations below.
 
-# Scoring 
+# Scoring Object Locations
+
+Scoring Object Locations are how Scoring Object Types are placed on the field. Instead of placing the objects yourself by dragging prefabs out, use the @SpawnObjectManager under the Management hierarchy. 
+
+## Creating Scoring Object Locations
+
+First you need to create a folder for the locations. Each field configuration can have its own folder, for instance 2020Field, 2020FieldTestSetup, 2021Field, etc. This allows you to dynamically swap between field configurations. 
+
+You can create Scoring Object Locations in two ways:
+
+1. From the menu VRS > Scoring > Create Scoring Object Location
+2. Right click in the Project Window and choose Scoring > Scoring Object Location
+
+## Different Scoring Object Locations Types
+
+When you create a Scoring Object Location, you can choose which type of Location:
+
+* Specific Points places objects at specific points 
+* Random Over Area places objects randomly distributed within a cube rectangular area 
+* Random over Points places objects randomly over points
+* Stacked at a Point places objects at a point, either all at once or spawned one at a time
+
+## Automatic Tape
+
+You can choose to have the Scoring Object Location automatically place tape on the field. NOTE: it will create a piece of tape when it hovers over any collider with the "Field" tag. 
+
+# Scoring Guides
+
+Scoring Guides allow you to set the scores per Scoring Object Type, per round. To properly set the rounds, you need to have a Round Index (see below), and you need to have your Scoring Object Types defined. 
+
+Once you have these ready, and have created a Scoring Guide, click the button on the Scoring Guide to load the Scoring Object Types, and set the score per type, per round.
+
+You can use Scoring Guides in any Goal Object (see below), to have specific Scoring Guides for each object. 
+
+## Creating a Scoring Guide
+
+To create a Scoring Guide, right click in the project window and select Scoring > Scoring Guide from above. 
+
+# Goals
+
+Goals receive prefab objects that are linked to Scoring Object Types. The Scoring Object Type has a button that will set the tags of the prefabs; the prefabs need to have the same tag as the name of the Scoring Object Type. (NOTE: when you create the Scoring Object Type via the VRS menu, it automatically sets the tags.)
+
+## Creating a Goal
+
+To create a goal, select in the menu VRS > Goals > Create Cube Goal or Create Sphere Goal
+
+## Automatic Tape
+
+The Cube Goal has the option to automatically create tape around the borders. It will create tape borders on any object that has the "Field" tag. You can choose how many sides the tape should show up on.
+
+# Indexes
+
+Indexes are data objects that let you easily track other kinds of data. Instead of tracking the individual objects, the index allows you to have a single reference. 
+
+## Round Index
+
+The Round Index allows you to set the number of rounds, the names of the rounds, and the length of the rounds. 
+
+## Score Index 
+
+The Score Index lets you track which team receives a score.
+
+## Material Index
+
+The Material Index lets you track various materials that are commonly used in the scene. 
+
+# Events
+
+Game Events allow you to connect single occurences together across the scene. They can be placed in prefabs, allowing you to connect objects whether or not they are in the same scene. 
+
+Events need a Game Event Receiver component on the object that needs the connection. The sender uses a Unity Event (or other means) to run the Raise() method on the Game Event. 
+
+The @InputManager has an example of the Game Event, while the TempRobot has an example of the receiver. 
+
+# Drives
+
+Drives work similarly to events, but they transfer Vector or Float data, allowing objects to drive each other without a direct connection. 
+
+Drives can either work on Rotation, Translation, Force, Torque, Rigidbody Move, or Rigidbody Rotation. 
+
+Drives allow a single action to drive multiple objects, such as wheels. 
