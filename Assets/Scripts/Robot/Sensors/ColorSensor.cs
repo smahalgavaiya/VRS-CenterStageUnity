@@ -14,6 +14,9 @@ public class ColorSensor : MonoBehaviour
     public float colorSensingRayLength;
     public float sensorSensitivity;
 
+    public bool IsColorSensed { get { return isColorSensed; } }
+    bool isColorSensed;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -42,19 +45,19 @@ public class ColorSensor : MonoBehaviour
                 return;
             colorSensed = detectedCollider.GetComponent<Renderer>().material.color;
 
-            CheckColorMatch();
+            isColorSensed = CheckColorDifference();
         }
     }
 
-    private void CheckColorMatch()
+    private bool CheckColorDifference()
     {
         float colorDifference = Mathf.Sqrt(Mathf.Pow((colorTarget.r - colorSensed.r), 2) + Mathf.Pow((colorTarget.g - colorSensed.g), 2) + Mathf.Pow((colorTarget.b - colorSensed.b), 2));
         // https://en.wikipedia.org/wiki/Color_difference
 
         if (colorDifference < sensorSensitivity)
         {
-            Debug.Log("sensed");
-        } else Debug.Log("not sensed");
+            return true;
+        } else return false;
     }
 
     private void OnDrawGizmos()
