@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ColorSensor : MonoBehaviour
+public class ColorSensor : MonoBehaviour, ISensor
 {
     Ray rayToSenseColor;
     RaycastHit rayCastHitForColoredObject;
@@ -14,7 +14,6 @@ public class ColorSensor : MonoBehaviour
     public float colorSensingRayLength;
     public float sensorSensitivity;
 
-    public bool IsColorSensed { get { return isColorSensed; } }
     bool isColorSensed;
 
     // Start is called before the first frame update
@@ -63,5 +62,10 @@ public class ColorSensor : MonoBehaviour
     private void OnDrawGizmos()
     {
         Debug.DrawRay(rayToSenseColor.origin, rayToSenseColor.direction);
+    }
+
+    public bool IsSensed()
+    {
+        return isColorSensed;
     }
 }
