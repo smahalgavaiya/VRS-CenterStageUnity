@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Props/Driver Link")]
+[CreateAssetMenu(menuName = "Props/Drive")]
 public class Drive : ScriptableObject
 {
     List<DriveReceiver> driverReceivers;
