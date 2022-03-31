@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 
-[CustomEditor(typeof(ScoreObjectType))]
-public class ScoreObjectTypeCustomEditor : Editor
+[CustomEditor(typeof(ObjectType))]
+public class ObjectTypeCustomEditor : Editor
 {
-    ScoreObjectType scoreObjectType;
+    ObjectType objectType;
     private void OnEnable()
     {
-        scoreObjectType = (ScoreObjectType)target;
+        objectType = (ObjectType)target;
     }
 
     public override void OnInspectorGUI()

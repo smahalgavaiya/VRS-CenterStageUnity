@@ -2,14 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Scoring/Score Object Type")]
-public class ScoreObjectType : ScriptableObject
+[CreateAssetMenu(menuName = "Scoring/Object Type")]
+public class ObjectType : ScriptableObject
 {
     public GameObject objectPrefab;
+    public bool isScoringObject;
 
     private void OnValidate()
     {
-        SetObjectPrefabObjectType();
+        if (isScoringObject)
+            SetObjectPrefabObjectType();
     }
 
     public void SetObjectPrefabObjectType()

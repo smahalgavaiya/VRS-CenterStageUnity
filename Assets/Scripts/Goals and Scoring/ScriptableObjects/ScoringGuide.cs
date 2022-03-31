@@ -5,8 +5,9 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Scoring/Scoring Guide")]
 public class ScoringGuide : ScriptableObject
 {
+    public string objectTypesFolder = "ObjectTypes";
     public RoundIndex roundIndex;
-    public ScoreObjectType[] scoreObjectTypes;
+    public ObjectType[] scoreObjectTypes;
     public ScorePerRoundPerType[] scoresPerRoundPerType;
 }
 

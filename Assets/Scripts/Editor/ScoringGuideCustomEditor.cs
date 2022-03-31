@@ -2,12 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
+using System.Linq;
 
 [CustomEditor(typeof(ScoringGuide))]
 public class ScoringGuideCustomEditor : Editor
 {
     ScoringGuide scoringGuide;
-    SerializedProperty roundIndex, scoreObjectTypes, scoresPerRoundPerType;
+    SerializedProperty roundIndex, scoreObjectTypes, scoresPerRoundPerType, objectTypesFolder;
 
     private void OnEnable()
     {
@@ -15,6 +16,7 @@ public class ScoringGuideCustomEditor : Editor
         roundIndex = serializedObject.FindProperty("roundIndex");
         scoreObjectTypes = serializedObject.FindProperty("scoreObjectTypes");
         scoresPerRoundPerType = serializedObject.FindProperty("scoresPerRoundPerType");
+        objectTypesFolder = serializedObject.FindProperty("objectTypesFolder");
     }
 
     public override void OnInspectorGUI()
@@ -22,6 +24,18 @@ public class ScoringGuideCustomEditor : Editor
         if (scoringGuide.roundIndex == null)
             scoringGuide.roundIndex = 
                 Resources.Load<RoundIndex>("Indexes/RoundIndexDefault");
+
+        EditorGUILayout.PropertyField(objectTypesFolder);
+
+        if (GUILayout.Button("Get or create path"))
+        {
+            string relativePath = "/Resources/SpawnableObjects/"; 
+            string folderPath = EditorUtility.OpenFolderPanel("Get or create path", "Assets" + relativePath, "");
+
+            scoringGuide.objectTypesFolder = folderPath.Substring(Application.dataPath.Length + relativePath.Length);
+            serializedObject.ApplyModifiedProperties();
+            serializedObject.Update();
+        }
 
         if (GUILayout.Button("Load Scoring Object Types"))
         {
@@ -59,7 +73,7 @@ public class ScoringGuideCustomEditor : Editor
     private void LoadScoreObjectTypes()
     {
         ScorePerRoundPerType[] oldScorePerRoundPerType = null;
-        ScoreObjectType[] oldScoreObjectTypes = null;
+        ObjectType[] oldScoreObjectTypes = null;
 
         if (scoringGuide.scoresPerRoundPerType != null)
         {
@@ -68,8 +82,12 @@ public class ScoringGuideCustomEditor : Editor
         }
 
         // Load all the scoring object types from Resources
-        scoringGuide.scoreObjectTypes =
-            Resources.LoadAll<ScoreObjectType>("SpawnableObjects/ScoringObjectTypes");
+        var tempArrayAllObjectTypes = 
+            Resources.LoadAll<ObjectType>("SpawnableObjects/" + scoringGuide.objectTypesFolder);
+
+        var tempArrayScoringObjects = tempArrayAllObjectTypes.TakeWhile(element => element.isScoringObject == true);
+
+        scoringGuide.scoreObjectTypes = tempArrayScoringObjects.ToArray();
 
         // Set the number of scores per round, based on type
         scoringGuide.scoresPerRoundPerType =

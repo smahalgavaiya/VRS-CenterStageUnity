@@ -99,7 +99,7 @@ public class PopupDialogForScoreObjectTypes : EditorWindow
         
         if (GUILayout.Button("ok"))
         {
-            ScoreObjectType newScoreObjectType = CreateInstance<ScoreObjectType>();
+            ObjectType newScoreObjectType = CreateInstance<ObjectType>();
             AssetDatabase.CreateAsset(newScoreObjectType, "Assets/Resources/SpawnableObjects/ScoringObjectTypes/" + assetName + ".asset");
             newScoreObjectType.objectPrefab = objectPrefab;
             newScoreObjectType.SetObjectPrefabObjectType();
@@ -112,7 +112,7 @@ public class PopupForScoringObjectLocation : EditorWindow
 {
     public string assetName = "NewScoringObjectLocation";
     string folderPath;
-    ScoreObjectType scoreObjectType;
+    ObjectType scoreObjectType;
     public void CreatePopup()
     {
         EditorWindow window = EditorWindow.CreateInstance<PopupForScoringObjectLocation>();
@@ -137,7 +137,7 @@ public class PopupForScoringObjectLocation : EditorWindow
             folderPath = EditorUtility.OpenFolderPanel("Get or create path", "Assets/Resources/SpawnableObjects", "");
         }
 
-        scoreObjectType = (ScoreObjectType)EditorGUI.ObjectField(new Rect(3,55, position.width - 6, 20), "Score Object Type", scoreObjectType, typeof(ScoreObjectType), false);
+        scoreObjectType = (ObjectType)EditorGUI.ObjectField(new Rect(3,55, position.width - 6, 20), "Score Object Type", scoreObjectType, typeof(ObjectType), false);
 
         EditorGUILayout.LabelField("Folder Location: " + folderPath);
 
@@ -150,10 +150,10 @@ public class PopupForScoringObjectLocation : EditorWindow
             }
             else
             {
-                ScoringObjectLocation newScoreObjectLocation = CreateInstance<ScoringObjectLocation>();
+                ObjectLocation newScoreObjectLocation = CreateInstance<ObjectLocation>();
                 string assetPath = folderPath.Substring(Application.dataPath.Length);
                 AssetDatabase.CreateAsset(newScoreObjectLocation, "Assets/" + assetPath + "/" + assetName + ".asset");
-                newScoreObjectLocation.scoreObjectType = scoreObjectType;
+                newScoreObjectLocation.objectType = scoreObjectType;
                 this.Close();
             }
         }

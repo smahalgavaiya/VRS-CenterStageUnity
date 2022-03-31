@@ -15,7 +15,7 @@ public class ObjectChecker : MonoBehaviour
     void Start()
     {
         scoringObjectTypeNames = new List<string>();
-        foreach(ScoreObjectType scoreObjectType in scoringGuide.scoreObjectTypes)
+        foreach(ObjectType scoreObjectType in scoringGuide.scoreObjectTypes)
         {
             scoringObjectTypeNames.Add(scoreObjectType.name);
         }

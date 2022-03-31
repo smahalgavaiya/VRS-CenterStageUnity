@@ -3,17 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 
-[CustomEditor(typeof(ScoringObjectLocation))]
-public class ScoringObjectLocationCustomEditor : Editor
+[CustomEditor(typeof(ObjectLocation))]
+public class ObjectLocationCustomEditor : Editor
 {
-    SerializedProperty scoreObjectType, quantityToSpawn, spawnType, 
+    SerializedProperty objectType, quantityToSpawn, spawnType, 
         showTapeOnField, isScoringZone, numberOfPotentialPoints, tapeScale;
-    ScoringObjectLocation scoringObject;
+    ObjectLocation scoringObject;
 
     public void OnEnable()
     {
-        scoringObject = (ScoringObjectLocation)target;
-        scoreObjectType = serializedObject.FindProperty("scoreObjectType");
+        scoringObject = (ObjectLocation)target;
+        objectType = serializedObject.FindProperty("objectType");
         quantityToSpawn = serializedObject.FindProperty("quantityToSpawn");
         spawnType = serializedObject.FindProperty("spawnType");
         showTapeOnField = serializedObject.FindProperty("showTapeOnField");
@@ -27,7 +27,7 @@ public class ScoringObjectLocationCustomEditor : Editor
     {
         EditorGUIUtility.labelWidth = 160;
 
-        EditorGUILayout.PropertyField(scoreObjectType);
+        EditorGUILayout.PropertyField(objectType);
         EditorGUILayout.PropertyField(spawnType);
         EditorGUILayout.PropertyField(quantityToSpawn);
         EditorGUILayout.PropertyField(showTapeOnField);

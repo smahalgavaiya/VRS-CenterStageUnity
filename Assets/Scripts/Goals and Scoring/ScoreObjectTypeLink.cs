@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class ScoreObjectTypeLink : MonoBehaviour
 {
-    [SerializeField] ScoreObjectType scoreObjectType;
+    [SerializeField] ObjectType scoreObjectType;
 
-    public ScoreObjectType ScoreObjectType_
+    public ObjectType ScoreObjectType_
     {
         get
         {

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0.99999905, b: 0.99999905, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -5749,7 +5749,7 @@ PrefabInstance:
     - target: {fileID: 8718639432632317497, guid: 15b93aefcd4996142bc9fb5002bbb1c6,
         type: 3}
       propertyPath: m_Name
-      value: '@ScoringObjectSpawnManager'
+      value: '@ObjectSpawnManager'
       objectReference: {fileID: 0}
     - target: {fileID: 8718639432632317498, guid: 15b93aefcd4996142bc9fb5002bbb1c6,
         type: 3}
@@ -19082,7 +19082,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 823061652}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.5226531, y: -0.281, z: 0}
+  m_LocalPosition: {x: 0.52265316, y: -0.281, z: 0}
   m_LocalScale: {x: 0.04530627, y: 0.05, z: 1.1}
   m_Children: []
   m_Father: {fileID: 1404958630}
@@ -19680,7 +19680,7 @@ GameObject:
   m_Component:
   - component: {fileID: 843786087}
   m_Layer: 0
-  m_Name: ScoringObjects
+  m_Name: SpawnedObjects
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
