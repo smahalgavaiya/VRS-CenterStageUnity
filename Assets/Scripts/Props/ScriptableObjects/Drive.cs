@@ -7,7 +7,6 @@ public class Drive : ScriptableObject
 {
     List<DriveReceiver> driverReceivers;
     public Vector3 driveAmount;
-    public DriverType driverType;
     private void OnEnable()
     {
         driverReceivers = new List<DriveReceiver>();
@@ -33,12 +32,3 @@ public class Drive : ScriptableObject
     }
 }
 
-public enum DriverType
-{
-    Rotation,
-    Translation,
-    Force,
-    Torque,
-    RigidbodyMove,
-    RigidbodyRotate
-}
