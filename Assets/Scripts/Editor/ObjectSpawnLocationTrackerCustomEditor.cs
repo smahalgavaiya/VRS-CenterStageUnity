@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 
-[CustomEditor(typeof(ScoringObjectSpawnPositionTracker))]
+[CustomEditor(typeof(ObjectSpawnPositionTracker))]
 public class ObjectSpawnLocationTrackerCustomEditor : Editor
 {
-    ScoringObjectSpawnPositionTracker scoringObjectSpawnPositionTracker;
+    ObjectSpawnPositionTracker scoringObjectSpawnPositionTracker;
 
     private void OnEnable()
     {
-        scoringObjectSpawnPositionTracker = (ScoringObjectSpawnPositionTracker)target;
+        scoringObjectSpawnPositionTracker = (ObjectSpawnPositionTracker)target;
     }
 
     public override void OnInspectorGUI()

@@ -40,7 +40,7 @@ public class GoalZoneScoreLink : MonoBehaviour
     {
         int scoreObjectTypeIndex;
 
-        ScoreObjectType collidedObjectType = null; 
+        ObjectType collidedObjectType = null; 
         if (other.GetComponent<ScoreObjectTypeLink>() == null || other.GetComponent<ScoreObjectTypeLink>().ScoreObjectType_ == null)
         {
             Debug.Log("Your prefab is either missing the ScoreObjectTypeLink component or the prefab's ScoreObjectTypeLink is missing a reference to the Score Object Type");
@@ -48,7 +48,7 @@ public class GoalZoneScoreLink : MonoBehaviour
         }
         else collidedObjectType = other.GetComponent<ScoreObjectTypeLink>().ScoreObjectType_;
 
-        foreach (ScoreObjectType objectType in scoringGuide.scoreObjectTypes)
+        foreach (ObjectType objectType in scoringGuide.scoreObjectTypes)
         {
 
             if (collidedObjectType == objectType)

@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Scoring/Scoring Object Location")]
-public class ScoringObjectLocation: ScriptableObject
+[CreateAssetMenu(menuName = "Scoring/Object Location")]
+public class ObjectLocation: ScriptableObject
 {
-    public ScoreObjectType scoreObjectType;
+    public ObjectType objectType;
     [Range(0,100)]
     public int quantityToSpawn;
     public SpawnType spawnType;

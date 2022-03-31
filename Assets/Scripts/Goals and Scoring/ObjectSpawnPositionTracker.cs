@@ -5,13 +5,13 @@ using UnityEditor;
 using System;
 
 [ExecuteInEditMode]
-public class ScoringObjectSpawnPositionTracker : MonoBehaviour
+public class ObjectSpawnPositionTracker : MonoBehaviour
 {
     public GameObject spawnLocationParent;
     public string resourcesFolder;
     public MaterialIndex materialIndex;
 
-    public ScoringObjectLocation[] ScoringObjectLocations { get; set; }
+    public ObjectLocation[] ObjectLocations { get; set; }
 
     private void OnEnable()
     {
@@ -32,12 +32,12 @@ public class ScoringObjectSpawnPositionTracker : MonoBehaviour
         // Get the resources from the designated folder. (The folder name can be
         // designated in the editor for any object with this class-- typically 
         // the @ScoreObjectSpawnManager.)
-        ScoringObjectLocations = Resources.LoadAll<ScoringObjectLocation>("SpawnableObjects/" + resourcesFolder);
+        ObjectLocations = Resources.LoadAll<ObjectLocation>("SpawnableObjects/" + resourcesFolder);
 
         //Set this object so we save the data when we save the project
-        for (int i = 0; i < ScoringObjectLocations.Length; i++)
+        for (int i = 0; i < ObjectLocations.Length; i++)
         {
-            EditorUtility.SetDirty(ScoringObjectLocations[i]);
+            EditorUtility.SetDirty(ObjectLocations[i]);
         }
 
         // This class automatically generates empty GameObjects that serve as the
@@ -51,27 +51,27 @@ public class ScoringObjectSpawnPositionTracker : MonoBehaviour
         // Otherwise, create the empty tracker objects...
         else
         {
-            for (int i = 0; i < ScoringObjectLocations.Length; i++)
+            for (int i = 0; i < ObjectLocations.Length; i++)
             {
                 // First create the parent for the empty tracker objects, which should
                 // have the same name as the Scoring Object Locations from Resources
                 GameObject newObject = 
-                    new GameObject(ScoringObjectLocations[i].name + " (" + ScoringObjectLocations[i].spawnType +")");
+                    new GameObject(ObjectLocations[i].name + " (" + ObjectLocations[i].spawnType +")");
                 newObject.transform.SetParent(spawnLocationParent.transform);
 
                 // Now create the tracker objects themselves, based on which type of
                 // Scoring Object Location they are (zone, point, random at multiple points, stacked at point)
 
-                switch (ScoringObjectLocations[i].spawnType)
+                switch (ObjectLocations[i].spawnType)
                 {
                     case SpawnType.AtSpecificPoints:
-                        CreateTrackersAtSpecificPoints(ScoringObjectLocations[i], newObject);
+                        CreateTrackersAtSpecificPoints(ObjectLocations[i], newObject);
                         break;
                     case SpawnType.RandomOverArea:
-                        CreateZone(ScoringObjectLocations[i], newObject);
+                        CreateZone(ObjectLocations[i], newObject);
                         break;
                     case SpawnType.RandomOverMultiplePoints:
-                        CreatePotentialPoints(ScoringObjectLocations[i], newObject);
+                        CreatePotentialPoints(ObjectLocations[i], newObject);
                         break;
                     case SpawnType.StackedAtPoint:
                         CreateSingleStackedPoint();
@@ -87,12 +87,12 @@ public class ScoringObjectSpawnPositionTracker : MonoBehaviour
 
     }
 
-    private void CreatePotentialPoints(ScoringObjectLocation scoringObjectLocation, GameObject newObject)
+    private void CreatePotentialPoints(ObjectLocation scoringObjectLocation, GameObject newObject)
     {
         // Add a random object spawner to the parent object
         SpawnRandomAcrossMultiplePoints spawnRandomAcrossMultiplePoints = 
             newObject.AddComponent<SpawnRandomAcrossMultiplePoints>();
-        spawnRandomAcrossMultiplePoints.objectPrefab = scoringObjectLocation.scoreObjectType.objectPrefab;
+        spawnRandomAcrossMultiplePoints.objectPrefab = scoringObjectLocation.objectType.objectPrefab;
         spawnRandomAcrossMultiplePoints.NumberToSpawn = scoringObjectLocation.quantityToSpawn;
         Debug.Log(spawnRandomAcrossMultiplePoints.NumberToSpawn);
 
@@ -102,7 +102,7 @@ public class ScoringObjectSpawnPositionTracker : MonoBehaviour
             GameObject newObjectLocationTracker = new GameObject(scoringObjectLocation.name + " Location Tracker" + (j+1).ToString());
 
             // Create a "ghost" image of the prefab
-            AssignTrackerMaterialAndSetZeroPosition(newObjectLocationTracker, scoringObjectLocation.scoreObjectType.objectPrefab);
+            AssignTrackerMaterialAndSetZeroPosition(newObjectLocationTracker, scoringObjectLocation.objectType.objectPrefab);
 
             // Try to set the position of the tracker object (if it was previously set and saved to the 
             // Scoring Object Location asset)
@@ -126,10 +126,10 @@ public class ScoringObjectSpawnPositionTracker : MonoBehaviour
         }
     }
 
-    private void CreateZone(ScoringObjectLocation scoringObjectLocation, GameObject newObject)
+    private void CreateZone(ObjectLocation scoringObjectLocation, GameObject newObject)
     {
         GameObject newLocationZone = GameObject.CreatePrimitive(PrimitiveType.Cube); 
-        newLocationZone.name = scoringObjectLocation.scoreObjectType.name + " (" + 
+        newLocationZone.name = scoringObjectLocation.objectType.name + " (" + 
             scoringObjectLocation.spawnType + ")";
 
         if (scoringObjectLocation.SpawnAreaCenter != Vector3.zero)
@@ -150,23 +150,23 @@ public class ScoringObjectSpawnPositionTracker : MonoBehaviour
         scoreObjectLink.Index = 0;
 
         RandomWithinZoneSpawner randomWithinZoneSpawner = newLocationZone.AddComponent<RandomWithinZoneSpawner>();
-        randomWithinZoneSpawner.objectPrefab = scoringObjectLocation.scoreObjectType.objectPrefab;
+        randomWithinZoneSpawner.objectPrefab = scoringObjectLocation.objectType.objectPrefab;
         randomWithinZoneSpawner.numberToSpawn = scoringObjectLocation.quantityToSpawn;
 
         newLocationZone.transform.parent = newObject.transform;
 
     }
 
-    void CreateTrackersAtSpecificPoints(ScoringObjectLocation scoringObjectLocation, GameObject newObject)
+    void CreateTrackersAtSpecificPoints(ObjectLocation scoringObjectLocation, GameObject newObject)
     {
         for (int j = 0; j < scoringObjectLocation.pointPositions.Count; j++)
         {
             GameObject newObjectLocationTracker = new GameObject(scoringObjectLocation.name + " Location Tracker" + (j+1).ToString());
             SingleObjectSpawner singleObjectSpawner = newObjectLocationTracker.AddComponent<SingleObjectSpawner>();
-            singleObjectSpawner.objectPrefab = scoringObjectLocation.scoreObjectType.objectPrefab;
+            singleObjectSpawner.objectPrefab = scoringObjectLocation.objectType.objectPrefab;
 
             // Create a "ghost" image of the prefab
-            AssignTrackerMaterialAndSetZeroPosition(newObjectLocationTracker, scoringObjectLocation.scoreObjectType.objectPrefab);
+            AssignTrackerMaterialAndSetZeroPosition(newObjectLocationTracker, scoringObjectLocation.objectType.objectPrefab);
 
             // Try to set the position of the tracker object (if it was previously set and saved to the 
             // Scoring Object Location asset)
@@ -189,7 +189,7 @@ public class ScoringObjectSpawnPositionTracker : MonoBehaviour
             newObjectLocationTracker.transform.SetParent(newObject.transform);
         }
     }
-    void CreateOrDestroyTape(ScoringObjectLocation scoringObjectLocation, GameObject trackerObject)
+    void CreateOrDestroyTape(ObjectLocation scoringObjectLocation, GameObject trackerObject)
     {
         if (scoringObjectLocation.showTapeOnField)
         {
