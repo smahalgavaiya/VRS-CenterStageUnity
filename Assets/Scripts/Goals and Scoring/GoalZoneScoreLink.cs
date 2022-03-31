@@ -40,11 +40,20 @@ public class GoalZoneScoreLink : MonoBehaviour
     {
         int scoreObjectTypeIndex;
 
+        ScoreObjectType collidedObjectType = null; 
+        if (other.GetComponent<ScoreObjectTypeLink>() == null || other.GetComponent<ScoreObjectTypeLink>().ScoreObjectType_ == null)
+        {
+            Debug.Log("Your prefab is either missing the ScoreObjectTypeLink component or the prefab's ScoreObjectTypeLink is missing a reference to the Score Object Type");
+            return;
+        }
+        else collidedObjectType = other.GetComponent<ScoreObjectTypeLink>().ScoreObjectType_;
+
         foreach (ScoreObjectType objectType in scoringGuide.scoreObjectTypes)
         {
-            if (other.tag == objectType.name.ToString())
+
+            if (collidedObjectType == objectType)
             {
-                scoreObjectTypeIndex = Array.FindIndex(scoringGuide.scoreObjectTypes, w => w.name == other.tag);
+                scoreObjectTypeIndex = Array.FindIndex(scoringGuide.scoreObjectTypes, w => w == collidedObjectType);
                 ChangeScore(scoreObjectTypeIndex, scoreDirection);
             }
         }

@@ -102,8 +102,7 @@ public class PopupDialogForScoreObjectTypes : EditorWindow
             ScoreObjectType newScoreObjectType = CreateInstance<ScoreObjectType>();
             AssetDatabase.CreateAsset(newScoreObjectType, "Assets/Resources/SpawnableObjects/ScoringObjectTypes/" + assetName + ".asset");
             newScoreObjectType.objectPrefab = objectPrefab;
-            TagManager.CreateTag(newScoreObjectType.name);
-            newScoreObjectType.objectPrefab.tag = newScoreObjectType.name;
+            newScoreObjectType.SetObjectPrefabObjectType();
             this.Close();
         }
         
