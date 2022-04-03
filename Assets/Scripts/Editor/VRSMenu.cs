@@ -50,13 +50,13 @@ public class VRSMenu : MonoBehaviour
         newGoalObject.transform.parent = parentObject.transform;
         
     }
-    [MenuItem("VRS/Scoring Objects/Scoring Object Type")]
+    [MenuItem("VRS/Dynamic Objects/Object Type")]
     static void CreateScoringObjectType()
     {
         PopupDialogForScoreObjectTypes newPopup = ScriptableObject.CreateInstance<PopupDialogForScoreObjectTypes>();
         newPopup.CreatePopup();
     }
-    [MenuItem("VRS/Scoring Objects/Scoring Object Location")]
+    [MenuItem("VRS/Dynamic Objects/Object Location")]
     static void CreateScoringObjectLocation()
     {
         PopupForScoringObjectLocation newPopup = ScriptableObject.CreateInstance<PopupForScoringObjectLocation>();
@@ -74,6 +74,7 @@ public class VRSMenu : MonoBehaviour
 public class PopupDialogForScoreObjectTypes : EditorWindow
 {
     public string assetName = "NewScoreObjectType";
+    public string folderPath;
     GameObject objectPrefab = null;
 
     public void CreatePopup()
@@ -93,14 +94,21 @@ public class PopupDialogForScoreObjectTypes : EditorWindow
         EditorGUILayout.Space();
         EditorGUILayout.Space();
 
-        assetName = EditorGUILayout.TextField("Name:", assetName);
 
+        string relativePath = "/Resources/SpawnableObjects/";
+        folderPath = EditorGUILayout.TextField("Folder:", folderPath);
+        if (GUILayout.Button("Get or create path"))
+        {
+            folderPath = EditorUtility.OpenFolderPanel("Get or create path", "Assets" + relativePath, "");
+        }
+
+        assetName = EditorGUILayout.TextField("Name:", assetName);
         objectPrefab = (GameObject)EditorGUI.ObjectField(new Rect(3,55, position.width - 6, 20), "Object Prefab", objectPrefab, typeof(GameObject), false);
         
         if (GUILayout.Button("ok"))
         {
             ObjectType newScoreObjectType = CreateInstance<ObjectType>();
-            AssetDatabase.CreateAsset(newScoreObjectType, "Assets/Resources/SpawnableObjects/ScoringObjectTypes/" + assetName + ".asset");
+            AssetDatabase.CreateAsset(newScoreObjectType, folderPath + "/" + assetName + ".asset");
             newScoreObjectType.objectPrefab = objectPrefab;
             newScoreObjectType.SetObjectPrefabObjectType();
             this.Close();
