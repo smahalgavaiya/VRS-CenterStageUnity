@@ -73,7 +73,7 @@ public class VRSMenu : MonoBehaviour
 
 public class PopupDialogForScoreObjectTypes : EditorWindow
 {
-    public string assetName = "NewScoreObjectType";
+    public string assetName = "NewObjectType";
     public string folderPath;
     GameObject objectPrefab = null;
 
@@ -86,7 +86,7 @@ public class PopupDialogForScoreObjectTypes : EditorWindow
     private void OnGUI()
     {
         EditorGUILayout.Space();
-        EditorGUILayout.LabelField("Create a new Score Object Type in the Resources/SpawnableObjects/ScoringObjectTypes folder");
+        EditorGUILayout.LabelField("Create a new Object Type in the Resources/SpawnableObjects/ScoringObjectTypes folder");
         EditorGUILayout.Space();
         EditorGUILayout.Space();
         EditorGUILayout.Space();
@@ -95,22 +95,23 @@ public class PopupDialogForScoreObjectTypes : EditorWindow
         EditorGUILayout.Space();
 
 
-        string relativePath = "/Resources/SpawnableObjects/";
-        folderPath = EditorGUILayout.TextField("Folder:", folderPath);
         if (GUILayout.Button("Get or create path"))
         {
-            folderPath = EditorUtility.OpenFolderPanel("Get or create path", "Assets" + relativePath, "");
+            folderPath = EditorUtility.OpenFolderPanel("Get or create path", "Assets/Resources/DynamicObjects", "");
         }
+
+        EditorGUILayout.LabelField("Folder Location: " + folderPath);
 
         assetName = EditorGUILayout.TextField("Name:", assetName);
         objectPrefab = (GameObject)EditorGUI.ObjectField(new Rect(3,55, position.width - 6, 20), "Object Prefab", objectPrefab, typeof(GameObject), false);
         
         if (GUILayout.Button("ok"))
         {
-            ObjectType newScoreObjectType = CreateInstance<ObjectType>();
-            AssetDatabase.CreateAsset(newScoreObjectType, folderPath + "/" + assetName + ".asset");
-            newScoreObjectType.objectPrefab = objectPrefab;
-            newScoreObjectType.SetObjectPrefabObjectType();
+            ObjectType newObjectType = CreateInstance<ObjectType>();
+            string assetPath = folderPath.Substring(Application.dataPath.Length);
+            AssetDatabase.CreateAsset(newObjectType, "Assets/" + assetPath + "/" + assetName + ".asset");
+            newObjectType.objectPrefab = objectPrefab;
+            newObjectType.SetObjectPrefabObjectType();
             this.Close();
         }
         
@@ -130,7 +131,7 @@ public class PopupForScoringObjectLocation : EditorWindow
     private void OnGUI()
     {
         EditorGUILayout.Space();
-        EditorGUILayout.LabelField("Create a new Score Object Location in the folder of your choice");
+        EditorGUILayout.LabelField("Create a new Dynamic Object Location in the folder of your choice");
 
         EditorGUILayout.Space();
         EditorGUILayout.Space();
@@ -142,7 +143,7 @@ public class PopupForScoringObjectLocation : EditorWindow
 
         if (GUILayout.Button("Select folder"))
         {
-            folderPath = EditorUtility.OpenFolderPanel("Get or create path", "Assets/Resources/SpawnableObjects", "");
+            folderPath = EditorUtility.OpenFolderPanel("Get or create path", "Assets/Resources/DynamicObjects", "");
         }
 
         scoreObjectType = (ObjectType)EditorGUI.ObjectField(new Rect(3,55, position.width - 6, 20), "Score Object Type", scoreObjectType, typeof(ObjectType), false);

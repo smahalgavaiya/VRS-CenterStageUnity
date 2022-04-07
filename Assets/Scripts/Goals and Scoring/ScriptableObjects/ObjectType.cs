@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Scoring/Object Type")]
+[CreateAssetMenu(menuName = "Dynamic Objects/Object Type")]
 public class ObjectType : ScriptableObject
 {
     public GameObject objectPrefab;

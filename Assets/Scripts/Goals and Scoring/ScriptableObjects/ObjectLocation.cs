@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Scoring/Object Location")]
+[CreateAssetMenu(menuName = "Dynamic Objects/Object Location")]
 public class ObjectLocation: ScriptableObject
 {
     public ObjectType objectType;
