@@ -1,5 +1,5 @@
 # Virtual-FTC Constructor Kit
-
+see this video on how to use the "kit" https://www.youtube.com/watch?v=0nmN_ruTxjg
 This repo contains a constructor kit for building the field, robots, etc.
 
 # Getting Started
