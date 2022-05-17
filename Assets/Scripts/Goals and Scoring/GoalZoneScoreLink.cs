@@ -9,6 +9,16 @@ public class GoalZoneScoreLink : MonoBehaviour
     ScoringGuide scoringGuide;
     RoundIndex roundIndex;
 
+    //We may want an optional bool value that determines when this triggers
+    [SerializeField]
+    bool useOptionalBool;
+    [SerializeField]
+    [Tooltip("If you want to evaluate a GlobalBool to determine whether this triggers. " +
+        "If you aren't using a GlobalBool, you can still speak directly to this class using the OptionalBoolValue property.")]
+    GlobalBool globalBool;
+    bool optionalBoolValue;
+    public bool OptionalBoolValue { get { if (globalBool != null) return globalBool.boolValue; else return optionalBoolValue; } set { optionalBoolValue = value; } }
+
     ScoreZoneColor scoreZoneColor;
 
     // Start is called before the first frame update
@@ -54,10 +64,14 @@ public class GoalZoneScoreLink : MonoBehaviour
             if (collidedObjectType == objectType)
             {
                 scoreObjectTypeIndex = Array.FindIndex(scoringGuide.scoreObjectTypes, w => w == collidedObjectType);
+                if (useOptionalBool && !optionalBoolValue)
+                    return;
                 ChangeScore(scoreObjectTypeIndex, scoreDirection);
             }
         }
     }
+
+
     void ChangeScore(int scoreTypeIndex, int scoreDirection)
     {
         int currentRound = scoringGuide.roundIndex.currentRound;
