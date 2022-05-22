@@ -22,13 +22,17 @@ public class Drive : ScriptableObject
         driverReceivers.Remove(driverReceiver);
     }
 
-    public void SendValue(float value)
+    //public void SendValue(Vector3 value)
+    //{
+    //    // We go backwards so if we un-register one, it doesn't fowl up the list
+    //    for (int i = driverReceivers.Count - 1; i > -1; i--)
+    //    {
+    //        driverReceivers[i].ReceiveDriveValue(value);
+    //    }
+    //}
+    public void SendValue(Vector3 value)
     {
-        // We go backwards so if we un-register one, it doesn't fowl up the list
-        for (int i = driverReceivers.Count - 1; i > -1; i--)
-        {
-            driverReceivers[i].ReceiveDriveValue(value);
-        }
+        driveAmount = value;
     }
 }
 

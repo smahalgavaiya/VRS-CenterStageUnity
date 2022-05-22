@@ -32,7 +32,9 @@ public class ObjectSpawnPositionTracker : MonoBehaviour
         // Get the resources from the designated folder. (The folder name can be
         // designated in the editor for any object with this class-- typically 
         // the @ScoreObjectSpawnManager.)
-        ObjectLocations = Resources.LoadAll<ObjectLocation>("SpawnableObjects/" + resourcesFolder);
+        ObjectLocations = Resources.LoadAll<ObjectLocation>("DynamicObjects/" + resourcesFolder);
+
+        Debug.Log("Stuff");
 
         //Set this object so we save the data when we save the project
         for (int i = 0; i < ObjectLocations.Length; i++)
