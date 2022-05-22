@@ -19,7 +19,7 @@ public class ObjectSpawnLocationTrackerCustomEditor : Editor
         base.OnInspectorGUI();
         if (GUILayout.Button("Get or create path"))
         {
-            string relativePath = "/Resources/SpawnableObjects/"; 
+            string relativePath = "/Resources/DynamicObjects/"; 
             string folderPath = EditorUtility.OpenFolderPanel("Get or create path", "Assets" + relativePath, "");
 
             scoringObjectSpawnPositionTracker.resourcesFolder = folderPath.Substring(Application.dataPath.Length + relativePath.Length);

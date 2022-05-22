@@ -9,6 +9,19 @@ public class GoalZoneScoreLink : MonoBehaviour
     ScoringGuide scoringGuide;
     RoundIndex roundIndex;
 
+    //We may want an optional bool value that determines when this triggers
+    [SerializeField]
+    [Tooltip("This determines whether to use the Optional Bool value-- sometimes you want the " +
+        "goal zone to trigger only under certain circumstances, which can be set from outside" +
+        "this class.")]
+    bool useOptionalBool;
+    [SerializeField]
+    [Tooltip("If you want to evaluate a GlobalBool to determine whether this triggers. " +
+        "If you aren't using a GlobalBool, you can still speak directly to this class using the OptionalBoolValue property.")]
+    GlobalBool globalBool;
+    bool optionalBoolValue;
+    public bool OptionalBoolValue { get { if (globalBool != null) return globalBool.boolValue; else return optionalBoolValue; } set { optionalBoolValue = value; } }
+
     ScoreZoneColor scoreZoneColor;
 
     // Start is called before the first frame update
@@ -40,9 +53,10 @@ public class GoalZoneScoreLink : MonoBehaviour
     {
         int scoreObjectTypeIndex;
 
-        ObjectType collidedObjectType = null; 
+        ObjectType collidedObjectType = null;
         if (other.GetComponent<ScoreObjectTypeLink>() == null || other.GetComponent<ScoreObjectTypeLink>().ScoreObjectType_ == null)
         {
+            Debug.Log(this.gameObject);
             Debug.Log("Your prefab is either missing the ScoreObjectTypeLink component or the prefab's ScoreObjectTypeLink is missing a reference to the Score Object Type");
             return;
         }
@@ -54,11 +68,16 @@ public class GoalZoneScoreLink : MonoBehaviour
             if (collidedObjectType == objectType)
             {
                 scoreObjectTypeIndex = Array.FindIndex(scoringGuide.scoreObjectTypes, w => w == collidedObjectType);
-                ChangeScore(scoreObjectTypeIndex, scoreDirection);
+                if (useOptionalBool && !optionalBoolValue)
+                    return;
+                ScoreZoneColor lastTeamTouched = other.GetComponent<ScoreObjectTypeLink>().LastTouchedTeamColor;
+                ChangeScore(scoreObjectTypeIndex, scoreDirection, lastTeamTouched);
             }
         }
     }
-    void ChangeScore(int scoreTypeIndex, int scoreDirection)
+
+
+    void ChangeScore(int scoreTypeIndex, int scoreDirection, ScoreZoneColor lastTeamTouched)
     {
         int currentRound = scoringGuide.roundIndex.currentRound;
         int scoreAmount = scoringGuide.scoresPerRoundPerType[scoreTypeIndex].scoresPerRound[currentRound];
@@ -74,6 +93,10 @@ public class GoalZoneScoreLink : MonoBehaviour
                 scoreTrackerIndex.redScoreTracker.AddOrSubtractScore(scoreAmount * scoreDirection);
                 break;
             case ScoreZoneColor.Either:
+                if (lastTeamTouched == ScoreZoneColor.Red)
+                    scoreTrackerIndex.redScoreTracker.AddOrSubtractScore(scoreAmount * scoreDirection);
+                else
+                    scoreTrackerIndex.blueScoreTracker.AddOrSubtractScore(scoreAmount * scoreDirection);
                 break;
         }
     }

@@ -5,6 +5,8 @@ using UnityEngine;
 public class RandomWithinZoneSpawner : ObjectSpawner
 {
     public int numberToSpawn;
+    [SerializeField]
+    GameObject spawnParent;
     // Start is called before the first frame update
     void Start()
     {
@@ -17,7 +19,7 @@ public class RandomWithinZoneSpawner : ObjectSpawner
             float newY = Random.Range(boxCollider.bounds.min.y, boxCollider.bounds.max.y);
             float newZ = Random.Range(boxCollider.bounds.min.z, boxCollider.bounds.max.z);
 
-            GameObject newObject = Instantiate(objectPrefab, transform.parent);
+            GameObject newObject = Instantiate(objectPrefab, spawnParent.transform);
             newObject.transform.position = new Vector3(newX, newY, newZ);
 
             numberToSpawn--;
