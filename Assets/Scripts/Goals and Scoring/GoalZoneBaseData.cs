@@ -40,9 +40,14 @@ public class GoalZoneBaseData : MonoBehaviour
             material = materialIndex.blueGoalMaterial;
             ScoreTracker = scoreTrackerIndex.blueScoreTracker;
         }
-        else
+        else if (scoreZoneColor == ScoreZoneColor.Red)
         {
             material = materialIndex.redGoalMaterial;
+            ScoreTracker = scoreTrackerIndex.redScoreTracker;
+        }
+        else 
+        {
+            material = materialIndex.eitherGoalMaterial;
             ScoreTracker = scoreTrackerIndex.redScoreTracker;
         }
 

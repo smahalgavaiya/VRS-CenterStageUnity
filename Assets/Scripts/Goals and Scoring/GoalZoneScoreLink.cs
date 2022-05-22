@@ -11,6 +11,9 @@ public class GoalZoneScoreLink : MonoBehaviour
 
     //We may want an optional bool value that determines when this triggers
     [SerializeField]
+    [Tooltip("This determines whether to use the Optional Bool value-- sometimes you want the " +
+        "goal zone to trigger only under certain circumstances, which can be set from outside" +
+        "this class.")]
     bool useOptionalBool;
     [SerializeField]
     [Tooltip("If you want to evaluate a GlobalBool to determine whether this triggers. " +
@@ -50,9 +53,10 @@ public class GoalZoneScoreLink : MonoBehaviour
     {
         int scoreObjectTypeIndex;
 
-        ObjectType collidedObjectType = null; 
+        ObjectType collidedObjectType = null;
         if (other.GetComponent<ScoreObjectTypeLink>() == null || other.GetComponent<ScoreObjectTypeLink>().ScoreObjectType_ == null)
         {
+            Debug.Log(this.gameObject);
             Debug.Log("Your prefab is either missing the ScoreObjectTypeLink component or the prefab's ScoreObjectTypeLink is missing a reference to the Score Object Type");
             return;
         }
@@ -86,8 +90,6 @@ public class GoalZoneScoreLink : MonoBehaviour
                 break;
             case ScoreZoneColor.Red:
                 scoreTrackerIndex.redScoreTracker.AddOrSubtractScore(scoreAmount * scoreDirection);
-                break;
-            case ScoreZoneColor.Either:
                 break;
         }
     }

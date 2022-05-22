@@ -20,4 +20,5 @@ public class ScoreObjectTypeLink : MonoBehaviour
             scoreObjectType = value;
         }
     }
+
 }
