@@ -70,13 +70,14 @@ public class GoalZoneScoreLink : MonoBehaviour
                 scoreObjectTypeIndex = Array.FindIndex(scoringGuide.scoreObjectTypes, w => w == collidedObjectType);
                 if (useOptionalBool && !optionalBoolValue)
                     return;
-                ChangeScore(scoreObjectTypeIndex, scoreDirection);
+                ScoreZoneColor lastTeamTouched = other.GetComponent<ScoreObjectTypeLink>().LastTouchedTeamColor;
+                ChangeScore(scoreObjectTypeIndex, scoreDirection, lastTeamTouched);
             }
         }
     }
 
 
-    void ChangeScore(int scoreTypeIndex, int scoreDirection)
+    void ChangeScore(int scoreTypeIndex, int scoreDirection, ScoreZoneColor lastTeamTouched)
     {
         int currentRound = scoringGuide.roundIndex.currentRound;
         int scoreAmount = scoringGuide.scoresPerRoundPerType[scoreTypeIndex].scoresPerRound[currentRound];
@@ -90,6 +91,12 @@ public class GoalZoneScoreLink : MonoBehaviour
                 break;
             case ScoreZoneColor.Red:
                 scoreTrackerIndex.redScoreTracker.AddOrSubtractScore(scoreAmount * scoreDirection);
+                break;
+            case ScoreZoneColor.Either:
+                if (lastTeamTouched == ScoreZoneColor.Red)
+                    scoreTrackerIndex.redScoreTracker.AddOrSubtractScore(scoreAmount * scoreDirection);
+                else
+                    scoreTrackerIndex.blueScoreTracker.AddOrSubtractScore(scoreAmount * scoreDirection);
                 break;
         }
     }

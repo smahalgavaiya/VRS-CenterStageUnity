@@ -6,7 +6,6 @@ public class DriveReceiver : MonoBehaviour
 {
     public Drive drive;
     bool driveIsActive = false;
-    float driveCoefficient = 0;
 
     private void Awake()
     {
@@ -16,9 +15,5 @@ public class DriveReceiver : MonoBehaviour
     private void OnDestroy()
     {
         drive.UnRegisterDriveReceiver(this);
-    }
-    public void ReceiveDriveValue(float value)
-    {
-        driveCoefficient = value;
     }
 }
