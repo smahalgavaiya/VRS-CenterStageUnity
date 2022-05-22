@@ -6,7 +6,6 @@ public class CircularArrayCreator : MonoBehaviour
 {
     public GameObject pieceToRotate;
     public int numberOfRotations;
-    public Rigidbody goalRigidBody;
 
     // Start is called before the first frame update
     void Start()
@@ -28,7 +27,6 @@ public class CircularArrayCreator : MonoBehaviour
             newBottomPiece.transform.Rotate(0, angle * i, 0, Space.Self);
         }
 
-        goalRigidBody.ResetInertiaTensor();
     }
 
     // Update is called once per frame

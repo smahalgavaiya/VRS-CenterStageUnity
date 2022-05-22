@@ -7,6 +7,7 @@ public class MaterialIndex : ScriptableObject
 {
     public Material blueGoalMaterial;
     public Material redGoalMaterial;
+    public Material eitherGoalMaterial;
 
     public Material blueTapeMaterial;
     public Material redTapeMaterial;
