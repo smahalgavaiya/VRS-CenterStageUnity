@@ -7,4 +7,5 @@ public class ScoreTrackerIndex : ScriptableObject
 {
     public ScoreTracker redScoreTracker;
     public ScoreTracker blueScoreTracker;
+    public ScoreTracker eitherScoreTracker;
 }

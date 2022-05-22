@@ -29,7 +29,7 @@ public class ScoringGuideCustomEditor : Editor
 
         if (GUILayout.Button("Get or create path"))
         {
-            string relativePath = "/Resources/SpawnableObjects/"; 
+            string relativePath = "/Resources/DynamicObjects/"; 
             string folderPath = EditorUtility.OpenFolderPanel("Get or create path", "Assets" + relativePath, "");
 
             scoringGuide.objectTypesFolder = folderPath.Substring(Application.dataPath.Length + relativePath.Length);
@@ -83,7 +83,7 @@ public class ScoringGuideCustomEditor : Editor
 
         // Load all the scoring object types from Resources
         var tempArrayAllObjectTypes = 
-            Resources.LoadAll<ObjectType>("SpawnableObjects/" + scoringGuide.objectTypesFolder);
+            Resources.LoadAll<ObjectType>("DynamicObjects/" + scoringGuide.objectTypesFolder);
 
         var tempArrayScoringObjects = tempArrayAllObjectTypes.TakeWhile(element => element.isScoringObject == true);
 
