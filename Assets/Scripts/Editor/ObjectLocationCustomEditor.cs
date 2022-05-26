@@ -41,7 +41,7 @@ public class ObjectLocationCustomEditor : Editor
         if (scoringObject.spawnType == SpawnType.AtSpecificPoints ||
             scoringObject.spawnType == SpawnType.RandomOverMultiplePoints)
         {
-            int numberToUseForListCount = 0; // We use a different number depending on the SpawnType
+            int numberToUseForListCount = 0; // We use a different number depending on the SpawnType, see switch below
 
             switch (scoringObject.spawnType)
             {
