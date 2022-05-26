@@ -33,8 +33,7 @@ public class ObjectSpawnPositionTracker : MonoBehaviour
         // designated in the editor for any object with this class-- typically 
         // the @ScoreObjectSpawnManager.)
         ObjectLocations = Resources.LoadAll<ObjectLocation>("DynamicObjects/" + resourcesFolder);
-
-        Debug.Log("Stuff");
+        Debug.Log(ObjectLocations.Length);
 
         //Set this object so we save the data when we save the project
         for (int i = 0; i < ObjectLocations.Length; i++)
@@ -76,7 +75,7 @@ public class ObjectSpawnPositionTracker : MonoBehaviour
                         CreatePotentialPoints(ObjectLocations[i], newObject);
                         break;
                     case SpawnType.StackedAtPoint:
-                        CreateSingleStackedPoint();
+                        CreateSingleStackedPoint(ObjectLocations[i], newObject);
                         break;
                 }
             }
@@ -84,9 +83,49 @@ public class ObjectSpawnPositionTracker : MonoBehaviour
 
     }
 
-    private void CreateSingleStackedPoint()
+    private void CreateSingleStackedPoint(ObjectLocation scoringObjectLocation, GameObject newObject)
     {
+        GameObject newObjectLocationTracker = new GameObject(scoringObjectLocation.name + " Location Tracker".ToString());
+        newObjectLocationTracker.transform.SetParent(newObject.transform);
+        StackedObjectSpawner stackedObjectSpawner = newObjectLocationTracker.AddComponent<StackedObjectSpawner>();
+        stackedObjectSpawner.objectPrefab = scoringObjectLocation.objectType.objectPrefab;
+        stackedObjectSpawner.objectCount = scoringObjectLocation.quantityToSpawn;
+        stackedObjectSpawner.ghostObjects = new List<GameObject>();
 
+        // Try to set the position of the tracker object (if it was previously set and saved to the 
+        // Scoring Object Location asset)
+        if (scoringObjectLocation.specificPoint != Vector3.zero)
+            newObjectLocationTracker.transform.position =
+                scoringObjectLocation.specificPoint;
+        else
+            newObjectLocationTracker.transform.position = Vector3.zero;
+
+        //CreateOrDestroyTape(scoringObjectLocation, newObjectLocationTracker);
+
+        // Add the ScoreObjectLink so when we move it around the position data
+        // propogates to the Score Object Location in Resources, thus allowing
+        // us to save these locations between projects as data.
+        ScoreObjectLink scoreObjectLink = newObjectLocationTracker.AddComponent<ScoreObjectLink>();
+        scoreObjectLink.scoringObjectLocation = scoringObjectLocation;
+        scoreObjectLink.spawnType = scoringObjectLocation.spawnType;
+
+        //newObjectLocationTracker.transform.SetParent(newObject.transform);
+
+        // Create the ghost object stack so we can visually see where the stack is on the field in the 
+        // editor.
+        for (int j = 0; j < scoringObjectLocation.quantityToSpawn; j++)
+        {
+            GameObject newStackedGhostObject = new GameObject(scoringObjectLocation.name + " Ghost Object" + (j + 1).ToString());
+            newStackedGhostObject.transform.parent = newObjectLocationTracker.transform;
+            newStackedGhostObject.transform.localPosition = Vector3.zero;
+            stackedObjectSpawner.ghostObjects.Add(newStackedGhostObject);
+
+            // Add a bit of space to visually create the stack
+            newStackedGhostObject.transform.position += new Vector3(0, (float)j / 10, 0);
+
+            // Create a "ghost" image of the prefab
+            AssignTrackerMaterialAndSetZeroPosition(newStackedGhostObject, scoringObjectLocation.objectType.objectPrefab);
+        }
     }
 
     private void CreatePotentialPoints(ObjectLocation scoringObjectLocation, GameObject newObject)
@@ -120,9 +159,9 @@ public class ObjectSpawnPositionTracker : MonoBehaviour
             // propogates to the Score Object Location in Resources, thus allowing
             // us to save these locations between projects as data.
             ScoreObjectLink scoreObjectLink = newObjectLocationTracker.AddComponent<ScoreObjectLink>();
-            scoreObjectLink._ScoringObjectLocation = scoringObjectLocation;
-            scoreObjectLink._SpawnType = scoringObjectLocation.spawnType;
-            scoreObjectLink.Index = j;
+            scoreObjectLink.scoringObjectLocation = scoringObjectLocation;
+            scoreObjectLink.spawnType = scoringObjectLocation.spawnType;
+            scoreObjectLink.indexOfTracker = j;
 
             newObjectLocationTracker.transform.SetParent(newObject.transform);
         }
@@ -147,13 +186,14 @@ public class ObjectSpawnPositionTracker : MonoBehaviour
         // propogates to the Score Object Location in Resources, thus allowing
         // us to save these locations between projects as data.
         ScoreObjectLink scoreObjectLink = newLocationZone.AddComponent<ScoreObjectLink>();
-        scoreObjectLink._ScoringObjectLocation = scoringObjectLocation;
-        scoreObjectLink._SpawnType = scoringObjectLocation.spawnType;
-        scoreObjectLink.Index = 0;
+        scoreObjectLink.scoringObjectLocation = scoringObjectLocation;
+        scoreObjectLink.spawnType = scoringObjectLocation.spawnType;
+        scoreObjectLink.indexOfTracker = 0;
 
         RandomWithinZoneSpawner randomWithinZoneSpawner = newLocationZone.AddComponent<RandomWithinZoneSpawner>();
         randomWithinZoneSpawner.objectPrefab = scoringObjectLocation.objectType.objectPrefab;
         randomWithinZoneSpawner.numberToSpawn = scoringObjectLocation.quantityToSpawn;
+        randomWithinZoneSpawner.spawnParent = newObject;
 
         newLocationZone.transform.parent = newObject.transform;
 
@@ -184,9 +224,9 @@ public class ObjectSpawnPositionTracker : MonoBehaviour
             // propogates to the Score Object Location in Resources, thus allowing
             // us to save these locations between projects as data.
             ScoreObjectLink scoreObjectLink = newObjectLocationTracker.AddComponent<ScoreObjectLink>();
-            scoreObjectLink._ScoringObjectLocation = scoringObjectLocation;
-            scoreObjectLink._SpawnType = scoringObjectLocation.spawnType;
-            scoreObjectLink.Index = j;
+            scoreObjectLink.scoringObjectLocation = scoringObjectLocation;
+            scoreObjectLink.spawnType = scoringObjectLocation.spawnType;
+            scoreObjectLink.indexOfTracker = j;
 
             newObjectLocationTracker.transform.SetParent(newObject.transform);
         }

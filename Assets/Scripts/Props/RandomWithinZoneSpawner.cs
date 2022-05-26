@@ -5,12 +5,10 @@ using UnityEngine;
 public class RandomWithinZoneSpawner : ObjectSpawner
 {
     public int numberToSpawn;
-    [SerializeField]
-    GameObject spawnParent;
+    public GameObject spawnParent;
     // Start is called before the first frame update
     void Start()
     {
-        Debug.Log(numberToSpawn);
         BoxCollider boxCollider = GetComponent<BoxCollider>();
 
         while(numberToSpawn > 1)
