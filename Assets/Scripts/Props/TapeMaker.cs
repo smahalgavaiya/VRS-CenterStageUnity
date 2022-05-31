@@ -10,8 +10,8 @@ public class TapeMaker : MonoBehaviour
     public int numberOfSides;
 
     protected GameObject[] tapeSides = new GameObject[4];
-    public float tapeWidth;
-    public float tapeHeight;
+    public float tapeWidth = .05f;
+    public float tapeHeight = .1f;
     public MaterialIndex materialIndex;
 
     [SerializeField]
