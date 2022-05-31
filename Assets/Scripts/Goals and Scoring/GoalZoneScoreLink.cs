@@ -5,7 +5,6 @@ using System;
 
 public class GoalZoneScoreLink : MonoBehaviour
 {
-    //Test for merging
     ScoreTrackerIndex scoreTrackerIndex;
     ScoringGuide scoringGuide;
     RoundIndex roundIndex;
