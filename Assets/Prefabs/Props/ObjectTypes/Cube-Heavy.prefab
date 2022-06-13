@@ -12,6 +12,12 @@ PrefabInstance:
       propertyPath: m_Mass
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 379167180883394820, guid: d87ecd5981e519f4a8343b486bb81c1f,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 8604045607132181640, guid: 7772627c3ac9fdd4a9b4ae0d22dfc678,
+        type: 3}
     - target: {fileID: 379167180883394821, guid: d87ecd5981e519f4a8343b486bb81c1f,
         type: 3}
       propertyPath: m_RootOrder
@@ -71,11 +77,17 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 2b4c1a96757364b4ba7bc1103700b833, type: 2}
+      objectReference: {fileID: 2100000, guid: 6cf6e519367837d4391a4e8ca7906b99, type: 2}
     - target: {fileID: 379167180883394873, guid: d87ecd5981e519f4a8343b486bb81c1f,
         type: 3}
       propertyPath: m_Name
       value: Cube-Heavy
       objectReference: {fileID: 0}
+    - target: {fileID: 9120005218643315201, guid: d87ecd5981e519f4a8343b486bb81c1f,
+        type: 3}
+      propertyPath: scoreObjectType
+      value: 
+      objectReference: {fileID: 11400000, guid: 09fc679b597267240a2082bcb90ce223,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d87ecd5981e519f4a8343b486bb81c1f, type: 3}
