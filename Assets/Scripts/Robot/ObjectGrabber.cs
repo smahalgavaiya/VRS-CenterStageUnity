@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(ObjectChecker))]
-public class Scooper : MonoBehaviour
+public class ObjectGrabber : MonoBehaviour
 {
     ObjectChecker objectChecker;
     bool isHoldingObject = false;
