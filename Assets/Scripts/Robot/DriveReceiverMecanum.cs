@@ -7,17 +7,17 @@ public class DriveReceiverMecanum : DriveReceiver
     [SerializeField]
     Drive frontLeft, frontRight, backLeft, backRight;
 
-    float coefficientOfMotion = .05f;
+    float coefficientOfMotion = .0005f;
 
-    Vector2 movementDirection = new Vector2(0,0);
+    Vector3 movementDirection = Vector3.zero;
     float rotationDirection = 0;
 
-    Vector2 CalculateDirection()
+    Vector3 CalculateDirection()
     {
         movementDirection = new Vector2(frontLeft.driveAmount.x - frontRight.driveAmount.x - backLeft.driveAmount.x + backRight.driveAmount.x,
             frontLeft.driveAmount.x + frontRight.driveAmount.x + backLeft.driveAmount.x + backRight.driveAmount.x);
 
-        movementDirection = new Vector2(movementDirection.x, -movementDirection.y);// TODO fix this
+        movementDirection = new Vector3(-movementDirection.x, 0, movementDirection.y);// TODO fix this
 
         return movementDirection;
     }

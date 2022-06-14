@@ -9,11 +9,13 @@ public class DriveReceiver : MonoBehaviour
 
     private void Awake()
     {
-        drive.RegisterDriveReceiver(this);    
+        if (drive != null)
+            drive.RegisterDriveReceiver(this);    
     }
 
     private void OnDestroy()
     {
-        drive.UnRegisterDriveReceiver(this);
+        if (drive != null)
+            drive.UnRegisterDriveReceiver(this);
     }
 }
