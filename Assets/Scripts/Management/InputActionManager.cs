@@ -12,6 +12,8 @@ public class InputActionManager : MonoBehaviour
 
     public Drive frontLeftWheel, backLeftWheel, frontRightWheel, backRightWheel, motor1, motor2, motor3, motor4;
     List<Drive> allDrives;
+
+    bool robotHasMecanumWheels;
     // Start is called before the first frame update
     void Start()
     {
@@ -30,22 +32,19 @@ public class InputActionManager : MonoBehaviour
         {
             drive.driveAmount = Vector3.zero;
         }
+
+        if (robot.GetComponentInChildren<DriveReceiverMecanum>())
+            robotHasMecanumWheels = true;
+        else
+            robotHasMecanumWheels = false;
     }
 
     public void OnMovement(InputValue value)
     {
         Vector2 direction = value.Get<Vector2>();
 
-        if (CheckRobotForMecanum())
+        if (robotHasMecanumWheels)
             TranslateMecanumMotion(direction);
-    }
-
-    private bool CheckRobotForMecanum()
-    {
-        if (robot.GetComponentInChildren<DriveReceiverMecanum>())
-            return true;
-        else
-            return false;
     }
 
     public void OnPickUpObject(InputValue value)

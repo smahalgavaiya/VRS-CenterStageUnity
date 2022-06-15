@@ -2,16 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody))]
 public class DriveReceiverMecanum : DriveReceiver
 {
     [SerializeField]
     Drive frontLeft, frontRight, backLeft, backRight;
 
-    float coefficientOfMotion = .0005f;
+    Rigidbody rigidbody;
+
+    float coefficientOfMotion = .005f;
 
     Vector3 movementDirection = Vector3.zero;
     float rotationDirection = 0;
 
+    private void Start()
+    {
+        rigidbody = GetComponent<Rigidbody>();
+    }
     Vector3 CalculateDirection()
     {
         movementDirection = new Vector2(frontLeft.driveAmount.x - frontRight.driveAmount.x - backLeft.driveAmount.x + backRight.driveAmount.x,
@@ -31,9 +38,11 @@ public class DriveReceiverMecanum : DriveReceiver
 
     private void Update()
     {
-        transform.Translate(CalculateDirection() * coefficientOfMotion, Space.Self);
+        rigidbody.MovePosition((transform.TransformDirection(CalculateDirection()) * coefficientOfMotion) +
+            transform.position);
 
-        transform.Rotate(new Vector3(0, 0, CalculateRotation() * coefficientOfMotion));
+        //transform.Translate(CalculateDirection() * coefficientOfMotion, Space.Self); 
+        //transform.Rotate(new Vector3(0, 0, CalculateRotation() * coefficientOfMotion));
     }
 
 
