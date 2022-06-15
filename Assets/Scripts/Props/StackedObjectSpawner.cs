@@ -23,7 +23,6 @@ public class StackedObjectSpawner : ObjectSpawner
 
     public void SpawnNextObject()
     {
-        Debug.Log(objectCount);
         if (objectCount < 1)
             return;
 

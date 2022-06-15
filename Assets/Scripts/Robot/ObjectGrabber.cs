@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Animations;
 
 [RequireComponent(typeof(ObjectChecker))]
 public class ObjectGrabber : MonoBehaviour
@@ -10,6 +11,8 @@ public class ObjectGrabber : MonoBehaviour
     bool isHoldingObject = false;
     GameObject heldObject;
     Transform originalTransformParent;
+
+    Rigidbody heldObjectRigidBody;
 
     // Start is called before the first frame update
     void Start()
@@ -20,7 +23,11 @@ public class ObjectGrabber : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (isHoldingObject)
+        {
+            heldObjectRigidBody.MovePosition(transform.position);
+            heldObjectRigidBody.MoveRotation(transform.rotation);
+        }
     }
 
 
@@ -28,32 +35,19 @@ public class ObjectGrabber : MonoBehaviour
     {
         if (objectChecker.CanPickUp && !isHoldingObject)
         {
-            if (objectChecker.ObjectInTrigger.GetComponent<Rigidbody>() != null)
-            {
-                objectChecker.ObjectInTrigger.GetComponent<Rigidbody>().collisionDetectionMode = 
-                    CollisionDetectionMode.ContinuousSpeculative;
-                objectChecker.ObjectInTrigger.GetComponent<Rigidbody>().isKinematic = true;
-            }
             heldObject = objectChecker.ObjectInTrigger;
-            originalTransformParent = heldObject.transform.parent;
-            heldObject.transform.SetParent(transform);
-            heldObject.transform.position += new Vector3(0, .1f, 0);
-
+            heldObjectRigidBody = heldObject.GetComponent<Rigidbody>();
+            heldObjectRigidBody.ResetInertiaTensor();
+            heldObjectRigidBody.useGravity = false;
             isHoldingObject = true;
             objectChecker.enabled = false;
         }
 
         else if (isHoldingObject)
         {
-            heldObject.transform.SetParent(originalTransformParent);
-            
-            if (heldObject.GetComponent<Rigidbody>() != null)
-            {
-                heldObject.GetComponent<Rigidbody>().isKinematic = false;
-            }
-
             isHoldingObject = false;
-
+            heldObjectRigidBody.ResetInertiaTensor();
+            heldObjectRigidBody.useGravity = true;
         }
 
     }

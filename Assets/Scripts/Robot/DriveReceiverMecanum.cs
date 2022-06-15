@@ -10,7 +10,8 @@ public class DriveReceiverMecanum : DriveReceiver
 
     Rigidbody rigidbody;
 
-    float coefficientOfMotion = .005f;
+    float coefficientOfTranslation = .002f;
+    float coefficientOfRotation = .5f;
 
     Vector3 movementDirection = Vector3.zero;
     float rotationDirection = 0;
@@ -38,10 +39,10 @@ public class DriveReceiverMecanum : DriveReceiver
 
     private void Update()
     {
-        rigidbody.MovePosition((transform.TransformDirection(CalculateDirection()) * coefficientOfMotion) +
+        rigidbody.MovePosition((transform.TransformDirection(CalculateDirection()) * coefficientOfTranslation) +
             transform.position);
 
-        rigidbody.MoveRotation(Quaternion.AngleAxis(CalculateRotation(), transform.up) * transform.rotation);
+        rigidbody.MoveRotation(Quaternion.AngleAxis(CalculateRotation() * coefficientOfRotation, transform.up) * transform.rotation);
 
         //transform.Translate(CalculateDirection() * coefficientOfMotion, Space.Self); 
         //transform.Rotate(new Vector3(0, 0, CalculateRotation() * coefficientOfMotion));

@@ -48,7 +48,7 @@
             ],
             "bindings": [
                 {
-                    "name": "2D Vector",
+                    "name": "Keyboard",
                     "id": "81b19b64-cc40-4af4-bbb6-328f08b52511",
                     "path": "2DVector",
                     "interactions": "",
@@ -104,8 +104,30 @@
                 },
                 {
                     "name": "",
+                    "id": "d4737fe2-25da-4ed0-b09a-d46f3e161f87",
+                    "path": "<Gamepad>/leftStick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Movement",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "7af8501a-3d80-4b6f-84c2-21a5334ec49a",
                     "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "PickUpObject",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "3f7f7bd0-a4ca-49b8-9068-475da4ef1568",
+                    "path": "<Gamepad>/rightShoulder",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -147,6 +169,17 @@
                     "isPartOfComposite": true
                 },
                 {
+                    "name": "",
+                    "id": "0c563ffd-f556-4a7a-b0f6-5d6d5ba768b0",
+                    "path": "<Gamepad>/rightStick/x",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Rotation",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
                     "name": "1D Axis",
                     "id": "1c2ff514-cb6c-4865-bf8b-0db26124629a",
                     "path": "1DAxis",
@@ -180,6 +213,17 @@
                     "isPartOfComposite": true
                 },
                 {
+                    "name": "",
+                    "id": "cb0cb1e7-205c-46c4-8770-fcdc7ff9dcc1",
+                    "path": "<Gamepad>/dpad/x",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "MotorOne",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
                     "name": "1D Axis",
                     "id": "69a27699-b8fb-41c0-9ce1-531cd3a17153",
                     "path": "1DAxis",
@@ -211,6 +255,17 @@
                     "action": "MotorTwo",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "630ac5db-8b1f-4e32-bc5d-63af1ecb5a6e",
+                    "path": "<Gamepad>/dpad/y",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "MotorTwo",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         }
