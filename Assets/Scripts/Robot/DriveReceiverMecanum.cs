@@ -41,6 +41,8 @@ public class DriveReceiverMecanum : DriveReceiver
         rigidbody.MovePosition((transform.TransformDirection(CalculateDirection()) * coefficientOfMotion) +
             transform.position);
 
+        rigidbody.MoveRotation(Quaternion.AngleAxis(CalculateRotation(), transform.up) * transform.rotation);
+
         //transform.Translate(CalculateDirection() * coefficientOfMotion, Space.Self); 
         //transform.Rotate(new Vector3(0, 0, CalculateRotation() * coefficientOfMotion));
     }

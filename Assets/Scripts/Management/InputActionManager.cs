@@ -47,12 +47,30 @@ public class InputActionManager : MonoBehaviour
             TranslateMecanumMotion(direction);
     }
 
+    public void OnRotation(InputValue value)
+    {
+        float direction = value.Get<float>();
+
+        if (robotHasMecanumWheels)
+            RotateMecanumMotion(direction);
+    }
+
+
     public void OnPickUpObject(InputValue value)
     {
         if (value.isPressed)
             pickUpObject.Invoke();
     }
+    
+    public void OnMotorOne(InputValue value)
+    {
+        motor1.driveAmount.x = value.Get<float>();
+    }
 
+    public void OnMotorTwo(InputValue value)
+    {
+        motor2.driveAmount.x = value.Get<float>();
+    }
 
     // Update is called once per frame
     void Update()
@@ -68,5 +86,12 @@ public class InputActionManager : MonoBehaviour
         backRightWheel.driveAmount.x = -direction.x + direction.y;
         frontRightWheel.driveAmount.x = direction.x + direction.y;
         backLeftWheel.driveAmount.x = direction.x + direction.y;
+    }
+    private void RotateMecanumMotion(float direction)
+    {
+        frontLeftWheel.driveAmount.x = direction;
+        backRightWheel.driveAmount.x = -direction;
+        frontRightWheel.driveAmount.x = -direction;
+        backLeftWheel.driveAmount.x = direction;
     }
 }
