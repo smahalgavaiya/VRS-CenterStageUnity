@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class DriveReceiverForTransformRotate: DriveReceiver
 {
+    [SerializeField]
+    float coefficientOfDrive = 1;
     // Start is called before the first frame update
     void Start()
     {
@@ -12,6 +14,6 @@ public class DriveReceiverForTransformRotate: DriveReceiver
     // Update is called once per frame
     void Update()
     {
-        transform.Rotate(drive.driveAmount);
+        transform.Rotate(drive.driveAmount * coefficientOfDrive);
     }
 }
