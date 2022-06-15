@@ -14,6 +14,9 @@ public class InputActionManager : MonoBehaviour
     List<Drive> allDrives;
 
     bool robotHasMecanumWheels;
+    private Vector2 moveDirection;
+    private float rotationDirection;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -41,18 +44,22 @@ public class InputActionManager : MonoBehaviour
 
     public void OnMovement(InputValue value)
     {
-        Vector2 direction = value.Get<Vector2>();
+        moveDirection = value.Get<Vector2>();
 
         if (robotHasMecanumWheels)
-            TranslateMecanumMotion(direction);
+        {
+            MecanumMotion();
+        }
     }
 
     public void OnRotation(InputValue value)
     {
-        float direction = value.Get<float>();
+        rotationDirection = value.Get<float>();
 
         if (robotHasMecanumWheels)
-            RotateMecanumMotion(direction);
+        {
+            MecanumMotion();
+        }
     }
 
 
@@ -79,19 +86,12 @@ public class InputActionManager : MonoBehaviour
         
     }
 
-    void TranslateMecanumMotion(Vector2 direction)
+    void MecanumMotion()
     {
         // Mecanum settings
-        frontLeftWheel.driveAmount.x = -direction.x + direction.y;
-        backRightWheel.driveAmount.x = -direction.x + direction.y;
-        frontRightWheel.driveAmount.x = direction.x + direction.y;
-        backLeftWheel.driveAmount.x = direction.x + direction.y;
-    }
-    private void RotateMecanumMotion(float direction)
-    {
-        frontLeftWheel.driveAmount.x = direction;
-        backRightWheel.driveAmount.x = -direction;
-        frontRightWheel.driveAmount.x = -direction;
-        backLeftWheel.driveAmount.x = direction;
+        frontLeftWheel.driveAmount.x = -moveDirection.x + moveDirection.y + rotationDirection;
+        backRightWheel.driveAmount.x = -moveDirection.x + moveDirection.y - rotationDirection;
+        frontRightWheel.driveAmount.x = moveDirection.x + moveDirection.y - rotationDirection;
+        backLeftWheel.driveAmount.x = moveDirection.x + moveDirection.y + rotationDirection;
     }
 }
