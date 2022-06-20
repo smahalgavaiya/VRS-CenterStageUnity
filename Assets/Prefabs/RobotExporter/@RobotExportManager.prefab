@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &3856798299478725003
+--- !u!1 &7866210148610658514
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,22 +8,22 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 2530129186488729049}
-  - component: {fileID: 7783257943403694846}
+  - component: {fileID: 7866210148610658525}
+  - component: {fileID: 7866210148610658524}
   m_Layer: 0
-  m_Name: '@RobotImportManager'
+  m_Name: '@RobotExportManager'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &2530129186488729049
+--- !u!4 &7866210148610658525
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3856798299478725003}
+  m_GameObject: {fileID: 7866210148610658514}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -31,23 +31,23 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7783257943403694846
+--- !u!114 &7866210148610658524
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3856798299478725003}
+  m_GameObject: {fileID: 7866210148610658514}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 18ea9d8951f9d6846ab2844da2389e0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  frontLeftWheel: {fileID: 11400000, guid: 346415919e1ca1743af4ff78775eb3ef, type: 2}
-  backLeftWheel: {fileID: 11400000, guid: a4f94588a3b1063438af7f786f74fcbe, type: 2}
-  frontRightWheel: {fileID: 11400000, guid: a149c820464f14d43b13363c32d3325a, type: 2}
-  backRightWheel: {fileID: 11400000, guid: 88dbf217876bc714aaa1c85d667ddfbf, type: 2}
-  motor1: {fileID: 11400000, guid: 186e7d6c08603b247929d29c2a6817a2, type: 2}
-  motor2: {fileID: 11400000, guid: 6454eca5fe1aa564c840a3ca49d36b54, type: 2}
-  motor3: {fileID: 11400000, guid: 2b07c0bdd84fe4241ab71ebe7d1549a4, type: 2}
-  motor4: {fileID: 11400000, guid: 33a83e47ca6560a4abeec4c8d13335b1, type: 2}
+  frontLeftWheel: {fileID: 0}
+  backLeftWheel: {fileID: 0}
+  frontRightWheel: {fileID: 0}
+  backRightWheel: {fileID: 0}
+  motor1: {fileID: 0}
+  motor2: {fileID: 0}
+  motor3: {fileID: 0}
+  motor4: {fileID: 0}

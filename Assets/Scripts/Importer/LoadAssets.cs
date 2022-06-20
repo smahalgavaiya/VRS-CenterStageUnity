@@ -11,15 +11,20 @@ public class LoadAssets : MonoBehaviour
 {
 	public delegate void GetFile();
 
+	[SerializeField]
+	GameObject dynamicObjectParent;
+
+	[SerializeField]
+	InputActionManager inputActionManager;
+
 	public GetFile ReturnTheFile;
 
 	[SerializeField]
 	GameObject importedRobot;
 
-	AsyncOperationHandle<GameObject> opCube;
+	AsyncOperationHandle<GameObject> opRobot;
 
-	[SerializeField]
-	GameObject dynamicObjectParent, jumpButton;
+	AsyncOperationHandle<GameObject> opRobotExportManager;
 
 	public string Path_ { get; set; }
 	// Start is called before the first frame update
@@ -71,7 +76,6 @@ public class LoadAssets : MonoBehaviour
 		if( FileBrowser.Success )
 		{
 			Path_ = FileBrowser.Result[0];
-			Debug.Log(Path_);
 
 			Instantiate(importedRobot);
 			
@@ -82,8 +86,15 @@ public class LoadAssets : MonoBehaviour
 	IEnumerator InstantiateObject()
     {
 
-        opCube = Addressables.LoadAssetAsync<GameObject>("Cube");
-        yield return opCube;
+        opRobotExportManager = Addressables.LoadAssetAsync<GameObject>("RobotExportManager");
+        yield return opRobotExportManager;
+
+        opRobot = Addressables.LoadAssetAsync<GameObject>("Robot");
+        yield return opRobot;
+
+		// Match the imported drives to the Input Action Manager so the controls will fire 
+		// the correct drives on the imported robot.
+		MatchImportedDrives.MatchDrives(inputActionManager, opRobotExportManager.Result.GetComponent<DriveIndex>());
 
         //     opHop = Addressables.LoadAssetAsync<TestDrive>("Hop");
         //     yield return opHop;
@@ -98,9 +109,9 @@ public class LoadAssets : MonoBehaviour
         //         yield return opCube;
         //     }
 
-        if (opCube.Status == AsyncOperationStatus.Succeeded)
+        if (opRobot.Status == AsyncOperationStatus.Succeeded)
         {
-            GameObject newObj = opCube.Result;
+            GameObject newObj = opRobot.Result;
             Instantiate(newObj, dynamicObjectParent.transform);
         }
     }
