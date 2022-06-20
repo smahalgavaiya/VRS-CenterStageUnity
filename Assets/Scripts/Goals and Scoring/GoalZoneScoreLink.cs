@@ -57,6 +57,7 @@ public class GoalZoneScoreLink : MonoBehaviour
         if (other.GetComponent<ScoreObjectTypeLink>() == null || other.GetComponent<ScoreObjectTypeLink>().ScoreObjectType_ == null)
         {
             Debug.Log(this.gameObject);
+            Debug.Log(other.gameObject);
             Debug.Log("Your prefab is either missing the ScoreObjectTypeLink component or the prefab's ScoreObjectTypeLink is missing a reference to the Score Object Type");
             return;
         }
