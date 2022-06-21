@@ -12,15 +12,12 @@ public class LoadAssets : MonoBehaviour
 	public delegate void GetFile();
 
 	[SerializeField]
-	GameObject dynamicObjectParent;
+	GameObject robotSpawnLocation;
 
 	[SerializeField]
 	InputActionManager inputActionManager;
 
 	public GetFile ReturnTheFile;
-
-	[SerializeField]
-	GameObject importedRobot;
 
 	AsyncOperationHandle<GameObject> opRobot;
 
@@ -68,7 +65,7 @@ public class LoadAssets : MonoBehaviour
 		// Load file/folder: both, Allow multiple selection: true
 		// Initial path: default (Documents), Initial filename: empty
 		// Title: "Load File", Submit button text: "Load"
-		yield return FileBrowser.WaitForLoadDialog( FileBrowser.PickMode.FilesAndFolders, true, "H:\\Github\\VRSConstructorKit\\Build\\Robot Simulator_Data\\StreamingAssets\\aa\\StandaloneWindows64", null, "Load Files and Folders", "Load" );
+		yield return FileBrowser.WaitForLoadDialog( FileBrowser.PickMode.FilesAndFolders, true, "C:\\Users\\jasonb\\Desktop\\robots", null, "Load Files and Folders", "Load" );
 
 		// Dialog is closed
 		// Print whether the user has selected some files/folders or cancelled the operation (FileBrowser.Success)
@@ -77,9 +74,7 @@ public class LoadAssets : MonoBehaviour
 		{
 			Path_ = FileBrowser.Result[0];
 
-			Instantiate(importedRobot);
-			
-			//ReturnTheFile();
+			StartCoroutine(InstantiateObject());
 		}
 	}
 
@@ -89,7 +84,7 @@ public class LoadAssets : MonoBehaviour
         opRobotExportManager = Addressables.LoadAssetAsync<GameObject>("RobotExportManager");
         yield return opRobotExportManager;
 
-        opRobot = Addressables.LoadAssetAsync<GameObject>("Robot");
+        opRobot = Addressables.LoadAssetAsync<GameObject>("RobotTEMP");
         yield return opRobot;
 
 		// Match the imported drives to the Input Action Manager so the controls will fire 
@@ -112,7 +107,9 @@ public class LoadAssets : MonoBehaviour
         if (opRobot.Status == AsyncOperationStatus.Succeeded)
         {
             GameObject newObj = opRobot.Result;
-            Instantiate(newObj, dynamicObjectParent.transform);
+			newObj.GetComponent<Rigidbody>().isKinematic = true;
+            Instantiate(newObj, robotSpawnLocation.transform);
+			newObj.GetComponent<Rigidbody>().ResetInertiaTensor();
         }
     }
 
