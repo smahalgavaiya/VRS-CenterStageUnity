@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
+using System;
 
 public class GenerateRobotColliders : EditorWindow
 {
@@ -12,6 +13,8 @@ public class GenerateRobotColliders : EditorWindow
 
     [SerializeField]
     private bool hasMecanumWheels;
+
+    DriveIndex driveIndex;
 
     public void CreatePopup()
     {
@@ -39,6 +42,8 @@ public class GenerateRobotColliders : EditorWindow
 
         if (GUILayout.Button("Generate Robot Colliders"))
         {
+            driveIndex = GameObject.Find("@RobotExportManager").GetComponent<DriveIndex>();
+
             if (robotParent == null)
             {
                 ShowNotification(new GUIContent("You need to select \n the Robot Parent (above) \n for the root of the robot"), 5);
@@ -77,23 +82,29 @@ public class GenerateRobotColliders : EditorWindow
 
                 if (wheelsParent.transform.childCount < 1 || wheelCollidersParent.transform.childCount < 1)
                     MoveWheelsToWheelsParent();
-                else 
+                else
                     ShowNotification(new GUIContent("It looks like you already \n have wheel models and " +
                         "\n wheel colliders. Delete them \n if you'd like to start over."), 5);
-
             }
 
-            if (hasMecanumWheels && robotParent.GetComponent<DriveReceiverMecanum>() == null)
+            if (hasMecanumWheels)
             {
-                robotParent.AddComponent<DriveReceiverMecanum>();
+                DriveReceiverMecanum driveReceiverMecanum;
+                if (robotParent.GetComponent<DriveReceiverMecanum>() == null)
+                    driveReceiverMecanum = robotParent.AddComponent<DriveReceiverMecanum>();
+                else
+                    driveReceiverMecanum = robotParent.GetComponent<DriveReceiverMecanum>();
+
+                driveReceiverMecanum.FrontLeft = driveIndex.frontLeftWheel;
+                driveReceiverMecanum.FrontRight = driveIndex.frontRightWheel;
+                driveReceiverMecanum.BackLeft = driveIndex.backLeftWheel;
+                driveReceiverMecanum.BackRight = driveIndex.backRightWheel;
             }
         }
     }
 
     private void MoveWheelsToWheelsParent()
     {
-        bool wheelsNamedCorrectly = false;
-
         for (int i = 0; i < robotParent.transform.childCount; i++)
         {
             GameObject robotPart = robotParent.transform.GetChild(i).gameObject;
@@ -106,15 +117,18 @@ public class GenerateRobotColliders : EditorWindow
 
             robotPart.layer = LayerMask.NameToLayer("Robot");
 
+            if (!CheckWheelNaming())
+            {
+                ShowNotification(new GUIContent("You need to name \n the wheels using the convention \n \"frontLeftWheel\", \"backRightWheel\"etc."), 5);
+                return;
+            }
 
             if (
-                (robotPart.name.Contains("wheel") || robotPart.name.Contains("Wheel"))
+                robotPart.name.ToLower().Contains("wheel") 
                 && !robotPart.name.Contains("Colliders") 
                 && !robotPart.name.Contains("Models")
                )
             {
-                wheelsNamedCorrectly = true;
-
                 // We do not want the wheels to have mesh colliders, as they use wheel colliders
                 // however we globally added mesh colliders to every part in the for loop above,
                 // so we need to now delete it.
@@ -130,11 +144,13 @@ public class GenerateRobotColliders : EditorWindow
                 newWheelCollider.name = newWheel.name + "_WheelCollider";
                 newWheel.name = newWheel.name + "_WheelModel";
 
+
                 MatchLocRotScale(robotPart, newWheel);
                 MatchLocRotScale(robotPart, newWheelCollider);
 
                 newWheel.AddComponent<DriveReceiverForTransformRotate>();
                 WheelTurner wheelTurner = newWheel.AddComponent<WheelTurner>();
+                AddCorrespondingDrive(newWheel);
 
                 WheelCollider wheelCollider = newWheelCollider.AddComponent<WheelCollider>();
 
@@ -148,11 +164,56 @@ public class GenerateRobotColliders : EditorWindow
                 robotPart.SetActive(false);
             }
         }
-        if (!wheelsNamedCorrectly)
+
+    }
+
+    private void AddCorrespondingDrive(GameObject newWheel)
+    {
+        if (newWheel.name.ToLower().Contains("frontleft"))
         {
-            ShowNotification(new GUIContent("You need to name \n the wheels with the word \n \"wheel\" in the object name"), 5);
+            newWheel.GetComponent<DriveReceiverForTransformRotate>().drive = driveIndex.frontLeftWheel;
+        }
+        else if (newWheel.name.ToLower().Contains("frontright"))
+        {
+            newWheel.GetComponent<DriveReceiverForTransformRotate>().drive = driveIndex.frontRightWheel;
+        }
+        else if (newWheel.name.ToLower().Contains("backleft"))
+        {
+            newWheel.GetComponent<DriveReceiverForTransformRotate>().drive = driveIndex.backLeftWheel;
+        }
+        else if (newWheel.name.ToLower().Contains("backright"))
+        {
+            newWheel.GetComponent<DriveReceiverForTransformRotate>().drive = driveIndex.backRightWheel;
+        }
+    }
+
+    private bool CheckWheelNaming()
+    {
+        bool wheelsNamedCorrectly = false;
+        int numberOfCorrectlyNamedWheels = 0;
+
+        for (int i = 0; i < robotParent.transform.childCount; i++)
+        {
+            string partName = robotParent.transform.GetChild(i).name;
+            if (
+                (
+                partName.ToLower().Contains("frontleft") || 
+                partName.ToLower().Contains("frontright") || 
+                partName.ToLower().Contains("backleft") || 
+                partName.ToLower().Contains("backright") 
+                ) && 
+                (partName.ToLower().Contains("wheel"))
+               )
+            {
+                numberOfCorrectlyNamedWheels++;
+            }
         }
 
+        if (numberOfCorrectlyNamedWheels == 4)
+            wheelsNamedCorrectly = true;
+        else wheelsNamedCorrectly = false;
+        
+        return wheelsNamedCorrectly;
     }
 
     private static void MatchLocRotScale(GameObject robotPart, GameObject newWheel)
