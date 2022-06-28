@@ -72,10 +72,15 @@ public class GenerateRobotColliders : EditorWindow
 
             if (wheelsParentCreated)
             {
-                ShowNotification(new GUIContent("It looks like you \n already made wheel colliders \n " +
-                    "if you want to restart \n delete the WheelColliders \n and WheelModels \n objects from " +
-                    "your robot hierarchy."), 5);
-                return;
+                wheelsParent = robotParent.transform.Find("WheelModels").gameObject;
+                wheelCollidersParent = robotParent.transform.Find("WheelColliders").gameObject;
+
+                if (wheelsParent.transform.childCount < 1 || wheelCollidersParent.transform.childCount < 1)
+                    MoveWheelsToWheelsParent();
+                else 
+                    ShowNotification(new GUIContent("It looks like you already \n have wheel models and " +
+                        "\n wheel colliders. Delete them \n if you'd like to start over."), 5);
+
             }
 
             if (hasMecanumWheels && robotParent.GetComponent<DriveReceiverMecanum>() == null)
@@ -93,13 +98,14 @@ public class GenerateRobotColliders : EditorWindow
         {
             GameObject robotPart = robotParent.transform.GetChild(i).gameObject;
 
-            if (robotPart.GetComponent<MeshCollider>() == null)
+            if (robotPart.GetComponent<MeshCollider>() == null && robotPart.GetComponent<MeshFilter>() != null)
             {
                 MeshCollider meshCollider = robotPart.AddComponent<MeshCollider>();
                 meshCollider.convex = true;
             }
 
             robotPart.layer = LayerMask.NameToLayer("Robot");
+
 
             if (
                 (robotPart.name.Contains("wheel") || robotPart.name.Contains("Wheel"))
@@ -128,7 +134,12 @@ public class GenerateRobotColliders : EditorWindow
                 MatchLocRotScale(robotPart, newWheelCollider);
 
                 newWheel.AddComponent<DriveReceiverForTransformRotate>();
+                WheelTurner wheelTurner = newWheel.AddComponent<WheelTurner>();
+
                 WheelCollider wheelCollider = newWheelCollider.AddComponent<WheelCollider>();
+
+                wheelTurner.WheelCollider = wheelCollider;
+
                 wheelCollider.suspensionDistance = .1f;
                 newWheelCollider.GetComponent<Renderer>().enabled = false;
 
@@ -141,6 +152,7 @@ public class GenerateRobotColliders : EditorWindow
         {
             ShowNotification(new GUIContent("You need to name \n the wheels with the word \n \"wheel\" in the object name"), 5);
         }
+
     }
 
     private static void MatchLocRotScale(GameObject robotPart, GameObject newWheel)
