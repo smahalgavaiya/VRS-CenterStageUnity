@@ -8,6 +8,11 @@ public class DriveReceiverMecanum : DriveReceiver
     [SerializeField]
     Drive frontLeft, frontRight, backLeft, backRight;
 
+    public Drive FrontLeft { set { frontLeft = value; } }
+    public Drive FrontRight { set { frontRight = value; } }
+    public Drive BackLeft { set { backLeft = value; } }
+    public Drive BackRight { set { backRight = value; } }
+
     Rigidbody rigidbody;
 
     float coefficientOfTranslation = .002f;
