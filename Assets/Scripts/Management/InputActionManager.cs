@@ -7,7 +7,6 @@ using System;
 
 public class InputActionManager : MonoBehaviour
 {
-    public UnityEvent pickUpObject;
     public GameObject robot;
 
     public Drive frontLeftWheel, backLeftWheel, frontRightWheel, backRightWheel, motor1, motor2, motor3, motor4;
@@ -60,13 +59,6 @@ public class InputActionManager : MonoBehaviour
         {
             MecanumMotion();
         }
-    }
-
-
-    public void OnPickUpObject(InputValue value)
-    {
-        if (value.isPressed)
-            pickUpObject.Invoke();
     }
     
     public void OnMotorOne(InputValue value)
