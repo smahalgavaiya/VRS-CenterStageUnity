@@ -14,6 +14,25 @@ public class ObjectGrabber : MonoBehaviour
 
     Rigidbody heldObjectRigidBody;
 
+    [Tooltip("Enable this if the grabber does not hold objects at its pivot point, but instead holds" +
+        "them in a custom location (for instance in the scoop of a launcher")]
+    [SerializeField]
+    bool hasCustomHoldingLocation;
+    public bool HasCustomHoldingLocation { get => hasCustomHoldingLocation; }
+
+    [SerializeField]
+    bool loadObjectLauncher;
+    public bool LoadObjectLauncher { get => loadObjectLauncher; }
+
+    [SerializeField]
+    GameObject customHoldingLocation;
+    public GameObject CustomHoldingLocation { get => customHoldingLocation; }
+
+    [SerializeField]
+    ObjectLauncher objectLauncher;
+    public ObjectLauncher ObjectLauncher { get => objectLauncher; }
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -25,8 +44,17 @@ public class ObjectGrabber : MonoBehaviour
     {
         if (isHoldingObject)
         {
-            heldObjectRigidBody.MovePosition(transform.position);
-            heldObjectRigidBody.MoveRotation(transform.rotation);
+            switch(hasCustomHoldingLocation)
+            {
+                case true:
+                    heldObjectRigidBody.MovePosition(customHoldingLocation.transform.position);
+                    heldObjectRigidBody.MoveRotation(customHoldingLocation.transform.rotation);
+                    break;
+                case false:
+                    heldObjectRigidBody.MovePosition(transform.position);
+                    heldObjectRigidBody.MoveRotation(transform.rotation);
+                    break;
+            }
         }
     }
 
@@ -40,12 +68,22 @@ public class ObjectGrabber : MonoBehaviour
             heldObjectRigidBody.ResetInertiaTensor();
             heldObjectRigidBody.useGravity = false;
             isHoldingObject = true;
+            if (loadObjectLauncher)
+            {
+                objectLauncher.IsHoldingObject = true;
+                objectLauncher.HeldObject = heldObject;
+            }
             objectChecker.enabled = false;
         }
 
         else if (isHoldingObject)
         {
             isHoldingObject = false;
+            if (loadObjectLauncher)
+            {
+                objectLauncher.IsHoldingObject = false;
+                objectLauncher.HeldObject = heldObject;
+            }
             heldObjectRigidBody.ResetInertiaTensor();
             heldObjectRigidBody.useGravity = true;
         }
