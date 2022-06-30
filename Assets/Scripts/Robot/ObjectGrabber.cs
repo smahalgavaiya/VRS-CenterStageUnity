@@ -12,6 +12,9 @@ public class ObjectGrabber : MonoBehaviour
     GameObject heldObject;
     Transform originalTransformParent;
 
+    [SerializeField]
+    Drive objectGrabberDrive;
+
     Rigidbody heldObjectRigidBody;
 
     [Tooltip("Enable this if the grabber does not hold objects at its pivot point, but instead holds" +
@@ -44,7 +47,7 @@ public class ObjectGrabber : MonoBehaviour
     {
         if (isHoldingObject)
         {
-            switch(hasCustomHoldingLocation)
+            switch (hasCustomHoldingLocation)
             {
                 case true:
                     heldObjectRigidBody.MovePosition(customHoldingLocation.transform.position);
@@ -55,6 +58,12 @@ public class ObjectGrabber : MonoBehaviour
                     heldObjectRigidBody.MoveRotation(transform.rotation);
                     break;
             }
+        }
+
+        if (objectGrabberDrive.driveAmount.x > 0 && !isHoldingObject || 
+            objectGrabberDrive.driveAmount.x == 0 && isHoldingObject)
+        {
+            PickUpOrPutDownObject();
         }
     }
 
