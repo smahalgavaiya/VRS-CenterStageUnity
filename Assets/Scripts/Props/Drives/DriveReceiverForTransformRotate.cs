@@ -5,7 +5,7 @@ using UnityEngine;
 public class DriveReceiverForTransformRotate: DriveReceiver
 {
     [SerializeField]
-    float coefficientOfDrive = 1;
+    float coefficientOfDrive = .5f;
     // Start is called before the first frame update
     void Start()
     {

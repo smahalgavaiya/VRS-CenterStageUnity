@@ -9,6 +9,7 @@ public class ObjectGrabber : MonoBehaviour
 {
     ObjectChecker objectChecker;
     bool isHoldingObject = false;
+    public bool IsHoldingObject { get => isHoldingObject; set => isHoldingObject = value; }
     GameObject heldObject;
     Transform originalTransformParent;
 
@@ -36,16 +37,24 @@ public class ObjectGrabber : MonoBehaviour
     public ObjectLauncher ObjectLauncher { get => objectLauncher; }
 
 
+    private void Awake()
+    {
+        objectLauncher.CheckObjectGrabber = true;
+    }
     // Start is called before the first frame update
     void Start()
     {
         objectChecker = GetComponent<ObjectChecker>();
+        if (loadObjectLauncher)
+        {
+            objectLauncher.ObjectGrabber_ = this;
+        }
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        if (isHoldingObject)
+        if (IsHoldingObject)
         {
             switch (hasCustomHoldingLocation)
             {
@@ -60,8 +69,8 @@ public class ObjectGrabber : MonoBehaviour
             }
         }
 
-        if (objectGrabberDrive.driveAmount.x > 0 && !isHoldingObject || 
-            objectGrabberDrive.driveAmount.x == 0 && isHoldingObject)
+        if (objectGrabberDrive.driveAmount.x > 0 && !IsHoldingObject || 
+            objectGrabberDrive.driveAmount.x < 0 && IsHoldingObject)
         {
             PickUpOrPutDownObject();
         }
@@ -70,13 +79,13 @@ public class ObjectGrabber : MonoBehaviour
 
     public void PickUpOrPutDownObject()
     {
-        if (objectChecker.CanPickUp && !isHoldingObject)
+        if (objectChecker.CanPickUp && !IsHoldingObject)
         {
             heldObject = objectChecker.ObjectInTrigger;
             heldObjectRigidBody = heldObject.GetComponent<Rigidbody>();
             heldObjectRigidBody.ResetInertiaTensor();
             heldObjectRigidBody.useGravity = false;
-            isHoldingObject = true;
+            IsHoldingObject = true;
             if (loadObjectLauncher)
             {
                 objectLauncher.IsHoldingObject = true;
@@ -85,14 +94,16 @@ public class ObjectGrabber : MonoBehaviour
             objectChecker.enabled = false;
         }
 
-        else if (isHoldingObject)
+        else if (IsHoldingObject)
         {
-            isHoldingObject = false;
+            IsHoldingObject = false;
             if (loadObjectLauncher)
             {
                 objectLauncher.IsHoldingObject = false;
                 objectLauncher.HeldObject = heldObject;
             }
+            else heldObject.transform.position = this.transform.position;
+
             heldObjectRigidBody.ResetInertiaTensor();
             heldObjectRigidBody.useGravity = true;
         }
