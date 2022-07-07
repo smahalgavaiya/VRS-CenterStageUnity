@@ -149,14 +149,15 @@ public class GenerateRobotColliders : EditorWindow
                 MatchLocRotScale(robotPart, newWheelCollider);
 
                 newWheel.AddComponent<DriveReceiverForTransformRotate>();
-                WheelTurner wheelTurner = newWheel.AddComponent<WheelTurner>();
+                //WheelTurner wheelTurner = newWheel.AddComponent<WheelTurner>();
                 AddCorrespondingDrive(newWheel);
 
                 WheelCollider wheelCollider = newWheelCollider.AddComponent<WheelCollider>();
 
-                wheelTurner.WheelCollider = wheelCollider;
+                //wheelTurner.WheelCollider = wheelCollider;
 
                 wheelCollider.suspensionDistance = .1f;
+                wheelCollider.transform.localScale = new Vector3(.1f, .1f, .1f);
                 newWheelCollider.GetComponent<Renderer>().enabled = false;
 
                 newWheel.transform.SetParent(wheelsParent.transform);

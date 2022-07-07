@@ -22,9 +22,9 @@ MonoBehaviour:
   m_maxConcurrentWebRequests: 500
   m_ContiguousBundles: 0
   m_RemoteCatalogBuildPath:
-    m_Id: C:\Users\jasob\Desktop\robots
+    m_Id: aab5fc2a21ec47c458dfd352bc23d9c0
   m_RemoteCatalogLoadPath:
-    m_Id: C:\Users\jasob\Desktop\robots
+    m_Id: 980d37aea1761144cb6fef85a1e5ba0e
   m_overridePlayerVersion: 
   m_GroupAssets:
   - {fileID: 11400000, guid: c82f141e0a006be4cb21cf2d474c6f77, type: 2}
@@ -46,6 +46,20 @@ MonoBehaviour:
         m_Value: '[UnityEngine.AddressableAssets.Addressables.BuildPath]/[BuildTarget]'
       - m_Id: 980d37aea1761144cb6fef85a1e5ba0e
         m_Value: '{UnityEngine.AddressableAssets.Addressables.RuntimePath}/[BuildTarget]'
+      - m_Id: f840ac68e6a290e4e8be08ed5c4a55f2
+        m_Value: ServerData/[BuildTarget]
+      - m_Id: 0da1304ed0ea59f4ca7502ea0ccae39c
+        m_Value: http://localhost/[BuildTarget]
+    - m_InheritedParent: 
+      m_Id: 7b114785fdaf9cf4b85dca537427ddd6
+      m_ProfileName: RobotExport
+      m_Values:
+      - m_Id: 72f7f5e0ee09dda4897d7241fc3a87f8
+        m_Value: '[UnityEditor.EditorUserBuildSettings.activeBuildTarget]'
+      - m_Id: aab5fc2a21ec47c458dfd352bc23d9c0
+        m_Value: '[UnityEngine.AddressableAssets.Addressables.BuildPath]/[BuildTarget]'
+      - m_Id: 980d37aea1761144cb6fef85a1e5ba0e
+        m_Value: '{UnityEngine.AddressableAssets.Addressables.RuntimePath}/[BuildTarget]/custom_robots'
       - m_Id: f840ac68e6a290e4e8be08ed5c4a55f2
         m_Value: ServerData/[BuildTarget]
       - m_Id: 0da1304ed0ea59f4ca7502ea0ccae39c
@@ -83,7 +97,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 73fc51bd3ce704340b98fafc8bac3ef8, type: 2}
   - {fileID: 11400000, guid: 7ee63ac3fb36702409a0f49ab336cdfd, type: 2}
   - {fileID: 11400000, guid: fab0590efd4941a4abb19eeca645c4df, type: 2}
-  m_ActiveProfileId: d4fa22e79c65d834d929b1bedd9dd7f6
+  m_ActiveProfileId: 7b114785fdaf9cf4b85dca537427ddd6
   m_HostingServicesManager:
     m_HostingServiceInfos: []
     m_Settings: {fileID: 11400000}

@@ -23,6 +23,8 @@ public class LoadAssets : MonoBehaviour
 
 	AsyncOperationHandle<GameObject> opRobotExportManager;
 
+	[SerializeField]
+	InputField catalogName;
 	public string Path_ { get; set; }
 	// Start is called before the first frame update
 	void Start()
@@ -56,7 +58,7 @@ public class LoadAssets : MonoBehaviour
 		//						   FileBrowser.PickMode.Folders, false, null, null, "Select Folder", "Select" );
 
 		// Coroutine example
-		StartCoroutine( ShowLoadDialogCoroutine() );
+		StartCoroutine( InstantiateObject() );
 	}
 
 	IEnumerator ShowLoadDialogCoroutine()
@@ -80,10 +82,17 @@ public class LoadAssets : MonoBehaviour
 
 	IEnumerator InstantiateObject()
     {
+		Path_ = Addressables.RuntimePath + "/WebGL/custom_robots/" + catalogName.text;
+
+        AsyncOperationHandle<IResourceLocator> handle = 
+            Addressables.LoadContentCatalogAsync(Path_, true);
+
+        yield return handle;
+
         opRobotExportManager = Addressables.LoadAssetAsync<GameObject>("RobotExportManager");
         yield return opRobotExportManager;
 
-        opRobot = Addressables.LoadAssetAsync<GameObject>("RobotTEMP");
+        opRobot = Addressables.LoadAssetAsync<GameObject>("MyRobot");
         yield return opRobot;
 
 		// Match the imported drives to the Input Action Manager so the controls will fire 
@@ -106,9 +115,10 @@ public class LoadAssets : MonoBehaviour
         if (opRobot.Status == AsyncOperationStatus.Succeeded)
         {
             GameObject newObj = opRobot.Result;
-			newObj.GetComponent<Rigidbody>().isKinematic = true;
             Instantiate(newObj, robotSpawnLocation.transform);
-			newObj.GetComponent<Rigidbody>().ResetInertiaTensor();
+			newObj.GetComponent<Rigidbody>().isKinematic = false;
+			newObj.transform.localScale = new Vector3(.01f, .01f, .01f);
+			//newObj.GetComponent<Rigidbody>().ResetInertiaTensor();
         }
     }
 
