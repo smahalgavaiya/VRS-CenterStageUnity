@@ -13,7 +13,7 @@ public class GoalZoneBaseData : MonoBehaviour
 
     public bool hideOnPlay;
 
-    public ScoreZoneColor scoreZoneColor;
+    public TeamColor scoreZoneColor;
 
     // Start is called before the first frame update
     void Start()
@@ -35,12 +35,12 @@ public class GoalZoneBaseData : MonoBehaviour
     {
         Material material;
 
-        if (scoreZoneColor == ScoreZoneColor.Blue)
+        if (scoreZoneColor == TeamColor.Blue)
         {
             material = materialIndex.blueGoalMaterial;
             ScoreTracker = scoreTrackerIndex.blueScoreTracker;
         }
-        else if (scoreZoneColor == ScoreZoneColor.Red)
+        else if (scoreZoneColor == TeamColor.Red)
         {
             material = materialIndex.redGoalMaterial;
             ScoreTracker = scoreTrackerIndex.redScoreTracker;
@@ -60,7 +60,7 @@ public class GoalZoneBaseData : MonoBehaviour
     }
 }
 
-public enum ScoreZoneColor
+public enum TeamColor
 {
     Blue,
     Red,
