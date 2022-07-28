@@ -8,7 +8,7 @@ public class GoalZoneTapeMaker : TapeMaker
 {
 
     // Set tape color depending on team
-    public void SetTapeColor(ScoreZoneColor scoreZone)
+    public void SetTapeColor(TeamColor scoreZone)
     {
         if (tapeSides[0] == null)
             GetTapeSides();
@@ -17,10 +17,10 @@ public class GoalZoneTapeMaker : TapeMaker
         {
             switch (scoreZone)
             {
-                case ScoreZoneColor.Blue:
+                case TeamColor.Blue:
                     tapeSide.GetComponent<Renderer>().material = materialIndex.blueTapeMaterial;
                     break;
-                case ScoreZoneColor.Red:
+                case TeamColor.Red:
                     tapeSide.GetComponent<Renderer>().material = materialIndex.redTapeMaterial;
                     break;
             }

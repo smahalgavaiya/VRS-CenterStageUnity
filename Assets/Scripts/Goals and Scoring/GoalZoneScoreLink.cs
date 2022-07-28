@@ -22,7 +22,7 @@ public class GoalZoneScoreLink : MonoBehaviour
     bool optionalBoolValue;
     public bool OptionalBoolValue { get { if (globalBool != null) return globalBool.boolValue; else return optionalBoolValue; } set { optionalBoolValue = value; } }
 
-    ScoreZoneColor scoreZoneColor;
+    TeamColor scoreZoneColor;
 
     // Start is called before the first frame update
     void Start()
@@ -70,14 +70,14 @@ public class GoalZoneScoreLink : MonoBehaviour
                 scoreObjectTypeIndex = Array.FindIndex(scoringGuide.scoreObjectTypes, w => w == collidedObjectType);
                 if (useOptionalBool && !optionalBoolValue)
                     return;
-                ScoreZoneColor lastTeamTouched = other.GetComponent<ScoreObjectTypeLink>().LastTouchedTeamColor;
+                TeamColor lastTeamTouched = other.GetComponent<ScoreObjectTypeLink>().LastTouchedTeamColor;
                 ChangeScore(scoreObjectTypeIndex, scoreDirection, lastTeamTouched);
             }
         }
     }
 
 
-    void ChangeScore(int scoreTypeIndex, int scoreDirection, ScoreZoneColor lastTeamTouched)
+    void ChangeScore(int scoreTypeIndex, int scoreDirection, TeamColor lastTeamTouched)
     {
         int currentRound = scoringGuide.roundIndex.currentRound;
         int scoreAmount = scoringGuide.scoresPerRoundPerType[scoreTypeIndex].scoresPerRound[currentRound];
@@ -86,14 +86,14 @@ public class GoalZoneScoreLink : MonoBehaviour
         // or, if it is Either, check the color info on the object
         switch(scoreZoneColor)
         {
-            case ScoreZoneColor.Blue:
+            case TeamColor.Blue:
                 scoreTrackerIndex.blueScoreTracker.AddOrSubtractScore(scoreAmount * scoreDirection);
                 break;
-            case ScoreZoneColor.Red:
+            case TeamColor.Red:
                 scoreTrackerIndex.redScoreTracker.AddOrSubtractScore(scoreAmount * scoreDirection);
                 break;
-            case ScoreZoneColor.Either:
-                if (lastTeamTouched == ScoreZoneColor.Red)
+            case TeamColor.Either:
+                if (lastTeamTouched == TeamColor.Red)
                     scoreTrackerIndex.redScoreTracker.AddOrSubtractScore(scoreAmount * scoreDirection);
                 else
                     scoreTrackerIndex.blueScoreTracker.AddOrSubtractScore(scoreAmount * scoreDirection);
