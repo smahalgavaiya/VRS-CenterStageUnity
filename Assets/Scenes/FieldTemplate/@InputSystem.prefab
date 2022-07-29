@@ -63,7 +63,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_MoveRepeatDelay: 0.5
   m_MoveRepeatRate: 0.1
-  m_XRTrackingOrigin: {fileID: 0}
   m_ActionsAsset: {fileID: -944628639613478452, guid: fc4b000d0a2a4bc4dabebdfaff9b1553,
     type: 3}
   m_PointAction: {fileID: -1654692200621890270, guid: fc4b000d0a2a4bc4dabebdfaff9b1553,
@@ -135,33 +134,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e96d76807528ed47b758ee09321eead, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  testEvent:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 11400000, guid: 863c46474710bf240ba513ee1e28ba2b, type: 2}
-        m_TargetAssemblyTypeName: Driver, Assembly-CSharp
-        m_MethodName: ActivateDriver
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  endTestEvent:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 11400000, guid: 863c46474710bf240ba513ee1e28ba2b, type: 2}
-        m_TargetAssemblyTypeName: Driver, Assembly-CSharp
-        m_MethodName: DeActivateDriver
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+  robot: {fileID: 0}
+  frontLeftWheel: {fileID: 11400000, guid: 346415919e1ca1743af4ff78775eb3ef, type: 2}
+  backLeftWheel: {fileID: 11400000, guid: a4f94588a3b1063438af7f786f74fcbe, type: 2}
+  frontRightWheel: {fileID: 11400000, guid: a149c820464f14d43b13363c32d3325a, type: 2}
+  backRightWheel: {fileID: 11400000, guid: 88dbf217876bc714aaa1c85d667ddfbf, type: 2}
+  motor1: {fileID: 11400000, guid: 186e7d6c08603b247929d29c2a6817a2, type: 2}
+  motor2: {fileID: 11400000, guid: 6454eca5fe1aa564c840a3ca49d36b54, type: 2}
+  motor3: {fileID: 11400000, guid: 2b07c0bdd84fe4241ab71ebe7d1549a4, type: 2}
+  motor4: {fileID: 11400000, guid: 33a83e47ca6560a4abeec4c8d13335b1, type: 2}

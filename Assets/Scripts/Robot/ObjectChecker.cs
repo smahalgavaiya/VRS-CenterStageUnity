@@ -10,14 +10,15 @@ public class ObjectChecker : MonoBehaviour
 
     public GameObject ObjectInTrigger { get; set; }
 
-    List<string> scoringObjectTypeNames;
+    List<ObjectType> scoringObjectTypes;
     // Start is called before the first frame update
     void Start()
     {
-        scoringObjectTypeNames = new List<string>();
+        scoringObjectTypes = new List<ObjectType>();
         foreach(ObjectType scoreObjectType in scoringGuide.scoreObjectTypes)
         {
-            scoringObjectTypeNames.Add(scoreObjectType.name);
+            if (scoreObjectType.isScoringObject)
+                scoringObjectTypes.Add(scoreObjectType);
         }
         
     }
@@ -30,9 +31,10 @@ public class ObjectChecker : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         // Check to see if the object is the right type
-        foreach(string scoreObjectTypeName in scoringObjectTypeNames)
+        foreach(ObjectType scoreObjectType in scoringObjectTypes)
         {
-            if (scoreObjectTypeName == other.tag)
+            if (other.GetComponent<ScoreObjectTypeLink>() != null && 
+                scoreObjectType == other.GetComponent<ScoreObjectTypeLink>().ScoreObjectType_)
             {
                 CanPickUp = true;
                 ObjectInTrigger = other.gameObject;
@@ -43,9 +45,10 @@ public class ObjectChecker : MonoBehaviour
     }
     private void OnTriggerExit(Collider other)
     {
-        foreach(string scoreObjectTypeName in scoringObjectTypeNames)
+        foreach(ObjectType scoreObjectType in scoringObjectTypes)
         {
-            if (scoreObjectTypeName == other.tag)
+            if (other.GetComponent<ScoreObjectTypeLink>() != null && 
+                scoreObjectType == other.GetComponent<ScoreObjectTypeLink>().ScoreObjectType_)
             {
                 CanPickUp = false;
                 ObjectInTrigger = null;

@@ -63,6 +63,13 @@ public class VRSMenu : MonoBehaviour
         newPopup.CreatePopup();
     }
 
+    [MenuItem("VRS/Robot Exporter/Generate Robot Colliders")]
+    static void GenerateWheelColliders()
+    {
+        GenerateRobotColliders newPopup = ScriptableObject.CreateInstance<GenerateRobotColliders>();
+        newPopup.CreatePopup();
+    }
+
     // Update is called once per frame
     void Update()
     {
