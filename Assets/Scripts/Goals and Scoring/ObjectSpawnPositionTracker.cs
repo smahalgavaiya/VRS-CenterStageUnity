@@ -7,6 +7,7 @@ using System;
 [ExecuteInEditMode]
 public class ObjectSpawnPositionTracker : MonoBehaviour
 {
+#if UNITY_EDITOR
     public GameObject spawnLocationParent;
     public string resourcesFolder;
     public MaterialIndex materialIndex;
@@ -263,5 +264,6 @@ public class ObjectSpawnPositionTracker : MonoBehaviour
 
         newTrackerObject.transform.localScale = trackerImageOfPrefab.transform.localScale;
     }
+#endif
 }
 
