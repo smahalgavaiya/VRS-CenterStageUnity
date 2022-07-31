@@ -9,9 +9,12 @@ public class ColorSwitcher : MonoBehaviour
 
     [SerializeField] TeamColor teamColor;
 
-    [SerializeField] List<GameObject> objectsToRecolor;
+    [SerializeField] private List<GameObject> objectsToRecolor;
 
     int currentTeamColor;
+
+    public TeamColor TeamColor_ { get => teamColor; set => teamColor = value; }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -26,7 +29,7 @@ public class ColorSwitcher : MonoBehaviour
         else return;
     }
 
-    void SetColor()
+    public void SetColor()
     {
         currentTeamColor = (int)teamColor;
         foreach(GameObject gameObject_ in objectsToRecolor)
