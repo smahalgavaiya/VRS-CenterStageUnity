@@ -53,20 +53,27 @@ public class ConeStacker : MonoBehaviour
         for (int i = 0; i < numberOfConesInStack; i++)
         {
             cones[i].SetActive(true);
+            cones[i].GetComponent<Cone>().ConeMeshObject.GetComponent<MeshCollider>().enabled = false;
+            cones[i].GetComponent<Cone>().JunctionSliderObject.SetActive(false);
+            cones[i].GetComponent<Cone>().ConeBaseForStacking.SetActive(true);
         }
         for (int i = numberOfConesInStack; i < cones.Count; i++)
         {
             cones[i].SetActive(false);
         }
 
+        TopCone.GetComponent<Cone>().ConeMeshObject.GetComponent<MeshCollider>().enabled = true;
+        TopCone.GetComponent<Cone>().JunctionSliderObject.SetActive(true);
+
         numberOfEnabledCones = numberOfConesInStack;
     }
 
     public void ReleaseTopCone()
     {
+        topCone.GetComponent<Cone>().ConeBaseForStacking.SetActive(false);
+
         cones.Remove(topCone);
         topCone = cones[0];
         secondCone = cones[1];
-        topCone.GetComponentInChildren<MeshCollider>().enabled = true;
     }
 }
