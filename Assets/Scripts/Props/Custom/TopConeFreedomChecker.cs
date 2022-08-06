@@ -30,8 +30,6 @@ public class TopConeFreedomChecker : MonoBehaviour
         coneHeight = coneHeight / 100;
         coneWidth = coneHeight / 100;
 
-        Debug.Log(coneHeight);
-
         freeConstraints = new RigidbodyConstraints();
         freeConstraints = RigidbodyConstraints.None;
 

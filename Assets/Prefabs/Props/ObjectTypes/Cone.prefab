@@ -30,7 +30,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &4146919222000505540
+--- !u!114 &3725522439471448626
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -39,11 +39,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 2950979815186006803}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 90a9f44bb015de94d928644018da753c, type: 3}
+  m_Script: {fileID: 11500000, guid: fa0101415ad06db42bbe05a2fb285331, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scoreObjectType: {fileID: 11400000, guid: 8c27a8bf96efe07468169dacf149207f, type: 2}
-  lastTouchedTeamColor: 2
 --- !u!114 &6039069304619645680
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -77,6 +75,20 @@ MonoBehaviour:
   teamColor: 0
   objectsToRecolor:
   - {fileID: 7756448819607946976}
+--- !u!114 &1656647238964491740
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2950979815186006803}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90a9f44bb015de94d928644018da753c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scoreObjectType: {fileID: 11400000, guid: 8c27a8bf96efe07468169dacf149207f, type: 2}
+  lastTouchedTeamColor: 0
 --- !u!64 &8429285280624067953
 MeshCollider:
   m_ObjectHideFlags: 0

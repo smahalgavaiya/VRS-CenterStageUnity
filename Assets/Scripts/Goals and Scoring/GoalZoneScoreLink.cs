@@ -9,6 +9,9 @@ public class GoalZoneScoreLink : MonoBehaviour
     ScoringGuide scoringGuide;
     RoundIndex roundIndex;
 
+    // These will run to verify whether something can score based on custom checkers, e.g. object orientation
+    List<ICustomGoalChecker> customGoalCheckers;
+
     //We may want an optional bool value that determines when this triggers
     [SerializeField]
     [Tooltip("This determines whether to use the Optional Bool value-- sometimes you want the " +
@@ -30,6 +33,10 @@ public class GoalZoneScoreLink : MonoBehaviour
         scoreTrackerIndex = GetComponent<GoalZoneBaseData>().scoreTrackerIndex;
         scoringGuide = GetComponent<GoalZoneBaseData>().scoringGuide;
         scoreZoneColor = GetComponent<GoalZoneBaseData>().scoreZoneColor;
+
+        customGoalCheckers = new List<ICustomGoalChecker>();
+
+        customGoalCheckers.Add(GetComponent<CheckConeOrientation>());
     }
 
     // Update is called once per frame
@@ -40,13 +47,23 @@ public class GoalZoneScoreLink : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        RunCustomChecks(other);
         CheckForObjectInScoreTypes(other, 1);
     }
+
     private void OnTriggerExit(Collider other)
     {
+        RunCustomChecks(other);
         CheckForObjectInScoreTypes(other, -1);
     }
 
+    private void RunCustomChecks(Collider other)
+    {
+        foreach (ICustomGoalChecker customGoalChecker in customGoalCheckers)
+        {
+            customGoalChecker.DoCustomCheck(other.gameObject);
+        }
+    }
     // Check if the object's tag is listed in the array of ScoreObjectTypes, 
     // and if it is, get its index in the array
     void CheckForObjectInScoreTypes(Collider other, int scoreDirection)
@@ -54,23 +71,34 @@ public class GoalZoneScoreLink : MonoBehaviour
         int scoreObjectTypeIndex;
 
         ObjectType collidedObjectType = null;
-        if (other.GetComponent<ScoreObjectTypeLink>() == null || other.GetComponent<ScoreObjectTypeLink>().ScoreObjectType_ == null)
+
+        ScoreObjectTypeLink scoreObjectTypeLink = null;
+
+        if (other.GetComponent<ScoreObjectTypeLink>() != null)
+            scoreObjectTypeLink = other.GetComponent<ScoreObjectTypeLink>();
+        else if (other.GetComponentInChildren<ScoreObjectTypeLink>() != null)
+            scoreObjectTypeLink = other.GetComponentInChildren<ScoreObjectTypeLink>();
+        else if (other.GetComponentInParent<ScoreObjectTypeLink>() != null)
+            scoreObjectTypeLink = other.GetComponentInParent<ScoreObjectTypeLink>();
+
+        if (scoreObjectTypeLink == null || scoreObjectTypeLink.ScoreObjectType_ == null)
         {
             Debug.Log(this.gameObject);
+            Debug.Log(other.gameObject);
             Debug.Log("Your prefab is either missing the ScoreObjectTypeLink component or the prefab's ScoreObjectTypeLink is missing a reference to the Score Object Type");
             return;
         }
-        else collidedObjectType = other.GetComponent<ScoreObjectTypeLink>().ScoreObjectType_;
+
+        else collidedObjectType = scoreObjectTypeLink.ScoreObjectType_;
 
         foreach (ObjectType objectType in scoringGuide.scoreObjectTypes)
         {
-
             if (collidedObjectType == objectType)
             {
                 scoreObjectTypeIndex = Array.FindIndex(scoringGuide.scoreObjectTypes, w => w == collidedObjectType);
                 if (useOptionalBool && !optionalBoolValue)
                     return;
-                TeamColor lastTeamTouched = other.GetComponent<ScoreObjectTypeLink>().LastTouchedTeamColor;
+                TeamColor lastTeamTouched = scoreObjectTypeLink.LastTouchedTeamColor;
                 ChangeScore(scoreObjectTypeIndex, scoreDirection, lastTeamTouched);
             }
         }
@@ -81,7 +109,10 @@ public class GoalZoneScoreLink : MonoBehaviour
     {
         int currentRound = scoringGuide.roundIndex.currentRound;
         int scoreAmount = scoringGuide.scoresPerRoundPerType[scoreTypeIndex].scoresPerRound[currentRound];
-        
+
+        Debug.Log(scoreZoneColor);
+        Debug.Log(lastTeamTouched);
+        Debug.Log(scoreAmount);
         // Based on the ScoreZoneColor, increase or decrease that team's score
         // or, if it is Either, check the color info on the object
         switch(scoreZoneColor)
