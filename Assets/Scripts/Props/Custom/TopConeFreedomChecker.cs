@@ -23,8 +23,14 @@ public class TopConeFreedomChecker : MonoBehaviour
 
         SetNewTopAndSecondCone();
 
-        coneHeight = topCone.GetComponentInChildren<MeshCollider>().bounds.size.y;
-        coneWidth = topCone.GetComponentInChildren<MeshCollider>().bounds.size.x;
+        coneHeight = topCone.GetComponent<Cone>().ConeMeshObject.GetComponent<MeshFilter>().mesh.bounds.size.y;
+        coneWidth = topCone.GetComponent<Cone>().ConeMeshObject.GetComponent<MeshFilter>().mesh.bounds.size.x;
+
+        // Adjust the size for the scale factor of the mesh
+        coneHeight = coneHeight / 100;
+        coneWidth = coneHeight / 100;
+
+        Debug.Log(coneHeight);
 
         freeConstraints = new RigidbodyConstraints();
         freeConstraints = RigidbodyConstraints.None;
@@ -54,7 +60,13 @@ public class TopConeFreedomChecker : MonoBehaviour
     {
         topCone = coneStacker.TopCone;
         secondCone = coneStacker.SecondCone;
+
         topConeRB = topCone.GetComponent<Rigidbody>();
+        topConeRB.isKinematic = false;
+
+        topCone.GetComponent<Cone>().JunctionSliderObject.SetActive(true);
+        topCone.GetComponent<Cone>().ConeMeshObject.GetComponent<MeshCollider>().enabled = true;
+
         secondConeRB = secondCone.GetComponent<Rigidbody>();
     }
 
