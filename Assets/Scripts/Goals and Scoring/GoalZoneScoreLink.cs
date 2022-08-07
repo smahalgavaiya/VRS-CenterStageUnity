@@ -19,10 +19,7 @@ public class GoalZoneScoreLink : MonoBehaviour
         "goal zone to trigger only under certain circumstances, which can be set from outside" +
         "this class.")]
     bool useOptionalBool;
-    [Tooltip("This determines whether to use the Optional Bool value-- sometimes you want the " +
-        "goal zone to trigger only under certain circumstances, which can be set from outside" +
-        "this class.")]
-    [SerializeField] bool useCustomGoalCheckers, useCustomGoalEvents;
+    bool useCustomGoalCheckers, useCustomGoalEvents;
     [SerializeField]
     [Tooltip("If you want to evaluate a GlobalBool to determine whether this triggers. " +
         "If you aren't using a GlobalBool, you can still speak directly to this class using the OptionalBoolValue property.")]
@@ -41,22 +38,26 @@ public class GoalZoneScoreLink : MonoBehaviour
         scoringGuide = GetComponent<GoalZoneBaseData>().scoringGuide;
         scoreZoneColor = GetComponent<GoalZoneBaseData>().scoreZoneColor;
 
-        if (useCustomGoalCheckers)
+        if (GetComponents<ICustomGoalChecker>().Length > 0)
         {
             customGoalCheckers = new List<ICustomGoalChecker>();
             foreach (ICustomGoalChecker customGoalChecker in GetComponents<ICustomGoalChecker>())
             {
                 customGoalCheckers.Add(customGoalChecker);
             }
+
+            useCustomGoalCheckers = true;
         }
 
-        if (useCustomGoalEvents)
+        if (GetComponents<ICustomGoalEvents>().Length > 0)
         {
             customGoalEvents = new List<ICustomGoalEvents>();
             foreach (ICustomGoalEvents customGoalEvent in GetComponents<ICustomGoalEvents>())
             {
                 customGoalEvents.Add(customGoalEvent);
             }
+
+            useCustomGoalEvents = true;
         }
     }
 
