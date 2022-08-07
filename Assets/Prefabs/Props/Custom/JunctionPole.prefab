@@ -284,6 +284,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   useOptionalBool: 1
+  useCustomGoalCheckers: 1
+  useCustomGoalEvents: 1
   globalBool: {fileID: 0}
 --- !u!114 &4212052023737987321
 MonoBehaviour:
@@ -309,6 +311,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d868fc8bbe5cc94ebbec41b77298ad9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cappedScoringGuide: {fileID: 11400000, guid: 9810f9c62079c3140889f7012a53c87c, type: 2}
+  checkCircuit: {fileID: 11400000, guid: af171bddebcd9974786a91592fb09880, type: 2}
 --- !u!1 &7234132539898725848
 GameObject:
   m_ObjectHideFlags: 0
