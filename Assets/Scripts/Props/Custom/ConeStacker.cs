@@ -65,6 +65,9 @@ public class ConeStacker : MonoBehaviour
         TopCone.GetComponent<Cone>().ConeMeshObject.GetComponent<MeshCollider>().enabled = true;
         TopCone.GetComponent<Cone>().JunctionSliderObject.SetActive(true);
 
+        ConeStackColorSwitcher coneStackColorSwitcher = GetComponent<ConeStackColorSwitcher>();
+        coneStackColorSwitcher.GetChildObjects();
+
         numberOfEnabledCones = numberOfConesInStack;
     }
 
