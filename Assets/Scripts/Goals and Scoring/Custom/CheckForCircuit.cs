@@ -18,10 +18,13 @@ public class CheckForCircuit : MonoBehaviour
 
     bool circuitPreviouslyFound;
 
+    public List<JunctionCapper> JunctionCappersChecked { get; set; }
+
     // Start is called before the first frame update
     void Start()
     {
         CircuitFound.boolValue = false;
+        JunctionCappersChecked = new List<JunctionCapper>();
     }
 
     // Update is called once per frame
@@ -33,28 +36,24 @@ public class CheckForCircuit : MonoBehaviour
     public void CheckCircuit()
     {
         CircuitFound.boolValue = false;
+        JunctionCappersChecked.Clear();
 
         for (int i = 0; i < startJunctions.Length; i++)
         {
-            if (CircuitFound.boolValue)
-            {
-                CircuitIsFound();
-                break;
-            }
             AdjacentJunctionDetector adjacentJunctionDetector = startJunctions[i].GetComponentInChildren<AdjacentJunctionDetector>();
             adjacentJunctionDetector.CheckAdjacentColor(this);
         }
 
-        if (circuitPreviouslyFound != CircuitFound.boolValue)
+        if (CircuitFound.boolValue && !circuitPreviouslyFound)
+            scoreTracker.AddOrSubtractScore(10);
+
+        else if (!CircuitFound.boolValue && circuitPreviouslyFound)
             scoreTracker.AddOrSubtractScore(-10);
 
+        Debug.Log(JunctionCappersChecked.Count);
         circuitPreviouslyFound = CircuitFound.boolValue;
     }
     public void CircuitIsFound()
     {
-        if (circuitPreviouslyFound != CircuitFound.boolValue)
-            scoreTracker.AddOrSubtractScore(10);
-
-        circuitPreviouslyFound = CircuitFound.boolValue;
     }
 }

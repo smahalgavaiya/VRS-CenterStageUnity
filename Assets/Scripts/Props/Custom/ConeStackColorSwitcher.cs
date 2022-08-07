@@ -7,24 +7,30 @@ public class ConeStackColorSwitcher : MonoBehaviour
 {
     [SerializeField] TeamColor teamColor;
     List<ColorSwitcher> coneColorSwitchers;
+    List<ScoreObjectTypeLink> scoreObjectTypeLinks;
 
     int currentTeamColor;
     // Start is called before the first frame update
     void Start()
     {
-        GetConeColorSwitchers();
+        GetChildObjects();
     }
 
-    void GetConeColorSwitchers()
+    public void GetChildObjects()
     {
         currentTeamColor = (int)teamColor;
         if (coneColorSwitchers == null)
             coneColorSwitchers = new List<ColorSwitcher>();
         coneColorSwitchers.Clear();
 
+        if (scoreObjectTypeLinks == null)
+            scoreObjectTypeLinks = new List<ScoreObjectTypeLink>();
+        scoreObjectTypeLinks.Clear();
+
         for (int i = 0; i < transform.childCount; i++)
         {
             coneColorSwitchers.Add(transform.GetChild(i).gameObject.GetComponent<ColorSwitcher>());
+            scoreObjectTypeLinks.Add(transform.GetChild(i).gameObject.GetComponent<ScoreObjectTypeLink>());
         }
     }
 
@@ -36,13 +42,18 @@ public class ConeStackColorSwitcher : MonoBehaviour
             colorSwitcher.SetColor();
         }
 
+        foreach (ScoreObjectTypeLink scoreObjectTypeLink in scoreObjectTypeLinks)
+        {
+            scoreObjectTypeLink.LastTouchedTeamColor = teamColor;
+        }
+
     }
 
     // Update is called once per frame
     void Update()
     {
         if (coneColorSwitchers.Count < 10)
-            GetConeColorSwitchers();
+            GetChildObjects();
         
         if ((int)teamColor != currentTeamColor)
         {

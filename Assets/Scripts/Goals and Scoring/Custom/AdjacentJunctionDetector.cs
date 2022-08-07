@@ -7,9 +7,11 @@ public class AdjacentJunctionDetector : MonoBehaviour
 {
     public List<JunctionCapper> AdjacentJunctionCappers { get; set; }
     BoxCollider boxCollider;
+    JunctionCapper thisJunctionCapper;
     // Start is called before the first frame update
     void Start()
     {
+        thisJunctionCapper = transform.parent.GetComponentInChildren<JunctionCapper>();
         AdjacentJunctionCappers = new List<JunctionCapper>();
         boxCollider = GetComponent<BoxCollider>();
         CheckForAdjacentJunctionCappers();
@@ -33,23 +35,28 @@ public class AdjacentJunctionDetector : MonoBehaviour
 
     public void CheckAdjacentColor(CheckForCircuit checkForCircuit)
     {
-        Stack<TeamColor> objectsOnJunction = transform.parent.GetComponentInChildren<JunctionCapper>().ObjectsOnJunction;
 
-        if (objectsOnJunction.Count < 1)
+        if (thisJunctionCapper.IsCapped == false)
             return;
 
-        TeamColor thisJunctionCapColor = transform.parent.GetComponentInChildren<JunctionCapper>().ObjectsOnJunction.Peek();
+        checkForCircuit.JunctionCappersChecked.Add(thisJunctionCapper);
+
         foreach (JunctionCapper junctionCapper in AdjacentJunctionCappers)
         {
-            if (junctionCapper.ObjectsOnJunction.Count > 0 && 
-                junctionCapper.ObjectsOnJunction.Peek() == thisJunctionCapColor)
+            if (junctionCapper.IsCapped && 
+                junctionCapper.CurrentCapColor == thisJunctionCapper.CurrentCapColor)
             {
                 if (CheckForTerminus(checkForCircuit))
                 {
                     checkForCircuit.CircuitFound.boolValue = true;
+                    break;
                 }
 
-                junctionCapper.transform.parent.parent.GetComponentInChildren<AdjacentJunctionDetector>().CheckAdjacentColor(checkForCircuit);
+                if (!checkForCircuit.JunctionCappersChecked.Contains(junctionCapper))
+                {
+                    AdjacentJunctionDetector nextAdjacentJunctionDetector = junctionCapper.transform.parent.parent.GetComponentInChildren<AdjacentJunctionDetector>();
+                    nextAdjacentJunctionDetector.CheckAdjacentColor(checkForCircuit);
+                }
             }
         }
     }
@@ -60,7 +67,7 @@ public class AdjacentJunctionDetector : MonoBehaviour
 
         for (int i = 0; i < checkForCircuit.TerminusJunctions.Length; i++)
         {
-            if (checkForCircuit.TerminusJunctions[i] == this.gameObject)
+            if (checkForCircuit.TerminusJunctions[i] == transform.parent.gameObject) 
                 terminusFound = true;
         }
 

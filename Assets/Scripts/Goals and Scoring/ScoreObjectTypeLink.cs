@@ -7,7 +7,7 @@ public class ScoreObjectTypeLink : MonoBehaviour
     [SerializeField] ObjectType scoreObjectType;
 
     [SerializeField] TeamColor lastTouchedTeamColor = TeamColor.Either;
-    public TeamColor LastTouchedTeamColor { get { return lastTouchedTeamColor; } }
+    public TeamColor LastTouchedTeamColor { get { return lastTouchedTeamColor; } set => lastTouchedTeamColor = value; }
 
     public ObjectType ScoreObjectType_
     {

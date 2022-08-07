@@ -5,7 +5,9 @@ using UnityEngine;
 public class JunctionCapper : MonoBehaviour, ICustomGoalEvents
 {
     Stack<TeamColor> objectsOnJunction;
-    public Stack<TeamColor> ObjectsOnJunction { get => objectsOnJunction; set => objectsOnJunction = value; }
+    public bool IsCapped { get { if (objectsOnJunction.Count > 0) return true; else return false; } }
+    public TeamColor CurrentCapColor { get => objectsOnJunction.Peek(); }
+
     [SerializeField] ScoringGuide cappedScoringGuide;
 
     [SerializeField] GameEvent checkCircuit;
@@ -32,6 +34,8 @@ public class JunctionCapper : MonoBehaviour, ICustomGoalEvents
             goalZoneScoreLink.ChangeScore(0, cappedScoringGuide, -1, departingColor);
             goalZoneScoreLink.ChangeScore(0, cappedScoringGuide, 1, objectsOnJunction.Peek());
         }
+        else if (objectsOnJunction.Count < 1)
+            goalZoneScoreLink.ChangeScore(0, cappedScoringGuide, -1, departingColor);
 
         checkCircuit.Raise();
     }
@@ -58,6 +62,7 @@ public class JunctionCapper : MonoBehaviour, ICustomGoalEvents
         }
 
         checkCircuit.Raise();
+
     }
 
 }
