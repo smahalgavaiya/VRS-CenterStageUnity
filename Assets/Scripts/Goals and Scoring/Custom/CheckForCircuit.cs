@@ -50,7 +50,6 @@ public class CheckForCircuit : MonoBehaviour
         else if (!CircuitFound.boolValue && circuitPreviouslyFound)
             scoreTracker.AddOrSubtractScore(-10);
 
-        Debug.Log(JunctionCappersChecked.Count);
         circuitPreviouslyFound = CircuitFound.boolValue;
     }
     public void CircuitIsFound()
