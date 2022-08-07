@@ -11,6 +11,7 @@ public class GoalZoneScoreLink : MonoBehaviour
 
     // These will run to verify whether something can score based on custom checkers, e.g. object orientation
     List<ICustomGoalChecker> customGoalCheckers;
+    List<ICustomGoalEvents> customGoalEvents;
 
     //We may want an optional bool value that determines when this triggers
     [SerializeField]
@@ -27,6 +28,8 @@ public class GoalZoneScoreLink : MonoBehaviour
 
     TeamColor scoreZoneColor;
 
+    public TeamColor LastObjectTeamColor { get; set; }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -35,8 +38,10 @@ public class GoalZoneScoreLink : MonoBehaviour
         scoreZoneColor = GetComponent<GoalZoneBaseData>().scoreZoneColor;
 
         customGoalCheckers = new List<ICustomGoalChecker>();
+        customGoalEvents = new List<ICustomGoalEvents>();
 
         customGoalCheckers.Add(GetComponent<CheckConeOrientation>());
+        customGoalEvents.Add(GetComponent<JunctionCapper>());
     }
 
     // Update is called once per frame
@@ -47,13 +52,11 @@ public class GoalZoneScoreLink : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        RunCustomChecks(other);
         CheckForObjectInScoreTypes(other, 1);
     }
 
     private void OnTriggerExit(Collider other)
     {
-        RunCustomChecks(other);
         CheckForObjectInScoreTypes(other, -1);
     }
 
@@ -96,23 +99,47 @@ public class GoalZoneScoreLink : MonoBehaviour
             if (collidedObjectType == objectType)
             {
                 scoreObjectTypeIndex = Array.FindIndex(scoringGuide.scoreObjectTypes, w => w == collidedObjectType);
+                RunCustomChecks(other);
                 if (useOptionalBool && !optionalBoolValue)
                     return;
                 TeamColor lastTeamTouched = scoreObjectTypeLink.LastTouchedTeamColor;
                 ChangeScore(scoreObjectTypeIndex, scoreDirection, lastTeamTouched);
+
+                LastObjectTeamColor = lastTeamTouched;
+
+                switch(scoreDirection)
+                {
+                    case 1: 
+                        RunCustomOnEvents();
+                        break;
+                    case -1: 
+                        RunCustomOffEvents();
+                        break;
+                }
             }
         }
     }
 
+    private void RunCustomOnEvents()
+    {
+        foreach (ICustomGoalEvents customGoalEvent in customGoalEvents)
+        {
+            customGoalEvent.DoCustomOnEvent(this);
+        }
+    }
+    private void RunCustomOffEvents()
+    {
+        foreach (ICustomGoalEvents customGoalEvent in customGoalEvents)
+        {
+            customGoalEvent.DoCustomOffEvent(this);
+        }
+    }
 
     void ChangeScore(int scoreTypeIndex, int scoreDirection, TeamColor lastTeamTouched)
     {
         int currentRound = scoringGuide.roundIndex.currentRound;
         int scoreAmount = scoringGuide.scoresPerRoundPerType[scoreTypeIndex].scoresPerRound[currentRound];
 
-        Debug.Log(scoreZoneColor);
-        Debug.Log(lastTeamTouched);
-        Debug.Log(scoreAmount);
         // Based on the ScoreZoneColor, increase or decrease that team's score
         // or, if it is Either, check the color info on the object
         switch(scoreZoneColor)
