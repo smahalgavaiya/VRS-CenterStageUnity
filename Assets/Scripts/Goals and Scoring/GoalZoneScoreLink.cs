@@ -19,6 +19,10 @@ public class GoalZoneScoreLink : MonoBehaviour
         "goal zone to trigger only under certain circumstances, which can be set from outside" +
         "this class.")]
     bool useOptionalBool;
+    [Tooltip("This determines whether to use the Optional Bool value-- sometimes you want the " +
+        "goal zone to trigger only under certain circumstances, which can be set from outside" +
+        "this class.")]
+    [SerializeField] bool useCustomGoalCheckers, useCustomGoalEvents;
     [SerializeField]
     [Tooltip("If you want to evaluate a GlobalBool to determine whether this triggers. " +
         "If you aren't using a GlobalBool, you can still speak directly to this class using the OptionalBoolValue property.")]
@@ -37,11 +41,23 @@ public class GoalZoneScoreLink : MonoBehaviour
         scoringGuide = GetComponent<GoalZoneBaseData>().scoringGuide;
         scoreZoneColor = GetComponent<GoalZoneBaseData>().scoreZoneColor;
 
-        customGoalCheckers = new List<ICustomGoalChecker>();
-        customGoalEvents = new List<ICustomGoalEvents>();
+        if (useCustomGoalCheckers)
+        {
+            customGoalCheckers = new List<ICustomGoalChecker>();
+            foreach (ICustomGoalChecker customGoalChecker in GetComponents<ICustomGoalChecker>())
+            {
+                customGoalCheckers.Add(customGoalChecker);
+            }
+        }
 
-        customGoalCheckers.Add(GetComponent<CheckConeOrientation>());
-        customGoalEvents.Add(GetComponent<JunctionCapper>());
+        if (useCustomGoalEvents)
+        {
+            customGoalEvents = new List<ICustomGoalEvents>();
+            foreach (ICustomGoalEvents customGoalEvent in GetComponents<ICustomGoalEvents>())
+            {
+                customGoalEvents.Add(customGoalEvent);
+            }
+        }
     }
 
     // Update is called once per frame
@@ -84,6 +100,7 @@ public class GoalZoneScoreLink : MonoBehaviour
         else if (other.GetComponentInParent<ScoreObjectTypeLink>() != null)
             scoreObjectTypeLink = other.GetComponentInParent<ScoreObjectTypeLink>();
 
+
         if (scoreObjectTypeLink == null || scoreObjectTypeLink.ScoreObjectType_ == null)
         {
             Debug.Log(this.gameObject);
@@ -99,22 +116,28 @@ public class GoalZoneScoreLink : MonoBehaviour
             if (collidedObjectType == objectType)
             {
                 scoreObjectTypeIndex = Array.FindIndex(scoringGuide.scoreObjectTypes, w => w == collidedObjectType);
-                RunCustomChecks(other);
+
+                if (useCustomGoalCheckers)
+                    RunCustomChecks(other);
+
                 if (useOptionalBool && !optionalBoolValue)
                     return;
                 TeamColor lastTeamTouched = scoreObjectTypeLink.LastTouchedTeamColor;
-                ChangeScore(scoreObjectTypeIndex, scoreDirection, lastTeamTouched);
+                ChangeScore(scoreObjectTypeIndex, scoringGuide, scoreDirection, lastTeamTouched);
 
                 LastObjectTeamColor = lastTeamTouched;
 
-                switch(scoreDirection)
+                if (useCustomGoalEvents)
                 {
-                    case 1: 
-                        RunCustomOnEvents();
-                        break;
-                    case -1: 
-                        RunCustomOffEvents();
-                        break;
+                    switch(scoreDirection)
+                    {
+                        case 1: 
+                            RunCustomOnEvents();
+                            break;
+                        case -1: 
+                            RunCustomOffEvents();
+                            break;
+                    }
                 }
             }
         }
@@ -135,10 +158,10 @@ public class GoalZoneScoreLink : MonoBehaviour
         }
     }
 
-    void ChangeScore(int scoreTypeIndex, int scoreDirection, TeamColor lastTeamTouched)
+    public void ChangeScore(int scoreTypeIndex, ScoringGuide scoringGuideLocal, int scoreDirection, TeamColor lastTeamTouched)
     {
-        int currentRound = scoringGuide.roundIndex.currentRound;
-        int scoreAmount = scoringGuide.scoresPerRoundPerType[scoreTypeIndex].scoresPerRound[currentRound];
+        int currentRound = scoringGuideLocal.roundIndex.currentRound;
+        int scoreAmount = scoringGuideLocal.scoresPerRoundPerType[scoreTypeIndex].scoresPerRound[currentRound];
 
         // Based on the ScoreZoneColor, increase or decrease that team's score
         // or, if it is Either, check the color info on the object

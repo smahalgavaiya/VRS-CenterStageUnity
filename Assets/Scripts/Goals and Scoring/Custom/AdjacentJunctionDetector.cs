@@ -31,4 +31,39 @@ public class AdjacentJunctionDetector : MonoBehaviour
         AdjacentJunctionCappers.Remove(theJunctionCapperOnThisJunction);
     }
 
+    public void CheckAdjacentColor(CheckForCircuit checkForCircuit)
+    {
+        Stack<TeamColor> objectsOnJunction = transform.parent.GetComponentInChildren<JunctionCapper>().ObjectsOnJunction;
+
+        if (objectsOnJunction.Count < 1)
+            return;
+
+        TeamColor thisJunctionCapColor = transform.parent.GetComponentInChildren<JunctionCapper>().ObjectsOnJunction.Peek();
+        foreach (JunctionCapper junctionCapper in AdjacentJunctionCappers)
+        {
+            if (junctionCapper.ObjectsOnJunction.Count > 0 && 
+                junctionCapper.ObjectsOnJunction.Peek() == thisJunctionCapColor)
+            {
+                if (CheckForTerminus(checkForCircuit))
+                {
+                    checkForCircuit.CircuitFound.boolValue = true;
+                }
+
+                junctionCapper.transform.parent.parent.GetComponentInChildren<AdjacentJunctionDetector>().CheckAdjacentColor(checkForCircuit);
+            }
+        }
+    }
+
+    bool CheckForTerminus(CheckForCircuit checkForCircuit)
+    {
+        bool terminusFound = false;
+
+        for (int i = 0; i < checkForCircuit.TerminusJunctions.Length; i++)
+        {
+            if (checkForCircuit.TerminusJunctions[i] == this.gameObject)
+                terminusFound = true;
+        }
+
+        return terminusFound;
+    }
 }
