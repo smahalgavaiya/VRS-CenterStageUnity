@@ -30,6 +30,20 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &1656647238964491740
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2950979815186006803}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90a9f44bb015de94d928644018da753c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scoreObjectType: {fileID: 11400000, guid: 8c27a8bf96efe07468169dacf149207f, type: 2}
+  lastTouchedTeamColor: 0
 --- !u!114 &3725522439471448626
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -75,20 +89,6 @@ MonoBehaviour:
   teamColor: 0
   objectsToRecolor:
   - {fileID: 7756448819607946976}
---- !u!114 &1656647238964491740
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2950979815186006803}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 90a9f44bb015de94d928644018da753c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  scoreObjectType: {fileID: 11400000, guid: 8c27a8bf96efe07468169dacf149207f, type: 2}
-  lastTouchedTeamColor: 0
 --- !u!64 &8429285280624067953
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -114,7 +114,7 @@ GameObject:
   - component: {fileID: 1481104942751234951}
   m_Layer: 0
   m_Name: ConePivot
-  m_TagString: Untagged
+  m_TagString: Cone
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -145,7 +145,7 @@ GameObject:
   - component: {fileID: 9177801905949554105}
   m_Layer: 11
   m_Name: BaseForStackingPurposes
-  m_TagString: Untagged
+  m_TagString: Cone
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -177,7 +177,7 @@ GameObject:
   - component: {fileID: 5627667589503799890}
   m_Layer: 0
   m_Name: JunctionSlider
-  m_TagString: Untagged
+  m_TagString: Cone
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -225,7 +225,7 @@ GameObject:
   - component: {fileID: 4015363259143463590}
   m_Layer: 0
   m_Name: ConeSide
-  m_TagString: Untagged
+  m_TagString: Cone
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -398,6 +398,11 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 11
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: e6ea121df0773484c883b5806a7a81ed,
+        type: 3}
+      propertyPath: m_TagString
+      value: Cone
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e6ea121df0773484c883b5806a7a81ed, type: 3}
 --- !u!1 &1568985049773322798 stripped
@@ -423,6 +428,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Layer
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: -8930076637120390045, guid: 85598eaf9afeee043a65b9f98a2d8a73,
+        type: 3}
+      propertyPath: m_TagString
+      value: Cone
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 85598eaf9afeee043a65b9f98a2d8a73,
         type: 3}
@@ -499,35 +509,70 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: -5447058249509546496, guid: 85598eaf9afeee043a65b9f98a2d8a73,
+        type: 3}
+      propertyPath: m_TagString
+      value: Cone
+      objectReference: {fileID: 0}
     - target: {fileID: -3651904321965812859, guid: 85598eaf9afeee043a65b9f98a2d8a73,
         type: 3}
       propertyPath: m_Layer
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: -3651904321965812859, guid: 85598eaf9afeee043a65b9f98a2d8a73,
+        type: 3}
+      propertyPath: m_TagString
+      value: Cone
       objectReference: {fileID: 0}
     - target: {fileID: -3488349850566297438, guid: 85598eaf9afeee043a65b9f98a2d8a73,
         type: 3}
       propertyPath: m_Layer
       value: 12
       objectReference: {fileID: 0}
+    - target: {fileID: -3488349850566297438, guid: 85598eaf9afeee043a65b9f98a2d8a73,
+        type: 3}
+      propertyPath: m_TagString
+      value: Cone
+      objectReference: {fileID: 0}
     - target: {fileID: -1468336727796244883, guid: 85598eaf9afeee043a65b9f98a2d8a73,
         type: 3}
       propertyPath: m_Layer
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: -1468336727796244883, guid: 85598eaf9afeee043a65b9f98a2d8a73,
+        type: 3}
+      propertyPath: m_TagString
+      value: Cone
       objectReference: {fileID: 0}
     - target: {fileID: -813302254787590977, guid: 85598eaf9afeee043a65b9f98a2d8a73,
         type: 3}
       propertyPath: m_Layer
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: -813302254787590977, guid: 85598eaf9afeee043a65b9f98a2d8a73,
+        type: 3}
+      propertyPath: m_TagString
+      value: Cone
+      objectReference: {fileID: 0}
     - target: {fileID: -196941458826687437, guid: 85598eaf9afeee043a65b9f98a2d8a73,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: -196941458826687437, guid: 85598eaf9afeee043a65b9f98a2d8a73,
+        type: 3}
+      propertyPath: m_TagString
+      value: Cone
+      objectReference: {fileID: 0}
+    - target: {fileID: 463658689645903665, guid: 85598eaf9afeee043a65b9f98a2d8a73,
         type: 3}
       propertyPath: m_Layer
       value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 463658689645903665, guid: 85598eaf9afeee043a65b9f98a2d8a73,
         type: 3}
-      propertyPath: m_Layer
-      value: 10
+      propertyPath: m_TagString
+      value: Cone
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 85598eaf9afeee043a65b9f98a2d8a73,
         type: 3}
@@ -539,45 +584,90 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 85598eaf9afeee043a65b9f98a2d8a73,
+        type: 3}
+      propertyPath: m_TagString
+      value: Cone
+      objectReference: {fileID: 0}
     - target: {fileID: 1508319015623837246, guid: 85598eaf9afeee043a65b9f98a2d8a73,
         type: 3}
       propertyPath: m_Layer
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1508319015623837246, guid: 85598eaf9afeee043a65b9f98a2d8a73,
+        type: 3}
+      propertyPath: m_TagString
+      value: Cone
       objectReference: {fileID: 0}
     - target: {fileID: 2136836640678772507, guid: 85598eaf9afeee043a65b9f98a2d8a73,
         type: 3}
       propertyPath: m_Layer
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 2136836640678772507, guid: 85598eaf9afeee043a65b9f98a2d8a73,
+        type: 3}
+      propertyPath: m_TagString
+      value: Cone
+      objectReference: {fileID: 0}
     - target: {fileID: 2209345469430018518, guid: 85598eaf9afeee043a65b9f98a2d8a73,
         type: 3}
       propertyPath: m_Layer
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2209345469430018518, guid: 85598eaf9afeee043a65b9f98a2d8a73,
+        type: 3}
+      propertyPath: m_TagString
+      value: Cone
       objectReference: {fileID: 0}
     - target: {fileID: 2977648871336534050, guid: 85598eaf9afeee043a65b9f98a2d8a73,
         type: 3}
       propertyPath: m_Layer
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 2977648871336534050, guid: 85598eaf9afeee043a65b9f98a2d8a73,
+        type: 3}
+      propertyPath: m_TagString
+      value: Cone
+      objectReference: {fileID: 0}
     - target: {fileID: 4348754265060879243, guid: 85598eaf9afeee043a65b9f98a2d8a73,
         type: 3}
       propertyPath: m_Layer
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 4348754265060879243, guid: 85598eaf9afeee043a65b9f98a2d8a73,
+        type: 3}
+      propertyPath: m_TagString
+      value: Cone
       objectReference: {fileID: 0}
     - target: {fileID: 5338251993221225365, guid: 85598eaf9afeee043a65b9f98a2d8a73,
         type: 3}
       propertyPath: m_Layer
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 5338251993221225365, guid: 85598eaf9afeee043a65b9f98a2d8a73,
+        type: 3}
+      propertyPath: m_TagString
+      value: Cone
+      objectReference: {fileID: 0}
     - target: {fileID: 5530766746230158750, guid: 85598eaf9afeee043a65b9f98a2d8a73,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5530766746230158750, guid: 85598eaf9afeee043a65b9f98a2d8a73,
+        type: 3}
+      propertyPath: m_TagString
+      value: Cone
+      objectReference: {fileID: 0}
+    - target: {fileID: 6088556451293080608, guid: 85598eaf9afeee043a65b9f98a2d8a73,
         type: 3}
       propertyPath: m_Layer
       value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 6088556451293080608, guid: 85598eaf9afeee043a65b9f98a2d8a73,
         type: 3}
-      propertyPath: m_Layer
-      value: 10
+      propertyPath: m_TagString
+      value: Cone
       objectReference: {fileID: 0}
     - target: {fileID: 6525248167827392586, guid: 85598eaf9afeee043a65b9f98a2d8a73,
         type: 3}
