@@ -36,6 +36,7 @@ public class ConeStackColorSwitcher : MonoBehaviour
 
     void ChangeConeColors()
     {
+        GetChildObjects();
         foreach (ColorSwitcher colorSwitcher in coneColorSwitchers)
         {
             colorSwitcher.TeamColor_ = teamColor;
@@ -52,7 +53,7 @@ public class ConeStackColorSwitcher : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (coneColorSwitchers.Count < 10)
+        if (coneColorSwitchers.Count < 5)
             GetChildObjects();
         
         if ((int)teamColor != currentTeamColor)
