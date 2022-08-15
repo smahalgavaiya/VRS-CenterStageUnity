@@ -20,12 +20,8 @@ public class TopConeFreedomChecker : MonoBehaviour
 
         SetNewTopAndSecondCone();
 
-        coneHeight = topCone.GetComponent<Cone>().ConeMeshObject.GetComponent<MeshFilter>().mesh.bounds.size.y;
-        coneWidth = topCone.GetComponent<Cone>().ConeMeshObject.GetComponent<MeshFilter>().mesh.bounds.size.x;
-
-        // Adjust the size for the scale factor of the mesh
-        coneHeight = coneHeight / 100;
-        coneWidth = coneHeight / 100;
+        coneHeight = topCone.GetComponent<Cone>().ConeMeshObject.GetComponent<MeshCollider>().bounds.size.y;
+        coneWidth = topCone.GetComponent<Cone>().ConeMeshObject.GetComponent<MeshCollider>().bounds.size.x;
 
         topConeStartXZ = new Vector2(topCone.transform.position.x, topCone.transform.position.z);
     }
@@ -52,7 +48,13 @@ public class TopConeFreedomChecker : MonoBehaviour
     float GetXZDistanceOfTopConeFromConeStack()
     {
         float XZDistance = Vector2.Distance(new Vector2(topCone.transform.position.x, topCone.transform.position.z),
-            new Vector2(secondCone.transform.position.x, secondCone.transform.position.z));
+            new Vector2(coneStacker.transform.position.x, coneStacker.transform.position.z));
         return XZDistance;
+    }
+
+    public void ReleaseConeManually()
+    {
+        coneStacker.ReleaseTopCone();
+        SetNewTopAndSecondCone();
     }
 }
