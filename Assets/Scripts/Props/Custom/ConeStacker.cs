@@ -10,7 +10,7 @@ public class ConeStacker : MonoBehaviour
     public GameObject TopCone { get => topCone; set => topCone = value; }
     public GameObject SecondCone { get => secondCone; set => secondCone = value; }
 
-    [Range(1,10)]
+    [Range(1,5)]
     [SerializeField] int numberOfConesInStack;
     int numberOfEnabledCones;
 
