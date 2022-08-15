@@ -39,7 +39,7 @@ public class ConeStacker : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (cones == null || cones.Count < numberOfConesInStack)
+        if (cones == null)
             GetCones();
         if (numberOfEnabledCones != numberOfConesInStack)
         {
@@ -74,7 +74,12 @@ public class ConeStacker : MonoBehaviour
         topCone.GetComponent<Cone>().ConeBaseForStacking.SetActive(false);
 
         cones.Remove(topCone);
-        topCone = cones[0];
-        secondCone = cones[1];
+
+        if (cones.Count > 0)
+            topCone = cones[0];
+        if (cones.Count > 1)
+            secondCone = cones[1];
+
+        TopCone.GetComponent<Cone>().ConeMeshObject.GetComponent<MeshCollider>().enabled = true;
     }
 }
