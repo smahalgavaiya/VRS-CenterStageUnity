@@ -39,7 +39,7 @@ public class ConeStacker : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (cones == null)
+        if (cones == null || cones.Count < numberOfConesInStack)
             GetCones();
         if (numberOfEnabledCones != numberOfConesInStack)
         {
@@ -54,7 +54,6 @@ public class ConeStacker : MonoBehaviour
         {
             cones[i].SetActive(true);
             cones[i].GetComponent<Cone>().ConeMeshObject.GetComponent<MeshCollider>().enabled = false;
-            cones[i].GetComponent<Cone>().JunctionSliderObject.SetActive(false);
             cones[i].GetComponent<Cone>().ConeBaseForStacking.SetActive(true);
         }
         for (int i = numberOfConesInStack; i < cones.Count; i++)
@@ -63,7 +62,6 @@ public class ConeStacker : MonoBehaviour
         }
 
         TopCone.GetComponent<Cone>().ConeMeshObject.GetComponent<MeshCollider>().enabled = true;
-        TopCone.GetComponent<Cone>().JunctionSliderObject.SetActive(true);
 
         ConeStackColorSwitcher coneStackColorSwitcher = GetComponent<ConeStackColorSwitcher>();
         coneStackColorSwitcher.GetChildObjects();
