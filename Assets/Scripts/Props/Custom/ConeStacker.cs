@@ -10,7 +10,7 @@ public class ConeStacker : MonoBehaviour
     public GameObject TopCone { get => topCone; set => topCone = value; }
     public GameObject SecondCone { get => secondCone; set => secondCone = value; }
 
-    [Range(1,10)]
+    [Range(1,5)]
     [SerializeField] int numberOfConesInStack;
     int numberOfEnabledCones;
 
@@ -54,7 +54,6 @@ public class ConeStacker : MonoBehaviour
         {
             cones[i].SetActive(true);
             cones[i].GetComponent<Cone>().ConeMeshObject.GetComponent<MeshCollider>().enabled = false;
-            cones[i].GetComponent<Cone>().JunctionSliderObject.SetActive(false);
             cones[i].GetComponent<Cone>().ConeBaseForStacking.SetActive(true);
         }
         for (int i = numberOfConesInStack; i < cones.Count; i++)
@@ -63,7 +62,6 @@ public class ConeStacker : MonoBehaviour
         }
 
         TopCone.GetComponent<Cone>().ConeMeshObject.GetComponent<MeshCollider>().enabled = true;
-        TopCone.GetComponent<Cone>().JunctionSliderObject.SetActive(true);
 
         ConeStackColorSwitcher coneStackColorSwitcher = GetComponent<ConeStackColorSwitcher>();
         coneStackColorSwitcher.GetChildObjects();
@@ -76,7 +74,12 @@ public class ConeStacker : MonoBehaviour
         topCone.GetComponent<Cone>().ConeBaseForStacking.SetActive(false);
 
         cones.Remove(topCone);
-        topCone = cones[0];
-        secondCone = cones[1];
+
+        if (cones.Count > 0)
+            topCone = cones[0];
+        if (cones.Count > 1)
+            secondCone = cones[1];
+
+        TopCone.GetComponent<Cone>().ConeMeshObject.GetComponent<MeshCollider>().enabled = true;
     }
 }
