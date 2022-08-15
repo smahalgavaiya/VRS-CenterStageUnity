@@ -6,7 +6,6 @@ public class ReleaseSubstationCone : MonoBehaviour
 {
     List<GameObject> conePositions = new List<GameObject>();
     [SerializeField] GameObject conePositionsParent;
-    [SerializeField] GameObject subStation;
 
     List<GameObject> cones;
 
