@@ -14,9 +14,9 @@ public class TestingActionManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        manager.SetFrontLeft(1);
-        manager.SetFrontRight(1);
-        manager.SetBackLeft(1);
-        manager.SetBackRight(1);
+        manager.SetFrontLeft(-1);
+        manager.SetFrontRight(-1);
+        manager.SetBackLeft(-1);
+        manager.SetBackRight(-1);
     }
 }
