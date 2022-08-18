@@ -61640,7 +61640,7 @@ MonoBehaviour:
   backLeft: {fileID: 11400000, guid: e5e38ab27152279469350330b1a1380a, type: 2}
   backRight: {fileID: 11400000, guid: cf8eca3df09ad3748ad0499a41f88342, type: 2}
   rotationForce: 15
-  moveForce: 1600
+  moveForce: 2000
 --- !u!54 &1609573762
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -61650,7 +61650,7 @@ Rigidbody:
   m_GameObject: {fileID: 1609573759}
   serializedVersion: 2
   m_Mass: 1000
-  m_Drag: 0.1
+  m_Drag: 1
   m_AngularDrag: 10
   m_UseGravity: 1
   m_IsKinematic: 0
