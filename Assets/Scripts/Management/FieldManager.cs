@@ -5,7 +5,6 @@ using System.Runtime.InteropServices;
 
 public enum GameMode
 {
-    None,
     Autonomous,
     Teleop
 }
@@ -39,7 +38,11 @@ public class FieldManager : MonoBehaviour
     }
     void Start()
     {
-        mode = vrs_messenger.instance.GetPlaymode();
+        if (vrs_messenger.instance == null)
+            mode = GameMode.Teleop;
+        else
+            mode = vrs_messenger.instance.GetPlaymode();
+
         if(mode == GameMode.Autonomous)
             gameTimeManager.roundIndex = autonomous;
         else if(mode == GameMode.Teleop)
