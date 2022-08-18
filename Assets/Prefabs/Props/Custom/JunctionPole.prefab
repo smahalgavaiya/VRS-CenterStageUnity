@@ -367,48 +367,48 @@ ArticulationBody:
   m_Enabled: 1
   serializedVersion: 2
   m_Mass: 0.1
-  m_ParentAnchorPosition: {x: 0, y: 0.0003799945, z: 0}
-  m_ParentAnchorRotation: {x: 0, y: 0, z: 0.70710677, w: -0.70710677}
+  m_ParentAnchorPosition: {x: 0, y: 0.032188118, z: 0}
+  m_ParentAnchorRotation: {x: 0, y: 0, z: 0.70710677, w: 0.70710677}
   m_AnchorPosition: {x: 0, y: -0.5, z: 0}
-  m_AnchorRotation: {x: 0, y: 0, z: 0.70710677, w: -0.70710677}
+  m_AnchorRotation: {x: 0, y: 0, z: 0.70710677, w: 0.70710677}
   m_ComputeParentAnchor: 1
   m_ArticulationJointType: 3
   m_LinearX: 2
-  m_LinearY: 2
-  m_LinearZ: 2
-  m_SwingY: 2
-  m_SwingZ: 2
+  m_LinearY: 0
+  m_LinearZ: 0
+  m_SwingY: 1
+  m_SwingZ: 1
   m_Twist: 2
   m_XDrive:
-    lowerLimit: 0
+    lowerLimit: 29.88
     upperLimit: 0
-    stiffness: 29
-    damping: 0
-    forceLimit: 0.1
+    stiffness: 2
+    damping: 2
+    forceLimit: 0.5
     target: 0
     targetVelocity: 0
   m_YDrive:
-    lowerLimit: 0
-    upperLimit: 0
-    stiffness: 20
-    damping: 0
-    forceLimit: 0.1
+    lowerLimit: -90
+    upperLimit: 90
+    stiffness: 10
+    damping: 2
+    forceLimit: 0.5
     target: 0
     targetVelocity: 0
   m_ZDrive:
-    lowerLimit: 0
-    upperLimit: 0
-    stiffness: 20
-    damping: 0
-    forceLimit: 0.1
+    lowerLimit: -90
+    upperLimit: 90
+    stiffness: 10
+    damping: 2
+    forceLimit: 0.5
     target: 0
     targetVelocity: 0
-  m_LinearDamping: 2
+  m_LinearDamping: 20
   m_AngularDamping: 5
   m_JointFriction: 0.05
   m_Immovable: 0
-  m_UseGravity: 1
-  m_CollisionDetectionMode: 1
+  m_UseGravity: 0
+  m_CollisionDetectionMode: 0
 --- !u!1 &8341677876293261502
 GameObject:
   m_ObjectHideFlags: 0
