@@ -13,5 +13,5 @@ mergeInto(LibraryManager.library, {
   },
   updateSignalSensor : function (signalType) {
     setSignalSensor(signalType);
-  },
+  }
 });
