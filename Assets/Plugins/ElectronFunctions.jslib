@@ -11,4 +11,7 @@ mergeInto(LibraryManager.library, {
   updateBackRightEncoders: function (encoders) {
     setBackRightEncoders(encoders);
   },
+  updateSignalSensor : function (signalType) {
+    setSignalSensor(signalType);
+  }
 });
