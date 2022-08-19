@@ -22,7 +22,7 @@ public class FieldManager : MonoBehaviour
         get {return _instance;}
     }
 
-    [DllImport("_Internal")]
+    [DllImport("__Internal")]
     private static extern void updateSignalSensor(int signal);
     private bool hasCheckedSignalSensor = false;
     void Awake()
