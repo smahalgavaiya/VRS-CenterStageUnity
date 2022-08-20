@@ -7,12 +7,14 @@ public class CheckRobotWithinBounds : MonoBehaviour, ICustomGoalChecker
 {
     GoalZoneScoreLink goalZoneScoreLink;
     GameObject goalBoundsObject;
-    CapsuleCollider goalBounds;
+    BoxCollider goalBounds;
 
     // Start is called before the first frame update
     void Start()
     {
         goalBoundsObject = this.gameObject;
+        goalBounds = GetComponent<BoxCollider>();
+        goalZoneScoreLink = GetComponent<GoalZoneScoreLink>();
     }
 
     // Update is called once per frame
