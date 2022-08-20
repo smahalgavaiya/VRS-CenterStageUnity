@@ -349,7 +349,7 @@ GameObject:
   - component: {fileID: 320393084}
   - component: {fileID: 320393083}
   - component: {fileID: 320393082}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Robot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -889,7 +889,7 @@ GameObject:
   - component: {fileID: 486797437}
   - component: {fileID: 486797436}
   - component: {fileID: 486797435}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Capsule (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1249,8 +1249,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 679549399}
-  m_LocalRotation: {x: 0.18558058, y: 0.15320009, z: -0.029272873, w: 0.9701715}
-  m_LocalPosition: {x: -1.4219861, y: 6.729956, z: -21.206656}
+  m_LocalRotation: {x: 0.70710695, y: -0.000000044703484, z: -0.000000029802322, w: 0.70710665}
+  m_LocalPosition: {x: 7.6, y: 15.44, z: 2.56}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1443,7 +1443,7 @@ GameObject:
   - component: {fileID: 792378858}
   - component: {fileID: 792378857}
   - component: {fileID: 792378856}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: FrontLeftWheel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1491,7 +1491,7 @@ ArticulationBody:
     lowerLimit: 0
     upperLimit: 0
     stiffness: 0
-    damping: 3
+    damping: 0
     forceLimit: 3.4028235e+38
     target: 0
     targetVelocity: 0
@@ -1499,7 +1499,7 @@ ArticulationBody:
     lowerLimit: 0
     upperLimit: 0
     stiffness: 0
-    damping: 3
+    damping: 0
     forceLimit: 3.4028235e+38
     target: 0
     targetVelocity: 0
@@ -1507,12 +1507,12 @@ ArticulationBody:
     lowerLimit: 0
     upperLimit: 0
     stiffness: 0
-    damping: 3
+    damping: 0
     forceLimit: 3.4028235e+38
     target: 0
     targetVelocity: 0
-  m_LinearDamping: 10
-  m_AngularDamping: 10
+  m_LinearDamping: 1
+  m_AngularDamping: 5
   m_JointFriction: 0.05
   m_Immovable: 0
   m_UseGravity: 1
@@ -1591,7 +1591,7 @@ GameObject:
   - component: {fileID: 876561331}
   - component: {fileID: 876561330}
   - component: {fileID: 876561329}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Capsule
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1687,7 +1687,7 @@ GameObject:
   - component: {fileID: 890271040}
   - component: {fileID: 890271039}
   - component: {fileID: 890271038}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Capsule (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2120,7 +2120,7 @@ CapsuleCollider:
   m_GameObject: {fileID: 1459451172}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   m_Radius: 0.5
   m_Height: 2
   m_Direction: 1
@@ -2254,7 +2254,7 @@ MonoBehaviour:
   backLeftWheel: {fileID: 1864721117}
   frontRightWheel: {fileID: 1700165908}
   backRightWheel: {fileID: 1965719243}
-  coefficient: 200
+  coefficient: 500
 --- !u!1 &1620541600
 GameObject:
   m_ObjectHideFlags: 0
@@ -2390,7 +2390,7 @@ GameObject:
   - component: {fileID: 1700165912}
   - component: {fileID: 1700165911}
   - component: {fileID: 1700165910}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: FrontRightWheel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2433,12 +2433,12 @@ ArticulationBody:
   m_LinearZ: 0
   m_SwingY: 2
   m_SwingZ: 2
-  m_Twist: 0
+  m_Twist: 2
   m_XDrive:
     lowerLimit: 0
     upperLimit: 0
     stiffness: 0
-    damping: 3
+    damping: 0
     forceLimit: 3.4028235e+38
     target: 0
     targetVelocity: 0
@@ -2446,7 +2446,7 @@ ArticulationBody:
     lowerLimit: 0
     upperLimit: 0
     stiffness: 0
-    damping: 3
+    damping: 0
     forceLimit: 3.4028235e+38
     target: 0
     targetVelocity: 0
@@ -2454,12 +2454,12 @@ ArticulationBody:
     lowerLimit: 0
     upperLimit: 0
     stiffness: 0
-    damping: 3
+    damping: 0
     forceLimit: 3.4028235e+38
     target: 0
     targetVelocity: 0
-  m_LinearDamping: 10
-  m_AngularDamping: 10
+  m_LinearDamping: 1
+  m_AngularDamping: 5
   m_JointFriction: 0.05
   m_Immovable: 0
   m_UseGravity: 1
@@ -2538,7 +2538,7 @@ GameObject:
   - component: {fileID: 1702399794}
   - component: {fileID: 1702399793}
   - component: {fileID: 1702399792}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Capsule (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2716,7 +2716,7 @@ GameObject:
   - component: {fileID: 1864721121}
   - component: {fileID: 1864721120}
   - component: {fileID: 1864721119}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: BackLeftWheel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2764,7 +2764,7 @@ ArticulationBody:
     lowerLimit: 0
     upperLimit: 0
     stiffness: 0
-    damping: 3
+    damping: 0
     forceLimit: 3.4028235e+38
     target: 0
     targetVelocity: 0
@@ -2772,7 +2772,7 @@ ArticulationBody:
     lowerLimit: 0
     upperLimit: 0
     stiffness: 0
-    damping: 3
+    damping: 0
     forceLimit: 3.4028235e+38
     target: 0
     targetVelocity: 0
@@ -2780,12 +2780,12 @@ ArticulationBody:
     lowerLimit: 0
     upperLimit: 0
     stiffness: 0
-    damping: 3
+    damping: 0
     forceLimit: 3.4028235e+38
     target: 0
     targetVelocity: 0
-  m_LinearDamping: 10
-  m_AngularDamping: 10
+  m_LinearDamping: 1
+  m_AngularDamping: 5
   m_JointFriction: 0.05
   m_Immovable: 0
   m_UseGravity: 1
@@ -2946,7 +2946,7 @@ GameObject:
   - component: {fileID: 1965719247}
   - component: {fileID: 1965719246}
   - component: {fileID: 1965719245}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: BackRightWheel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2994,7 +2994,7 @@ ArticulationBody:
     lowerLimit: 0
     upperLimit: 0
     stiffness: 0
-    damping: 3
+    damping: 0
     forceLimit: 3.4028235e+38
     target: 0
     targetVelocity: 0
@@ -3002,7 +3002,7 @@ ArticulationBody:
     lowerLimit: 0
     upperLimit: 0
     stiffness: 0
-    damping: 3
+    damping: 0
     forceLimit: 3.4028235e+38
     target: 0
     targetVelocity: 0
@@ -3010,12 +3010,12 @@ ArticulationBody:
     lowerLimit: 0
     upperLimit: 0
     stiffness: 0
-    damping: 3
+    damping: 0
     forceLimit: 3.4028235e+38
     target: 0
     targetVelocity: 0
-  m_LinearDamping: 10
-  m_AngularDamping: 10
+  m_LinearDamping: 1
+  m_AngularDamping: 5
   m_JointFriction: 0.05
   m_Immovable: 0
   m_UseGravity: 1
