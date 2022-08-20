@@ -16,11 +16,15 @@ public class ArtWheelTest : MonoBehaviour
     List<GameObject> wheels;
     List<ArticulationBody> wheelArticulationBodies;
 
+    Vector3 robotRightVector, robotForwardVector;
+
     [SerializeField] float coefficient;
 
     // Start is called before the first frame update
     void Start()
     {
+        SetRobotVectors();
+
         wheels = new List<GameObject>();
         wheelArticulationBodies = new List<ArticulationBody>();
 
@@ -58,8 +62,8 @@ public class ArtWheelTest : MonoBehaviour
     {
         foreach(ArticulationBody wheelArtBod in wheelArticulationBodies)
         {
-            wheelArtBod.AddTorque(robotBody.transform.right.normalized * motionFB * coefficient);
-            wheelArtBod.AddTorque(robotBody.transform.forward.normalized * -motionRL * coefficient);
+            wheelArtBod.AddTorque(robotRightVector * motionFB * coefficient);
+            wheelArtBod.AddTorque(robotForwardVector * -motionRL * coefficient);
         }
 
         RotateDirectionally(frontLeftArtBod, backLeftArtBod, 1);
@@ -72,5 +76,13 @@ public class ArtWheelTest : MonoBehaviour
     {
         artBodOne.AddTorque(robotBody.transform.right.normalized * rotationRL * coefficient * direction);
         artBodTwo.AddTorque(robotBody.transform.right.normalized * rotationRL * coefficient * direction);
+
+        SetRobotVectors();
+    }
+
+    private void SetRobotVectors()
+    {
+        robotForwardVector = robotBody.transform.forward.normalized;
+        robotRightVector = robotBody.transform.right.normalized;
     }
 }
