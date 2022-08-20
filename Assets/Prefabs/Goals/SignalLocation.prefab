@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4955e1b84c3dbc41a2bf8cf61429202, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scoringGuide: {fileID: 11400000, guid: 459682871da16eb4997c4efc881ef1fe, type: 2}
 --- !u!1001 &3518728505065577117
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -99,6 +100,12 @@ PrefabInstance:
       propertyPath: hideOnPlay
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 69250410538693109, guid: 1cb72cf93c415d14facce701d1a634e5,
+        type: 3}
+      propertyPath: scoringGuide
+      value: 
+      objectReference: {fileID: 11400000, guid: 7349f391750411842a3afdf13de0af9d,
+        type: 2}
     - target: {fileID: 69250410538693109, guid: 1cb72cf93c415d14facce701d1a634e5,
         type: 3}
       propertyPath: scoreZoneColor
