@@ -27,6 +27,9 @@ public class CheckConeWithinBounds : MonoBehaviour, ICustomGoalChecker
 
     public void DoCustomCheck(GameObject objectToCheck)
     {
+        if (objectToCheck.GetComponentInParent<Cone>() == null)
+            return;
+
         if (CheckConeBounds(objectToCheck))
             goalZoneScoreLink.OptionalBoolValue = true;
         else 
@@ -35,6 +38,7 @@ public class CheckConeWithinBounds : MonoBehaviour, ICustomGoalChecker
 
     bool CheckConeBounds(GameObject objectToCheck)
     {
+
         MeshCollider objectToCheckMeshCollider = objectToCheck.GetComponentInParent<Cone>().ConeMeshObject.GetComponent<MeshCollider>();
 
         List<Vector3> pointsToCheck = new List<Vector3>();

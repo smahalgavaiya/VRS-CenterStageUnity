@@ -45,10 +45,10 @@ public class CheckForCircuit : MonoBehaviour
         }
 
         if (CircuitFound.boolValue && !circuitPreviouslyFound)
-            scoreTracker.AddOrSubtractScore(10);
+            scoreTracker.AddOrSubtractScore(20);
 
         else if (!CircuitFound.boolValue && circuitPreviouslyFound)
-            scoreTracker.AddOrSubtractScore(-10);
+            scoreTracker.AddOrSubtractScore(-20);
 
         circuitPreviouslyFound = CircuitFound.boolValue;
     }
