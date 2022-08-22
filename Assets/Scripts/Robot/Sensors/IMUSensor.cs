@@ -24,14 +24,16 @@ public class IMUSensor : MonoBehaviour
 
         Vector3 pos = rb.position;
         
+        //debug.Instance.SetText("Acceleration x: " + (int)acceleration.x + "\n y: " + (int)acceleration.y + "\n z: " + (int)acceleration.z);
         #if UNITY_WEBGL && !UNITY_EDITOR
-        //Debug.Log($"distance sensed: " + distanceSensed);
         try
         {
             updateIMUSensorData(acceleration.x,acceleration.y,acceleration.z,angularVelocity.x,angularVelocity.y,angularVelocity.z,pos.x,pos.y,pos.z);
         }
         catch { }
         #endif
+
+        lastVelocity = rb.velocity;
     }
 
 }
