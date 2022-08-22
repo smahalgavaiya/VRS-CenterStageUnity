@@ -6,8 +6,13 @@ using TMPro;
 public class debug : MonoBehaviour
 {
     public TextMeshProUGUI text;
+    private ColorSensor sensor;
+    void Start()
+    {
+        sensor = FindObjectOfType<ColorSensor>();
+    }
     void Update()
     {
-        text.text = "Gamemode: " + FindObjectOfType<FieldManager>().mode;
+        text.text = "Color detected : " + sensor.IsSensed();
     }
 }
