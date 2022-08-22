@@ -565,6 +565,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4955e1b84c3dbc41a2bf8cf61429202, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scoringGuide: {fileID: 0}
 --- !u!1 &7515653
 GameObject:
   m_ObjectHideFlags: 0
@@ -4416,11 +4417,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 940325508f92c6449864f416626c332b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scoringGuide: {fileID: 0}
-  <CanPickUp>k__BackingField: 0
-  <ObjectInTrigger>k__BackingField: {fileID: 0}
-  scoringObjectTypeNames: []
-  objectsInTrigger: []
 --- !u!1 &71622490
 GameObject:
   m_ObjectHideFlags: 0
@@ -5235,6 +5231,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4955e1b84c3dbc41a2bf8cf61429202, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scoringGuide: {fileID: 0}
 --- !u!1 &81682972
 GameObject:
   m_ObjectHideFlags: 0
@@ -5794,11 +5791,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 940325508f92c6449864f416626c332b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scoringGuide: {fileID: 0}
-  <CanPickUp>k__BackingField: 0
-  <ObjectInTrigger>k__BackingField: {fileID: 0}
-  scoringObjectTypeNames: []
-  objectsInTrigger: []
 --- !u!1 &93806054
 GameObject:
   m_ObjectHideFlags: 0
@@ -11915,7 +11907,7 @@ PrefabInstance:
     - target: {fileID: 3767595516279228176, guid: dedd8e120c2ada84ba2efd3f3daff664,
         type: 3}
       propertyPath: powerMultiplier
-      value: 120000
+      value: 12000
       objectReference: {fileID: 0}
     - target: {fileID: 3999746609812283738, guid: dedd8e120c2ada84ba2efd3f3daff664,
         type: 3}
@@ -25450,6 +25442,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4955e1b84c3dbc41a2bf8cf61429202, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scoringGuide: {fileID: 0}
 --- !u!1 &372087268
 GameObject:
   m_ObjectHideFlags: 0
@@ -27046,7 +27039,7 @@ PrefabInstance:
     - target: {fileID: 8727821233993561662, guid: e4b049615cc9de648a8689d97d89157a,
         type: 3}
       propertyPath: powerMultiplier
-      value: 120000
+      value: 12000
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e4b049615cc9de648a8689d97d89157a, type: 3}
@@ -31739,6 +31732,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4955e1b84c3dbc41a2bf8cf61429202, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scoringGuide: {fileID: 0}
 --- !u!1 &488768833
 GameObject:
   m_ObjectHideFlags: 0
@@ -36236,6 +36230,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d868fc8bbe5cc94ebbec41b77298ad9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  roundIndex: {fileID: 0}
   cappedScoringGuide: {fileID: 11400000, guid: 9810f9c62079c3140889f7012a53c87c, type: 2}
   checkCircuit: {fileID: 11400000, guid: af171bddebcd9974786a91592fb09880, type: 2}
 --- !u!114 &576111309
@@ -49807,6 +49802,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4955e1b84c3dbc41a2bf8cf61429202, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scoringGuide: {fileID: 0}
 --- !u!1 &818791400
 GameObject:
   m_ObjectHideFlags: 0
@@ -54047,11 +54043,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 940325508f92c6449864f416626c332b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scoringGuide: {fileID: 0}
-  <CanPickUp>k__BackingField: 0
-  <ObjectInTrigger>k__BackingField: {fileID: 0}
-  scoringObjectTypeNames: []
-  objectsInTrigger: []
 --- !u!114 &904447517
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -54523,11 +54514,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 940325508f92c6449864f416626c332b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scoringGuide: {fileID: 0}
-  <CanPickUp>k__BackingField: 0
-  <ObjectInTrigger>k__BackingField: {fileID: 0}
-  scoringObjectTypeNames: []
-  objectsInTrigger: []
 --- !u!1001 &910782761
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -62033,6 +62019,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4955e1b84c3dbc41a2bf8cf61429202, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scoringGuide: {fileID: 0}
 --- !u!1 &1044854046
 GameObject:
   m_ObjectHideFlags: 0
@@ -67896,11 +67883,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 940325508f92c6449864f416626c332b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scoringGuide: {fileID: 0}
-  <CanPickUp>k__BackingField: 0
-  <ObjectInTrigger>k__BackingField: {fileID: 0}
-  scoringObjectTypeNames: []
-  objectsInTrigger: []
 --- !u!114 &1142634246
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -70084,7 +70066,7 @@ PrefabInstance:
     - target: {fileID: 3767595516279228176, guid: dedd8e120c2ada84ba2efd3f3daff664,
         type: 3}
       propertyPath: powerMultiplier
-      value: 120000
+      value: 12000
       objectReference: {fileID: 0}
     - target: {fileID: 3999746609812283738, guid: dedd8e120c2ada84ba2efd3f3daff664,
         type: 3}
@@ -82118,6 +82100,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4955e1b84c3dbc41a2bf8cf61429202, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scoringGuide: {fileID: 0}
 --- !u!1 &1357851336
 GameObject:
   m_ObjectHideFlags: 0
@@ -89339,6 +89322,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4955e1b84c3dbc41a2bf8cf61429202, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scoringGuide: {fileID: 0}
 --- !u!1 &1487533107
 GameObject:
   m_ObjectHideFlags: 0
@@ -92847,6 +92831,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4955e1b84c3dbc41a2bf8cf61429202, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scoringGuide: {fileID: 0}
 --- !u!1 &1537252216
 GameObject:
   m_ObjectHideFlags: 0
@@ -92995,7 +92980,7 @@ PrefabInstance:
     - target: {fileID: 8727821233993561662, guid: e4b049615cc9de648a8689d97d89157a,
         type: 3}
       propertyPath: powerMultiplier
-      value: 120000
+      value: 12000
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e4b049615cc9de648a8689d97d89157a, type: 3}
@@ -93937,7 +93922,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1549859269
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -93965,7 +93950,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1549859268}
   serializedVersion: 2
-  m_Mass: 200
+  m_Mass: 10
   m_Drag: 1
   m_AngularDrag: 10
   m_UseGravity: 1
@@ -98692,7 +98677,7 @@ MonoBehaviour:
   backLeft: {fileID: 11400000, guid: e5e38ab27152279469350330b1a1380a, type: 2}
   backRight: {fileID: 11400000, guid: cf8eca3df09ad3748ad0499a41f88342, type: 2}
   rotationForce: 5
-  moveForce: 2000
+  moveForce: 1200
 --- !u!54 &1609573762
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -98701,7 +98686,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1609573759}
   serializedVersion: 2
-  m_Mass: 1000
+  m_Mass: 100
   m_Drag: 1
   m_AngularDrag: 10
   m_UseGravity: 1
@@ -100520,6 +100505,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4955e1b84c3dbc41a2bf8cf61429202, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scoringGuide: {fileID: 0}
 --- !u!1001 &1640034220
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -104970,11 +104956,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 940325508f92c6449864f416626c332b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scoringGuide: {fileID: 0}
-  <CanPickUp>k__BackingField: 0
-  <ObjectInTrigger>k__BackingField: {fileID: 0}
-  scoringObjectTypeNames: []
-  objectsInTrigger: []
 --- !u!1 &1723335399
 GameObject:
   m_ObjectHideFlags: 0
@@ -110660,11 +110641,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 940325508f92c6449864f416626c332b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scoringGuide: {fileID: 0}
-  <CanPickUp>k__BackingField: 0
-  <ObjectInTrigger>k__BackingField: {fileID: 0}
-  scoringObjectTypeNames: []
-  objectsInTrigger: []
 --- !u!1 &1823291127
 GameObject:
   m_ObjectHideFlags: 0
@@ -113648,6 +113624,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4955e1b84c3dbc41a2bf8cf61429202, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scoringGuide: {fileID: 0}
 --- !u!1 &1876756692
 GameObject:
   m_ObjectHideFlags: 0
@@ -120828,6 +120805,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4955e1b84c3dbc41a2bf8cf61429202, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scoringGuide: {fileID: 0}
 --- !u!1 &1998951020
 GameObject:
   m_ObjectHideFlags: 0
@@ -124144,7 +124122,7 @@ Rigidbody:
   m_AngularDrag: 0.15
   m_UseGravity: 1
   m_IsKinematic: 0
-  m_Interpolate: 1
+  m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
 --- !u!4 &2055055682
@@ -129857,11 +129835,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 940325508f92c6449864f416626c332b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scoringGuide: {fileID: 0}
-  <CanPickUp>k__BackingField: 0
-  <ObjectInTrigger>k__BackingField: {fileID: 0}
-  scoringObjectTypeNames: []
-  objectsInTrigger: []
 --- !u!114 &2144550438
 MonoBehaviour:
   m_ObjectHideFlags: 0
