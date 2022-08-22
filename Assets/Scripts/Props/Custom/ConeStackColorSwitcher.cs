@@ -6,10 +6,13 @@ using UnityEngine;
 public class ConeStackColorSwitcher : MonoBehaviour
 {
     [SerializeField] TeamColor teamColor;
+
     List<ColorSwitcher> coneColorSwitchers;
     List<ScoreObjectTypeLink> scoreObjectTypeLinks;
 
     int currentTeamColor;
+
+    public TeamColor TeamColor_ { get { return teamColor; } }
     // Start is called before the first frame update
     void Start()
     {

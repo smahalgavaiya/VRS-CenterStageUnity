@@ -3,16 +3,25 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CheckRobotWithinBounds : MonoBehaviour, ICustomGoalChecker
+public class CheckRobotWithinBounds : MonoBehaviour, ICustomGoalChecker, ICustomGoalEvents
 {
     GoalZoneScoreLink goalZoneScoreLink;
     GameObject goalBoundsObject;
-    CapsuleCollider goalBounds;
+    BoxCollider goalBounds;
+    [SerializeField] ScoringGuide scoringGuide;
+    private Collider objectToCheckCollider;
+
+    Vector3[] pointsToCheck = new Vector3[2];
+    private bool containsObject, scoreAdded;
+
+    GameObject objectToCheck;
 
     // Start is called before the first frame update
     void Start()
     {
         goalBoundsObject = this.gameObject;
+        goalBounds = GetComponent<BoxCollider>();
+        goalZoneScoreLink = GetComponent<GoalZoneScoreLink>();
     }
 
     // Update is called once per frame
@@ -22,37 +31,70 @@ public class CheckRobotWithinBounds : MonoBehaviour, ICustomGoalChecker
     }
     public void DoCustomCheck()
     {
+
     }
 
     public void DoCustomCheck(GameObject objectToCheck)
     {
-        if (CheckRobotBounds(objectToCheck))
-            goalZoneScoreLink.OptionalBoolValue = true;
-        else 
-            goalZoneScoreLink.OptionalBoolValue = false;
+        if (objectToCheck.GetComponentInParent<ScoreObjectTypeLink>() == null || 
+            objectToCheck.GetComponentInParent<ScoreObjectTypeLink>().ScoreObjectType_.name != "Robot")
+            return;
+
+        this.objectToCheck = objectToCheck;
+        goalZoneScoreLink.OptionalBoolValue = true;
     }
 
-    private bool CheckRobotBounds(GameObject objectToCheck)
+    IEnumerator CheckRobotBounds()
     {
-        Collider objectToCheckCollider = objectToCheck.GetComponent<Collider>();
-
-        List<Vector3> pointsToCheck = new List<Vector3>();
-        pointsToCheck.Add(objectToCheckCollider.bounds.center + objectToCheckCollider.bounds.extents);
-        pointsToCheck.Add(objectToCheckCollider.bounds.center - objectToCheckCollider.bounds.extents);
-
-        bool containsObject = false;
-
-        foreach(Vector3 vector3 in pointsToCheck)
+        while (true)
         {
-            if (goalBounds.bounds.Contains(vector3))
+            pointsToCheck[0] = objectToCheckCollider.transform.position + objectToCheckCollider.bounds.extents;
+            pointsToCheck[1] = objectToCheckCollider.transform.position - objectToCheckCollider.bounds.extents;
+
+            containsObject = false;
+
+            if (goalBounds.bounds.Contains(pointsToCheck[0]) && 
+                goalBounds.bounds.Contains(pointsToCheck[1]))
+            {
                 containsObject = true;
+            }
             else
             {
                 containsObject = false;
-                break;
             }
-        }
 
-        return containsObject;
+            if (!scoreAdded && containsObject)
+            {
+                TeamColor teamColor = goalZoneScoreLink.LastObjectTeamColor;
+                goalZoneScoreLink.ChangeScore(2, scoringGuide, 1, teamColor);
+                scoreAdded = true;
+            }
+
+            else if (scoreAdded && !containsObject)
+            {
+                TeamColor teamColor = goalZoneScoreLink.LastObjectTeamColor;
+                goalZoneScoreLink.ChangeScore(2, scoringGuide, -1, teamColor);
+                scoreAdded = false;
+            }
+
+            yield return new WaitForEndOfFrame();
+        }
+    }
+    private void OnDestroy()
+    {
+        StopAllCoroutines();
+    }
+
+    public void DoCustomOnEvent(UnityEngine.Object objectToPass)
+    {
+        objectToCheckCollider = objectToCheck.GetComponent<Collider>();
+        StartCoroutine(CheckRobotBounds());
+    }
+
+    public void DoCustomOffEvent(UnityEngine.Object objectToPass)
+    {
+        goalZoneScoreLink.OptionalBoolValue = false;
+        StopAllCoroutines();
     }
 }
+

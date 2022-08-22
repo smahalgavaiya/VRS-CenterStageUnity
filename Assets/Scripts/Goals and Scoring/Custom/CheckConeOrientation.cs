@@ -13,6 +13,9 @@ public class CheckConeOrientation : MonoBehaviour, ICustomGoalChecker
 
     public void DoCustomCheck(GameObject objectToCheck)
     {
+        if (objectToCheck.GetComponentInParent<Cone>() == null)
+            return;
+
         ConeOrientation coneOrientation = null;
 
         if (objectToCheck.GetComponent<ConeOrientation>() != null)
