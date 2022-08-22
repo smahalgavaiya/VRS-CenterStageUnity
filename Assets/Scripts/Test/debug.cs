@@ -6,13 +6,18 @@ using TMPro;
 public class debug : MonoBehaviour
 {
     public TextMeshProUGUI text;
-    private ColorSensor sensor;
+
+    public static debug Instance;
     void Start()
     {
-        sensor = FindObjectOfType<ColorSensor>();
+        if(Instance == null)
+            Instance = this;
+        else
+            Destroy(this);
     }
-    void Update()
+    public void SetText(string towrite)
     {
-        text.text = "Color detected : " + sensor.IsSensed();
+        if(text!= null)
+            text.text = towrite;
     }
 }
