@@ -12324,6 +12324,25 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 574251158}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &574251160 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 836741909500772576, guid: cccbcaecbe9c2514f8e5ee571b98081e,
+    type: 3}
+  m_PrefabInstance: {fileID: 574251158}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &574251161
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 574251160}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceaec974df549694999bd44853f86fe1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  team: 1
 --- !u!1 &586594739
 GameObject:
   m_ObjectHideFlags: 0
@@ -31470,6 +31489,8 @@ MonoBehaviour:
   motor2: {fileID: 11400000, guid: affd9e3eaa262ee448f0efb65025c8c9, type: 2}
   motor3: {fileID: 11400000, guid: 44eac2a824c387347a0d4cb9b5b71fae, type: 2}
   motor4: {fileID: 11400000, guid: 44eac2a824c387347a0d4cb9b5b71fae, type: 2}
+  robotHasMecanumWheels: 0
+  robotHasTorqueWheels: 1
 --- !u!114 &1867799083
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -31604,6 +31625,25 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1869089713}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1869089715 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 836741909500772576, guid: cccbcaecbe9c2514f8e5ee571b98081e,
+    type: 3}
+  m_PrefabInstance: {fileID: 1869089713}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1869089716
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1869089715}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceaec974df549694999bd44853f86fe1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  team: 0
 --- !u!1 &1881254931
 GameObject:
   m_ObjectHideFlags: 0

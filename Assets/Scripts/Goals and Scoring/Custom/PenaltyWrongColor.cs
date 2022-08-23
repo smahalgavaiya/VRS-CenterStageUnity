@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PenaltyWrongColor : MonoBehaviour
+public class PenaltyWrongColor : MonoBehaviour, IGrabEvent
 {
     TeamColor objectColor, subjectColor;
     [SerializeField] ScoreTracker blueScoreTracker;
@@ -61,5 +61,16 @@ public class PenaltyWrongColor : MonoBehaviour
                 Punish(subjectColor, ongoingPenalty, numberOfOngoingPenalties);
             yield return new WaitForSeconds(5);
         }
+    }
+
+    public void OnGrab(GameObject grabbingObject)
+    {
+        ScoreObjectTypeLink objType = grabbingObject.GetComponent<ScoreObjectTypeLink>();
+        StartCheckForWrongColor(objType.LastTouchedTeamColor);
+    }
+
+    public void OnRelease(GameObject releasingObject)
+    {
+        EndCheckForWrongColor();
     }
 }
