@@ -14,7 +14,7 @@ public class FieldManager : MonoBehaviour
 
     public RoundIndex autonomous,teleop;
 
-    public PowerPlayGameTimeManager gameTimeManager;
+    public GameTimeManager gameTimeManager;
 
     private static FieldManager _instance;
     public static FieldManager instance
@@ -43,10 +43,9 @@ public class FieldManager : MonoBehaviour
         else
             mode = vrs_messenger.instance.GetPlaymode();
 
-        if(mode == GameMode.Autonomous)
-            gameTimeManager.roundIndex = autonomous;
-        else if(mode == GameMode.Teleop)
-            gameTimeManager.roundIndex = teleop;
+        gameTimeManager.roundIndex = GetRoundIndex();
+        GameTimeReceiver timeReceiver = FindObjectOfType<GameTimeReceiver>();
+        timeReceiver.roundIndex = GetRoundIndex();
 
         
     }
@@ -71,6 +70,15 @@ public class FieldManager : MonoBehaviour
         #endif
 
         hasCheckedSignalSensor = true;
+    }
+    public RoundIndex GetRoundIndex()
+    {
+        if(mode == GameMode.Autonomous)
+            return autonomous;
+        else if(mode == GameMode.Teleop)
+            return teleop;
+        else
+            return null;
     }
 
 }
