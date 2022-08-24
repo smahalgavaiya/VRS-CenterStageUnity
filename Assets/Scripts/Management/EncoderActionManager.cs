@@ -8,7 +8,6 @@ public class EncoderActionManager : MonoBehaviour
     public float forceMultiplier = 3f;
     public Drive frontLeftWheel, backLeftWheel, frontRightWheel, backRightWheel, motor1, motor2, motor3, motor4;
     List<Drive> drives;
-    public DebugDriverAmounts driverAmounts;
     // Start is called before the first frame update
     void Start()
     {
@@ -30,7 +29,6 @@ public class EncoderActionManager : MonoBehaviour
     public void SetFrontLeft(float driveAmt)
     {
         frontLeftWheel.driveAmount = new Vector3(driveAmt * forceMultiplier,0,0);
-        driverAmounts.SetPermText("Called SetFrontLeft");
     }
     public void SetFrontRight(float driveAmt)
     {
@@ -43,5 +41,9 @@ public class EncoderActionManager : MonoBehaviour
     public void SetBackRight(float driveAmt)
     {
         backRightWheel.driveAmount = new Vector3(driveAmt * forceMultiplier,0,0);
+    }
+    public void SetMotor1(float driveAmt)
+    {
+        motor1.driveAmount = new Vector3(driveAmt,0,0);
     }
 }

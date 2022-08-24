@@ -12019,6 +12019,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: ColorSensor
       objectReference: {fileID: 0}
+    - target: {fileID: 4512885932098659938, guid: 3cf244d099ae2ea49b759f614b1ae00b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3cf244d099ae2ea49b759f614b1ae00b, type: 3}
 --- !u!4 &482079638 stripped
@@ -12309,6 +12314,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: IMUSensor
+      objectReference: {fileID: 0}
+    - target: {fileID: 7698575921912673910, guid: fd63dff6346e1d642a36aca04f73128b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fd63dff6346e1d642a36aca04f73128b, type: 3}
@@ -13827,6 +13837,58 @@ Transform:
   m_Father: {fileID: 1354223099}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &645465214
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 645465216}
+  - component: {fileID: 645465215}
+  m_Layer: 0
+  m_Name: JSAppIntegration
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &645465215
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 645465214}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 084d1c03f63ba354d8f7fcadc545f879, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  forceMultiplier: 3
+  frontLeftWheel: {fileID: 11400000, guid: c65d4419894956e498e0e196dbd8cf34, type: 2}
+  backLeftWheel: {fileID: 11400000, guid: e5e38ab27152279469350330b1a1380a, type: 2}
+  frontRightWheel: {fileID: 11400000, guid: c3d6c00f4bbf09842a8621a7be11d1ef, type: 2}
+  backRightWheel: {fileID: 11400000, guid: cf8eca3df09ad3748ad0499a41f88342, type: 2}
+  motor1: {fileID: 11400000, guid: 44eac2a824c387347a0d4cb9b5b71fae, type: 2}
+  motor2: {fileID: 0}
+  motor3: {fileID: 0}
+  motor4: {fileID: 0}
+--- !u!4 &645465216
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 645465214}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.0851058, y: 0.35010633, z: -1.4113498}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &645948757
 GameObject:
   m_ObjectHideFlags: 0
@@ -14869,6 +14931,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: TouchSensor
+      objectReference: {fileID: 0}
+    - target: {fileID: 1330993413989343135, guid: 8f605b4af8b47b84b8c191d8e969f4ab,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7361929359430313740, guid: 8f605b4af8b47b84b8c191d8e969f4ab,
         type: 3}
