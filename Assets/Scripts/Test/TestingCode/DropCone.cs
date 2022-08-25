@@ -33,7 +33,7 @@ public class DropCone : MonoBehaviour
 
 
     }
-
+#if UNITY_EDITOR
     // Update is called once per frame
     void Update()
     {
@@ -74,4 +74,5 @@ public class DropCone : MonoBehaviour
         }
 
     }
+#endif
 }

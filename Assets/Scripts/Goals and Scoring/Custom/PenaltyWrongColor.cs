@@ -11,6 +11,8 @@ public class PenaltyWrongColor : MonoBehaviour, IGrabEvent
     [SerializeField] GlobalInt instantPenalty, ongoingPenalty;
     [SerializeField] int numberOfInstantPenalties, numberOfOngoingPenalties;
 
+    Coroutine runningCheck;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -28,7 +30,7 @@ public class PenaltyWrongColor : MonoBehaviour, IGrabEvent
 
         if (objectColor != subjectColor)
         {
-            StartCoroutine(ContinueCheckingForWrongColor());
+            runningCheck = StartCoroutine(ContinueCheckingForWrongColor());
         }
     }
 
@@ -47,7 +49,7 @@ public class PenaltyWrongColor : MonoBehaviour, IGrabEvent
 
     public void EndCheckForWrongColor()
     {
-        StopCoroutine(ContinueCheckingForWrongColor());
+        if(runningCheck != null) { StopCoroutine(runningCheck); }
     }
 
     IEnumerator ContinueCheckingForWrongColor()
