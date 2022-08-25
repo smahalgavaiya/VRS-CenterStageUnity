@@ -23,7 +23,8 @@ public class EncoderActionManager : MonoBehaviour
         drives.Add(motor4);
         foreach(Drive drive in drives)
         {
-            drive.driveAmount = Vector3.zero;
+            if(drive != null)
+                drive.driveAmount = Vector3.zero;
         }
     }
     public void SetFrontLeft(float driveAmt)
