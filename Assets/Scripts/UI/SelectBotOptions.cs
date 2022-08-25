@@ -7,6 +7,7 @@ public class SelectBotOptions : MonoBehaviour
     public List<GameObject> botPrefabs = new List<GameObject>();
     TeamColor color = TeamColor.Blue;
     int selectedBot = 0;
+    bool useLowerSpawn = false;
 
     public List<Transform> spawnPoints = new List<Transform>();
     // Start is called before the first frame update
@@ -16,6 +17,11 @@ public class SelectBotOptions : MonoBehaviour
         selectedBot = index;
     }
 
+    public void SetSpawn(bool useLower)
+    {
+        useLowerSpawn = useLower;
+    }
+
     public void SelectColor(int index)
     {
         color = (TeamColor)index;
@@ -23,7 +29,9 @@ public class SelectBotOptions : MonoBehaviour
 
     public void StartGame()
     {
-        GameObject bot = GameObject.Instantiate(botPrefabs[selectedBot],spawnPoints[(int)color].position, spawnPoints[(int)color].rotation);
+        int spawnIdx = (int)color;
+        if (useLowerSpawn) { spawnIdx += 2; }
+        GameObject bot = GameObject.Instantiate(botPrefabs[selectedBot],spawnPoints[spawnIdx].position, spawnPoints[spawnIdx].rotation);
         bot.GetComponent<ColorSwitcher>().TeamColor_ = color;
         bot.GetComponent<ColorSwitcher>().SetColor();
         bot.GetComponent<ScoreObjectTypeLink>().LastTouchedTeamColor = color;
