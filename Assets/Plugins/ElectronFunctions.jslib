@@ -14,8 +14,8 @@ mergeInto(LibraryManager.library, {
   updateSignalSensor : function (signalType) {
     setSignalSensor(signalType);
   },
-  updateColorSensorData: function (R,G,B,Distance) {
-    setColorSensorData(R,G,B,Distance);
+  updateColorSensorData: function (R,G,B,Distance,Direction) {
+    setColorSensorData(R,G,B,Distance,Direction);
   },
 updateDistanceSensorData: function (Distance) {
     setDistanceSensorData(Distance);
