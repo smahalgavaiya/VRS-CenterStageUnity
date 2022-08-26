@@ -20,6 +20,9 @@ public class ArtWheelTest : MonoBehaviour
 
     [SerializeField] float coefficient;
 
+    public float brakeDampingValue = 100;
+    public float dampingValue = 5;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -47,12 +50,23 @@ public class ArtWheelTest : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (motionFB == 0 && motionRL == 0 && rotationRL ==0) { SetDamping(brakeDampingValue); }
+        else { SetDamping(dampingValue); }
     }
+
+    public void SetDamping(float damping)
+    {
+        foreach (ArticulationBody wheelArtBod in wheelArticulationBodies)
+        {
+            wheelArtBod.angularDamping = damping;
+        }
+    }
+
     public void OnMovement(InputValue value)
     {
         motionFB = value.Get<Vector2>().y;
         motionRL = value.Get<Vector2>().x;
+        
     }
     public void OnRotation(InputValue value)
     {
