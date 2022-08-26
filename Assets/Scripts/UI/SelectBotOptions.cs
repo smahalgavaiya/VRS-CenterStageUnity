@@ -58,6 +58,7 @@ public class SelectBotOptions : MonoBehaviour
         GameObject cone = GameObject.Instantiate(ConePrefab, bot.transform.position, bot.transform.rotation);
         cone.GetComponent<ColorSwitcher>().TeamColor_ = color;
         cone.GetComponent<ColorSwitcher>().SetColor();
+        cone.GetComponent<ScoreObjectTypeLink>().LastTouchedTeamColor = color;
         ObjectGrabber grabber = bot.GetComponentInChildren<ObjectGrabber>();
         ObjectChecker checker = grabber.GetComponent<ObjectChecker>();
 
