@@ -7294,7 +7294,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b45b1b68b4176834b88ca282280fe226, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameTime: {fileID: 11400000, guid: a2b0c8fc79ca7e044bdc57d52e3ec1d8, type: 2}
+  gameTime: {fileID: 11400000, guid: fac1097d42002ef4281b48426748c8ea, type: 2}
 --- !u!114 &134098819
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7317,10 +7317,10 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 43
+    m_FontSize: 40
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 10
+    m_MinSize: 4
     m_MaxSize: 134
     m_Alignment: 3
     m_AlignByGeometry: 1
@@ -14069,10 +14069,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameTime: {fileID: 11400000, guid: a2b0c8fc79ca7e044bdc57d52e3ec1d8, type: 2}
-  round: {fileID: 11400000, guid: abb6681a0ecca5f4bba7bed86db36db1, type: 2}
   eventData:
   - time: 90
-    round: -1
     actions:
       m_PersistentCalls:
         m_Calls:
@@ -14111,6 +14109,22 @@ MonoBehaviour:
             m_FloatArgument: 0
             m_StringArgument: 
             m_BoolArgument: 1
+          m_CallState: 2
+  - time: 151
+    actions:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 386976272}
+          m_TargetAssemblyTypeName: GameTimeManager, com.vftc.robotconstructionkit
+          m_MethodName: Stop
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
           m_CallState: 2
 --- !u!1 &586594739
 GameObject:
@@ -41341,6 +41355,12 @@ PrefabInstance:
       propertyPath: gameTime
       value: 
       objectReference: {fileID: 11400000, guid: a2b0c8fc79ca7e044bdc57d52e3ec1d8,
+        type: 2}
+    - target: {fileID: 1474428138568771358, guid: e947d9b0bac996449889fb593fa94e7c,
+        type: 3}
+      propertyPath: roundTime
+      value: 
+      objectReference: {fileID: 11400000, guid: fac1097d42002ef4281b48426748c8ea,
         type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e947d9b0bac996449889fb593fa94e7c, type: 3}

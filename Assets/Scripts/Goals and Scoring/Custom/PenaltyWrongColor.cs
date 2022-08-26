@@ -26,7 +26,7 @@ public class PenaltyWrongColor : MonoBehaviour, IGrabEvent
     }
     public void StartCheckForWrongColor(TeamColor subjectColor)
     {
-        subjectColor = this.subjectColor;
+        this.subjectColor = subjectColor;
 
         if (objectColor != subjectColor)
         {
