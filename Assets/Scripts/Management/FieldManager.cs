@@ -45,7 +45,7 @@ public class FieldManager : MonoBehaviour
 
         gameTimeManager.roundIndex = GetRoundIndex();
         GameTimeReceiver timeReceiver = FindObjectOfType<GameTimeReceiver>();
-        timeReceiver.roundIndex = GetRoundIndex();
+        //timeReceiver.roundIndex = GetRoundIndex();
 
         
     }
