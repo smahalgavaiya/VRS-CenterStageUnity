@@ -39,6 +39,7 @@ public class ConeStackColorSwitcher : MonoBehaviour
 
     void ChangeConeColors()
     {
+            Debug.Log("switching");
         GetChildObjects();
         foreach (ColorSwitcher colorSwitcher in coneColorSwitchers)
         {
