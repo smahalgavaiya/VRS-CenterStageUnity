@@ -27596,6 +27596,18 @@ MonoBehaviour:
   FinishedStart:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 386976272}
+        m_TargetAssemblyTypeName: GameTimeManager, com.vftc.robotconstructionkit
+        m_MethodName: Reset
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 1404345740}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
@@ -35882,9 +35894,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a774579270b1c24791c2459bc22b50d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mode: 0
+  mode: 1
   autonomous: {fileID: 11400000, guid: 357c2464561ac044c8c3b02e710fd635, type: 2}
-  teleop: {fileID: 11400000, guid: 109ba309b75445742a6066df3553b06f, type: 2}
+  teleop: {fileID: 11400000, guid: abb6681a0ecca5f4bba7bed86db36db1, type: 2}
   gameTimeManager: {fileID: 386976272}
 --- !u!1 &1867799081 stripped
 GameObject:
