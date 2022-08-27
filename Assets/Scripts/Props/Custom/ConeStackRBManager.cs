@@ -8,15 +8,17 @@ public class ConeStackRBManager : MonoBehaviour
     [SerializeField] GameObject physicalCones;
     [SerializeField] GameObject dummyCones;
 
+    public GameObject PhysicalCones { get => physicalCones; }
+
     // Start is called before the first frame update
     void Start()
     {
-        physicalCones.SetActive(false);
+        PhysicalCones.SetActive(false);
     }
 
     public void SwitchOnPhysicalCones()
     {
-        physicalCones.SetActive(true);
+        PhysicalCones.SetActive(true);
         dummyCones.SetActive(false);
     }    
 
@@ -25,4 +27,5 @@ public class ConeStackRBManager : MonoBehaviour
     {
         
     }
+
 }
