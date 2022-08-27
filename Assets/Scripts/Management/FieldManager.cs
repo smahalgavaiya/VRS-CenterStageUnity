@@ -36,13 +36,14 @@ public class FieldManager : MonoBehaviour
             _instance = this;
         }
     }
-    void Start()
+    public void Start()
     {
+#if !UNITY_EDITOR
         if (vrs_messenger.instance == null)
             mode = GameMode.Teleop;
         else
             mode = vrs_messenger.instance.GetPlaymode();
-
+#endif
         gameTimeManager.roundIndex = GetRoundIndex();
         GameTimeReceiver timeReceiver = FindObjectOfType<GameTimeReceiver>();
         //timeReceiver.roundIndex = GetRoundIndex();
@@ -64,10 +65,10 @@ public class FieldManager : MonoBehaviour
             if(child.gameObject.activeInHierarchy)
                 break;
         }
-        #if UNITY_WEBGL && !UNITY_EDITOR
+#if UNITY_WEBGL && !UNITY_EDITOR
         try{updateSignalSensor(signalType);}
         catch{}
-        #endif
+#endif
 
         hasCheckedSignalSensor = true;
     }
