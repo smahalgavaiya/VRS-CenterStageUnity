@@ -54,7 +54,7 @@ public class AdjacentJunctionDetector : MonoBehaviour
 
                 if (!checkForCircuit.JunctionCappersChecked.Contains(junctionCapper))
                 {
-                    AdjacentJunctionDetector nextAdjacentJunctionDetector = junctionCapper.transform.parent.parent.GetComponentInChildren<AdjacentJunctionDetector>();
+                    AdjacentJunctionDetector nextAdjacentJunctionDetector = junctionCapper.transform.parent.parent.parent.GetComponentInChildren<AdjacentJunctionDetector>();
                     nextAdjacentJunctionDetector.CheckAdjacentColor(checkForCircuit);
                 }
             }

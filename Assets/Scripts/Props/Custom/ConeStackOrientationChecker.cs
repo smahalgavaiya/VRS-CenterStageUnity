@@ -8,9 +8,12 @@ public class ConeStackOrientationChecker : MonoBehaviour
     public bool IsRightSideUp { get; private set; } = true;
     KnockedOverConeStackPenalizer knockedOverConeStackPenalizer;
 
+    ConeStackRBManager coneStackRBManager;
+
     // Start is called before the first frame update
     void Start()
     {
+        coneStackRBManager = GetComponent<ConeStackRBManager>();
         coneOrientations = new List<ConeOrientation>();
         knockedOverConeStackPenalizer = GetComponent<KnockedOverConeStackPenalizer>(); 
 
@@ -27,7 +30,10 @@ public class ConeStackOrientationChecker : MonoBehaviour
         {
             IsRightSideUp = GetConeOrientations();
             if (!IsRightSideUp)
+            {
+                coneStackRBManager.SwitchOnPhysicalCones();
                 knockedOverConeStackPenalizer.PenalizeOrNot();
+            }
         }
     }
 
