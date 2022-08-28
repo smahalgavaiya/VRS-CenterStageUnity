@@ -6,8 +6,12 @@ public class ReleaseSubstationCone : MonoBehaviour
 {
     List<GameObject> conePositions = new List<GameObject>();
     [SerializeField] GameObject conePositionsParent;
+    [SerializeField] TeamColor teamColor;
+
+    [SerializeField] GameObject cone;
 
     List<GameObject> cones;
+
 
     int numberOfConesReleased = 0;
 
@@ -18,9 +22,12 @@ public class ReleaseSubstationCone : MonoBehaviour
 
         cones = new List<GameObject>();
 
-        foreach(Cone cone in GetComponentsInChildren<Cone>())
+        foreach(ConeDispenser coneDispenser in GetComponentsInChildren<ConeDispenser>())
         {
-            cones.Add(cone.gameObject);
+            foreach(Cone cone in coneDispenser.DummyCones.GetComponentsInChildren<Cone>())
+            {
+                cones.Add(cone.gameObject);
+            }
         }
 
         for(int i = 0; i < conePositionsParent.transform.childCount; i++)
@@ -41,11 +48,13 @@ public class ReleaseSubstationCone : MonoBehaviour
             if (conePositions[i].GetComponent<ConeOccupancyChecker>().IsEmptyNoCone)
             {
                 GameObject coneToRelease = cones[numberOfConesReleased];
-                coneToRelease.GetComponentInParent<TopConeFreedomChecker>().ReleaseConeManually();
+                coneToRelease.GetComponentInParent<ConeDispenser>().DispenseCone();
 
-                coneToRelease.GetComponent<Rigidbody>().isKinematic = false;
-
-                coneToRelease.transform.position = conePositions[i].transform.position;
+                GameObject newCone = Instantiate(cone);
+                newCone.GetComponent<ColorSwitcher>().TeamColor_ = teamColor;
+                newCone.GetComponent<ColorSwitcher>().SetColor();
+                newCone.GetComponent<ScoreObjectTypeLink>().LastTouchedTeamColor = teamColor;
+                newCone.transform.position = conePositions[i].transform.position;
                 numberOfConesReleased++;
                 break;
             }
