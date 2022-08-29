@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class KnockedOverConeStackPenalizer : MonoBehaviour
 {
-    List<CheckLastTouchedColor> lastTouchedColorList;
-    TeamColor coneStackColor;
+    TeamColor coneStackColor, lastTouchedColor;
     [SerializeField] ScoreTracker blueScoreTracker;
     [SerializeField] ScoreTracker redScoreTracker;
 
@@ -16,32 +15,33 @@ public class KnockedOverConeStackPenalizer : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        lastTouchedColorList = new List<CheckLastTouchedColor>();
-
-        foreach(CheckLastTouchedColor color in GetComponentsInChildren<CheckLastTouchedColor>())
-        {
-            lastTouchedColorList.Add(color);
-        }
-
         coneStackColor = GetComponent<ConeStackColorSwitcher>().TeamColor_;
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        ScoreObjectTypeLink scoreObjectTypeLink;
+        if (collision.gameObject.GetComponentInParent<ScoreObjectTypeLink>() != null)
+        {
+           scoreObjectTypeLink = 
+                collision.gameObject.GetComponentInParent<ScoreObjectTypeLink>();
+
+            lastTouchedColor = scoreObjectTypeLink.LastTouchedTeamColor;
+        }
     }
 
     public void PenalizeOrNot()
     {
-        foreach(CheckLastTouchedColor c in lastTouchedColorList)
-        {
-            if (c.LastTouchedColor != coneStackColor)
-            { 
-                switch (c.LastTouchedColor)
-                {
-                    case TeamColor.Blue:
-                        blueScoreTracker.AddOrSubtractScore(-penalty.globalInt * numberOfPenalties);
-                        break;
-                    case TeamColor.Red:
-                        redScoreTracker.AddOrSubtractScore(-penalty.globalInt * numberOfPenalties);
-                        break;
-                }
-                break;
+        if (lastTouchedColor != coneStackColor)
+        { 
+            switch (lastTouchedColor)
+            {
+                case TeamColor.Blue:
+                    blueScoreTracker.AddOrSubtractScore(-penalty.globalInt * numberOfPenalties);
+                    break;
+                case TeamColor.Red:
+                    redScoreTracker.AddOrSubtractScore(-penalty.globalInt * numberOfPenalties);
+                    break;
             }
         }
     }
