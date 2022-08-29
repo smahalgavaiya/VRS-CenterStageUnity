@@ -6,34 +6,26 @@ public class ConeStackGrabber : MonoBehaviour
 {
     [SerializeField] Drive grabberDrive;
     bool isOnConeStack;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-    }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.GetComponent<ConeStackRBManager>() != null)
+        if (other.GetComponentInParent<ConeStackRBManager>() != null)
         {
             isOnConeStack = true;
         }
     }
     private void OnTriggerStay(Collider other)
     {
-        if (other.GetComponent<ConeStackRBManager>() != null)
+        if (other.GetComponentInParent<ConeStackRBManager>() != null)
         {
             if (grabberDrive.driveAmount.magnitude > .01f && isOnConeStack)
             {
-                other.GetComponent<ConeDispenser>().DispenseCone();
+                other.GetComponentInParent<ConeDispenser>().DispenseCone();
                 GameObject newCone = 
-                    Instantiate(other.GetComponent<ConeStackRBManager>().PhysicalCones.transform.GetChild(0).gameObject);
+                    Instantiate(other.GetComponentInParent<ConeStackRBManager>().PhysicalCones.transform.GetChild(0).gameObject);
                 newCone.transform.position = this.transform.position;
+                Transform stack = newCone.transform.Find("BaseForStackingPurposes");
+                Destroy(stack.gameObject);
                 GetComponent<ObjectChecker>().CanPickUp = true;
                 GetComponent<ObjectChecker>().ObjectInTrigger = newCone;
                 GetComponent<ObjectGrabber>().PickUpOrPutDownObject();
