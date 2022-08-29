@@ -30,15 +30,16 @@ public class ConeStackColorSwitcher : MonoBehaviour
             scoreObjectTypeLinks = new List<ScoreObjectTypeLink>();
         scoreObjectTypeLinks.Clear();
 
-        for (int i = 0; i < transform.childCount; i++)
+        foreach(ColorSwitcher colorSwitcher in GetComponentsInChildren<ColorSwitcher>())
         {
-            coneColorSwitchers.Add(transform.GetChild(i).gameObject.GetComponent<ColorSwitcher>());
-            scoreObjectTypeLinks.Add(transform.GetChild(i).gameObject.GetComponent<ScoreObjectTypeLink>());
+            coneColorSwitchers.Add(colorSwitcher);
+            scoreObjectTypeLinks.Add(colorSwitcher.gameObject.GetComponent<ScoreObjectTypeLink>());
         }
     }
 
     void ChangeConeColors()
     {
+            Debug.Log("switching");
         GetChildObjects();
         foreach (ColorSwitcher colorSwitcher in coneColorSwitchers)
         {
@@ -56,9 +57,9 @@ public class ConeStackColorSwitcher : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (coneColorSwitchers.Count < 5)
+        if (coneColorSwitchers.Count < 10)
             GetChildObjects();
-        
+
         if ((int)teamColor != currentTeamColor)
         {
             ChangeConeColors();

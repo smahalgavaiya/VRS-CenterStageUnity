@@ -15,7 +15,7 @@ public class SelectBotOptions : MonoBehaviour
     public GameObject ConePrefab;
 
     public UnityEvent FinishedStart;
-
+    private GameObject spawnedBot;
     // Start is called before the first frame update
 
     public void SelectBot(int index)
@@ -40,12 +40,14 @@ public class SelectBotOptions : MonoBehaviour
 
     public void StartGame()
     {
+        if (spawnedBot) { Destroy(spawnedBot); }
         int spawnIdx = (int)color;
         if (useLowerSpawn) { spawnIdx += 2; }
         GameObject bot = GameObject.Instantiate(botPrefabs[selectedBot],spawnPoints[spawnIdx].position, spawnPoints[spawnIdx].rotation);
         bot.GetComponent<ColorSwitcher>().TeamColor_ = color;
         bot.GetComponent<ColorSwitcher>().SetColor();
         bot.GetComponent<ScoreObjectTypeLink>().LastTouchedTeamColor = color;
+        spawnedBot = bot;
         if(preloadCone)
         {
             StartCoroutine(DoPreload(bot));
