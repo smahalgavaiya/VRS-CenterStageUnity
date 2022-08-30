@@ -7138,13 +7138,11 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 733726793}
-    - target: {fileID: 1827819777465048252, guid: d1997b02a0cfa3b4b9ab66a4c026464b,
-        type: 3}
+    - target: {fileID: 0}
       propertyPath: input
       value: 
       objectReference: {fileID: 1867799084}
-    - target: {fileID: 1827819777465048252, guid: d1997b02a0cfa3b4b9ab66a4c026464b,
-        type: 3}
+    - target: {fileID: 0}
       propertyPath: bindText
       value: 
       objectReference: {fileID: 1588410550}
@@ -7283,13 +7281,21 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5782535172446390677, guid: d1997b02a0cfa3b4b9ab66a4c026464b,
+    - target: {fileID: 4923648126550210347, guid: d1997b02a0cfa3b4b9ab66a4c026464b,
         type: 3}
       propertyPath: input
       value: 
       objectReference: {fileID: 1867799084}
-    - target: {fileID: 5782535172446390677, guid: d1997b02a0cfa3b4b9ab66a4c026464b,
+    - target: {fileID: 4923648126550210347, guid: d1997b02a0cfa3b4b9ab66a4c026464b,
         type: 3}
+      propertyPath: bindText
+      value: 
+      objectReference: {fileID: 1588410550}
+    - target: {fileID: 0}
+      propertyPath: input
+      value: 
+      objectReference: {fileID: 1867799084}
+    - target: {fileID: 0}
       propertyPath: bindText
       value: 
       objectReference: {fileID: 1008070311}
@@ -7575,6 +7581,16 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[3].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 8674217230374716905, guid: d1997b02a0cfa3b4b9ab66a4c026464b,
+        type: 3}
+      propertyPath: input
+      value: 
+      objectReference: {fileID: 1867799084}
+    - target: {fileID: 8674217230374716905, guid: d1997b02a0cfa3b4b9ab66a4c026464b,
+        type: 3}
+      propertyPath: bindText
+      value: 
+      objectReference: {fileID: 1008070311}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d1997b02a0cfa3b4b9ab66a4c026464b, type: 3}
 --- !u!224 &152448908 stripped
@@ -11219,7 +11235,7 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 152448907}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &387394247
+--- !u!114 &387394244
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -11228,7 +11244,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 387394242}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a9d315cc67dddce4c8dac6d29cef3058, type: 3}
+  m_Script: {fileID: 11500000, guid: 2e5f15053a7eb8a44ad5d0858280d7b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   controls: {fileID: -944628639613478452, guid: 02a18010ca707c245948f9f49d9926c0,
@@ -11236,6 +11252,7 @@ MonoBehaviour:
   input: {fileID: 1867799084}
   ActionName: ReleaseCone
   bindText: {fileID: 1835090498}
+  buttonTeam: 0
 --- !u!1 &387421065
 GameObject:
   m_ObjectHideFlags: 0
@@ -18705,7 +18722,7 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 152448907}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &879361999
+--- !u!114 &879361995
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -18714,7 +18731,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 879361994}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a9d315cc67dddce4c8dac6d29cef3058, type: 3}
+  m_Script: {fileID: 11500000, guid: 2e5f15053a7eb8a44ad5d0858280d7b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   controls: {fileID: -944628639613478452, guid: 02a18010ca707c245948f9f49d9926c0,
@@ -18722,6 +18739,7 @@ MonoBehaviour:
   input: {fileID: 1867799084}
   ActionName: ReleaseCone
   bindText: {fileID: 462858356}
+  buttonTeam: 1
 --- !u!1 &880777389
 GameObject:
   m_ObjectHideFlags: 0

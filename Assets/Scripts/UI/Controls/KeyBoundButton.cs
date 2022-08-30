@@ -56,9 +56,16 @@ public class KeyBoundButton : MonoBehaviour
         buttonPress.performed -= OnInputAction;
     }
 
+    public virtual bool checkCanPress()
+    {
+        return true;
+    }
+
     private void OnInputAction(InputAction.CallbackContext obj)
     {
-        button.onClick.Invoke();
-        // do stuff
+        if(checkCanPress())
+        {
+            button.onClick.Invoke();
+        }
     }
 }
