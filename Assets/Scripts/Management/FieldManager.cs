@@ -10,6 +10,8 @@ public enum GameMode
 }
 public class FieldManager : MonoBehaviour
 {
+    public static TeamColor botColor;
+
     public GameMode mode;
 
     public RoundIndex autonomous,teleop;
@@ -19,7 +21,7 @@ public class FieldManager : MonoBehaviour
     private static FieldManager _instance;
     public static FieldManager instance
     {
-        get {return _instance;}
+        get { return _instance; }
     }
 
     [DllImport("__Internal")]

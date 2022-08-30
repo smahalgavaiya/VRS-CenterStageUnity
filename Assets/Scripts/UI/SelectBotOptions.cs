@@ -48,6 +48,7 @@ public class SelectBotOptions : MonoBehaviour
         bot.GetComponent<ColorSwitcher>().SetColor();
         bot.GetComponent<ScoreObjectTypeLink>().LastTouchedTeamColor = color;
         spawnedBot = bot;
+        FieldManager.botColor = color;
         if(preloadCone)
         {
             StartCoroutine(DoPreload(bot));
