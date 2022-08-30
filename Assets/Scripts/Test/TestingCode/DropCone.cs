@@ -22,12 +22,14 @@ public class DropCone : MonoBehaviour
     {
         blueCones = new List<GameObject>();
         redCones = new List<GameObject>();
-        foreach (Cone cone in BlueConesParent.GetComponentsInChildren<Cone>())
+        foreach (Cone cone in BlueConesParent.GetComponentsInChildren<Cone>(true))
         {
+            if(cone.GetComponent<Rigidbody>() == null) { continue; }//skip dummy cones
             blueCones.Add(cone.gameObject);
         }
-        foreach (Cone cone in RedConesParent.GetComponentsInChildren<Cone>())
+        foreach (Cone cone in RedConesParent.GetComponentsInChildren<Cone>(true))
         {
+            if (cone.GetComponent<Rigidbody>() == null) { continue; }//skip dummy cones
             redCones.Add(cone.gameObject);
         }
 
@@ -57,7 +59,7 @@ public class DropCone : MonoBehaviour
                 newCone = redCones[0];
                 redCones.RemoveAt(0);
             }
-
+            newCone.GetComponent<Cone>().ConeBaseForStacking.GetComponentInChildren<Collider>().enabled = false;//turn off stack collider.
             newCone.GetComponent<Rigidbody>().isKinematic = false;
             Vector3 newPos = Selection.activeGameObject.transform.position;
             newPos.y += HeightOffset;
@@ -65,12 +67,7 @@ public class DropCone : MonoBehaviour
             newPos.z += ZOffset;
 
             newCone.transform.position = newPos;
-
-            //GameObject obj = Selection.activeGameObject;
-            //Vector3 temp = obj.transform.position;
-            //temp.y += 0.5f;
-            //GameObject newObj = Object.Instantiate(RedConeTemplate, obj.transform.position, obj.transform.rotation );
-            //newObj.GetComponent<Rigidbody>().isKinematic = false;
+            newCone.transform.parent = null ;//physical cone parent is going to be disabled.
         }
 
     }
