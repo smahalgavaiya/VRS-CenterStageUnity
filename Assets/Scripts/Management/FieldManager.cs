@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Runtime.InteropServices;
 
-public enum GameMode
+public enum FieldGameMode
 {
     Autonomous,
     Teleop
 }
 public class FieldManager : MonoBehaviour
 {
-    public GameMode mode;
+    public FieldGameMode mode;
 
     public RoundIndex autonomous,teleop;
 
@@ -74,9 +74,9 @@ public class FieldManager : MonoBehaviour
     }
     public RoundIndex GetRoundIndex()
     {
-        if(mode == GameMode.Autonomous)
+        if(mode == FieldGameMode.Autonomous)
             return autonomous;
-        else if(mode == GameMode.Teleop)
+        else if(mode == FieldGameMode.Teleop)
             return teleop;
         else
             return null;

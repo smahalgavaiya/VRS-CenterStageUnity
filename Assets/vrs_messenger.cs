@@ -5,7 +5,7 @@ using UnityEngine;
 public class vrs_messenger : MonoBehaviour
 {
     public static vrs_messenger instance;
-    [SerializeField] private GameMode playmode = GameMode.Teleop;
+    [SerializeField] private FieldGameMode playmode = FieldGameMode.Teleop;
 
     private void Awake()
     {
@@ -24,10 +24,10 @@ public class vrs_messenger : MonoBehaviour
     public void SetPlaymode(int playmode)
     {
         Debug.Log("playmode = " + playmode);
-        this.playmode = (GameMode)playmode;
+        this.playmode = (FieldGameMode)playmode;
     }
 
-    public GameMode GetPlaymode()
+    public FieldGameMode GetPlaymode()
     {
         return playmode;
     }
