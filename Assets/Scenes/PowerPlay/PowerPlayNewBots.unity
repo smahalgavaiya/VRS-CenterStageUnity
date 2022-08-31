@@ -7138,14 +7138,6 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 733726793}
-    - target: {fileID: 0}
-      propertyPath: input
-      value: 
-      objectReference: {fileID: 1867799084}
-    - target: {fileID: 0}
-      propertyPath: bindText
-      value: 
-      objectReference: {fileID: 1588410550}
     - target: {fileID: 2152610257023635862, guid: d1997b02a0cfa3b4b9ab66a4c026464b,
         type: 3}
       propertyPath: m_UseSpriteMesh
@@ -7291,14 +7283,6 @@ PrefabInstance:
       propertyPath: bindText
       value: 
       objectReference: {fileID: 1588410550}
-    - target: {fileID: 0}
-      propertyPath: input
-      value: 
-      objectReference: {fileID: 1867799084}
-    - target: {fileID: 0}
-      propertyPath: bindText
-      value: 
-      objectReference: {fileID: 1008070311}
     - target: {fileID: 5947967410444329823, guid: d1997b02a0cfa3b4b9ab66a4c026464b,
         type: 3}
       propertyPath: m_IsActive
@@ -14201,9 +14185,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97902335acd4aa646a240456e5a6ac7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameTime: {fileID: 11400000, guid: a2b0c8fc79ca7e044bdc57d52e3ec1d8, type: 2}
+  gameTime: {fileID: 11400000, guid: fac1097d42002ef4281b48426748c8ea, type: 2}
   eventData:
-  - time: 89
+  - time: 30
+    roundName: Tele-op
     actions:
       m_PersistentCalls:
         m_Calls:
@@ -18722,7 +18707,7 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 152448907}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &879361995
+--- !u!114 &879361999
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -21934,16 +21919,16 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: 67e78446e08de2d42b84fd13335d353e, type: 3}
-    m_FontSize: 88
+    m_FontSize: 245
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 10
-    m_MaxSize: 88
-    m_Alignment: 1
+    m_MaxSize: 253
+    m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
-    m_VerticalOverflow: 0
+    m_VerticalOverflow: 1
     m_LineSpacing: 1
   m_Text: 1
 --- !u!222 &1040233089
@@ -21970,8 +21955,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 9.2341, y: -43.789467}
-  m_SizeDelta: {x: 303.07, y: 123.1665}
+  m_AnchoredPosition: {x: -0.0017891, y: 0}
+  m_SizeDelta: {x: 303.07, y: 213.14}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!1 &1040832017
 GameObject:
@@ -36603,9 +36588,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a774579270b1c24791c2459bc22b50d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mode: 1
+  mode: 3
   autonomous: {fileID: 11400000, guid: 357c2464561ac044c8c3b02e710fd635, type: 2}
   teleop: {fileID: 11400000, guid: abb6681a0ecca5f4bba7bed86db36db1, type: 2}
+  fullgame: {fileID: 11400000, guid: baa8ec72ef06edd44ad64871d444ebb4, type: 2}
+  freeplay: {fileID: 11400000, guid: abbd482e29929e143b6860f73e976087, type: 2}
   gameTimeManager: {fileID: 386976272}
 --- !u!1 &1867799081 stripped
 GameObject:
@@ -38885,8 +38872,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 0.000030518, y: -42.995}
-  m_SizeDelta: {x: 303.0664, y: 85.99097}
+  m_AnchoredPosition: {x: 0.000062943, y: -106.57}
+  m_SizeDelta: {x: 303.0664, y: 213.1353}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &2006251820
 MonoBehaviour:
