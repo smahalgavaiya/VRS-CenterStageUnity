@@ -6,7 +6,9 @@ using System.Runtime.InteropServices;
 public enum GameMode
 {
     Autonomous,
-    Teleop
+    Teleop,
+    Fullgame,
+    Freeplay
 }
 public class FieldManager : MonoBehaviour
 {
@@ -14,7 +16,7 @@ public class FieldManager : MonoBehaviour
 
     public GameMode mode;
 
-    public RoundIndex autonomous,teleop;
+    public RoundIndex autonomous,teleop,fullgame,freeplay;
 
     public GameTimeManager gameTimeManager;
 
@@ -76,12 +78,18 @@ public class FieldManager : MonoBehaviour
     }
     public RoundIndex GetRoundIndex()
     {
-        if(mode == GameMode.Autonomous)
-            return autonomous;
-        else if(mode == GameMode.Teleop)
-            return teleop;
-        else
-            return null;
+        switch(mode)
+        {
+            case GameMode.Autonomous:
+                return autonomous;
+            case GameMode.Teleop:
+                return teleop;
+            case GameMode.Fullgame:
+                return fullgame;
+            case GameMode.Freeplay:
+                return freeplay;
+        }
+        return null;
     }
 
 }
