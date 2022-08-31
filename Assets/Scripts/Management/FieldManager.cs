@@ -5,10 +5,10 @@ using System.Runtime.InteropServices;
 
 public enum GameMode
 {
-    Autonomous,
-    Teleop,
-    Fullgame,
-    Freeplay
+    Autonomous=0,
+    Teleop=1,
+    Fullgame=2,
+    Freeplay=3
 }
 public class FieldManager : MonoBehaviour
 {
@@ -75,6 +75,12 @@ public class FieldManager : MonoBehaviour
 #endif
 
         hasCheckedSignalSensor = true;
+    }
+
+    public void SetGameMode(int mode)
+    {
+        this.mode = (GameMode)mode;
+        gameTimeManager.roundIndex = GetRoundIndex();
     }
     public RoundIndex GetRoundIndex()
     {
