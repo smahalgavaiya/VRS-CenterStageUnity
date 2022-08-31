@@ -12,11 +12,11 @@ public class FusionSpawner : MonoBehaviour, INetworkRunnerCallbacks
 
     public Transform[] spawnPositions;
 
+    public InputActionManager IAM;
+
     [SerializeField] private NetworkPrefabRef _sliderPrefab;
 
     private Dictionary<PlayerRef, NetworkObject> _spawnedCharacters = new Dictionary<PlayerRef, NetworkObject>();
-
-    private int playersSpawned = 0;
     async void StartGame(GameMode mode)
     {
         // Create the Fusion runner and let it know that we will be providing user input
@@ -52,10 +52,25 @@ public class FusionSpawner : MonoBehaviour, INetworkRunnerCallbacks
         if(runner.IsServer)
         {
             Debug.Log("Spawning Player");
-            Vector3 spawnPos = spawnPositions[playersSpawned].position;
-            playersSpawned++;
-            Debug.Log("Spawn Positon Set: " + spawnPos.x + " " + spawnPos.y + " " + spawnPos.z);
+            Vector3 spawnPos = spawnPositions[player.RawEncoded%runner.Config.Simulation.DefaultPlayers].TransformPoint(spawnPositions[player.RawEncoded%runner.Config.Simulation.DefaultPlayers].position);
+            Debug.Log("Spawn Positon Set: x" + spawnPos.x + " y" + spawnPos.y + " z" + spawnPos.z);
             NetworkObject networkPlayerObject = _runner.Spawn(_sliderPrefab,spawnPos,Quaternion.identity,player);
+            DriveReceiverSpinningWheels dr = networkPlayerObject.GetComponent<DriveReceiverSpinningWheels>();
+            Drive frontRight = Instantiate(dr.frontRight);
+            Drive frontLeft = Instantiate(dr.frontLeft);
+            Drive backRight = Instantiate(dr.backRight);
+            Drive backLeft = Instantiate(dr.backLeft);
+            dr.frontRight = frontRight;
+            dr.frontLeft = frontLeft;
+            dr.backRight = backRight;
+            dr.backLeft = backLeft;
+            dr.UpdateDrivers();
+            IAM.frontRightWheel = frontRight;
+            IAM.frontLeftWheel = frontLeft;
+            IAM.backRightWheel = backRight;
+            IAM.backLeftWheel = backLeft;
+            IAM.robot = networkPlayerObject.gameObject;
+
             Debug.Log("Player Object: " + networkPlayerObject.Name);
             _spawnedCharacters.Add(player,networkPlayerObject);
         }
