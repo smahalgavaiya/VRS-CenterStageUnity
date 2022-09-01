@@ -42,4 +42,8 @@ public class CameraSwitcher : MonoBehaviour
     {
         
     }
+    public void OnSwitchCamera()
+    {
+        NextCamera();
+    }
 }
