@@ -25,6 +25,7 @@ public class testScoring : MonoBehaviour
             }
         }
         SceneManager.LoadScene("PowerPlayNewBots",LoadSceneMode.Single);
+        
     }
 
     [TearDown]
@@ -76,7 +77,8 @@ public class testScoring : MonoBehaviour
 
     public IEnumerator TestConeScoring(TeamColor color, int correctScore, bool testGround=false,bool testPoles=true)
     {
-
+        SelectBotOptions botgui = GameObject.FindObjectOfType<SelectBotOptions>();
+        botgui.gameObject.SetActive(false);
         yield return new WaitForSeconds(0.5f);
         DropCone cone = GameObject.FindObjectOfType<DropCone>();
         cone.color = color; 
