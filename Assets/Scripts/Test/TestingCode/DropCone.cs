@@ -41,35 +41,41 @@ public class DropCone : MonoBehaviour
     {
         if (Input.GetKeyDown("0"))
         {
-
-            GameObject newCone;
-
-            if (color == TeamColor.Blue)
-            {
-                newCone = blueCones[0];
-                blueCones.RemoveAt(0);
-            }
-            else if (color == TeamColor.Red)
-            {
-                newCone = redCones[0];
-                redCones.RemoveAt(0);
-            }
-            else
-            {
-                newCone = redCones[0];
-                redCones.RemoveAt(0);
-            }
-            newCone.GetComponent<Cone>().ConeBaseForStacking.GetComponentInChildren<Collider>().enabled = false;//turn off stack collider.
-            newCone.GetComponent<Rigidbody>().isKinematic = false;
-            Vector3 newPos = Selection.activeGameObject.transform.position;
-            newPos.y += HeightOffset;
-            newPos.x += XOffset;
-            newPos.z += ZOffset;
-
-            newCone.transform.position = newPos;
-            newCone.transform.parent = null ;//physical cone parent is going to be disabled.
+            Drop(Selection.activeGameObject);
         }
 
     }
 #endif
+    public void Drop(GameObject dropTarget)
+    {
+        Vector3 newPos = dropTarget.transform.position;
+
+        GameObject newCone;
+
+        if (color == TeamColor.Blue)
+        {
+            newCone = blueCones[0];
+            blueCones.RemoveAt(0);
+        }
+        else if (color == TeamColor.Red)
+        {
+            newCone = redCones[0];
+            redCones.RemoveAt(0);
+        }
+        else
+        {
+            newCone = redCones[0];
+            redCones.RemoveAt(0);
+        }
+        newCone.GetComponent<Cone>().ConeBaseForStacking.GetComponentInChildren<Collider>().enabled = false;//turn off stack collider.
+        newCone.GetComponent<Rigidbody>().isKinematic = false;
+
+        newPos.y += HeightOffset;
+        newPos.x += XOffset;
+        newPos.z += ZOffset;
+
+        newCone.transform.position = newPos;
+        newCone.transform.parent = null;//physical cone parent is going to be disabled.
+    }
+
 }
