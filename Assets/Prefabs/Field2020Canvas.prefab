@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4350381784152576820}
   - component: {fileID: 7665073701196320045}
   - component: {fileID: 4731333524144725751}
-  - component: {fileID: 5782535172446390677}
+  - component: {fileID: 8674217230374716905}
   m_Layer: 5
   m_Name: BlueBeaconRelease
   m_TagString: Untagged
@@ -146,7 +146,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &5782535172446390677
+--- !u!114 &8674217230374716905
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -155,13 +155,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 1100603835503870224}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a9d315cc67dddce4c8dac6d29cef3058, type: 3}
+  m_Script: {fileID: 11500000, guid: 2e5f15053a7eb8a44ad5d0858280d7b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   controls: {fileID: -944628639613478452, guid: 02a18010ca707c245948f9f49d9926c0,
     type: 3}
+  input: {fileID: 0}
   ActionName: ReleaseBeacon
   bindText: {fileID: 0}
+  buttonTeam: 0
 --- !u!1 &1316316861891326266
 GameObject:
   m_ObjectHideFlags: 0
@@ -861,7 +863,7 @@ GameObject:
   - component: {fileID: 3901396033570051437}
   - component: {fileID: 192964487109417530}
   - component: {fileID: 3315443248159235649}
-  - component: {fileID: 1827819777465048252}
+  - component: {fileID: 4923648126550210347}
   m_Layer: 5
   m_Name: RedBeaconRelease
   m_TagString: Untagged
@@ -995,7 +997,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &1827819777465048252
+--- !u!114 &4923648126550210347
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1004,13 +1006,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 4814334894857043980}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a9d315cc67dddce4c8dac6d29cef3058, type: 3}
+  m_Script: {fileID: 11500000, guid: 2e5f15053a7eb8a44ad5d0858280d7b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   controls: {fileID: -944628639613478452, guid: 02a18010ca707c245948f9f49d9926c0,
     type: 3}
+  input: {fileID: 0}
   ActionName: ReleaseBeacon
   bindText: {fileID: 0}
+  buttonTeam: 1
 --- !u!1 &5947967410171115987
 GameObject:
   m_ObjectHideFlags: 0
@@ -2685,7 +2689,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d99239ccc6c93649a7ce2ac2627b642, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  roundIndex: {fileID: 11400000, guid: abb6681a0ecca5f4bba7bed86db36db1, type: 2}
 --- !u!1 &8708311712194428586
 GameObject:
   m_ObjectHideFlags: 0
