@@ -5,21 +5,25 @@ using System.Runtime.InteropServices;
 
 public enum GameMode
 {
-    Autonomous,
-    Teleop
+    Autonomous=0,
+    Teleop=1,
+    Fullgame=2,
+    Freeplay=3
 }
 public class FieldManager : MonoBehaviour
 {
+    public static TeamColor botColor;
+
     public GameMode mode;
 
-    public RoundIndex autonomous,teleop;
+    public RoundIndex autonomous,teleop,fullgame,freeplay;
 
     public GameTimeManager gameTimeManager;
 
     private static FieldManager _instance;
     public static FieldManager instance
     {
-        get {return _instance;}
+        get { return _instance; }
     }
 
     [DllImport("__Internal")]
@@ -72,14 +76,26 @@ public class FieldManager : MonoBehaviour
 
         hasCheckedSignalSensor = true;
     }
+
+    public void SetGameMode(int mode)
+    {
+        this.mode = (GameMode)mode;
+        gameTimeManager.roundIndex = GetRoundIndex();
+    }
     public RoundIndex GetRoundIndex()
     {
-        if(mode == GameMode.Autonomous)
-            return autonomous;
-        else if(mode == GameMode.Teleop)
-            return teleop;
-        else
-            return null;
+        switch(mode)
+        {
+            case GameMode.Autonomous:
+                return autonomous;
+            case GameMode.Teleop:
+                return teleop;
+            case GameMode.Fullgame:
+                return fullgame;
+            case GameMode.Freeplay:
+                return freeplay;
+        }
+        return null;
     }
 
 }

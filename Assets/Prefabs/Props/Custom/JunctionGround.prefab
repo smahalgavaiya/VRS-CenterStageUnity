@@ -68,10 +68,10 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
-  m_Radius: 3.38
-  m_Height: 10.32
+  m_Radius: 4.67
+  m_Height: 21.271948
   m_Direction: 1
-  m_Center: {x: 0, y: 1.9030051, z: 0}
+  m_Center: {x: 0, y: 7.378982, z: 0}
 --- !u!1001 &5705244173829685995
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -79,6 +79,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1109411221115907663, guid: 341fdd59a725af94a935b9b0be8ab846,
+        type: 3}
+      propertyPath: m_Height
+      value: 12.734065
+      objectReference: {fileID: 0}
+    - target: {fileID: 1109411221115907663, guid: 341fdd59a725af94a935b9b0be8ab846,
+        type: 3}
+      propertyPath: m_Center.y
+      value: 5.3670363
+      objectReference: {fileID: 0}
     - target: {fileID: 1439451405075741445, guid: 341fdd59a725af94a935b9b0be8ab846,
         type: 3}
       propertyPath: scoringGuide
