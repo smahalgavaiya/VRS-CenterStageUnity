@@ -9,6 +9,32 @@ public class testScoring : MonoBehaviour
 {
     Dictionary<string,ScoreTracker> scores = new Dictionary<string,ScoreTracker>();
     SelectBotOptions botOptions;
+    GameObject[,] gameGrid;
+    int gridHeight = 5;
+    int gridWidth = 5;
+    JunctionCapper[] scoringLocs;
+    string testPattern = "A0,B1,C2,D3,E4";
+
+    GameObject getGoalOnGrid(string coords)
+    {
+        Vector2Int loc = getGridLocation(coords);
+        return gameGrid[loc.x, loc.y];
+    }
+
+    Vector2Int getGridLocation(string coords)
+    {
+        int acode = (int)'A';
+        int column = (int)coords[0];
+        column -= acode;
+        return new Vector2Int(column, int.Parse(coords[1].ToString()));
+    }
+
+    void setGoalOnGrid(string coords, GameObject obj)
+    {
+        Vector2Int loc = getGridLocation(coords);
+        gameGrid[loc.x,loc.y] = obj;
+    }
+
 
     [SetUp]
     public void SetUp()
@@ -26,7 +52,18 @@ public class testScoring : MonoBehaviour
                 scores.Add("Blue", tracker);
             }
         }
+        gameGrid = new GameObject[gridWidth,gridHeight];
         SceneManager.LoadScene("PowerPlayNewBots",LoadSceneMode.Single);
+    }
+
+    public void CreateGrid()
+    {
+        scoringLocs = GameObject.FindObjectsOfType<JunctionCapper>();
+        foreach(JunctionCapper cap in scoringLocs)
+        {
+            string coords = cap.transform.parent.parent.parent.name.Split('-')[1];//need a 
+            setGoalOnGrid(coords, cap.gameObject);
+        }
     }
 
     [TearDown]
@@ -76,6 +113,27 @@ public class testScoring : MonoBehaviour
 
     }
 
+    [UnityTest]
+    public IEnumerator TestBlueCircuit()
+    {
+        yield return TestConePath(TeamColor.Blue, 34, testPattern);
+        //yield return TestConePath(TeamColor.Blue, 52, "A0,B1,B2,C1,D1,D2,D3,D4");
+        //yield return TestConePath(TeamColor.Red, 16, testPattern);
+    }
+
+    [UnityTest]
+    public IEnumerator TestRedCircuitOnBlue()
+    {
+        yield return TestConePath(TeamColor.Red, 14, testPattern);
+        //yield return TestConePath(TeamColor.Red, 16, testPattern);
+    }
+
+    [UnityTest]
+    public IEnumerator TestRedCircuit()
+    {
+        yield return TestConePath(TeamColor.Red, 34, "A4,B3,C2,D1,E0");
+        //yield return TestConePath(TeamColor.Red, 16, testPattern);
+    }
 
     public IEnumerator TestBotSpawn()
     {
@@ -96,21 +154,19 @@ public class testScoring : MonoBehaviour
 
     public IEnumerator TestConeScoring(TeamColor color, int correctScore, bool testGround=false,bool testPoles=true)
     {
-
-        SelectBotOptions botgui = GameObject.FindObjectOfType<SelectBotOptions>();
-        botgui.gameObject.SetActive(false);
+        ReadyTest();
         yield return new WaitForSeconds(0.5f);
         DropCone cone = GameObject.FindObjectOfType<DropCone>();
         cone.HeightOffset = 1f;
         cone.color = color; 
-        JunctionCapper[] scoringLocs = GameObject.FindObjectsOfType<JunctionCapper>();
+        
         foreach(JunctionCapper loc in scoringLocs)
         {
             string scoreObjName = loc.transform.parent.parent.parent.name;
             if (scoreObjName.Contains("Ground") && !testGround) { continue; }
             if (!scoreObjName.Contains("Ground") && !testPoles) { continue; }
             cone.Drop(loc.gameObject);
-            yield return new WaitForSeconds(.1f);
+            yield return new WaitForSeconds(0.1f);
         }
         yield return new WaitForSeconds(2);
         ScoreTracker score = scores["Red"];
@@ -119,5 +175,38 @@ public class testScoring : MonoBehaviour
 
         Assert.AreEqual(correctScore, score.Score,"Correct Score for Team?");
         Assert.AreEqual(0, otherScore.Score,"Other team shouldnt have any points");
+    }
+
+    public void ReadyTest()//this needs to be called after scene is ready, which is why its not in setup.
+    {
+        CreateGrid();
+        SelectBotOptions botgui = GameObject.FindObjectOfType<SelectBotOptions>();
+        if (botgui) { botgui.gameObject.SetActive(false); }
+        
+    }
+
+    public IEnumerator TestConePath(TeamColor color, int correctScore, string coords)
+    {
+        ReadyTest();
+        yield return new WaitForSeconds(0.5f);
+        DropCone cone = GameObject.FindObjectOfType<DropCone>();
+        cone.HeightOffset = 1f;
+        cone.color = color;
+
+        string[] coordsList = coords.Split(',');
+        foreach(string coord in coordsList)
+        {
+            GameObject junction = getGoalOnGrid(coord);
+            cone.Drop(junction);
+            yield return new WaitForSeconds(.1f);
+        }
+
+        yield return new WaitForSeconds(2);
+        ScoreTracker score = scores["Red"];
+        ScoreTracker otherScore = scores["Blue"];
+        if (color == TeamColor.Blue) { score = scores["Blue"]; otherScore = scores["Red"]; }
+
+        Assert.AreEqual(correctScore, score.Score, "Correct Score for Team?");
+        Assert.AreEqual(0, otherScore.Score, "Other team shouldnt have any points");
     }
 }
