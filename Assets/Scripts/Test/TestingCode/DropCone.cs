@@ -67,8 +67,7 @@ public class DropCone : MonoBehaviour
             newCone = redCones[0];
             redCones.RemoveAt(0);
         }
-        newCone.GetComponent<Cone>().ConeBaseForStacking.GetComponentInChildren<Collider>().enabled = false;//turn off stack collider.
-        newCone.GetComponent<Rigidbody>().isKinematic = false;
+        newCone.GetComponent<Cone>().MakeScorable();
 
         newPos.y += HeightOffset;
         newPos.x += XOffset;

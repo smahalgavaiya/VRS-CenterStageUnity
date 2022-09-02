@@ -24,8 +24,8 @@ public class ConeStackGrabber : MonoBehaviour
                 GameObject newCone = 
                     Instantiate(other.GetComponentInParent<ConeStackRBManager>().PhysicalCones.transform.GetChild(0).gameObject);
                 newCone.transform.position = this.transform.position;
-                Transform stack = newCone.transform.Find("BaseForStackingPurposes");
-                Destroy(stack.gameObject);
+                newCone.GetComponent<Cone>().MakeScorable();
+
                 GetComponent<ObjectChecker>().CanPickUp = true;
                 GetComponent<ObjectChecker>().ObjectInTrigger = newCone;
                 GetComponent<ObjectGrabber>().PickUpOrPutDownObject();

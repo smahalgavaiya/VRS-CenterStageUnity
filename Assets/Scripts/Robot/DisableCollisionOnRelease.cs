@@ -26,6 +26,7 @@ public class DisableCollisionOnRelease : MonoBehaviour,IGrabEvent
     {
         foreach(Collider collider in colliders)
         {
+            if (collider.isTrigger) { continue; }
             collider.enabled = setActive;
         }
     }

@@ -15,7 +15,7 @@ public class SelectBotOptions : MonoBehaviour
     public GameObject ConePrefab;
 
     public UnityEvent FinishedStart;
-    private GameObject spawnedBot;
+    public GameObject spawnedBot;
     // Start is called before the first frame update
 
     public void SelectBot(int index)

@@ -55,6 +55,7 @@ public class ReleaseSubstationCone : MonoBehaviour
                 newCone.GetComponent<ColorSwitcher>().SetColor();
                 newCone.GetComponent<ScoreObjectTypeLink>().LastTouchedTeamColor = teamColor;
                 newCone.transform.position = conePositions[i].transform.position;
+                newCone.GetComponent<Cone>().MakeScorable();
                 numberOfConesReleased++;
                 break;
             }
