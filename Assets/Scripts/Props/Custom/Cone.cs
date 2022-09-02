@@ -14,15 +14,13 @@ public class Cone : MonoBehaviour
     [SerializeField] GameObject coneBaseForStacking;
     public GameObject ConeBaseForStacking { get => coneBaseForStacking; }
 
-    // Start is called before the first frame update
-    void Start()
+    public GameObject ConeCollider;
+
+    public void MakeScorable(bool scorable = true)
     {
-        
+        GetComponent<Cone>().ConeBaseForStacking.GetComponentInChildren<Collider>().enabled = !scorable;//turn off stack collider.
+        GetComponent<Rigidbody>().isKinematic = !scorable;
+        ConeCollider.GetComponent<Collider>().enabled = scorable;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

@@ -87,6 +87,7 @@ public class CheckRobotWithinBounds : MonoBehaviour, ICustomGoalChecker, ICustom
 
     public void DoCustomOnEvent(UnityEngine.Object objectToPass)
     {
+        if(objectToCheck == null) { return; }
         objectToCheckCollider = objectToCheck.GetComponent<Collider>();
         StartCoroutine(CheckRobotBounds());
     }
