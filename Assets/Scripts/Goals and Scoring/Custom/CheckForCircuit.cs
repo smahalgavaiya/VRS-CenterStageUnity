@@ -15,6 +15,7 @@ public class CheckForCircuit : MonoBehaviour
     [SerializeField] GlobalBool circuitFound;
 
     public GlobalBool CircuitFound { get => circuitFound;}
+    public TeamColor CircuitColor { get => circuitColor;}
 
     bool circuitPreviouslyFound;
 

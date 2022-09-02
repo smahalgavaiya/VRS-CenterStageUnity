@@ -46,7 +46,7 @@ public class AdjacentJunctionDetector : MonoBehaviour
             if (junctionCapper.IsCapped && 
                 junctionCapper.CurrentCapColor == thisJunctionCapper.CurrentCapColor)
             {
-                if (CheckForTerminus(checkForCircuit))
+                if (CheckForTerminus(checkForCircuit) && junctionCapper.CurrentCapColor == checkForCircuit.CircuitColor)
                 {
                     checkForCircuit.CircuitFound.boolValue = true;
                     break;
