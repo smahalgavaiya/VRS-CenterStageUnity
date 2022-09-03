@@ -23,12 +23,10 @@ public class CheckRobotColor : MonoBehaviour, ICustomGoalChecker
     {
         throw new System.NotImplementedException();
     }
-
-    public void DoCustomCheck(GameObject objectToCheck)
+    public void DoCustomCheck(GameObject objectToCheck, int scoreDirection)
     {
         if (goalZoneBaseData.scoreZoneColor ==
             objectToCheck.GetComponentInParent<ScoreObjectTypeLink>().LastTouchedTeamColor)
             goalZoneScoreLink.OptionalBoolValue = true;
-
     }
 }

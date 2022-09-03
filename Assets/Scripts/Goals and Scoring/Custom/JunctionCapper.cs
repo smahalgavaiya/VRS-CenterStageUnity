@@ -102,7 +102,7 @@ public class JunctionCapper : MonoBehaviour, ICustomGoalEvents, ICustomGoalCheck
     {
     }
 
-    public void DoCustomCheck(GameObject objectToCheck)
+    public void DoCustomCheck(GameObject objectToCheck, int scoreDirection)
     {
         ScoreObjectTypeLink scoreObjectTypeLink = 
             objectToCheck.GetComponentInParent<ScoreObjectTypeLink>();

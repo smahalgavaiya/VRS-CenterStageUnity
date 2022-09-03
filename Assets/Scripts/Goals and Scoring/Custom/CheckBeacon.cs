@@ -22,7 +22,7 @@ public class CheckBeacon : MonoBehaviour, ICustomGoalChecker
         throw new System.NotImplementedException();
     }
 
-    public void DoCustomCheck(GameObject objectToCheck)
+    public void DoCustomCheck(GameObject objectToCheck, int scoreDirection)
     {
         if (objectToCheck.GetComponentInParent<Beacon>() == null)
             return;
