@@ -2,9 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TestingActionManager : MonoBehaviour
+public class Pause : MonoBehaviour
 {
-    public EncoderActionManager manager;
+    public void DoPause()
+    {
+        Time.timeScale = 0;
+    }
     // Start is called before the first frame update
     void Start()
     {
@@ -14,9 +17,6 @@ public class TestingActionManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        manager.SetFrontLeft(-1);
-        manager.SetFrontRight(-1);
-        manager.SetBackLeft(-1);
-        manager.SetBackRight(-1);
+        
     }
 }
