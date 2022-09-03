@@ -10,12 +10,17 @@ public class CheckForCircuit : MonoBehaviour
     [SerializeField] TeamColor circuitColor;
     [SerializeField] ScoreTracker scoreTracker;
 
+    [SerializeField] GameObject farTerminal;
+
+    public bool HasCone { get; set; }
+    public bool FarTerminalHasCone { get; set; }
+
     public GameObject[] TerminusJunctions { get => terminusJunctions; }
 
     [SerializeField] GlobalBool circuitFound;
 
-    public GlobalBool CircuitFound { get => circuitFound;}
-    public TeamColor CircuitColor { get => circuitColor;}
+    public GlobalBool CircuitFound { get => circuitFound; }
+    public TeamColor CircuitColor { get => circuitColor; }
 
     bool circuitPreviouslyFound;
 
@@ -31,7 +36,7 @@ public class CheckForCircuit : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     public void CheckCircuit()
@@ -44,6 +49,12 @@ public class CheckForCircuit : MonoBehaviour
             AdjacentJunctionDetector adjacentJunctionDetector = startJunctions[i].GetComponentInChildren<AdjacentJunctionDetector>();
             adjacentJunctionDetector.CheckAdjacentColor(this);
         }
+
+        HasCone = GetComponent<ObjectPresentInGoalZone>().ObjectPresent;
+        FarTerminalHasCone = farTerminal.GetComponent<ObjectPresentInGoalZone>().ObjectPresent;
+
+        if (!HasCone || !FarTerminalHasCone)
+            CircuitFound.boolValue = false;
 
         if (CircuitFound.boolValue && !circuitPreviouslyFound)
             scoreTracker.AddOrSubtractScore(20);
