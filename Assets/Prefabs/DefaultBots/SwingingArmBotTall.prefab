@@ -206,6 +206,50 @@ Transform:
   m_Father: {fileID: 8711896939645036845}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2031507501278925277
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8489226895759404249}
+  - component: {fileID: 6134917399538315998}
+  m_Layer: 10
+  m_Name: RobotScoringBox
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8489226895759404249
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2031507501278925277}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1127662256965058135}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &6134917399538315998
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2031507501278925277}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.3, y: 0.3, z: 0.3}
+  m_Center: {x: 0, y: 0.12, z: 0}
 --- !u!1 &2179376789455325253
 GameObject:
   m_ObjectHideFlags: 0
@@ -2770,15 +2814,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5946e7649426f21448758990fa10e023, type: 3}
---- !u!1 &7123548474973951902 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4005686901398914452, guid: 5946e7649426f21448758990fa10e023,
-    type: 3}
-  m_PrefabInstance: {fileID: 6146536746806432266}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &7574804827375802684 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4347097618370677558, guid: 5946e7649426f21448758990fa10e023,
+    type: 3}
+  m_PrefabInstance: {fileID: 6146536746806432266}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &7123548474973951902 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4005686901398914452, guid: 5946e7649426f21448758990fa10e023,
     type: 3}
   m_PrefabInstance: {fileID: 6146536746806432266}
   m_PrefabAsset: {fileID: 0}
