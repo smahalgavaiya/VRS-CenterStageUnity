@@ -10,16 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8dc7a5664032fa044a9bf7341f5f245f, type: 3}
-  m_Name: DefaultRoundIndex
+  m_Name: EndGame
   m_EditorClassIdentifier: 
-  rounds:
-  - roundName: Round 1
-    roundLength: 30
-    isOptional: 0
-  - roundName: Round 2
-    roundLength: 30
-    isOptional: 0
-  - roundName: Round 3
-    roundLength: 30
-    isOptional: 0
-  currentRound: 0
+  sessionLength: 30
+  isOptional: 0

@@ -6,7 +6,7 @@ public class AddPointsForNewRound : MonoBehaviour, ICustomGoalEvents
 {
     int numberOfBlueObjectsToCheck, numberOfRedObjectsToCheck;
 
-    [SerializeField] RoundIndex roundIndex;
+    [SerializeField] GlobalInt currentRound;
     ScoreTrackerIndex scoreIndex;
     GoalZoneBaseData goalZoneBaseData;
     ScoringGuide scoringGuide;
@@ -24,7 +24,7 @@ public class AddPointsForNewRound : MonoBehaviour, ICustomGoalEvents
     // Update is called once per frame
     void Update()
     {
-        if (roundIndex.currentRound == 1 && !itemsAdded)
+        if (currentRound.globalInt == 1 && !itemsAdded)
         {
             scoreIndex.blueScoreTracker.AddOrSubtractScore(numberOfBlueObjectsToCheck * scoringGuide.scoresPerRoundPerType[1].scoresPerRound[1]);
             scoreIndex.redScoreTracker.AddOrSubtractScore(numberOfRedObjectsToCheck * scoringGuide.scoresPerRoundPerType[1].scoresPerRound[1]);
@@ -33,7 +33,7 @@ public class AddPointsForNewRound : MonoBehaviour, ICustomGoalEvents
     }
     public void DoCustomOffEvent(Object objectToPass)
     {
-        if (roundIndex.currentRound != 0)
+        if (currentRound.globalInt != 0)
             return;
 
         GoalZoneScoreLink goalZoneScoreLink = (GoalZoneScoreLink)objectToPass;
@@ -45,7 +45,7 @@ public class AddPointsForNewRound : MonoBehaviour, ICustomGoalEvents
 
     public void DoCustomOnEvent(Object objectToPass)
     {
-        if (roundIndex.currentRound != 0)
+        if (currentRound.globalInt != 0)
             return;
 
         GoalZoneScoreLink goalZoneScoreLink = (GoalZoneScoreLink)objectToPass;

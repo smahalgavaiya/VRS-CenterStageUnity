@@ -16,7 +16,7 @@ public class FieldManager : MonoBehaviour
 
     public GameMode mode;
 
-    public RoundIndex autonomous,teleop,fullgame,freeplay;
+    public Session autonomous,teleop,fullgame,freeplay;
 
     public GameTimeManager gameTimeManager;
 
@@ -25,6 +25,8 @@ public class FieldManager : MonoBehaviour
     {
         get { return _instance; }
     }
+
+    [SerializeField] GlobalInt currentRound;
 
     [DllImport("__Internal")]
     private static extern void updateSignalSensor(int signal);
@@ -48,7 +50,7 @@ public class FieldManager : MonoBehaviour
         else
             mode = vrs_messenger.instance.GetPlaymode();
 #endif
-        gameTimeManager.roundIndex = GetRoundIndex();
+        gameTimeManager.CurrentSession = GetRoundIndex();
         GameTimeReceiver timeReceiver = FindObjectOfType<GameTimeReceiver>();
         //timeReceiver.roundIndex = GetRoundIndex();
 
@@ -80,9 +82,9 @@ public class FieldManager : MonoBehaviour
     public void SetGameMode(int mode)
     {
         this.mode = (GameMode)mode;
-        gameTimeManager.roundIndex = GetRoundIndex();
+        gameTimeManager.CurrentSession = GetRoundIndex();
     }
-    public RoundIndex GetRoundIndex()
+    public Session GetRoundIndex()
     {
         switch(mode)
         {

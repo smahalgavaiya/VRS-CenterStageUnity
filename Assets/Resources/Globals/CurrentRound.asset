@@ -9,11 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8dc7a5664032fa044a9bf7341f5f245f, type: 3}
-  m_Name: AutonomousGameplay
+  m_Script: {fileID: 11500000, guid: 3bc4d4b3543353a4abf6dd3bf9e052bf, type: 3}
+  m_Name: CurrentRound
   m_EditorClassIdentifier: 
-  rounds:
-  - roundName: Autonomous
-    roundLength: 30
-    isOptional: 0
-  currentRound: 0
+  globalInt: 0
