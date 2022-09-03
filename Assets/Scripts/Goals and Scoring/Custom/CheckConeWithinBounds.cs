@@ -25,17 +25,6 @@ public class CheckConeWithinBounds : MonoBehaviour, ICustomGoalChecker
 
     }
 
-    public void DoCustomCheck(GameObject objectToCheck)
-    {
-        if (objectToCheck.GetComponentInParent<Cone>() == null)
-            return;
-
-        if (CheckConeBounds(objectToCheck))
-            goalZoneScoreLink.OptionalBoolValue = true;
-        else 
-            goalZoneScoreLink.OptionalBoolValue = false;
-    }
-
     bool CheckConeBounds(GameObject objectToCheck)
     {
 
@@ -59,5 +48,16 @@ public class CheckConeWithinBounds : MonoBehaviour, ICustomGoalChecker
         }
 
         return containsObject;
+    }
+
+    public void DoCustomCheck(GameObject objectToCheck, int scoreDirection)
+    {
+        if (objectToCheck.GetComponentInParent<Cone>() == null)
+            return;
+
+        if (CheckConeBounds(objectToCheck))
+            goalZoneScoreLink.OptionalBoolValue = true;
+        else if (!CheckConeBounds(objectToCheck) || scoreDirection < 0)
+            goalZoneScoreLink.OptionalBoolValue = false;
     }
 }

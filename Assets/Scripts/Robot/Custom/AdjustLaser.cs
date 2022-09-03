@@ -24,7 +24,7 @@ public class AdjustLaser : MonoBehaviour
             Vector3 newScale = transform.localScale;
             newScale.z = distance * 0.3f;
             transform.localScale = newScale;
-            Debug.Log(hit.collider.name);
+            //Debug.Log(hit.collider.name);
         }
     }
 }

@@ -34,16 +34,6 @@ public class CheckRobotWithinBounds : MonoBehaviour, ICustomGoalChecker, ICustom
 
     }
 
-    public void DoCustomCheck(GameObject objectToCheck)
-    {
-        if (objectToCheck.GetComponentInParent<ScoreObjectTypeLink>() == null || 
-            objectToCheck.GetComponentInParent<ScoreObjectTypeLink>().ScoreObjectType_.name != "Robot")
-            return;
-
-        this.objectToCheck = objectToCheck;
-        goalZoneScoreLink.OptionalBoolValue = true;
-    }
-
     IEnumerator CheckRobotBounds()
     {
         while (true)
@@ -96,6 +86,16 @@ public class CheckRobotWithinBounds : MonoBehaviour, ICustomGoalChecker, ICustom
     {
         goalZoneScoreLink.OptionalBoolValue = false;
         StopAllCoroutines();
+    }
+
+    public void DoCustomCheck(GameObject objectToCheck, int scoreDirection)
+    {
+        if (objectToCheck.GetComponentInParent<ScoreObjectTypeLink>() == null || 
+            objectToCheck.GetComponentInParent<ScoreObjectTypeLink>().ScoreObjectType_.name != "Robot")
+            return;
+
+        this.objectToCheck = objectToCheck;
+        goalZoneScoreLink.OptionalBoolValue = true;
     }
 }
 

@@ -11,12 +11,19 @@ public class CheckConeOrientation : MonoBehaviour, ICustomGoalChecker
         goalZoneScoreLink = GetComponent<GoalZoneScoreLink>();
     }
 
-    public void DoCustomCheck(GameObject objectToCheck)
+    public void DoCustomCheck(GameObject objectToCheck, int scoreDirection)
     {
         if (objectToCheck.GetComponentInParent<Cone>() == null)
             return;
 
         ConeOrientation coneOrientation = null;
+
+        // We don't care about the orientation when the cone is removed
+        if (scoreDirection < 0)
+        {
+            goalZoneScoreLink.OptionalBoolValue = true;
+            return;
+        }
 
         if (objectToCheck.GetComponent<ConeOrientation>() != null)
             coneOrientation = objectToCheck.GetComponent<ConeOrientation>();
