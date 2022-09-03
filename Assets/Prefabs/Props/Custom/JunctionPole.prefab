@@ -269,7 +269,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   materialIndex: {fileID: 11400000, guid: 30ac5fa6dc2da624aa23751cddd2c77d, type: 2}
   scoreTrackerIndex: {fileID: 11400000, guid: 6a1054d5cd9ab4e4a975d016d7c21775, type: 2}
-  scoringGuide: {fileID: 11400000, guid: 7349f391750411842a3afdf13de0af9d, type: 2}
+  scoringGuide: {fileID: 0}
   hideOnPlay: 1
   scoreZoneColor: 2
 --- !u!114 &4882927971845205703
@@ -284,6 +284,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66055704a4d3e17459e0531fc84e1c39, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentRoundGlobal: {fileID: 11400000, guid: e39a63664eb39464a9e54eb8282546d7, type: 2}
   useOptionalBool: 1
   globalBool: {fileID: 0}
 --- !u!114 &4212052023737987321
@@ -310,7 +311,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d868fc8bbe5cc94ebbec41b77298ad9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  roundIndex: {fileID: 11400000, guid: abb6681a0ecca5f4bba7bed86db36db1, type: 2}
+  currentRound: {fileID: 11400000, guid: e39a63664eb39464a9e54eb8282546d7, type: 2}
   cappedScoringGuide: {fileID: 11400000, guid: 9810f9c62079c3140889f7012a53c87c, type: 2}
   checkCircuit: {fileID: 11400000, guid: af171bddebcd9974786a91592fb09880, type: 2}
 --- !u!114 &1415313078081943323
@@ -325,7 +326,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cca37804ac06e2d4d88a958af0a1b228, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  roundIndex: {fileID: 11400000, guid: abb6681a0ecca5f4bba7bed86db36db1, type: 2}
+  currentRound: {fileID: 11400000, guid: e39a63664eb39464a9e54eb8282546d7, type: 2}
 --- !u!114 &1007382098802382844
 MonoBehaviour:
   m_ObjectHideFlags: 0

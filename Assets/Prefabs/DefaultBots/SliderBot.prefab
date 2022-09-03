@@ -14153,6 +14153,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: GrabberCollider
       objectReference: {fileID: 0}
+    - target: {fileID: 6554007999343242746, guid: 79a577ca40229ca4189d920839da95a1,
+        type: 3}
+      propertyPath: tagsToCheckAgainst.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6554007999343242746, guid: 79a577ca40229ca4189d920839da95a1,
+        type: 3}
+      propertyPath: tagsToCheckAgainst.Array.data[0]
+      value: Cone
+      objectReference: {fileID: 0}
+    - target: {fileID: 6554007999343242746, guid: 79a577ca40229ca4189d920839da95a1,
+        type: 3}
+      propertyPath: tagsToCheckAgainst.Array.data[1]
+      value: Beacon
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 79a577ca40229ca4189d920839da95a1, type: 3}
 --- !u!4 &4481716144092767723 stripped

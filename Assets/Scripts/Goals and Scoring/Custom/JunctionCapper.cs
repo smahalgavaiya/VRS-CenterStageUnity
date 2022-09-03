@@ -9,7 +9,7 @@ public class JunctionCapper : MonoBehaviour, ICustomGoalEvents, ICustomGoalCheck
     public bool IsCapped { get { if (objectsOnJunction.Count > 0) return true; else return false; } }
     public TeamColor CurrentCapColor { get => objectsOnJunction.Peek(); }
 
-    [SerializeField] RoundIndex roundIndex;
+    [SerializeField] GlobalInt currentRound;
 
     [SerializeField] ScoringGuide cappedScoringGuide;
 
@@ -29,7 +29,7 @@ public class JunctionCapper : MonoBehaviour, ICustomGoalEvents, ICustomGoalCheck
     void Update()
     {
         // Start scoring in Round 3 (index 2)
-        if (roundIndex.currentRound == 2 
+        if (currentRound.globalInt == 2 
             && !currentCapsAccountedFor &&
             objectsOnJunction.Count > 0)
         {
@@ -44,12 +44,12 @@ public class JunctionCapper : MonoBehaviour, ICustomGoalEvents, ICustomGoalCheck
         TeamColor departingColor = objectsOnJunction.Pop();
 
         if (objectsOnJunction.Count > 0 && departingColor != objectsOnJunction.Peek() &&
-            roundIndex.currentRound == 2)
+            currentRound.globalInt == 2)
         {
             ChangeTheScore(goalZoneScoreLink, -1, departingColor);
             ChangeTheScore(goalZoneScoreLink, 1, objectsOnJunction.Peek(), 1);
         }
-        else if (objectsOnJunction.Count < 1 && roundIndex.currentRound == 2)
+        else if (objectsOnJunction.Count < 1 && currentRound.globalInt == 2)
             ChangeTheScore(goalZoneScoreLink, -1, departingColor);
 
         checkCircuit.Raise();
@@ -66,7 +66,7 @@ public class JunctionCapper : MonoBehaviour, ICustomGoalEvents, ICustomGoalCheck
             objectsOnJunction.Push(goalZoneScoreLink.LastObjectTeamColor);
 
             if (replacedColorInStack != objectsOnJunction.Peek() && 
-                roundIndex.currentRound == 2 && currentCapsAccountedFor)
+                currentRound.globalInt == 2 && currentCapsAccountedFor)
             {
                 ChangeTheScore(goalZoneScoreLink, -1, replacedColorInStack, 1);
                 ChangeTheScore(goalZoneScoreLink, 1, objectsOnJunction.Peek());
@@ -75,7 +75,7 @@ public class JunctionCapper : MonoBehaviour, ICustomGoalEvents, ICustomGoalCheck
         else
         {
             objectsOnJunction.Push(goalZoneScoreLink.LastObjectTeamColor);
-            if (roundIndex.currentRound == 2 && currentCapsAccountedFor)
+            if (currentRound.globalInt == 2 && currentCapsAccountedFor)
             {
                 ChangeTheScore(goalZoneScoreLink, 1, objectsOnJunction.Peek());
             }

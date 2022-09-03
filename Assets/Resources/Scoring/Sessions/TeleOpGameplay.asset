@@ -12,8 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8dc7a5664032fa044a9bf7341f5f245f, type: 3}
   m_Name: TeleOpGameplay
   m_EditorClassIdentifier: 
-  rounds:
-  - roundName: Tele-op
-    roundLength: 120
-    isOptional: 0
-  currentRound: 0
+  sessionLength: 120
+  isOptional: 0
