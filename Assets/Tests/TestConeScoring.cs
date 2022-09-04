@@ -24,7 +24,7 @@ public class TestConeScoring : MonoBehaviour
     [UnityTest]
     public IEnumerator TestBlueScoringPoles()
     {
-        yield return RunConeScoring(TeamColor.Blue,80);
+        yield return RunConeScoring(TeamColor.Blue,60);
 
     }
 
@@ -37,14 +37,14 @@ public class TestConeScoring : MonoBehaviour
     [UnityTest]
     public IEnumerator TestBlueScoringAll()
     {
-        yield return RunConeScoring(TeamColor.Blue,98, true,true);
+        yield return RunConeScoring(TeamColor.Blue,78, true,true);
 
     }
 
     [UnityTest]
     public IEnumerator TestRedScoringPoles()
     {
-        yield return RunConeScoring(TeamColor.Red,80);
+        yield return RunConeScoring(TeamColor.Red,60);
 
     }
 
@@ -57,14 +57,14 @@ public class TestConeScoring : MonoBehaviour
     [UnityTest]
     public IEnumerator TestRedScoringAll()
     {
-        yield return RunConeScoring(TeamColor.Red, 98,true, true);
+        yield return RunConeScoring(TeamColor.Red, 78,true, true);
 
     }
 
     [UnityTest]
     public IEnumerator TestBlueCircuit()
     {
-        yield return TestConePath(TeamColor.Blue, 34, TestHelper.testPattern);
+        yield return TestConePath(TeamColor.Blue, 36, TestHelper.testPattern);
         //yield return TestConePath(TeamColor.Blue, 52, "A0,B1,B2,C1,D1,D2,D3,D4");
         //yield return TestConePath(TeamColor.Red, 16, testPattern);
     }
@@ -79,7 +79,7 @@ public class TestConeScoring : MonoBehaviour
     [UnityTest]
     public IEnumerator TestRedCircuit()
     {
-        yield return TestConePath(TeamColor.Red, 34, "A4,B3,C2,D1,E0");
+        yield return TestConePath(TeamColor.Red, 36, "TR0,A4,B3,C2,D1,E0,TR1");
         //yield return TestConePath(TeamColor.Red, 16, testPattern);
     }
 

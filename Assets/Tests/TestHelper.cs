@@ -10,10 +10,16 @@ public static class TestHelper
     static int gridHeight = 5;
     static int gridWidth = 5;
     public static JunctionCapper[] scoringLocs;
-    public static string testPattern = "A0,B1,C2,D3,E4";
+    public static string testPattern = "TB0,A0,B1,C2,D3,E4,TB1";
+    public static Dictionary<string,GameObject> terminals = new Dictionary<string,GameObject>();
+    //TB0,TB1,TR0,TR1
 
     public static GameObject getGoalOnGrid(string coords)
     {
+        if(coords[0] == 'T')
+        {
+            return terminals[coords];
+        }
         Vector2Int loc = getGridLocation(coords);
         return gameGrid[loc.x, loc.y];
     }
@@ -34,7 +40,13 @@ public static class TestHelper
 
     public static void CreateGrid()
     {
-
+        CheckRobotColor[] terms = GameObject.FindObjectsOfType<CheckRobotColor>();
+        foreach(CheckRobotColor term in terms)
+        {
+            if (term.transform.name.Split('-').Length == 1) { continue; }
+            string coords = term.transform.name.Split('-')[1];
+            terminals.Add(coords, term.gameObject);
+        }
         scoringLocs = GameObject.FindObjectsOfType<JunctionCapper>();
         foreach (JunctionCapper cap in scoringLocs)
         {
