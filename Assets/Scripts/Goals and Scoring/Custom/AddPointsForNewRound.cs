@@ -26,8 +26,8 @@ public class AddPointsForNewRound : MonoBehaviour, ICustomGoalEvents
     {
         if (currentRound.globalInt == 1 && !itemsAdded)
         {
-            scoreIndex.blueScoreTracker.AddOrSubtractScore(numberOfBlueObjectsToCheck * scoringGuide.scoresPerRoundPerType[1].scoresPerRound[1]);
-            scoreIndex.redScoreTracker.AddOrSubtractScore(numberOfRedObjectsToCheck * scoringGuide.scoresPerRoundPerType[1].scoresPerRound[1]);
+            scoreIndex.blueScoreTracker.AddOrSubtractScore(numberOfBlueObjectsToCheck * scoringGuide.scoresPerSessionPerType[1].scoresPerRound[1]);
+            scoreIndex.redScoreTracker.AddOrSubtractScore(numberOfRedObjectsToCheck * scoringGuide.scoresPerSessionPerType[1].scoresPerRound[1]);
             itemsAdded = true;
         }
     }
