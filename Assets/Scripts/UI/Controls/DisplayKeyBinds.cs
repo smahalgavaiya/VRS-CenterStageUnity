@@ -18,9 +18,16 @@ public class DisplayKeyBinds : MonoBehaviour
         _inputActionMap = controls.FindActionMap("Gameplay");
         foreach(InputAction action in _inputActionMap.actions)
         {
-            Bind b = new Bind { bind = action.GetBindingDisplayString(), name = action.name };
+            //Bind b = new Bind { bind = action.GetBindingDisplayString(), name = action.name };
+            Dictionary<string, string> data = new Dictionary<string, string>()
+            {
+                { "bind", action.GetBindingDisplayString() },
+                { "name", action.name},
+                { "controlScheme", input.currentControlScheme }
+            };
+
             GameObject kb = Instantiate(bindPrefab, transform);
-            datafill.Fill(b, kb);
+            datafill.Fill(data, kb);
         }
     }
 }
