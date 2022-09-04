@@ -17,6 +17,7 @@ public class KeyBoundButton : MonoBehaviour
     public string ActionName;
     public TextMeshProUGUI bindText;
     string currentScheme;
+    public bool doOnButtonRelease = false;
 
     private void Start()
     {
@@ -42,18 +43,22 @@ public class KeyBoundButton : MonoBehaviour
 
         SetBinding();
 
-        buttonPress.performed += OnInputAction;
+        if(doOnButtonRelease) { buttonPress.canceled += OnInputAction; }
+        else { buttonPress.performed += OnInputAction; }
+        
     }
 
     void SetBinding()
     {
+        if (bindText == null) { return; }
         bindText.text = buttonPress.GetBindingDisplayString();
     }
 
     private void OnDisable()
     {
         CancelInvoke();
-        buttonPress.performed -= OnInputAction;
+        if (doOnButtonRelease) { buttonPress.canceled -= OnInputAction; }
+        else { buttonPress.performed -= OnInputAction; }
     }
 
     public virtual bool checkCanPress()
