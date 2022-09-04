@@ -2662,6 +2662,21 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.20656037
       objectReference: {fileID: 0}
+    - target: {fileID: 6554007999343242746, guid: 79a577ca40229ca4189d920839da95a1,
+        type: 3}
+      propertyPath: tagsToCheckAgainst.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6554007999343242746, guid: 79a577ca40229ca4189d920839da95a1,
+        type: 3}
+      propertyPath: tagsToCheckAgainst.Array.data[0]
+      value: Cone
+      objectReference: {fileID: 0}
+    - target: {fileID: 6554007999343242746, guid: 79a577ca40229ca4189d920839da95a1,
+        type: 3}
+      propertyPath: tagsToCheckAgainst.Array.data[1]
+      value: Beacon
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 79a577ca40229ca4189d920839da95a1, type: 3}
 --- !u!4 &6981155368901897070 stripped

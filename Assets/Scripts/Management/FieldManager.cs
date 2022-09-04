@@ -26,7 +26,7 @@ public class FieldManager : MonoBehaviour
         get { return _instance; }
     }
 
-    [SerializeField] GlobalInt currentRound;
+    [SerializeField] GlobalInt currentSession;
 
     [DllImport("__Internal")]
     private static extern void updateSignalSensor(int signal);

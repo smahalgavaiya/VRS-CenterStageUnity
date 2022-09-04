@@ -13,12 +13,12 @@ MonoBehaviour:
   m_Name: TerminalScoringGuide
   m_EditorClassIdentifier: 
   objectTypesFolder: ObjectTypes
-  numberOfRounds: {fileID: 11400000, guid: 1326075f167b15040bb62933cd82a3c6, type: 2}
+  numberOfSessions: {fileID: 11400000, guid: 1326075f167b15040bb62933cd82a3c6, type: 2}
   scoreObjectTypes:
   - {fileID: 11400000, guid: 95e8a5807f3520042a25cc0dbdf4ff1b, type: 2}
   - {fileID: 11400000, guid: 8c27a8bf96efe07468169dacf149207f, type: 2}
   - {fileID: 11400000, guid: 2a92ad0cb65a1b74aba70a8b74f0a397, type: 2}
-  scoresPerRoundPerType:
+  scoresPerSessionPerType:
   - scoresPerRound: 000000000000000000000000
-  - scoresPerRound: 010000000000000000000000
-  - scoresPerRound: 020000000000000000000000
+  - scoresPerRound: 000000000100000001000000
+  - scoresPerRound: 000000000000000002000000
