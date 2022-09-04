@@ -39109,10 +39109,38 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mode: 0
-  autonomous: {fileID: 11400000, guid: 4db2a07029c28d74399b264ff6bbea1c, type: 2}
-  teleop: {fileID: 11400000, guid: abb6681a0ecca5f4bba7bed86db36db1, type: 2}
-  fullgame: {fileID: 11400000, guid: baa8ec72ef06edd44ad64871d444ebb4, type: 2}
-  freeplay: {fileID: 11400000, guid: abbd482e29929e143b6860f73e976087, type: 2}
+  autonomousSessions:
+  - {fileID: 11400000, guid: 4db2a07029c28d74399b264ff6bbea1c, type: 2}
+  teleopSessions:
+  - {fileID: 11400000, guid: abb6681a0ecca5f4bba7bed86db36db1, type: 2}
+  - {fileID: 11400000, guid: 3a3d63532ecd4b54a9c524289d96d122, type: 2}
+  fullgameSessions:
+  - {fileID: 11400000, guid: 4db2a07029c28d74399b264ff6bbea1c, type: 2}
+  - {fileID: 11400000, guid: abb6681a0ecca5f4bba7bed86db36db1, type: 2}
+  - {fileID: 11400000, guid: 3a3d63532ecd4b54a9c524289d96d122, type: 2}
+  freeplaySessions:
+  - {fileID: 11400000, guid: abbd482e29929e143b6860f73e976087, type: 2}
+  autonomousRound:
+  - roundName: Autonomous
+    sessionsInRound:
+    - {fileID: 11400000, guid: 4db2a07029c28d74399b264ff6bbea1c, type: 2}
+  teleOpRound:
+  - roundName: TeleOp
+    sessionsInRound:
+    - {fileID: 11400000, guid: abb6681a0ecca5f4bba7bed86db36db1, type: 2}
+    - {fileID: 11400000, guid: 3a3d63532ecd4b54a9c524289d96d122, type: 2}
+  fullgameRound:
+  - roundName: Autonomous
+    sessionsInRound:
+    - {fileID: 11400000, guid: 4db2a07029c28d74399b264ff6bbea1c, type: 2}
+  - roundName: TeleOp
+    sessionsInRound:
+    - {fileID: 11400000, guid: abb6681a0ecca5f4bba7bed86db36db1, type: 2}
+    - {fileID: 11400000, guid: 3a3d63532ecd4b54a9c524289d96d122, type: 2}
+  freeplayRound:
+  - roundName: Free Play
+    sessionsInRound:
+    - {fileID: 11400000, guid: abbd482e29929e143b6860f73e976087, type: 2}
   gameTimeManager: {fileID: 386976272}
   currentSession: {fileID: 11400000, guid: e39a63664eb39464a9e54eb8282546d7, type: 2}
 --- !u!1 &1867799081 stripped

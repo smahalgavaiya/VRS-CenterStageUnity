@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Runtime.InteropServices;
+using System;
 
 public enum GameMode
 {
@@ -16,7 +17,8 @@ public class FieldManager : MonoBehaviour
 
     public GameMode mode;
 
-    public Session autonomous,teleop,fullgame,freeplay;
+    public Session[] autonomousSessions,teleopSessions,fullgameSessions,freeplaySessions;
+    public Round[] autonomousRound, teleOpRound, fullgameRound,freeplayRound;
 
     public GameTimeManager gameTimeManager;
 
@@ -50,7 +52,10 @@ public class FieldManager : MonoBehaviour
         else
             mode = vrs_messenger.instance.GetPlaymode();
 #endif
-        gameTimeManager.CurrentSession = GetRoundIndex();
+        var (sessions, rounds) = GetRoundIndex();
+        gameTimeManager.sessions = sessions;
+        gameTimeManager.rounds = rounds;
+
         GameTimeReceiver timeReceiver = FindObjectOfType<GameTimeReceiver>();
         //timeReceiver.roundIndex = GetRoundIndex();
 
@@ -82,22 +87,24 @@ public class FieldManager : MonoBehaviour
     public void SetGameMode(int mode)
     {
         this.mode = (GameMode)mode;
-        gameTimeManager.CurrentSession = GetRoundIndex();
+        var (sessions, rounds) = GetRoundIndex();
+        gameTimeManager.sessions = sessions;
+        gameTimeManager.rounds = rounds;
     }
-    public Session GetRoundIndex()
+    public (Session[], Round[]) GetRoundIndex()
     {
         switch(mode)
         {
             case GameMode.Autonomous:
-                return autonomous;
+                return (autonomousSessions, autonomousRound);
             case GameMode.Teleop:
-                return teleop;
+                return (teleopSessions, teleOpRound);
             case GameMode.Fullgame:
-                return fullgame;
+                return (fullgameSessions, fullgameRound);
             case GameMode.Freeplay:
-                return freeplay;
+                return (freeplaySessions, freeplayRound);
         }
-        return null;
+        return (null,null);
     }
 
 }
