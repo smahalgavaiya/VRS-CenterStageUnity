@@ -17,8 +17,7 @@ public class FieldManager : MonoBehaviour
 
     public GameMode mode;
 
-    public Session[] autonomousSessions,teleopSessions,fullgameSessions,freeplaySessions;
-    public Round[] autonomousRound, teleOpRound, fullgameRound,freeplayRound;
+    public Session autonomous, TeleOpMid, TeleOpEnd, FreePlay;
 
     public GameTimeManager gameTimeManager;
 
@@ -52,9 +51,6 @@ public class FieldManager : MonoBehaviour
         else
             mode = vrs_messenger.instance.GetPlaymode();
 #endif
-        var (sessions, rounds) = GetRoundIndex();
-        gameTimeManager.sessions = sessions;
-        gameTimeManager.rounds = rounds;
 
         GameTimeReceiver timeReceiver = FindObjectOfType<GameTimeReceiver>();
         //timeReceiver.roundIndex = GetRoundIndex();
@@ -87,24 +83,28 @@ public class FieldManager : MonoBehaviour
     public void SetGameMode(int mode)
     {
         this.mode = (GameMode)mode;
-        var (sessions, rounds) = GetRoundIndex();
-        gameTimeManager.sessions = sessions;
-        gameTimeManager.rounds = rounds;
+        Session[] allSessions = new Session[4] { autonomous, TeleOpMid, TeleOpEnd, FreePlay };
+        bool[] playSessions = GetActiveSessions();
+        for (int i = 0; i < allSessions.Length; i++)
+        {
+            allSessions[i].playThisSession = playSessions[i];
+        }
+
     }
-    public (Session[], Round[]) GetRoundIndex()
+    public bool[] GetActiveSessions()
     {
         switch(mode)
         {
             case GameMode.Autonomous:
-                return (autonomousSessions, autonomousRound);
+                return new bool[4] {true, false, false, false};
             case GameMode.Teleop:
-                return (teleopSessions, teleOpRound);
+                return new bool[4] {false, true, true, false};
             case GameMode.Fullgame:
-                return (fullgameSessions, fullgameRound);
+                return new bool[4] {true, true, true, false};
             case GameMode.Freeplay:
-                return (freeplaySessions, freeplayRound);
+                return new bool[4] {false, false, false, true};
         }
-        return (null,null);
+        return new bool[4] {false, false, false, false};
     }
 
 }
