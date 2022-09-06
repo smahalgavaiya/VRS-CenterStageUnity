@@ -40,6 +40,7 @@ public static class TestHelper
 
     public static void CreateGrid()
     {
+        terminals.Clear();
         CheckRobotColor[] terms = GameObject.FindObjectsOfType<CheckRobotColor>();
         foreach(CheckRobotColor term in terms)
         {
