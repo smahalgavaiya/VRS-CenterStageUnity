@@ -62,7 +62,7 @@ public static class TestHelper
     {
         fieldManager.SetGameMode((int)mode);
         //botOptions.StartGame();
-        timeManager.StartGame();
+        timeManager.SetUpTimer();
         timeManager.Play();
     }
 

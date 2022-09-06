@@ -17,8 +17,6 @@ public class FieldManager : MonoBehaviour
 
     public GameMode mode;
 
-    public Session autonomous, TeleOpMid, TeleOpEnd, FreePlay;
-
     public GameTimeManager gameTimeManager;
 
     private static FieldManager _instance;
@@ -32,6 +30,8 @@ public class FieldManager : MonoBehaviour
     [DllImport("__Internal")]
     private static extern void updateSignalSensor(int signal);
     private bool hasCheckedSignalSensor = false;
+    int currentGameMode = 0;
+
     void Awake()
     {
         if(_instance != null && _instance != this)
@@ -53,9 +53,8 @@ public class FieldManager : MonoBehaviour
 #endif
 
         GameTimeReceiver timeReceiver = FindObjectOfType<GameTimeReceiver>();
-        //timeReceiver.roundIndex = GetRoundIndex();
 
-        
+        SetGameMode(0);
     }
     void Update()
     {
@@ -80,31 +79,53 @@ public class FieldManager : MonoBehaviour
         hasCheckedSignalSensor = true;
     }
 
+    public void ResetToExistingGameMode()
+    {
+        SetGameMode(currentGameMode);
+    }
+
     public void SetGameMode(int mode)
     {
-        this.mode = (GameMode)mode;
-        Session[] allSessions = new Session[4] { autonomous, TeleOpMid, TeleOpEnd, FreePlay };
-        bool[] playSessions = GetActiveSessions();
-        for (int i = 0; i < allSessions.Length; i++)
-        {
-            allSessions[i].playThisSession = playSessions[i];
-        }
+        currentGameMode = mode;
 
-    }
-    public bool[] GetActiveSessions()
-    {
+        Session autonomous = gameTimeManager.sessions[0];
+        Session teleOpMid = gameTimeManager.sessions[1];
+        Session teleOpEnd = gameTimeManager.sessions[2];
+        Session freePlay = gameTimeManager.sessions[3];
+        Session gameOver = gameTimeManager.sessions[4];
+
         switch(mode)
         {
-            case GameMode.Autonomous:
-                return new bool[4] {true, false, false, false};
-            case GameMode.Teleop:
-                return new bool[4] {false, true, true, false};
-            case GameMode.Fullgame:
-                return new bool[4] {true, true, true, false};
-            case GameMode.Freeplay:
-                return new bool[4] {false, false, false, true};
+            case (int)GameMode.Autonomous:
+                autonomous.PlayThisSession = true;
+                teleOpMid.PlayThisSession = false;
+                teleOpEnd.PlayThisSession = false;
+                freePlay.PlayThisSession = false;
+                gameOver.PlayThisSession = true;
+                break;
+            case (int)GameMode.Teleop:
+                autonomous.PlayThisSession = false;
+                teleOpMid.PlayThisSession = true;
+                teleOpEnd.PlayThisSession = true;
+                freePlay.PlayThisSession = false;
+                gameOver.PlayThisSession = true;
+                break;
+            case (int)GameMode.Fullgame:
+                autonomous.PlayThisSession = true;
+                teleOpMid.PlayThisSession = true;
+                teleOpEnd.PlayThisSession = true;
+                freePlay.PlayThisSession = false;
+                gameOver.PlayThisSession = true;
+                break;
+            case (int)GameMode.Freeplay:
+                autonomous.PlayThisSession = false;
+                teleOpMid.PlayThisSession = false;
+                teleOpEnd.PlayThisSession = false;
+                freePlay.PlayThisSession = true;
+                gameOver.PlayThisSession = false;
+                break;
         }
-        return new bool[4] {false, false, false, false};
+
     }
 
 }
