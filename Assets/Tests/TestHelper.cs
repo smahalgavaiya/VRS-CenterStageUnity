@@ -13,6 +13,8 @@ public static class TestHelper
     public static string testPattern = "TB0,A0,B1,C2,D3,E4,TB1";
     public static Dictionary<string,GameObject> terminals = new Dictionary<string,GameObject>();
     //TB0,TB1,TR0,TR1
+    public static FieldManager fieldManager;
+    public static GameTimeManager timeManager;
 
     public static GameObject getGoalOnGrid(string coords)
     {
@@ -56,6 +58,14 @@ public static class TestHelper
         }
     }
 
+    public static void StartMode(GameMode mode)
+    {
+        fieldManager.SetGameMode((int)mode);
+        //botOptions.StartGame();
+        timeManager.StartGame();
+        timeManager.Play();
+    }
+
     public static void ReadyTest()//this needs to be called after scene is ready, which is why its not in setup.
     {
 
@@ -75,9 +85,10 @@ public static class TestHelper
         gameGrid = new GameObject[gridWidth, gridHeight];
 
         CreateGrid();
-
-        SelectBotOptions botgui = GameObject.FindObjectOfType<SelectBotOptions>();
-        if (botgui) { botgui.gameObject.SetActive(false); }
+        fieldManager = GameObject.FindObjectOfType<FieldManager>();
+        timeManager = GameObject.FindObjectOfType<GameTimeManager>();
+        botOptions = GameObject.FindObjectOfType<SelectBotOptions>();
+        if (botOptions) { botOptions.gameObject.SetActive(false); }
 
     }
 }

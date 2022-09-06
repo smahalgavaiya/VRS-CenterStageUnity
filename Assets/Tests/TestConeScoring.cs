@@ -11,7 +11,13 @@ public class TestConeScoring : MonoBehaviour
     [SetUp]
     public void SetUp()
     {
+        SceneManager.sceneLoaded += Loaded;
         SceneManager.LoadScene("PowerPlayNewBots",LoadSceneMode.Single);
+    }
+
+    public void Loaded(Scene scene, LoadSceneMode mode)
+    {
+        TestHelper.ReadyTest();
     }
 
     [TearDown]
@@ -64,21 +70,22 @@ public class TestConeScoring : MonoBehaviour
     [UnityTest]
     public IEnumerator TestBlueCircuit()
     {
+        TestHelper.StartMode(GameMode.Teleop);
         yield return TestConePath(TeamColor.Blue, 36, TestHelper.testPattern);
         //yield return TestConePath(TeamColor.Blue, 52, "A0,B1,B2,C1,D1,D2,D3,D4");
-        //yield return TestConePath(TeamColor.Red, 16, testPattern);
     }
 
     [UnityTest]
     public IEnumerator TestRedCircuitOnBlue()
     {
-        yield return TestConePath(TeamColor.Red, 14, TestHelper.testPattern);
-        //yield return TestConePath(TeamColor.Red, 16, testPattern);
+        TestHelper.StartMode(GameMode.Teleop);
+        yield return TestConePath(TeamColor.Red, 16, TestHelper.testPattern);
     }
 
     [UnityTest]
     public IEnumerator TestRedCircuit()
     {
+        TestHelper.StartMode(GameMode.Teleop);
         yield return TestConePath(TeamColor.Red, 36, "TR0,A4,B3,C2,D1,E0,TR1");
         //yield return TestConePath(TeamColor.Red, 16, testPattern);
     }
@@ -107,7 +114,6 @@ public class TestConeScoring : MonoBehaviour
 
     public IEnumerator RunConeScoring(TeamColor color, int correctScore, bool testGround=false,bool testPoles=true)
     {
-        TestHelper.ReadyTest();
         yield return new WaitForSeconds(0.5f);
         DropCone cone = GameObject.FindObjectOfType<DropCone>();
         cone.HeightOffset = 1f;
@@ -134,7 +140,6 @@ public class TestConeScoring : MonoBehaviour
 
     public IEnumerator TestConePath(TeamColor color, int correctScore, string coords)
     {
-        TestHelper.ReadyTest();
         yield return new WaitForSeconds(0.5f);
         DropCone cone = GameObject.FindObjectOfType<DropCone>();
         cone.HeightOffset = 1f;
@@ -155,5 +160,6 @@ public class TestConeScoring : MonoBehaviour
 
         Assert.AreEqual(correctScore, score.Score, "Correct Score for Team?");
         Assert.AreEqual(0, otherScore.Score, "Other team shouldnt have any points");
+        Debug.Log("Expected Score:" + correctScore + ", Actual Score:" + score.Score);
     }
 }
