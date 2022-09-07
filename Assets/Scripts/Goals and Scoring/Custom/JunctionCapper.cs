@@ -29,9 +29,8 @@ public class JunctionCapper : MonoBehaviour, ICustomGoalEvents, ICustomGoalCheck
     void Update()
     {
         // Start scoring in Round 3 (index 2)
-        if (currentRound.globalInt == 2 
-            && !currentCapsAccountedFor &&
-            objectsOnJunction.Count > 0)
+        if (currentRound.globalInt == GameTimeManager.GameOverRound 
+            && !currentCapsAccountedFor && objectsOnJunction.Count > 0)
         {
             currentCapsAccountedFor = true;
             ChangeTheScore(goalZoneScoreLink, 1, objectsOnJunction.Peek());
