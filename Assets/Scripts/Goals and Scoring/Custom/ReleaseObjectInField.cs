@@ -29,6 +29,7 @@ public class ReleaseObjectInField : MonoBehaviour
             obj.GetComponent<ColorSwitcher>().SetColor();
         }
         obj.transform.position = Location[(int)team].transform.position;
+        obj.GetComponent<Rigidbody>().isKinematic = false;
     }
 
 }
