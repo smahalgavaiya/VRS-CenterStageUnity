@@ -12,8 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8dc7a5664032fa044a9bf7341f5f245f, type: 3}
   m_Name: FreeGameplay
   m_EditorClassIdentifier: 
-  rounds:
-  - roundName: Freeplay
-    roundLength: 300
-    isOptional: 0
-  currentRound: {fileID: 11400000, guid: e39a63664eb39464a9e54eb8282546d7, type: 2}
+  roundName: Free Play
+  sessionLength: 0
+  playThisSession: 0
+  pauseAtStart: 0
