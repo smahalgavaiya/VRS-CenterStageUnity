@@ -17,9 +17,6 @@ public class FieldManager : MonoBehaviour
 
     public GameMode mode;
 
-    public Session[] autonomousSessions,teleopSessions,fullgameSessions,freeplaySessions;
-    public Round[] autonomousRound, teleOpRound, fullgameRound,freeplayRound;
-
     public GameTimeManager gameTimeManager;
 
     private static FieldManager _instance;
@@ -33,6 +30,8 @@ public class FieldManager : MonoBehaviour
     [DllImport("__Internal")]
     private static extern void updateSignalSensor(int signal);
     private bool hasCheckedSignalSensor = false;
+    int currentGameMode = 0;
+
     void Awake()
     {
         if(_instance != null && _instance != this)
@@ -52,14 +51,10 @@ public class FieldManager : MonoBehaviour
         else
             mode = vrs_messenger.instance.GetPlaymode();
 #endif
-        var (sessions, rounds) = GetRoundIndex();
-        gameTimeManager.sessions = sessions;
-        gameTimeManager.rounds = rounds;
 
         GameTimeReceiver timeReceiver = FindObjectOfType<GameTimeReceiver>();
-        //timeReceiver.roundIndex = GetRoundIndex();
 
-        
+        SetGameMode(0);
     }
     void Update()
     {
@@ -84,27 +79,53 @@ public class FieldManager : MonoBehaviour
         hasCheckedSignalSensor = true;
     }
 
+    public void ResetToExistingGameMode()
+    {
+        SetGameMode(currentGameMode);
+    }
+
     public void SetGameMode(int mode)
     {
-        this.mode = (GameMode)mode;
-        var (sessions, rounds) = GetRoundIndex();
-        gameTimeManager.sessions = sessions;
-        gameTimeManager.rounds = rounds;
-    }
-    public (Session[], Round[]) GetRoundIndex()
-    {
+        currentGameMode = mode;
+
+        Session autonomous = gameTimeManager.sessions[0];
+        Session teleOpMid = gameTimeManager.sessions[1];
+        Session teleOpEnd = gameTimeManager.sessions[2];
+        Session freePlay = gameTimeManager.sessions[3];
+        Session gameOver = gameTimeManager.sessions[4];
+
         switch(mode)
         {
-            case GameMode.Autonomous:
-                return (autonomousSessions, autonomousRound);
-            case GameMode.Teleop:
-                return (teleopSessions, teleOpRound);
-            case GameMode.Fullgame:
-                return (fullgameSessions, fullgameRound);
-            case GameMode.Freeplay:
-                return (freeplaySessions, freeplayRound);
+            case (int)GameMode.Autonomous:
+                autonomous.PlayThisSession = true;
+                teleOpMid.PlayThisSession = false;
+                teleOpEnd.PlayThisSession = false;
+                freePlay.PlayThisSession = false;
+                gameOver.PlayThisSession = true;
+                break;
+            case (int)GameMode.Teleop:
+                autonomous.PlayThisSession = false;
+                teleOpMid.PlayThisSession = true;
+                teleOpEnd.PlayThisSession = true;
+                freePlay.PlayThisSession = false;
+                gameOver.PlayThisSession = true;
+                break;
+            case (int)GameMode.Fullgame:
+                autonomous.PlayThisSession = true;
+                teleOpMid.PlayThisSession = true;
+                teleOpEnd.PlayThisSession = true;
+                freePlay.PlayThisSession = false;
+                gameOver.PlayThisSession = true;
+                break;
+            case (int)GameMode.Freeplay:
+                autonomous.PlayThisSession = false;
+                teleOpMid.PlayThisSession = false;
+                teleOpEnd.PlayThisSession = false;
+                freePlay.PlayThisSession = true;
+                gameOver.PlayThisSession = false;
+                break;
         }
-        return (null,null);
+
     }
 
 }
