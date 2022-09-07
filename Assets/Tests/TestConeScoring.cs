@@ -93,7 +93,18 @@ public class TestConeScoring : MonoBehaviour
     [UnityTest]
     public IEnumerator TestStacking()
     {
+        TestHelper.StartMode(GameMode.Teleop);
         yield return TestConePath(TeamColor.Red, 6, "A0,A0,A0");
+        
+        //yield return TestConePath(TeamColor.Red, 16, testPattern);
+    }
+
+    [UnityTest]
+    public IEnumerator ScoringConesEndOfGame()
+    {
+        TestHelper.StartMode(GameMode.Autonomous);
+        yield return TestConePath(TeamColor.Blue, 76, "TB0,A0,A1,B0,C0,D0,E0,E1,E2,E3,E4,TB1");
+        TestHelper.StopMode();
         //yield return TestConePath(TeamColor.Red, 16, testPattern);
     }
 
@@ -152,8 +163,10 @@ public class TestConeScoring : MonoBehaviour
             cone.Drop(junction);
             yield return new WaitForSeconds(.1f);
         }
-
-        yield return new WaitForSeconds(2);
+        
+        yield return new WaitForSeconds(4);
+        TestHelper.StopMode();
+        yield return new WaitForSeconds(30);
         ScoreTracker score = TestHelper.scores["Red"];
         ScoreTracker otherScore = TestHelper.scores["Blue"];
         if (color == TeamColor.Blue) { score = TestHelper.scores["Blue"]; otherScore = TestHelper.scores["Red"]; }
