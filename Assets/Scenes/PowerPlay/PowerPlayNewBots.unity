@@ -11141,7 +11141,7 @@ Camera:
   m_GameObject: {fileID: 305062719}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 1
+  m_ClearFlags: 2
   m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
@@ -11156,14 +11156,14 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.3
-  far clip plane: 1000
-  field of view: 15
+  far clip plane: 3
+  field of view: 20
   orthographic: 0
   orthographic size: 5
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 5120
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 8400000, guid: b3770ed601480f949abc10a73523c125, type: 2}
   m_TargetDisplay: 0
@@ -11207,6 +11207,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: RedBeacon
+      objectReference: {fileID: 0}
+    - target: {fileID: 5781359735973048960, guid: f0a0673f8019f3e4384ac13c1e54cc50,
+        type: 3}
+      propertyPath: m_TagString
+      value: Beacon
       objectReference: {fileID: 0}
     - target: {fileID: 6588859301548992570, guid: f0a0673f8019f3e4384ac13c1e54cc50,
         type: 3}
@@ -12965,6 +12970,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: BlueBeacon
+      objectReference: {fileID: 0}
+    - target: {fileID: 5781359735973048960, guid: f0a0673f8019f3e4384ac13c1e54cc50,
+        type: 3}
+      propertyPath: m_TagString
+      value: Beacon
       objectReference: {fileID: 0}
     - target: {fileID: 6588859301548992570, guid: f0a0673f8019f3e4384ac13c1e54cc50,
         type: 3}
@@ -14828,8 +14838,8 @@ MonoBehaviour:
   - {fileID: 533348426}
   - {fileID: 2006991090}
   Location:
-  - {fileID: 351263824}
-  - {fileID: 2950979815355438173}
+  - {fileID: 14646328}
+  - {fileID: 2950979815713148182}
   cloneObject: 0
 --- !u!1 &565003330
 GameObject:
@@ -21548,8 +21558,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 116, y: -148}
-  m_SizeDelta: {x: 100, y: 100}
+  m_AnchoredPosition: {x: 100, y: -164}
+  m_SizeDelta: {x: 132.1479, y: 124.1647}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &931853556
 MonoBehaviour:
@@ -41191,7 +41201,7 @@ MonoBehaviour:
   m_RendererIndex: -1
   m_VolumeLayerMask:
     serializedVersion: 2
-    m_Bits: 1
+    m_Bits: 0
   m_VolumeTrigger: {fileID: 0}
   m_RenderPostProcessing: 0
   m_Antialiasing: 0
@@ -41220,7 +41230,7 @@ Camera:
   m_GameObject: {fileID: 1954781252}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 1
+  m_ClearFlags: 2
   m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
@@ -41235,14 +41245,14 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.3
-  far clip plane: 1000
-  field of view: 15
+  far clip plane: 3
+  field of view: 20
   orthographic: 0
   orthographic size: 5
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 5120
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 8400000, guid: 99c60b0fb1ce227408f4bf8cfccc9d31, type: 2}
   m_TargetDisplay: 0
