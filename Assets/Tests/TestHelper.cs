@@ -66,10 +66,14 @@ public static class TestHelper
         timeManager.Play();
     }
 
-    public static void StopMode()
+    public static void EndGame()
     {
         timeManager.EndGame();
         timeManager.Stop();
+    }
+    public static void EndRound()
+    {
+        timeManager.EndRound();
     }
 
     public static void ReadyTest()//this needs to be called after scene is ready, which is why its not in setup.

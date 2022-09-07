@@ -103,11 +103,22 @@ public class TestConeScoring : MonoBehaviour
     }
 
     [UnityTest]
+    public IEnumerator TestDoubleScore()
+    {
+        TestHelper.StartMode(GameMode.Fullgame);
+        yield return TestConePath(TeamColor.Red, "A0,A0,A0");
+        TestHelper.EndRound();
+        yield return new WaitForSeconds(5);
+        CheckScore(TeamColor.Red, 12);
+        //yield return TestConePath(TeamColor.Red, 16, testPattern);
+    }
+
+    [UnityTest]
     public IEnumerator ScoringConesEndOfGame()
     {
         TestHelper.StartMode(GameMode.Autonomous);
         yield return TestConePath(TeamColor.Blue, "TB0,A0,A1,B0,C0,D0,E0,E1,E2,E3,E4,TB1");
-        TestHelper.StopMode();
+        TestHelper.EndGame();
         yield return new WaitForSeconds(1);
         CheckScore(TeamColor.Blue, 76);
         //yield return TestConePath(TeamColor.Red, 16, testPattern);
