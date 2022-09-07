@@ -114,6 +114,19 @@ public class TestConeScoring : MonoBehaviour
     }
 
     [UnityTest]
+    public IEnumerator TestBothScores()
+    {
+        TestHelper.StartMode(GameMode.Teleop);
+        yield return TestConePath(TeamColor.Red, "A0,C1,E0,C2");
+        yield return TestConePath(TeamColor.Blue, "C2,B2,B3");
+        TestHelper.EndGame();
+        yield return new WaitForSeconds(3);
+        CheckScore(TeamColor.Red, 20);
+        CheckScore(TeamColor.Blue, 20);
+        //yield return TestConePath(TeamColor.Red, 16, testPattern);
+    }
+
+    [UnityTest]
     public IEnumerator ScoringConesEndOfGame()
     {
         TestHelper.StartMode(GameMode.Autonomous);
@@ -163,14 +176,18 @@ public class TestConeScoring : MonoBehaviour
         Assert.AreEqual(0, otherScore.Score,"Other team shouldnt have any points");
     }
 
-    public void CheckScore(TeamColor color, int correctScore)
+    public void CheckScore(TeamColor color, int correctScore, bool otherTeamHasNone = true)
     {
         ScoreTracker score = TestHelper.scores["Red"];
         ScoreTracker otherScore = TestHelper.scores["Blue"];
         if (color == TeamColor.Blue) { score = TestHelper.scores["Blue"]; otherScore = TestHelper.scores["Red"]; }
 
         Assert.AreEqual(correctScore, score.Score, "Correct Score for Team?");
-        Assert.AreEqual(0, otherScore.Score, "Other team shouldnt have any points");
+        if(otherTeamHasNone)
+        {
+            Assert.AreEqual(0, otherScore.Score, "Other team shouldnt have any points");
+        }
+        
         Debug.Log("Expected Score:" + correctScore + ", Actual Score:" + score.Score);
     }
 
