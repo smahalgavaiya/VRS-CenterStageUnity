@@ -71,7 +71,8 @@ public class TestConeScoring : MonoBehaviour
     public IEnumerator TestBlueCircuit()
     {
         TestHelper.StartMode(GameMode.Teleop);
-        yield return TestConePath(TeamColor.Blue, 36, TestHelper.testPattern);
+        yield return TestConePath(TeamColor.Blue,TestHelper.testPattern);
+        CheckScore(TeamColor.Blue, 36);
         //yield return TestConePath(TeamColor.Blue, 52, "A0,B1,B2,C1,D1,D2,D3,D4");
     }
 
@@ -79,14 +80,16 @@ public class TestConeScoring : MonoBehaviour
     public IEnumerator TestRedCircuitOnBlue()
     {
         TestHelper.StartMode(GameMode.Teleop);
-        yield return TestConePath(TeamColor.Red, 16, TestHelper.testPattern);
+        yield return TestConePath(TeamColor.Red, TestHelper.testPattern);
+        CheckScore(TeamColor.Red, 14);
     }
 
     [UnityTest]
     public IEnumerator TestRedCircuit()
     {
         TestHelper.StartMode(GameMode.Teleop);
-        yield return TestConePath(TeamColor.Red, 36, "TR0,A4,B3,C2,D1,E0,TR1");
+        yield return TestConePath(TeamColor.Red, "TR0,A4,B3,C2,D1,E0,TR1");
+        CheckScore(TeamColor.Red, 36);
         //yield return TestConePath(TeamColor.Red, 16, testPattern);
     }
 
@@ -94,8 +97,8 @@ public class TestConeScoring : MonoBehaviour
     public IEnumerator TestStacking()
     {
         TestHelper.StartMode(GameMode.Teleop);
-        yield return TestConePath(TeamColor.Red, 6, "A0,A0,A0");
-        
+        yield return TestConePath(TeamColor.Red, "A0,A0,A0");
+        CheckScore(TeamColor.Red, 6);
         //yield return TestConePath(TeamColor.Red, 16, testPattern);
     }
 
@@ -103,8 +106,10 @@ public class TestConeScoring : MonoBehaviour
     public IEnumerator ScoringConesEndOfGame()
     {
         TestHelper.StartMode(GameMode.Autonomous);
-        yield return TestConePath(TeamColor.Blue, 76, "TB0,A0,A1,B0,C0,D0,E0,E1,E2,E3,E4,TB1");
+        yield return TestConePath(TeamColor.Blue, "TB0,A0,A1,B0,C0,D0,E0,E1,E2,E3,E4,TB1");
         TestHelper.StopMode();
+        yield return new WaitForSeconds(1);
+        CheckScore(TeamColor.Blue, 76);
         //yield return TestConePath(TeamColor.Red, 16, testPattern);
     }
 
@@ -147,9 +152,18 @@ public class TestConeScoring : MonoBehaviour
         Assert.AreEqual(0, otherScore.Score,"Other team shouldnt have any points");
     }
 
+    public void CheckScore(TeamColor color, int correctScore)
+    {
+        ScoreTracker score = TestHelper.scores["Red"];
+        ScoreTracker otherScore = TestHelper.scores["Blue"];
+        if (color == TeamColor.Blue) { score = TestHelper.scores["Blue"]; otherScore = TestHelper.scores["Red"]; }
 
+        Assert.AreEqual(correctScore, score.Score, "Correct Score for Team?");
+        Assert.AreEqual(0, otherScore.Score, "Other team shouldnt have any points");
+        Debug.Log("Expected Score:" + correctScore + ", Actual Score:" + score.Score);
+    }
 
-    public IEnumerator TestConePath(TeamColor color, int correctScore, string coords)
+    public IEnumerator TestConePath(TeamColor color, string coords)
     {
         yield return new WaitForSeconds(0.5f);
         DropCone cone = GameObject.FindObjectOfType<DropCone>();
@@ -164,15 +178,7 @@ public class TestConeScoring : MonoBehaviour
             yield return new WaitForSeconds(.1f);
         }
         
-        yield return new WaitForSeconds(4);
-        TestHelper.StopMode();
-        yield return new WaitForSeconds(30);
-        ScoreTracker score = TestHelper.scores["Red"];
-        ScoreTracker otherScore = TestHelper.scores["Blue"];
-        if (color == TeamColor.Blue) { score = TestHelper.scores["Blue"]; otherScore = TestHelper.scores["Red"]; }
-
-        Assert.AreEqual(correctScore, score.Score, "Correct Score for Team?");
-        Assert.AreEqual(0, otherScore.Score, "Other team shouldnt have any points");
-        Debug.Log("Expected Score:" + correctScore + ", Actual Score:" + score.Score);
+        yield return new WaitForSeconds(1);
+        
     }
 }

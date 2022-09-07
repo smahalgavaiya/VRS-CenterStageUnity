@@ -68,6 +68,7 @@ public class SelectBotOptions : MonoBehaviour
         checker.CanPickUp = true;
         cone.transform.position = grabber.transform.position;
         yield return new WaitForFixedUpdate();
+        yield return new WaitForEndOfFrame();
         grabber.PickUpOrPutDownObject();
         FinishedStart.Invoke();
     }
