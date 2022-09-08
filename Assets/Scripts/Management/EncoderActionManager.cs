@@ -36,22 +36,18 @@ public class EncoderActionManager : MonoBehaviour
     public void SetFrontLeft(float driveAmt)
     {
         FL = -driveAmt * forceMultiplier;
-        //frontLeftWheel.driveAmount = new Vector3(-driveAmt * forceMultiplier,0,0);
     }
     public void SetFrontRight(float driveAmt)
     {
         FR = -driveAmt * forceMultiplier;
-        //frontRightWheel.driveAmount = new Vector3(-driveAmt * forceMultiplier,0,0);
     }
     public void SetBackLeft(float driveAmt)
     {
         RL = -driveAmt * forceMultiplier;
-        //backLeftWheel.driveAmount = new Vector3(-driveAmt * forceMultiplier,0,0);
     }
     public void SetBackRight(float driveAmt)
     {
         RR = -driveAmt * forceMultiplier;
-        //backRightWheel.driveAmount = new Vector3(-driveAmt * forceMultiplier,0,0);
     }
     public void SetMotor1(float driveAmt)
     {
