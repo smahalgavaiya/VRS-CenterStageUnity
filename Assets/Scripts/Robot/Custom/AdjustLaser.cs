@@ -27,4 +27,21 @@ public class AdjustLaser : MonoBehaviour
             //Debug.Log(hit.collider.name);
         }
     }
+
+    public void ToggleLaser(bool on=true, bool turnBackOn = false)
+    {
+        MeshRenderer[] meshes = GetComponentsInChildren<MeshRenderer>(true);
+        foreach(MeshRenderer mesh in meshes)
+        {
+            mesh.gameObject.SetActive(on);
+        }
+        if(turnBackOn)
+        {
+            Invoke("LaserOn", 4);
+        }
+    }
+    private void LaserOn()
+    {
+        ToggleLaser(true);
+    }
 }
