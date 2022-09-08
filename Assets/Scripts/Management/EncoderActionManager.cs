@@ -45,7 +45,7 @@ public class EncoderActionManager : MonoBehaviour
     }
     public void SetMotor1(float driveAmt)
     {
-        motor1.driveAmount.x = driveAmt;
+        motor1.driveAmount.x = -driveAmt;
     }
     public void SetMotor2(float driveAmt)
     {
