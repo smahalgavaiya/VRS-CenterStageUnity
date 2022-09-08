@@ -121,8 +121,8 @@ public class TestConeScoring : MonoBehaviour
         yield return TestConePath(TeamColor.Blue, "C2,B2,B3");
         TestHelper.EndGame();
         yield return new WaitForSeconds(3);
-        CheckScore(TeamColor.Red, 20);
-        CheckScore(TeamColor.Blue, 20);
+        CheckScore(TeamColor.Red, 20,false);
+        CheckScore(TeamColor.Blue, 20,false);
         //yield return TestConePath(TeamColor.Red, 16, testPattern);
     }
 
