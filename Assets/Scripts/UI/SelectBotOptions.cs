@@ -47,9 +47,11 @@ public class SelectBotOptions : MonoBehaviour
         bot.GetComponent<ColorSwitcher>().TeamColor_ = color;
         bot.GetComponent<ColorSwitcher>().SetColor();
         bot.GetComponent<ScoreObjectTypeLink>().LastTouchedTeamColor = color;
+        AdjustLaser laser = bot.GetComponentInChildren<AdjustLaser>();
+        laser.ToggleLaser(false,true);
         spawnedBot = bot;
         FieldManager.botColor = color;
-        if(preloadCone)
+        if (preloadCone)
         {
             StartCoroutine(DoPreload(bot));
         }
@@ -64,7 +66,6 @@ public class SelectBotOptions : MonoBehaviour
         cone.GetComponent<ScoreObjectTypeLink>().LastTouchedTeamColor = color;
         ObjectGrabber grabber = bot.GetComponentInChildren<ObjectGrabber>();
         ObjectChecker checker = grabber.GetComponent<ObjectChecker>();
-
         checker.CanPickUp = true;
         cone.transform.position = grabber.transform.position;
         yield return new WaitForFixedUpdate();
