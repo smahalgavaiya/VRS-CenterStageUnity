@@ -8,6 +8,12 @@ public class EncoderActionManager : MonoBehaviour
     public float forceMultiplier = 3f;
     public Drive frontLeftWheel, backLeftWheel, frontRightWheel, backRightWheel, motor1, motor2, motor3, motor4;
     List<Drive> drives;
+
+    private Vector2 moveDirection;
+    private float rotationDirection;
+    public InputActionManager gamepadControls;
+
+    float FL, FR, RL, RR = 0;
     // Start is called before the first frame update
     void Start()
     {
@@ -29,19 +35,23 @@ public class EncoderActionManager : MonoBehaviour
     }
     public void SetFrontLeft(float driveAmt)
     {
-        frontLeftWheel.driveAmount = new Vector3(-driveAmt * forceMultiplier,0,0);
+        FL = -driveAmt * forceMultiplier;
+        //frontLeftWheel.driveAmount = new Vector3(-driveAmt * forceMultiplier,0,0);
     }
     public void SetFrontRight(float driveAmt)
     {
-        frontRightWheel.driveAmount = new Vector3(-driveAmt * forceMultiplier,0,0);
+        FR = -driveAmt * forceMultiplier;
+        //frontRightWheel.driveAmount = new Vector3(-driveAmt * forceMultiplier,0,0);
     }
     public void SetBackLeft(float driveAmt)
     {
-        backLeftWheel.driveAmount = new Vector3(-driveAmt * forceMultiplier,0,0);
+        RL = -driveAmt * forceMultiplier;
+        //backLeftWheel.driveAmount = new Vector3(-driveAmt * forceMultiplier,0,0);
     }
     public void SetBackRight(float driveAmt)
     {
-        backRightWheel.driveAmount = new Vector3(-driveAmt * forceMultiplier,0,0);
+        RR = -driveAmt * forceMultiplier;
+        //backRightWheel.driveAmount = new Vector3(-driveAmt * forceMultiplier,0,0);
     }
     public void SetMotor1(float driveAmt)
     {
@@ -50,5 +60,36 @@ public class EncoderActionManager : MonoBehaviour
     public void SetMotor2(float driveAmt)
     {
         motor2.driveAmount.x = driveAmt;
+    }
+
+    void WheelTorqueMotion()
+    {
+        if (gamepadControls.GamepadActive) { return; }
+        //EX lateral: FL:1,FR:-1,RL:-1,RR:1
+        moveDirection.y = FL + FR + RL + RR;
+        moveDirection.x = FL - FR - RL + RR;
+        rotationDirection = FL - FR + RL - RR;
+        moveDirection.y = Mathf.Clamp(moveDirection.y, -1, 1);
+        moveDirection.x = Mathf.Clamp(moveDirection.x, -1, 1);
+        rotationDirection = Mathf.Clamp(rotationDirection, -1, 1);
+        float forward = moveDirection.y;
+        float strafe = moveDirection.x;
+        float rotate = rotationDirection;
+        for (int i = 0; i < 4; i++)
+        {
+            drives[i].driveAmount = new Vector3(forward, strafe, rotate);
+        }
+        frontLeftWheel.driveAmount.x = -moveDirection.x + moveDirection.y + rotationDirection;
+        backRightWheel.driveAmount.x = -moveDirection.x + moveDirection.y - rotationDirection;
+        frontRightWheel.driveAmount.x = moveDirection.x + moveDirection.y - rotationDirection;
+        backLeftWheel.driveAmount.x = moveDirection.x + moveDirection.y + rotationDirection;
+
+    }
+
+    private void Update()
+    {
+        //FL = RR = 1;
+        //FR = RL = -1;
+        WheelTorqueMotion();
     }
 }
