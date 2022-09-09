@@ -18,6 +18,7 @@ public class KeyBoundButton : MonoBehaviour
     public TextMeshProUGUI bindText;
     string currentScheme;
     public bool doOnButtonRelease = false;
+    public KBindOverride bindOverride;
 
     private void Start()
     {
@@ -52,6 +53,7 @@ public class KeyBoundButton : MonoBehaviour
     {
         if (bindText == null) { return; }
         bindText.text = buttonPress.GetBindingDisplayString();
+        if(buttonPress.GetBindingDisplayString() == bindOverride.officialName) { bindText.text = bindOverride.overrideName; }
     }
 
     private void OnDisable()
