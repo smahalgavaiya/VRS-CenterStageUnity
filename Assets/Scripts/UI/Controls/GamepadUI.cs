@@ -4,28 +4,28 @@ using UnityEngine;
 
 public static class GamepadUI
 {
-    public static char GetGamepadIcon(string button)
+    public static string GetGamepadIcon(string button)
     {
         switch(button)
         {
             case "LS":
-                return '8';
+                return "8";
             case "RS X":
-                return ']';
+                return "]";
             case "D-Pad Y":
-                return 'A';
+                return "A";
             case "B":
-                return '.';
+                return ".";
             case "Y":
-                return '/';
+                return "/";
             case "Press RT":
-                return 'b';
+                return "b";
             case "Select":
-                return 'B';
+                return "B";
             case "LB | RB":
-                return 'z';
+                return "fz";
         }
-        return ' ';
+        return " ";
     }
 
 }

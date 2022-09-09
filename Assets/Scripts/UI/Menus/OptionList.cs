@@ -11,7 +11,6 @@ using TMPro;
 /// OptionList offers multiple strings to choose from using buttons.
 /// </summary>
 [AddComponentMenu("UI/Option List")]
-[DisallowMultipleComponent]
 public class OptionList : MonoBehaviour
 {
     [Header("Option List Object References")]
@@ -41,6 +40,12 @@ public class OptionList : MonoBehaviour
         optionIndex = index;
         option = options[optionIndex];
         optionText.text = option;
+        UpdateOption(index);
+    }
+
+    public virtual void UpdateOption(int index)
+    {
+
     }
 
     /// <summary>
