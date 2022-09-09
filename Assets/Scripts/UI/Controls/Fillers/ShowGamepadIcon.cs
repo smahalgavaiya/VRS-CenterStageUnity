@@ -16,8 +16,8 @@ public class ShowGamepadIcon : MonoBehaviour, I_UIDataFill
 
     public void FillData(object data)
     {
-        char iconKey = GamepadUI.GetGamepadIcon(data.ToString());
-        text.text = iconKey.ToString();
+        string iconKey = GamepadUI.GetGamepadIcon(data.ToString());
+        text.text = iconKey;
     }
 
     void OnEnable()

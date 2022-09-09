@@ -37,7 +37,7 @@ public class AdjustLaser : MonoBehaviour
         }
         if(turnBackOn)
         {
-            Invoke("LaserOn", 4);
+            Invoke("LaserOn", 8);
         }
     }
     private void LaserOn()
