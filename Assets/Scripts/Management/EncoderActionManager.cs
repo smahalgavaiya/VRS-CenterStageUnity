@@ -51,10 +51,12 @@ public class EncoderActionManager : MonoBehaviour
     }
     public void SetMotor1(float driveAmt)
     {
+        if (gamepadControls.GamepadActive) { return; }
         motor1.driveAmount.x = -driveAmt;
     }
     public void SetMotor2(float driveAmt)
     {
+        if (gamepadControls.GamepadActive) { return; }
         motor2.driveAmount.x = driveAmt;
     }
 
