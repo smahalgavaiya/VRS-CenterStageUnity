@@ -61,7 +61,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 226fca4139a3ee64a828aa1d28c2c9c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scoringGuide: {fileID: 11400000, guid: 7349f391750411842a3afdf13de0af9d, type: 2}
+  tagsToCheckAgainst:
+  - Cone
+  - Beacon
 --- !u!114 &635764859349010755
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -104,6 +106,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c757b3f47819d1740ac8ede25c35432b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  reEnableDelay: 1
 --- !u!114 &143446288120490041
 MonoBehaviour:
   m_ObjectHideFlags: 0
