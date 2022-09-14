@@ -15,17 +15,20 @@ public class SetPrefs : MonoBehaviour
         {
             if (!PlayerPrefs.HasKey(prefName)) { setValue(t.isOn); return; }
             t.isOn = Convert.ToBoolean((PlayerPrefs.GetInt(prefName)));
+            t.onValueChanged.Invoke(t.isOn);
         }
         Slider s = GetComponentInChildren<Slider>();
         if (s)
         {
             if (!PlayerPrefs.HasKey(prefName)) { setValue(s.value); return; }
             s.value = PlayerPrefs.GetFloat(prefName);
+            s.onValueChanged.Invoke(s.value);
         }
         OptionList list = GetComponentInChildren<OptionList>();
         if(list)
         {
             list.SetOption((int)PlayerPrefs.GetFloat(prefName));
+            list.onChangeOptionIndex.Invoke((int)PlayerPrefs.GetFloat(prefName));
         }
     }
 
