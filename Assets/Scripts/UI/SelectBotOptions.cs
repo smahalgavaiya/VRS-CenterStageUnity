@@ -67,6 +67,7 @@ public class SelectBotOptions : MonoBehaviour
         ObjectGrabber grabber = bot.GetComponentInChildren<ObjectGrabber>();
         ObjectChecker checker = grabber.GetComponent<ObjectChecker>();
         checker.CanPickUp = true;
+        checker.ObjectInTrigger = cone;
         cone.transform.position = grabber.transform.position;
         yield return new WaitForFixedUpdate();
         yield return new WaitForEndOfFrame();
