@@ -7823,6 +7823,7 @@ GameObject:
   m_Component:
   - component: {fileID: 122299361}
   - component: {fileID: 122299362}
+  - component: {fileID: 122299363}
   m_Layer: 5
   m_Name: SpawnCheckBox
   m_TagString: Untagged
@@ -7910,7 +7911,32 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 122299363}
+        m_TargetAssemblyTypeName: SetPrefs, GameScripts
+        m_MethodName: setValue
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_IsOn: 0
+--- !u!114 &122299363
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 122299360}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea2645dee8c0a7042bbf0fafc35f9628, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefName: useTile2
 --- !u!1 &134995367
 GameObject:
   m_ObjectHideFlags: 0
@@ -11304,6 +11330,7 @@ GameObject:
   - component: {fileID: 281328160}
   - component: {fileID: 281328162}
   - component: {fileID: 281328161}
+  - component: {fileID: 281328163}
   m_Layer: 5
   m_Name: List
   m_TagString: Untagged
@@ -11382,6 +11409,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 281328163}
+        m_TargetAssemblyTypeName: SetPrefs, GameScripts
+        m_MethodName: setValue
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   optionIndex: 0
   option: 
 --- !u!114 &281328162
@@ -11397,6 +11436,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_AllowSwitchOff: 0
+--- !u!114 &281328163
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 281328159}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea2645dee8c0a7042bbf0fafc35f9628, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefName: lastMode
 --- !u!1 &286267740
 GameObject:
   m_ObjectHideFlags: 0
@@ -19035,6 +19087,7 @@ GameObject:
   m_Component:
   - component: {fileID: 780570357}
   - component: {fileID: 780570358}
+  - component: {fileID: 780570359}
   m_Layer: 5
   m_Name: List
   m_TagString: Untagged
@@ -19101,6 +19154,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 780570359}
+        m_TargetAssemblyTypeName: SetPrefs, GameScripts
+        m_MethodName: setValue
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   optionIndex: 0
   option: 
   images:
@@ -19108,6 +19173,19 @@ MonoBehaviour:
   - {fileID: 21300000, guid: c998546627bcf2b4498c8aee6344c84e, type: 3}
   - {fileID: 21300000, guid: 88e27e03fc4220b43a8c165bfe1729dd, type: 3}
   imagebox: {fileID: 1347891837}
+--- !u!114 &780570359
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 780570356}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea2645dee8c0a7042bbf0fafc35f9628, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefName: lastBot
 --- !u!1 &781690355
 GameObject:
   m_ObjectHideFlags: 0
@@ -32231,6 +32309,30 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 931853554}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 386976272}
+        m_TargetAssemblyTypeName: GameTimeManager, com.vftc.robotconstructionkit
+        m_MethodName: StartGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   spawnedBot: {fileID: 0}
 --- !u!114 &1404345743
 MonoBehaviour:
@@ -33098,6 +33200,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1457940111}
   - component: {fileID: 1457940112}
+  - component: {fileID: 1457940113}
   m_Layer: 5
   m_Name: PreloadBox
   m_TagString: Untagged
@@ -33185,7 +33288,32 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1457940113}
+        m_TargetAssemblyTypeName: SetPrefs, GameScripts
+        m_MethodName: setValue
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_IsOn: 0
+--- !u!114 &1457940113
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1457940110}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea2645dee8c0a7042bbf0fafc35f9628, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefName: preloadCone
 --- !u!1001 &1458692802
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -34616,30 +34744,6 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1404345742}
         m_TargetAssemblyTypeName: SelectBotOptions, Assembly-CSharp
-        m_MethodName: StartGame
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 931853554}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 386976272}
-        m_TargetAssemblyTypeName: GameTimeManager, com.vftc.robotconstructionkit
         m_MethodName: StartGame
         m_Mode: 1
         m_Arguments:
@@ -42834,6 +42938,33 @@ MonoBehaviour:
   mode: 0
   gameTimeManager: {fileID: 386976272}
   currentSession: {fileID: 11400000, guid: e39a63664eb39464a9e54eb8282546d7, type: 2}
+  onResetField:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1404345742}
+        m_TargetAssemblyTypeName: SelectBotOptions, GameScripts
+        m_MethodName: SetAutoStart
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1414553580}
+        m_TargetAssemblyTypeName: RestartScene, GameScripts
+        m_MethodName: Restart
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1867799081 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1430432859409878696, guid: 56bfd5ae60ab4d848bbd9013c51bd5da,
@@ -44746,6 +44877,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1970952624}
   - component: {fileID: 1970952625}
+  - component: {fileID: 1970952626}
   m_Layer: 5
   m_Name: List
   m_TagString: Untagged
@@ -44811,12 +44943,37 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1970952626}
+        m_TargetAssemblyTypeName: SetPrefs, GameScripts
+        m_MethodName: setValue
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   optionIndex: 0
   option: 
   images:
   - {fileID: 21300000, guid: 473f10ee963b644f4bef41f2b5dcccc3, type: 3}
   - {fileID: 21300000, guid: af7fd3c28a4714137aa51a67d07709cf, type: 3}
   imagebox: {fileID: 735086745}
+--- !u!114 &1970952626
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1970952623}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea2645dee8c0a7042bbf0fafc35f9628, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefName: lastTeam
 --- !u!1 &1971299295
 GameObject:
   m_ObjectHideFlags: 0

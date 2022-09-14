@@ -38,6 +38,30 @@ public class SelectBotOptions : MonoBehaviour
         color = (TeamColor)index;
     }
 
+    void AutoStartGame()
+    {
+        int autostart = PlayerPrefs.GetInt("autostart", 0);
+        if(autostart > 0)
+        {
+            StartCoroutine(DoAutoStart());
+        }
+    }
+
+    public void SetAutoStart(int doAuto=0)
+    {
+        PlayerPrefs.SetInt("autostart", doAuto);
+        PlayerPrefs.Save();
+    }
+
+    IEnumerator DoAutoStart()
+    {
+        //wait for SetPrefs to read preferences and change all properties.
+        SetAutoStart(0);
+        yield return new WaitForEndOfFrame();
+        yield return new WaitForEndOfFrame();
+        StartGame();
+    }
+
     public void StartGame()
     {
         if (spawnedBot) { Destroy(spawnedBot); }
@@ -73,5 +97,10 @@ public class SelectBotOptions : MonoBehaviour
         yield return new WaitForEndOfFrame();
         grabber.PickUpOrPutDownObject();
         FinishedStart.Invoke();
+    }
+
+    void Start()
+    {
+        AutoStartGame();
     }
 }

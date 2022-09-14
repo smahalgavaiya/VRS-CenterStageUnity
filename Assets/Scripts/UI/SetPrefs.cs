@@ -22,6 +22,11 @@ public class SetPrefs : MonoBehaviour
             if (!PlayerPrefs.HasKey(prefName)) { setValue(s.value); return; }
             s.value = PlayerPrefs.GetFloat(prefName);
         }
+        OptionList list = GetComponentInChildren<OptionList>();
+        if(list)
+        {
+            list.SetOption((int)PlayerPrefs.GetFloat(prefName));
+        }
     }
 
     public void setValue(bool val)
@@ -30,6 +35,12 @@ public class SetPrefs : MonoBehaviour
         PlayerPrefs.Save();
     }
     public void setValue(float val)
+    {
+        PlayerPrefs.SetFloat(prefName, val);
+        PlayerPrefs.Save();
+    }
+
+    public void setValue(int val)
     {
         PlayerPrefs.SetFloat(prefName, val);
         PlayerPrefs.Save();
