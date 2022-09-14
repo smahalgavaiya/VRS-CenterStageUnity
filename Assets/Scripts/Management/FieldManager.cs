@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Runtime.InteropServices;
 using System;
+using UnityEngine.Events;
 
 public enum GameMode
 {
@@ -19,6 +20,8 @@ public class FieldManager : MonoBehaviour
 
     public GameTimeManager gameTimeManager;
 
+    
+
     private static FieldManager _instance;
     public static FieldManager instance
     {
@@ -26,6 +29,8 @@ public class FieldManager : MonoBehaviour
     }
 
     [SerializeField] GlobalInt currentSession;
+
+    public UnityEvent onResetField;
 
     [DllImport("__Internal")]
     private static extern void updateSignalSensor(int signal);
@@ -82,6 +87,11 @@ public class FieldManager : MonoBehaviour
     public void ResetToExistingGameMode()
     {
         SetGameMode(currentGameMode);
+    }
+
+    public void resetField()
+    {
+        onResetField.Invoke();
     }
 
     public void SetGameMode(int mode)
