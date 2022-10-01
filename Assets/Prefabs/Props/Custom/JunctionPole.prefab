@@ -30,6 +30,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1.38, y: 1, z: 1.37}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5271025842842722147}
   m_RootOrder: 1
@@ -53,6 +54,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -134,6 +136,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.63134277, y: 0.02753225, z: -0.5834687}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4080798929057062557}
   - {fileID: 5750665927316821825}
@@ -176,6 +179,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.018823657, y: 0.5, z: 0.018823657}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5332542496525341862}
   m_RootOrder: 0
@@ -199,6 +203,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -367,6 +372,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0.1778, z: 0}
   m_LocalScale: {x: 1, y: 0.35484, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4872601705779659913}
   m_Father: {fileID: 4080798929057062557}
@@ -394,13 +400,13 @@ ArticulationBody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7234132539898725848}
   m_Enabled: 1
-  serializedVersion: 2
+  serializedVersion: 3
   m_Mass: 0.1
   m_ParentAnchorPosition: {x: 0, y: 0.0003799945, z: 0}
   m_ParentAnchorRotation: {x: 0, y: 0, z: 0.70710677, w: 0.70710677}
   m_AnchorPosition: {x: 0, y: -0.5, z: 0}
   m_AnchorRotation: {x: 0, y: 0, z: 0.70710677, w: 0.70710677}
-  m_ComputeParentAnchor: 1
+  m_MatchAnchors: 1
   m_ArticulationJointType: 3
   m_LinearX: 2
   m_LinearY: 0
@@ -409,7 +415,7 @@ ArticulationBody:
   m_SwingZ: 1
   m_Twist: 2
   m_XDrive:
-    lowerLimit: 29.88
+    lowerLimit: 0
     upperLimit: 0
     stiffness: 2
     damping: 2
@@ -465,6 +471,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5332542496525341862}
   m_Father: {fileID: 5271025842842722147}
@@ -478,13 +485,13 @@ ArticulationBody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8341677876293261502}
   m_Enabled: 1
-  serializedVersion: 2
+  serializedVersion: 3
   m_Mass: 1
   m_ParentAnchorPosition: {x: 0, y: 0, z: 0}
   m_ParentAnchorRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
   m_AnchorPosition: {x: 0, y: 0, z: 0}
   m_AnchorRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
-  m_ComputeParentAnchor: 1
+  m_MatchAnchors: 1
   m_ArticulationJointType: 0
   m_LinearX: 2
   m_LinearY: 2
