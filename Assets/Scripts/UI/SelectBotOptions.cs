@@ -141,7 +141,7 @@ public class SelectBotOptions : MonoBehaviour
         AdjustLaser laser = bot.GetComponentInChildren<AdjustLaser>();
         laser.ToggleLaser(false,true);
         spawnedBot = bot;
-        FieldManager.botColor = color;
+        PowerPlayFieldManager.botColor = color;
         if (preloadCone)
         {
             StartCoroutine(DoPreload(bot));
