@@ -13,7 +13,7 @@ public static class TestHelper
     public static string testPattern = "TB0,A0,B1,C2,D3,E4,TB1";
     public static Dictionary<string,GameObject> terminals = new Dictionary<string,GameObject>();
     //TB0,TB1,TR0,TR1
-    public static FieldManager fieldManager;
+    public static PowerPlayFieldManager fieldManager;
     public static GameTimeManager timeManager;
 
     public static GameObject getGoalOnGrid(string coords)
@@ -95,7 +95,7 @@ public static class TestHelper
         gameGrid = new GameObject[gridWidth, gridHeight];
 
         CreateGrid();
-        fieldManager = GameObject.FindObjectOfType<FieldManager>();
+        fieldManager = GameObject.FindObjectOfType<PowerPlayFieldManager>();
         timeManager = GameObject.FindObjectOfType<GameTimeManager>();
         botOptions = GameObject.FindObjectOfType<SelectBotOptions>();
         if (botOptions) { botOptions.gameObject.SetActive(false); }

@@ -8,7 +8,7 @@ public class TeamKeyButton : KeyBoundButton
 
     public override bool checkCanPress()
     {
-        if(buttonTeam == FieldManager.botColor)
+        if(buttonTeam == PowerPlayFieldManager.botColor)
         {
             return true;
         }
