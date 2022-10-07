@@ -71,6 +71,7 @@ public class SelectBotOptions : MonoBehaviour
     {
         selectBotScreen.SetActive(false);
         customPrefab = obj;
+        useCustomBot = true;
     }
 
     public void StartGame()

@@ -8,6 +8,7 @@ using UnityEngine.Events;
 public class spawnAddressablePrefab : MonoBehaviour
 {
     public UnityEvent<GameObject> loadedPrefab;
+    public UnityEvent loadError;
     public string defaultLabel = "robot";
     string botname = "";
 
@@ -36,8 +37,10 @@ public class spawnAddressablePrefab : MonoBehaviour
 
     void PrefabLoaded(AsyncOperationHandle<IList<GameObject>> obj)
     {
-        //Clear();
-        loadedPrefab.Invoke(obj.Result[0]);
-        //Instantiate(obj.Result[0],transform.position,transform.rotation);
+        if (obj.Result == null) { loadError.Invoke(); }
+        else
+        {
+            loadedPrefab.Invoke(obj.Result[0]);
+        }
     }
 }
