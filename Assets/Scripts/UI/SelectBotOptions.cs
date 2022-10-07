@@ -16,6 +16,11 @@ public class SelectBotOptions : MonoBehaviour
 
     public UnityEvent FinishedStart;
     public GameObject spawnedBot;
+    public GameObject selectBotScreen;
+
+    bool useCustomBot = false;
+    GameObject customPrefab;
+
     // Start is called before the first frame update
 
     public void SelectBot(int index)
@@ -41,13 +46,13 @@ public class SelectBotOptions : MonoBehaviour
     void AutoStartGame()
     {
         int autostart = PlayerPrefs.GetInt("autostart", 0);
-        if(autostart > 0)
+        if (autostart > 0)
         {
             StartCoroutine(DoAutoStart());
         }
     }
 
-    public void SetAutoStart(int doAuto=0)
+    public void SetAutoStart(int doAuto = 0)
     {
         PlayerPrefs.SetInt("autostart", doAuto);
         PlayerPrefs.Save();
@@ -62,12 +67,22 @@ public class SelectBotOptions : MonoBehaviour
         StartGame();
     }
 
+    public void SetCustomBot(GameObject obj)
+    {
+        selectBotScreen.SetActive(false);
+        customPrefab = obj;
+    }
+
     public void StartGame()
     {
         if (spawnedBot) { Destroy(spawnedBot); }
         int spawnIdx = (int)color;
         if (useLowerSpawn) { spawnIdx += 2; }
-        GameObject bot = GameObject.Instantiate(botPrefabs[selectedBot],spawnPoints[spawnIdx].position, spawnPoints[spawnIdx].rotation);
+
+        GameObject prefab = botPrefabs[selectedBot];
+        if (useCustomBot) { prefab = customPrefab; }
+
+        GameObject bot = GameObject.Instantiate(prefab,spawnPoints[spawnIdx].position, spawnPoints[spawnIdx].rotation);
         bot.GetComponent<ColorSwitcher>().TeamColor_ = color;
         bot.GetComponent<ColorSwitcher>().SetColor();
         bot.GetComponent<ScoreObjectTypeLink>().LastTouchedTeamColor = color;
