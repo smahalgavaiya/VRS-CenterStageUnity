@@ -415,15 +415,15 @@ ArticulationBody:
   m_SwingZ: 1
   m_Twist: 2
   m_XDrive:
-    lowerLimit: 0
-    upperLimit: 0
+    lowerLimit: -180
+    upperLimit: 180
     stiffness: 2
     damping: 2
     forceLimit: 0.5
     target: 0
     targetVelocity: 0
   m_YDrive:
-    lowerLimit: -90
+    lowerLimit: 1.2502389
     upperLimit: 90
     stiffness: 10
     damping: 2
@@ -432,7 +432,7 @@ ArticulationBody:
     targetVelocity: 0
   m_ZDrive:
     lowerLimit: -90
-    upperLimit: 90
+    upperLimit: -1.3245529
     stiffness: 10
     damping: 2
     forceLimit: 0.5
