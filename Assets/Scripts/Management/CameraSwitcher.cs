@@ -37,6 +37,12 @@ public class CameraSwitcher : MonoBehaviour
         cameras[previousCamera].SetActive(false);
     }
 
+    public void AddCam(GameObject cam)
+    {
+        cameras.Add(cam);
+        SwitchCamera(0);
+    }
+
     // Update is called once per frame
     void Update()
     {

@@ -40,7 +40,7 @@ public class JunctionCapper : MonoBehaviour, ICustomGoalEvents, ICustomGoalCheck
     public void DoCustomOffEvent(UnityEngine.Object objectToPass)
     {
         goalZoneScoreLink = (GoalZoneScoreLink)objectToPass;
-        TeamColor departingColor = objectsOnJunction.Pop();
+        bool foundObj = objectsOnJunction.TryPop(out TeamColor departingColor);
 
         if (objectsOnJunction.Count > 0 && departingColor != objectsOnJunction.Peek() &&
             currentRound.globalInt == 2)

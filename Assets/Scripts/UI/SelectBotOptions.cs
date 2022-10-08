@@ -89,6 +89,8 @@ public class SelectBotOptions : MonoBehaviour
             string drvName = rcvr.drive.name;
             rcvr.drive = drives[drvName];
         }
+        ObjectGrabber grabber = bot.GetComponentInChildren<ObjectGrabber>();
+        if (grabber) { grabber.objectGrabberDrive = input.GetDrive("motor2"); }
         DriveReceiverSpinningWheels mainRcv = bot.GetComponent<DriveReceiverSpinningWheels>();
         if(mainRcv != null)
         {
@@ -113,6 +115,14 @@ public class SelectBotOptions : MonoBehaviour
         bot.GetComponent<ColorSwitcher>().SetColor();
         bot.GetComponent<ScoreObjectTypeLink>().LastTouchedTeamColor = color;
         SetupControls(bot);
+
+        CameraSwitcher cams = FindObjectOfType<CameraSwitcher>();
+        if (cams != null) 
+        {
+            Camera c = bot.GetComponentInChildren<Camera>();
+            if (c) { cams.AddCam(bot.GetComponentInChildren<Camera>().gameObject); }
+        }
+
         AdjustLaser laser = bot.GetComponentInChildren<AdjustLaser>();
         laser.ToggleLaser(false,true);
         spawnedBot = bot;
