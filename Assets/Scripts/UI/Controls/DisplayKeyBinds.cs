@@ -35,7 +35,7 @@ public class DisplayKeyBinds : MonoBehaviour
 
             Dictionary<string, string> data = new Dictionary<string, string>()
             {
-                { "bind", action.GetBindingDisplayString() },
+                { "bind", action.GetBindingDisplayString().ToUpper() },
                 { "name", bindName},
                 { "controlScheme", input.currentControlScheme }
             };

@@ -38,6 +38,14 @@
                     "interactions": ""
                 },
                 {
+                    "name": "MotorThree",
+                    "type": "Value",
+                    "id": "43b26dc0-0f36-44cb-a6dc-b0901b842a9d",
+                    "expectedControlType": "Axis",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
                     "name": "ReleaseCone",
                     "type": "Button",
                     "id": "032b745e-2f45-4d05-8ea8-2b27f8827253",
@@ -376,6 +384,50 @@
                     "processors": "",
                     "groups": "Gamepad",
                     "action": "Help",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "1D Axis",
+                    "id": "6a618c4e-4b18-4625-b9bc-0b8896840efa",
+                    "path": "1DAxis",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "MotorThree",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "negative",
+                    "id": "a58ccb46-b2f1-43b2-a52c-a3f1c742c89f",
+                    "path": "<Keyboard>/f",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard",
+                    "action": "MotorThree",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "positive",
+                    "id": "cc14addc-2410-40d3-88c8-8f18c43fe1ad",
+                    "path": "<Keyboard>/g",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard",
+                    "action": "MotorThree",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "f286d19b-ff6a-4914-a4d0-2dda65a6d057",
+                    "path": "<Gamepad>/dpad/x",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "MotorThree",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

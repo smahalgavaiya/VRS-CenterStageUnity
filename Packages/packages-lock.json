@@ -71,12 +71,10 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.inputsystem": {
-      "version": "1.4.3",
+      "version": "1.0.2",
       "depth": 0,
       "source": "registry",
-      "dependencies": {
-        "com.unity.modules.uielements": "1.0.0"
-      },
+      "dependencies": {},
       "url": "https://packages.unity.com"
     },
     "com.unity.mathematics": {
@@ -199,13 +197,12 @@
       }
     },
     "com.vftc.robotconstructionkit": {
-      "version": "0.7.20",
+      "version": "file:G:\\Projects\\Contract\\VRS-RobotSim\\UPM\\com.vftc.robotconstructionkit",
       "depth": 0,
-      "source": "registry",
+      "source": "local",
       "dependencies": {
         "com.unity.inputsystem": "1.0.2"
-      },
-      "url": "https://repo.vrobotsim.online:4879"
+      }
     },
     "com.unity.modules.ai": {
       "version": "1.0.0",
