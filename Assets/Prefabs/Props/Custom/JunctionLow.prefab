@@ -1850,6 +1850,36 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4851827569486421403, guid: 341fdd59a725af94a935b9b0be8ab846,
         type: 3}
+      propertyPath: m_Mass
+      value: 0.03
+      objectReference: {fileID: 0}
+    - target: {fileID: 4851827569486421403, guid: 341fdd59a725af94a935b9b0be8ab846,
+        type: 3}
+      propertyPath: m_YDrive.stiffness
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4851827569486421403, guid: 341fdd59a725af94a935b9b0be8ab846,
+        type: 3}
+      propertyPath: m_ZDrive.stiffness
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4851827569486421403, guid: 341fdd59a725af94a935b9b0be8ab846,
+        type: 3}
+      propertyPath: m_XDrive.forceLimit
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4851827569486421403, guid: 341fdd59a725af94a935b9b0be8ab846,
+        type: 3}
+      propertyPath: m_YDrive.forceLimit
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4851827569486421403, guid: 341fdd59a725af94a935b9b0be8ab846,
+        type: 3}
+      propertyPath: m_ZDrive.forceLimit
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4851827569486421403, guid: 341fdd59a725af94a935b9b0be8ab846,
+        type: 3}
       propertyPath: m_ParentAnchorPosition.y
       value: 0.0003799945
       objectReference: {fileID: 0}
