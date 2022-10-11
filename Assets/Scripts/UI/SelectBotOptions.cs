@@ -66,7 +66,16 @@ public class SelectBotOptions : MonoBehaviour
         SetAutoStart(0);
         yield return new WaitForEndOfFrame();
         yield return new WaitForEndOfFrame();
-        StartGame();
+        if(spawnAddressablePrefab.lastBot!="")
+        {
+            spawnAddressablePrefab spawner = FindObjectOfType<spawnAddressablePrefab>();
+            spawner.LoadLast();//when loaded will call StartGame.
+        }
+        else
+        {
+            StartGame();
+        }
+        
     }
 
     public void SetCustomBot(GameObject obj)
