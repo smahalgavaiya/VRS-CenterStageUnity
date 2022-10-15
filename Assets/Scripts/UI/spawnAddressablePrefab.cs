@@ -54,6 +54,7 @@ public class spawnAddressablePrefab : MonoBehaviour
         if (obj.Result == null) { loadError.Invoke(); }
         else
         {
+            lastBot = obj.Result[0].name;
             loadedPrefab.Invoke(obj.Result[0]);
         }
     }

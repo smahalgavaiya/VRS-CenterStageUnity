@@ -22,6 +22,7 @@ public class SelectBotOptions : MonoBehaviour
 
     bool useCustomBot = false;
     GameObject customPrefab;
+    private bool autostart = false;
 
     // Start is called before the first frame update
 
@@ -45,11 +46,12 @@ public class SelectBotOptions : MonoBehaviour
         color = (TeamColor)index;
     }
 
-    void AutoStartGame()
+    public void AutoStartGame()
     {
         int autostart = PlayerPrefs.GetInt("autostart", 0);
         if (autostart > 0)
         {
+            this.autostart = true;
             StartCoroutine(DoAutoStart());
         }
     }
@@ -83,6 +85,10 @@ public class SelectBotOptions : MonoBehaviour
         selectBotScreen.SetActive(false);
         customPrefab = obj;
         useCustomBot = true;
+        if(autostart)
+        {
+            StartGame();
+        }
     }
 
     private void SetupControls(GameObject bot)
@@ -141,6 +147,7 @@ public class SelectBotOptions : MonoBehaviour
             StartCoroutine(DoPreload(bot));
         }
         else { FinishedStart.Invoke(); }
+        autostart = false;
     }
 
     IEnumerator DoPreload(GameObject bot)
