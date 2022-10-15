@@ -59,7 +59,7 @@ public class FieldManager : MonoBehaviour
 
         GameTimeReceiver timeReceiver = FindObjectOfType<GameTimeReceiver>();
 
-        SetGameMode(0);
+        //SetGameMode(0);
     }
     void Update()
     {
