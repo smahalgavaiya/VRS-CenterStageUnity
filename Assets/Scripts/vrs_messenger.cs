@@ -23,7 +23,7 @@ public class vrs_messenger : MonoBehaviour
     // Start is called before the first frame update
     public void SetPlaymode(int playmode)
     {
-        Debug.Log("playmode = " + playmode);
+        //Debug.Log("playmode = " + playmode);
         this.playmode = (GameMode)playmode;
     }
 
