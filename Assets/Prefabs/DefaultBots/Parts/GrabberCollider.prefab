@@ -14,6 +14,8 @@ GameObject:
   - component: {fileID: 635764859349010755}
   - component: {fileID: 7615344834707425668}
   - component: {fileID: 6506500839334973908}
+  - component: {fileID: 8473271612714954139}
+  - component: {fileID: 6109524766805579150}
   m_Layer: 6
   m_Name: GrabberCollider
   m_TagString: Untagged
@@ -31,6 +33,7 @@ Transform:
   m_LocalRotation: {x: 0.7071066, y: 0.0000000019962134, z: -2.0580667e-11, w: 0.70710707}
   m_LocalPosition: {x: -0, y: -0, z: -0.015}
   m_LocalScale: {x: 1, y: 0.36693, z: 2.8577}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4267903157928996521}
   m_Father: {fileID: 0}
@@ -107,21 +110,45 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   reEnableDelay: 1
---- !u!114 &143446288120490041
+--- !u!114 &8473271612714954139
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3530349370834624523}
+  m_GameObject: {fileID: 2398510600605850692}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f315044e0a28e954db42ce9a006b90c5, type: 3}
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  layerMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents:
+  - {fileID: 6109524766805579150}
+  sceneViewId: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
+--- !u!114 &6109524766805579150
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2398510600605850692}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SynchronizePosition: 1
+  m_SynchronizeRotation: 0
+  m_SynchronizeScale: 0
+  m_UseLocal: 1
 --- !u!1001 &534060353362748831
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -302,6 +329,21 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 534060353362748831}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &143446288120490041
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3530349370834624523}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f315044e0a28e954db42ce9a006b90c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
 --- !u!4 &4267903157928996521 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4347097618370677558, guid: 5946e7649426f21448758990fa10e023,
