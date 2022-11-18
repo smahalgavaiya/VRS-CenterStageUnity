@@ -82,10 +82,8 @@ public class PowerPlayFieldManager : FieldManager
                 if (MultiplayerSetting.multiplayerSetting.playerList[i] != -1)
                 {
                     PhotonView view = PhotonNetwork.GetPhotonView(MultiplayerSetting.multiplayerSetting.playerList[i]);
-                    
-                    //use select for setting color with gameobject as arg?
-                    //p[MultiplayerSetting.multiplayerSetting.playerList[i]].
-                        //how to find all active game objects or send an rpc to all active robots?
+                    //Players Spawned in PhotonRoom
+
                 }
             }
 
