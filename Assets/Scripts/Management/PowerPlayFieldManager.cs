@@ -73,7 +73,8 @@ public class PowerPlayFieldManager : FieldManager
         //if (PhotonNetwork.IsMasterClient)
         {
 
-            SetGameType(MultiplayerSetting.multiplayerSetting.getGameType());
+            //SetGameType(MultiplayerSetting.multiplayerSetting.getGameType());
+            SetGameMode(MultiplayerSetting.multiplayerSetting.getGameType());
             gameTimeManager.SetUpTimer();
             PhotonView v = GetComponent<PhotonView>();
             Player[] p = PhotonNetwork.PlayerList;

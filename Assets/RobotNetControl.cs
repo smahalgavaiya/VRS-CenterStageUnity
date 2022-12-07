@@ -27,6 +27,11 @@ public class RobotNetControl : MonoBehaviour
                 {
                     b.enabled = false;
                 }
+                DriveReceiver[] receivers = GetComponentsInChildren<DriveReceiver>();
+                foreach(DriveReceiver receiver in receivers)
+                {
+                    receiver.enabled = false;
+                }
             }
         }
     }
