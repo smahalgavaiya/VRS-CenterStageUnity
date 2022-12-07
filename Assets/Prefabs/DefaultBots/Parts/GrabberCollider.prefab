@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 6506500839334973908}
   - component: {fileID: 8473271612714954139}
   - component: {fileID: 6109524766805579150}
+  - component: {fileID: 5139168209899795337}
   m_Layer: 6
   m_Name: GrabberCollider
   m_TagString: Untagged
@@ -84,6 +85,7 @@ MonoBehaviour:
   loadObjectLauncher: 0
   customHoldingLocation: {fileID: 2398510600605850692}
   objectLauncher: {fileID: 0}
+  mpOverride: 0
 --- !u!114 &7615344834707425668
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -149,6 +151,18 @@ MonoBehaviour:
   m_SynchronizeRotation: 0
   m_SynchronizeScale: 0
   m_UseLocal: 1
+--- !u!114 &5139168209899795337
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2398510600605850692}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 014c32d3a4792874f93ac52b49359b5b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &534060353362748831
 PrefabInstance:
   m_ObjectHideFlags: 0

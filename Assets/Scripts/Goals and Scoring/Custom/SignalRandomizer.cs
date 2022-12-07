@@ -1,20 +1,25 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
+using Photon.Realtime;
+using ExitGames.Client.Photon;
 
-public class SignalRandomizer : MonoBehaviour
+public class SignalRandomizer : MonoBehaviourPunCallbacks, IOnEventCallback
 {
     [SerializeField] List<GameObject> locations;
-    // Start is called before the first frame update
-    void Start()
+
+    private void Start()
     {
         SetRandomLocation();
     }
 
-    // Update is called once per frame
-    void Update()
+    public override void OnConnected()
     {
-        
+        if (PhotonNetwork.IsConnected && PhotonNetwork.IsMasterClient)
+        {
+            SetRandomLocation();
+        }
     }
 
     void SetRandomLocation()
@@ -26,7 +31,48 @@ public class SignalRandomizer : MonoBehaviour
 
         int randomLocation = Random.Range(0, 3);
 
-        locations[randomLocation].SetActive(true);
+        if (!PhotonNetwork.IsConnected)
+        {
+            SetLocation(randomLocation);
+            return;
+        }
+
+        if (!PhotonNetwork.IsMasterClient) { return; }
+        RaiseEventOptions options = new RaiseEventOptions()
+        {
+            CachingOption = EventCaching.DoNotCache,
+            Receivers = ReceiverGroup.All
+
+        };
+
+
+        PhotonNetwork.RaiseEvent(0, (int)randomLocation, options, ExitGames.Client.Photon.SendOptions.SendReliable);
+
+    }
+
+    public override void OnEnable()
+    {
+        PhotonNetwork.AddCallbackTarget(this);
+    }
+
+    public override void OnDisable()
+    {
+        PhotonNetwork.RemoveCallbackTarget(this);
+    }
+
+    public void OnEvent(EventData photonEvent)
+    {
+        byte eventCode = photonEvent.Code;
+        if (eventCode == (byte)0)
+        {
+            SetLocation((int)photonEvent.CustomData);
+        }
+    }
+
+    [PunRPC]
+    void SetLocation(int idx)
+    {
+        locations[idx].SetActive(true);
     }
 
 }

@@ -1,8 +1,11 @@
+using Photon.Pun;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
+using Photon.Realtime;
 
-public class ReleaseSubstationCone : MonoBehaviour
+public class ReleaseSubstationCone : MonoBehaviourPunCallbacks
 {
     List<GameObject> conePositions = new List<GameObject>();
     [SerializeField] GameObject conePositionsParent;
@@ -11,6 +14,7 @@ public class ReleaseSubstationCone : MonoBehaviour
     [SerializeField] GameObject cone;
 
     List<GameObject> cones;
+    PhotonView view;
 
 
     int numberOfConesReleased = 0;
@@ -34,6 +38,7 @@ public class ReleaseSubstationCone : MonoBehaviour
         {
             conePositions.Add(conePositionsParent.transform.GetChild(i).gameObject);
         }
+        view = gameObject.GetComponent<PhotonView>();
     }
 
     public void ReleaseNewCone()
@@ -50,16 +55,35 @@ public class ReleaseSubstationCone : MonoBehaviour
                 GameObject coneToRelease = cones[numberOfConesReleased];
                 coneToRelease.GetComponentInParent<ConeDispenser>().DispenseCone();
 
-                GameObject newCone = Instantiate(cone);
-                newCone.GetComponent<ColorSwitcher>().TeamColor_ = teamColor;
-                newCone.GetComponent<ColorSwitcher>().SetColor();
-                newCone.GetComponent<ScoreObjectTypeLink>().LastTouchedTeamColor = teamColor;
-                newCone.transform.position = conePositions[i].transform.position;
-                newCone.GetComponent<Cone>().MakeScorable();
-                numberOfConesReleased++;
+                view.RPC("SpawnCone", RpcTarget.All, conePositions[i].transform.position);
+
                 break;
             }
         }
+    }
+
+    [PunRPC]
+    void SpawnCone(Vector3 position)
+    {
+        GameObject newCone = Instantiate(cone);
+        newCone.GetComponent<ColorSwitcher>().TeamColor_ = teamColor;
+        newCone.GetComponent<ColorSwitcher>().SetColor();
+        newCone.GetComponent<ScoreObjectTypeLink>().LastTouchedTeamColor = teamColor;
+        newCone.transform.position = position;
+        newCone.GetComponent<Cone>().MakeScorable();
+        numberOfConesReleased++;
+        /*PhotonRigidbodyView rig = newCone.AddComponent<PhotonRigidbodyView>();*/
+
+        PhotonTransformView photonTransformView = newCone.AddComponent<PhotonTransformView>();
+        photonTransformView.m_SynchronizeScale = false;
+        photonTransformView.m_SynchronizeRotation = true;
+        photonTransformView.m_SynchronizePosition = true;
+
+        PhotonView v = newCone.AddComponent<PhotonView>();
+        v.OwnershipTransfer = OwnershipOption.Takeover;
+        v.ObservedComponents = new List<Component>() { /*rig,*/ photonTransformView };
+        v.ViewID = PhotonNetwork.AllocateViewID(0);
+        v.Synchronization = ViewSynchronization.ReliableDeltaCompressed;
     }
 
     // Update is called once per frame

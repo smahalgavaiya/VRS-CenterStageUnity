@@ -923,6 +923,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3872535916645340840}
   - component: {fileID: 2272880772900947177}
+  - component: {fileID: 1316155901062755211}
   m_Layer: 6
   m_Name: grip bar wide:1
   m_TagString: Untagged
@@ -966,6 +967,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lockedAngle: 90
   axis: 0
+--- !u!114 &1316155901062755211
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5231936355784886580}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SynchronizePosition: 1
+  m_SynchronizeRotation: 1
+  m_SynchronizeScale: 0
+  m_UseLocal: 1
 --- !u!1 &5342495810334727707
 GameObject:
   m_ObjectHideFlags: 0
@@ -1723,6 +1740,7 @@ GameObject:
   - component: {fileID: 1656020084135399607}
   - component: {fileID: 6127619176194551687}
   - component: {fileID: 6954180730863062729}
+  - component: {fileID: 782325100533631621}
   m_Layer: 0
   m_Name: downbarR
   m_TagString: Untagged
@@ -1821,6 +1839,22 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.50799996, y: 0.012700057, z: 0.006350096}
   m_Center: {x: -0.24852766, y: 0.0011225761, z: -0.0031749099}
+--- !u!114 &782325100533631621
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6871369909177159859}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SynchronizePosition: 1
+  m_SynchronizeRotation: 1
+  m_SynchronizeScale: 0
+  m_UseLocal: 1
 --- !u!1 &7054903588239521249
 GameObject:
   m_ObjectHideFlags: 0
@@ -1916,6 +1950,7 @@ GameObject:
   - component: {fileID: 447336523657346521}
   - component: {fileID: 327349545513429720}
   - component: {fileID: 2969098152025366734}
+  - component: {fileID: 6544146504997652347}
   m_Layer: 0
   m_Name: upbarL
   m_TagString: Untagged
@@ -2001,6 +2036,22 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.50799996, y: 0.012700057, z: 0.006350096}
   m_Center: {x: -0.24852766, y: 0.0011225761, z: -0.0031749099}
+--- !u!114 &6544146504997652347
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7081296701681955324}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SynchronizePosition: 1
+  m_SynchronizeRotation: 1
+  m_SynchronizeScale: 0
+  m_UseLocal: 1
 --- !u!1 &7364665666696951115
 GameObject:
   m_ObjectHideFlags: 0
@@ -2048,6 +2099,7 @@ GameObject:
   - component: {fileID: 496129536359138860}
   - component: {fileID: 2767900700260528538}
   - component: {fileID: 2117273281622494343}
+  - component: {fileID: 5802563231697685429}
   m_Layer: 0
   m_Name: downbarL
   m_TagString: Untagged
@@ -2146,6 +2198,22 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.50799996, y: 0.012700057, z: 0.006350096}
   m_Center: {x: -0.24852766, y: 0.0011225761, z: -0.0031749099}
+--- !u!114 &5802563231697685429
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7531854679600580469}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SynchronizePosition: 1
+  m_SynchronizeRotation: 1
+  m_SynchronizeScale: 0
+  m_UseLocal: 1
 --- !u!1 &8122173138580610263
 GameObject:
   m_ObjectHideFlags: 0
@@ -2222,6 +2290,7 @@ GameObject:
   - component: {fileID: 2295440517850653436}
   - component: {fileID: 4619771004486137208}
   - component: {fileID: 2461188198371037627}
+  - component: {fileID: 7311932064648885427}
   m_Layer: 0
   m_Name: upbarR
   m_TagString: Untagged
@@ -2307,6 +2376,22 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.50799996, y: 0.012700057, z: 0.006350096}
   m_Center: {x: -0.24852766, y: 0.0011225761, z: -0.0031749099}
+--- !u!114 &7311932064648885427
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8627315800281023272}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SynchronizePosition: 1
+  m_SynchronizeRotation: 1
+  m_SynchronizeScale: 0
+  m_UseLocal: 1
 --- !u!1 &9065004758865508979
 GameObject:
   m_ObjectHideFlags: 0
@@ -2593,6 +2678,11 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.20656037
       objectReference: {fileID: 0}
+    - target: {fileID: 6109524766805579150, guid: 79a577ca40229ca4189d920839da95a1,
+        type: 3}
+      propertyPath: m_SynchronizeRotation
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6554007999343242746, guid: 79a577ca40229ca4189d920839da95a1,
         type: 3}
       propertyPath: tagsToCheckAgainst.Array.size
@@ -2812,12 +2902,12 @@ PrefabInstance:
     - target: {fileID: 1541359008319761348, guid: f4279af7348f5ce4f9102ada7113e2c1,
         type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 2045053291566796542, guid: f4279af7348f5ce4f9102ada7113e2c1,
         type: 3}
       propertyPath: m_RootOrder
-      value: 8
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 3484224762554905498, guid: f4279af7348f5ce4f9102ada7113e2c1,
         type: 3}
@@ -2889,6 +2979,41 @@ PrefabInstance:
       propertyPath: m_RootOrder
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 7910280682431849838, guid: f4279af7348f5ce4f9102ada7113e2c1,
+        type: 3}
+      propertyPath: Synchronization
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7910280682431849838, guid: f4279af7348f5ce4f9102ada7113e2c1,
+        type: 3}
+      propertyPath: ObservedComponents.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7910280682431849838, guid: f4279af7348f5ce4f9102ada7113e2c1,
+        type: 3}
+      propertyPath: ObservedComponents.Array.data[1]
+      value: 
+      objectReference: {fileID: 1316155901062755211}
+    - target: {fileID: 7910280682431849838, guid: f4279af7348f5ce4f9102ada7113e2c1,
+        type: 3}
+      propertyPath: ObservedComponents.Array.data[2]
+      value: 
+      objectReference: {fileID: 5802563231697685429}
+    - target: {fileID: 7910280682431849838, guid: f4279af7348f5ce4f9102ada7113e2c1,
+        type: 3}
+      propertyPath: ObservedComponents.Array.data[3]
+      value: 
+      objectReference: {fileID: 6544146504997652347}
+    - target: {fileID: 7910280682431849838, guid: f4279af7348f5ce4f9102ada7113e2c1,
+        type: 3}
+      propertyPath: ObservedComponents.Array.data[4]
+      value: 
+      objectReference: {fileID: 782325100533631621}
+    - target: {fileID: 7910280682431849838, guid: f4279af7348f5ce4f9102ada7113e2c1,
+        type: 3}
+      propertyPath: ObservedComponents.Array.data[5]
+      value: 
+      objectReference: {fileID: 7311932064648885427}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f4279af7348f5ce4f9102ada7113e2c1, type: 3}
 --- !u!4 &1127662256965058135 stripped

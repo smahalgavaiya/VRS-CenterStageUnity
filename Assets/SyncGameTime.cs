@@ -34,6 +34,6 @@ public class SyncGameTime : MonoBehaviourPunCallbacks
         {
             return;
         }
-        gameTimeManager.SyncTime(vars[0], vars[1]);
+        gameTimeManager.SyncTime(vars[0], vars[1], vars[2]);
     }
 }
