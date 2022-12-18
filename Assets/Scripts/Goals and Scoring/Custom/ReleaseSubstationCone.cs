@@ -55,7 +55,14 @@ public class ReleaseSubstationCone : MonoBehaviourPunCallbacks
                 GameObject coneToRelease = cones[numberOfConesReleased];
                 coneToRelease.GetComponentInParent<ConeDispenser>().DispenseCone();
 
-                view.RPC("SpawnCone", RpcTarget.All, conePositions[i].transform.position);
+                if(PhotonNetwork.IsConnected)
+                {
+                    view.RPC("SpawnCone", RpcTarget.All, conePositions[i].transform.position);
+                }
+                else
+                {
+                    SpawnCone(conePositions[i].transform.position);
+                }
 
                 break;
             }
@@ -72,18 +79,23 @@ public class ReleaseSubstationCone : MonoBehaviourPunCallbacks
         newCone.transform.position = position;
         newCone.GetComponent<Cone>().MakeScorable();
         numberOfConesReleased++;
-        /*PhotonRigidbodyView rig = newCone.AddComponent<PhotonRigidbodyView>();*/
 
-        PhotonTransformView photonTransformView = newCone.AddComponent<PhotonTransformView>();
-        photonTransformView.m_SynchronizeScale = false;
-        photonTransformView.m_SynchronizeRotation = true;
-        photonTransformView.m_SynchronizePosition = true;
+        if(PhotonNetwork.IsConnected)
+        {
+            /*PhotonRigidbodyView rig = newCone.AddComponent<PhotonRigidbodyView>();*/
 
-        PhotonView v = newCone.AddComponent<PhotonView>();
-        v.OwnershipTransfer = OwnershipOption.Takeover;
-        v.ObservedComponents = new List<Component>() { /*rig,*/ photonTransformView };
-        v.ViewID = PhotonNetwork.AllocateViewID(0);
-        v.Synchronization = ViewSynchronization.ReliableDeltaCompressed;
+            PhotonTransformView photonTransformView = newCone.AddComponent<PhotonTransformView>();
+            photonTransformView.m_SynchronizeScale = false;
+            photonTransformView.m_SynchronizeRotation = true;
+            photonTransformView.m_SynchronizePosition = true;
+
+            PhotonView v = newCone.AddComponent<PhotonView>();
+            v.OwnershipTransfer = OwnershipOption.Takeover;
+            v.ObservedComponents = new List<Component>() { /*rig,*/ photonTransformView };
+            v.ViewID = PhotonNetwork.AllocateViewID(0);
+            v.Synchronization = ViewSynchronization.ReliableDeltaCompressed;
+        }
+        
     }
 
     // Update is called once per frame

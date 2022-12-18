@@ -766,6 +766,7 @@ MonoBehaviour:
   option: 
   onlyAdminCanChange: 0
   hackForGameType: 0
+  set_change_on_start: 0
 --- !u!114 &573906428
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1357,7 +1358,7 @@ PrefabInstance:
     - target: {fileID: 4282370162584756801, guid: b68a2ae0e3bb2944d82d9cb356c2ea1b,
         type: 3}
       propertyPath: m_RootOrder
-      value: 10
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 4282370162584756801, guid: b68a2ae0e3bb2944d82d9cb356c2ea1b,
         type: 3}
@@ -1779,6 +1780,7 @@ MonoBehaviour:
   option: 
   onlyAdminCanChange: 0
   hackForGameType: 0
+  set_change_on_start: 0
 --- !u!114 &1303495114
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2082,7 +2084,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.057458814, y: 0.096}
   m_AnchorMax: {x: 0.9418353, y: 0.8961227}
-  m_AnchoredPosition: {x: -2.5810852, y: -1.0808792}
+  m_AnchoredPosition: {x: -2.5810852, y: -1.0808716}
   m_SizeDelta: {x: 3.4256897, y: 0.30749512}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1558681355
@@ -2648,7 +2650,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b22371e4c1ff824398629a30b151787, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  messenger: {fileID: 0}
 --- !u!1 &1815033827
 GameObject:
   m_ObjectHideFlags: 0
@@ -2686,7 +2687,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.84125006, y: 0.57255566}
   m_AnchorMax: {x: 1, y: 0.86444443}
-  m_AnchoredPosition: {x: -1.0970154, y: -0.09931946}
+  m_AnchoredPosition: {x: -1.0970459, y: -0.09931946}
   m_SizeDelta: {x: 182.65466, y: 181.17728}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1815033829
@@ -2838,7 +2839,7 @@ PrefabInstance:
     - target: {fileID: 5035158243971717035, guid: d5382428297857e4f80f642de7229d14,
         type: 3}
       propertyPath: m_RootOrder
-      value: 11
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 5035158243971717035, guid: d5382428297857e4f80f642de7229d14,
         type: 3}
@@ -3085,7 +3086,7 @@ RectTransform:
   m_Children:
   - {fileID: 3754844001756189016}
   m_Father: {fileID: 9053387529073327368}
-  m_RootOrder: 10
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
@@ -5270,14 +5271,14 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 768679934}
-        m_TargetAssemblyTypeName: SettingsControl, Assembly-CSharp
-        m_MethodName: setGameTypeRight
-        m_Mode: 1
+      - m_Target: {fileID: 6150139033117467440}
+        m_TargetAssemblyTypeName: QuantumTek.QuantumUI.QUI_OptionList, com.vftc.ui
+        m_MethodName: ChangeOption
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 1
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -5405,14 +5406,14 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 768679934}
-        m_TargetAssemblyTypeName: SettingsControl, Assembly-CSharp
-        m_MethodName: setGameTypeLeft
-        m_Mode: 1
+      - m_Target: {fileID: 6150139033117467440}
+        m_TargetAssemblyTypeName: QuantumTek.QuantumUI.QUI_OptionList, com.vftc.ui
+        m_MethodName: ChangeOption
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: -1
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -5563,11 +5564,24 @@ MonoBehaviour:
   - Freeplay
   onChangeOption:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 768679934}
+        m_TargetAssemblyTypeName: SettingsControl, com.vftc.robotmultiplayer
+        m_MethodName: setGameType
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   optionIndex: 1
   option: 
   onlyAdminCanChange: 1
   hackForGameType: 1
+  set_change_on_start: 1
 --- !u!222 &6150139033117467441
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -6211,9 +6225,9 @@ RectTransform:
   - {fileID: 3987586268437193042}
   - {fileID: 818715134236927602}
   - {fileID: 418681137}
+  - {fileID: 1942332221}
   - {fileID: 986327217}
   - {fileID: 1304570114}
-  - {fileID: 1942332221}
   m_Father: {fileID: 9053387530081195972}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
