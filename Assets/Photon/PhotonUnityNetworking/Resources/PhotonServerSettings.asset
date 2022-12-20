@@ -25,10 +25,10 @@ MonoBehaviour:
     Protocol: 1
     EnableProtocolFallback: 1
     AuthMode: 0
-    EnableLobbyStatistics: 1
-    NetworkLogging: 2
+    EnableLobbyStatistics: 0
+    NetworkLogging: 1
   DevRegion: 
-  PunLogging: 1
+  PunLogging: 0
   EnableSupportLogger: 0
   RunInBackground: 1
   StartInOfflineMode: 0
@@ -41,33 +41,34 @@ MonoBehaviour:
   - DestroyRing
   - DestroyRpc
   - freezeScore
-  - resetBalls
-  - resetFieldHelper
-  - resetScore
-  - RPC_LoadedGameScene
-  - startGame
-  - stopGame
-  - subtractBall
-  - resetScoreHelper
-  - startGrabRPC
-  - stopGrabRPC
-  - setFieldSetupLeftHelper
-  - setFieldSetupRightHelper
-  - setGameTypeLeftHelper
-  - setGameTypeRightHelper
-  - Grab
-  - Release
   - NetworkDestroy
   - NetworkGrab
   - NetworkStopGrab
+  - ReleaseObj
+  - RemovePlayer
+  - resetBalls
+  - resetFieldHelper
+  - resetScoreHelper
+  - RPC_LoadedGameScene
   - RPC_StopGrab
+  - runGrab
   - ScoreWobble
   - ScoreWobbleTeleop
+  - setFieldSetupLeftHelper
+  - setFieldSetupRightHelper
+  - SetGameType
+  - setGameTypeHelper
+  - SetLocation
+  - setPlayerBotHelper
+  - SpawnCone
+  - startGame
+  - StartMPGame
+  - stopGame
+  - subtractBall
   - UnscoreWobble
   - UnscoreWobbleTeleop
-  - RemovePlayer
-  - SetGameType
-  - StartMPGame
+  - updateTime
+  - updateVars
   DisableAutoOpenWizard: 1
   ShowSettings: 1
-  DevRegionSetOnce: 1
+  DevRegionSetOnce: 0
