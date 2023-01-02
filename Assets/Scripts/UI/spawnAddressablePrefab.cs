@@ -14,6 +14,7 @@ public class spawnAddressablePrefab : MonoBehaviour
     string botname = "";
     public static string lastBot = "";
     public static bool loading = false;
+    private string lastKey = "";
 
     IResourceLocator currentCat;
 
@@ -27,6 +28,7 @@ public class spawnAddressablePrefab : MonoBehaviour
     {
         //currentCat.Locate(key, typeof(GameObject), out var locations);
         loading = true;
+        lastKey = key;
         Addressables.LoadAssetsAsync<GameObject>((IEnumerable)new List<object> { key, label }, null,
              Addressables.MergeMode.Intersection).Completed += PrefabLoaded;
         /* Addressables.LoadAssetsAsync<GameObject>(locations, null,
@@ -55,6 +57,7 @@ public class spawnAddressablePrefab : MonoBehaviour
         else
         {
             lastBot = obj.Result[0].name;
+            obj.Result[0].name = lastKey;
             loadedPrefab.Invoke(obj.Result[0]);
         }
     }
