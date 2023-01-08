@@ -45,6 +45,11 @@ public class spawnAddressablePrefab : MonoBehaviour
         LoadPrefab(botname, defaultLabel);
     }
 
+    public void LoadObjMP(string botname)
+    {
+        LoadPrefab(botname, defaultLabel);
+    }
+
     public void LoadLast()
     {
         LoadPrefab(lastBot, defaultLabel);

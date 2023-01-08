@@ -133,6 +133,11 @@ public class PowerPlayFieldManager : FieldManager
         onResetField.Invoke();
     }
 
+    public void SetupCustomBot(string customName, GameObject baseObj)
+    {
+
+    }
+
     
     public void SetGameMode(int mode)
     {
