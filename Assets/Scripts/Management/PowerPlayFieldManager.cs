@@ -14,10 +14,10 @@ public enum GameMode
     Fullgame=2,
     Freeplay=3
 }
+
+
 public class PowerPlayFieldManager : FieldManager
 {
-    public static TeamColor botColor;
-
     public GameMode mode;
 
     public GameTimeManager gameTimeManager;
@@ -69,10 +69,11 @@ public class PowerPlayFieldManager : FieldManager
     [PunRPC]
     public override void StartMPGame()
     {
+        base.StartMPGame();
         //how to send settings here?
         //if (PhotonNetwork.IsMasterClient)
         {
-
+            
             //SetGameType(MultiplayerSetting.multiplayerSetting.getGameType());
             SetGameMode(MultiplayerSetting.multiplayerSetting.getGameType());
             gameTimeManager.SetUpTimer();

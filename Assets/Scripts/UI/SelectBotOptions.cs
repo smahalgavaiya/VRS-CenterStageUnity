@@ -7,6 +7,7 @@ using UnityEngine.InputSystem;
 
 public class SelectBotOptions : MonoBehaviour
 {
+    [System.NonSerialized]
     public List<GameObject> botPrefabs = new List<GameObject>();
     TeamColor color = TeamColor.Blue;
     int selectedBot = 0;
@@ -169,6 +170,8 @@ public class SelectBotOptions : MonoBehaviour
 
     void Start()
     {
+        List<BotData> bots = BuiltInBots.GetBotList();
+        botPrefabs = bots.Select(item => item.prefab).ToList();
         AutoStartGame();
     }
 }
