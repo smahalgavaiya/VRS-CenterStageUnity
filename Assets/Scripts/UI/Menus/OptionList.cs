@@ -37,7 +37,9 @@ public class OptionList : MonoBehaviour
     /// <param name="index"></param>
     public void SetOption(int index)
     {
+        if (index > options.Count) { return; }
         optionIndex = index;
+        
         option = options[optionIndex];
         optionText.text = option;
         UpdateOption(index);

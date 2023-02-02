@@ -18,10 +18,12 @@ public class ReleaseSubstationCone : MonoBehaviourPunCallbacks
 
 
     int numberOfConesReleased = 0;
+    bool activeForLocalPlayer = true;
 
     // Start is called before the first frame update
     void Start()
     {
+        FieldManager.OnLocalTeamSet += SetIsAvailable;
         conePositions = new List<GameObject>(); 
 
         cones = new List<GameObject>();
@@ -41,12 +43,20 @@ public class ReleaseSubstationCone : MonoBehaviourPunCallbacks
         view = gameObject.GetComponent<PhotonView>();
     }
 
+    public void SetIsAvailable(TeamColor localPlayerTeam)
+    {
+        
+        FieldManager.OnLocalTeamSet -= SetIsAvailable;
+        if(teamColor != localPlayerTeam) { activeForLocalPlayer = false; }
+    }
+
     public void ReleaseNewCone()
     {
         // We can only fit a certain number of cones in the substation
-
+        //get team identity of local player.
         if (numberOfConesReleased > cones.Count - 1)
             return;
+        if (!activeForLocalPlayer) { return; }
 
         for (int i = 0; i < conePositions.Count; i++)
         {
@@ -57,7 +67,8 @@ public class ReleaseSubstationCone : MonoBehaviourPunCallbacks
 
                 if(PhotonNetwork.IsConnected)
                 {
-                    view.RPC("SpawnCone", RpcTarget.All, conePositions[i].transform.position);
+                    int viewNum  = SpawnCone(conePositions[i].transform.position);
+                    view.RPC("SpawnCone", RpcTarget.OthersBuffered, conePositions[i].transform.position,viewNum);
                 }
                 else
                 {
@@ -70,9 +81,10 @@ public class ReleaseSubstationCone : MonoBehaviourPunCallbacks
     }
 
     [PunRPC]
-    void SpawnCone(Vector3 position)
+    int SpawnCone(Vector3 position, int view=-1)
     {
         GameObject newCone = Instantiate(cone);
+        //GameObject newCone = FieldManager.createGameObj(cone, position, name, Quaternion.identity);
         newCone.GetComponent<ColorSwitcher>().TeamColor_ = teamColor;
         newCone.GetComponent<ColorSwitcher>().SetColor();
         newCone.GetComponent<ScoreObjectTypeLink>().LastTouchedTeamColor = teamColor;
@@ -80,7 +92,7 @@ public class ReleaseSubstationCone : MonoBehaviourPunCallbacks
         newCone.GetComponent<Cone>().MakeScorable();
         numberOfConesReleased++;
 
-        if(PhotonNetwork.IsConnected)
+        if (PhotonNetwork.IsConnected)
         {
             /*PhotonRigidbodyView rig = newCone.AddComponent<PhotonRigidbodyView>();*/
 
@@ -92,10 +104,19 @@ public class ReleaseSubstationCone : MonoBehaviourPunCallbacks
             PhotonView v = newCone.AddComponent<PhotonView>();
             v.OwnershipTransfer = OwnershipOption.Takeover;
             v.ObservedComponents = new List<Component>() { /*rig,*/ photonTransformView };
-            v.ViewID = PhotonNetwork.AllocateViewID(0);
+            if (view == -1)
+            {
+                v.ViewID = PhotonNetwork.AllocateViewID(0);
+            }
+            else { v.ViewID = PhotonNetwork.AllocateViewID(view); }
             v.Synchronization = ViewSynchronization.ReliableDeltaCompressed;
+
+            //Debug
+            DisplayViewInfo inf = FindObjectOfType<DisplayViewInfo>();
+            inf.SetNewConeView(newCone);
+            return v.ViewID;
         }
-        
+        return -1;
     }
 
     // Update is called once per frame
