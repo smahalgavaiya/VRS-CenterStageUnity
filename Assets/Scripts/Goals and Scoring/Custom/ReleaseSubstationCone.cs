@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 using Photon.Realtime;
+using System.Runtime.InteropServices.WindowsRuntime;
+using System.IO;
 
 public class ReleaseSubstationCone : MonoBehaviourPunCallbacks
 {
@@ -67,8 +69,13 @@ public class ReleaseSubstationCone : MonoBehaviourPunCallbacks
 
                 if(PhotonNetwork.IsConnected)
                 {
-                    int viewNum  = SpawnCone(conePositions[i].transform.position);
-                    view.RPC("SpawnCone", RpcTarget.MasterClient, conePositions[i].transform.position,viewNum);
+                    //int viewNum  = SpawnCone(conePositions[i].transform.position);
+                    if(PhotonNetwork.IsMasterClient)
+                    {
+                        initialSpawnCone(conePositions[i].transform.position);
+                    }
+                    else { view.RPC("initialSpawnCone", RpcTarget.MasterClient, conePositions[i].transform.position); }
+                    
                 }
                 else
                 {
@@ -79,17 +86,29 @@ public class ReleaseSubstationCone : MonoBehaviourPunCallbacks
             }
         }
     }
-    /*
-     *
-    GameObject initialSpawnCone(Vector3 position)
+
+    [PunRPC]
+    void initialSpawnCone(Vector3 position)
     {
-        GameObject newCone = PhotonNetwork.InstantiateRoomObject("cone", position, Quaternion.identity);
-    }*/
+        GameObject newCone = PhotonNetwork.InstantiateRoomObject(Path.Combine("PhotonPrefabs", "Cone"), position, Quaternion.identity);
+        PhotonView v = newCone.GetComponent<PhotonView>();
+
+        view.RPC("SpawnCone", RpcTarget.AllBuffered, newCone.transform.position, v.ViewID);
+    }
     //instantiate room object for proper instantiation but master client needs to be the client to spawn it.
     [PunRPC]
     int SpawnCone(Vector3 position, int view=-1)
     {
-        GameObject newCone = Instantiate(cone);
+        GameObject newCone;
+        if (PhotonNetwork.IsConnected)
+        {
+            PhotonView vi = PhotonNetwork.GetPhotonView(view);
+            newCone = vi.gameObject;
+        }
+        else
+        {
+            newCone = Instantiate(cone);
+        }
         //GameObject newCone = PhotonNetwork.InstantiateRoomObject("cone", position, Quaternion.identity);
         //GameObject newCone = FieldManager.createGameObj(cone, position, name, Quaternion.identity);
         newCone.GetComponent<ColorSwitcher>().TeamColor_ = teamColor;
@@ -99,9 +118,9 @@ public class ReleaseSubstationCone : MonoBehaviourPunCallbacks
         newCone.GetComponent<Cone>().MakeScorable();
         numberOfConesReleased++;    
 
-        if (PhotonNetwork.IsConnected)
+        /*if (PhotonNetwork.IsConnected)
         {
-            /*PhotonRigidbodyView rig = newCone.AddComponent<PhotonRigidbodyView>();*/
+            //PhotonRigidbodyView rig = newCone.AddComponent<PhotonRigidbodyView>();
 
             PhotonTransformView photonTransformView = newCone.AddComponent<PhotonTransformView>();
             photonTransformView.m_SynchronizeScale = false;
@@ -110,7 +129,7 @@ public class ReleaseSubstationCone : MonoBehaviourPunCallbacks
 
             PhotonView v = newCone.AddComponent<PhotonView>();
             v.OwnershipTransfer = OwnershipOption.Takeover;
-            v.ObservedComponents = new List<Component>() { /*rig,*/ photonTransformView };
+            v.ObservedComponents = new List<Component>() { photonTransformView };
             if (view == -1)
             {
                 v.ViewID = PhotonNetwork.AllocateViewID(0);
@@ -122,7 +141,7 @@ public class ReleaseSubstationCone : MonoBehaviourPunCallbacks
             DisplayViewInfo inf = FindObjectOfType<DisplayViewInfo>();
             inf.SetNewConeView(newCone);
             return v.ViewID;
-        }
+        }*/
         return -1;
     }
 
