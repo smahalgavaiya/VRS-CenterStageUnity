@@ -2553,6 +2553,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3446975839645839308}
   - component: {fileID: 6633884080278405773}
+  - component: {fileID: 3561479457361223371}
   m_Layer: 6
   m_Name: MoveDrive2
   m_TagString: Untagged
@@ -2595,6 +2596,22 @@ MonoBehaviour:
   moveLimitMax: 0.3
   moveLimitMin: 0
   attachedTo: {fileID: 5139741891317082473}
+--- !u!114 &3561479457361223371
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 605222635960091058}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SynchronizePosition: 1
+  m_SynchronizeRotation: 1
+  m_SynchronizeScale: 0
+  m_UseLocal: 0
 --- !u!1 &615067672280566256
 GameObject:
   m_ObjectHideFlags: 0
@@ -6547,6 +6564,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3921187508842496169}
   - component: {fileID: 9134020399424161049}
+  - component: {fileID: 5454240140323719956}
   m_Layer: 6
   m_Name: RotationDriveBase
   m_TagString: Untagged
@@ -6589,6 +6607,22 @@ MonoBehaviour:
   rotLimitMax: 0
   rotLimitMin: 0
   reverseDirection: 1
+--- !u!114 &5454240140323719956
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1598899849515383554}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SynchronizePosition: 0
+  m_SynchronizeRotation: 1
+  m_SynchronizeScale: 0
+  m_UseLocal: 0
 --- !u!1 &1609400719755677397
 GameObject:
   m_ObjectHideFlags: 0
@@ -8032,6 +8066,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3469176228052417852}
   - component: {fileID: 6185933753307201217}
+  - component: {fileID: 2406859880212992670}
   m_Layer: 6
   m_Name: MoveDrive1
   m_TagString: Untagged
@@ -8074,6 +8109,22 @@ MonoBehaviour:
   moveLimitMax: 0.9213
   moveLimitMin: 0.628
   attachedTo: {fileID: 6633884080278405773}
+--- !u!114 &2406859880212992670
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2074167275464962758}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SynchronizePosition: 1
+  m_SynchronizeRotation: 1
+  m_SynchronizeScale: 0
+  m_UseLocal: 0
 --- !u!1 &2075523569469355654
 GameObject:
   m_ObjectHideFlags: 0
@@ -15790,6 +15841,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2544861258875466672}
   - component: {fileID: 2438788301694159026}
+  - component: {fileID: 7506379825302031005}
   m_Layer: 6
   m_Name: MoveDrive4
   m_TagString: Untagged
@@ -15834,6 +15886,22 @@ MonoBehaviour:
   moveLimitMax: 0.206
   moveLimitMin: -0.176
   attachedTo: {fileID: 0}
+--- !u!114 &7506379825302031005
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4625879770777010147}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SynchronizePosition: 1
+  m_SynchronizeRotation: 1
+  m_SynchronizeScale: 0
+  m_UseLocal: 0
 --- !u!1 &4636098326736850665
 GameObject:
   m_ObjectHideFlags: 0
@@ -30205,6 +30273,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5331877833528226376}
   - component: {fileID: 5139741891317082473}
+  - component: {fileID: 3899731476434288545}
   m_Layer: 6
   m_Name: MoveDrive3
   m_TagString: Untagged
@@ -30247,6 +30316,22 @@ MonoBehaviour:
   moveLimitMax: 0.472
   moveLimitMin: 0.1844
   attachedTo: {fileID: 2438788301694159026}
+--- !u!114 &3899731476434288545
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9117743575911571890}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SynchronizePosition: 1
+  m_SynchronizeRotation: 1
+  m_SynchronizeScale: 0
+  m_UseLocal: 0
 --- !u!1 &9136457121229287931
 GameObject:
   m_ObjectHideFlags: 0
@@ -30898,6 +30983,41 @@ PrefabInstance:
       propertyPath: m_RootOrder
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 7910280682431849838, guid: f4279af7348f5ce4f9102ada7113e2c1,
+        type: 3}
+      propertyPath: Synchronization
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7910280682431849838, guid: f4279af7348f5ce4f9102ada7113e2c1,
+        type: 3}
+      propertyPath: ObservedComponents.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7910280682431849838, guid: f4279af7348f5ce4f9102ada7113e2c1,
+        type: 3}
+      propertyPath: ObservedComponents.Array.data[1]
+      value: 
+      objectReference: {fileID: 5454240140323719956}
+    - target: {fileID: 7910280682431849838, guid: f4279af7348f5ce4f9102ada7113e2c1,
+        type: 3}
+      propertyPath: ObservedComponents.Array.data[2]
+      value: 
+      objectReference: {fileID: 2406859880212992670}
+    - target: {fileID: 7910280682431849838, guid: f4279af7348f5ce4f9102ada7113e2c1,
+        type: 3}
+      propertyPath: ObservedComponents.Array.data[3]
+      value: 
+      objectReference: {fileID: 3561479457361223371}
+    - target: {fileID: 7910280682431849838, guid: f4279af7348f5ce4f9102ada7113e2c1,
+        type: 3}
+      propertyPath: ObservedComponents.Array.data[4]
+      value: 
+      objectReference: {fileID: 3899731476434288545}
+    - target: {fileID: 7910280682431849838, guid: f4279af7348f5ce4f9102ada7113e2c1,
+        type: 3}
+      propertyPath: ObservedComponents.Array.data[5]
+      value: 
+      objectReference: {fileID: 7506379825302031005}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f4279af7348f5ce4f9102ada7113e2c1, type: 3}
 --- !u!4 &7511623320517414875 stripped

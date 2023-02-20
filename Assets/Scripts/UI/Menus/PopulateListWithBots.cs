@@ -15,7 +15,7 @@ public class PopulateListWithBots : MonoBehaviour
         List<BotData> bots = BuiltInBots.GetBotList();
         listObj.options = bots.Select(item => item.name).ToList();
         listObj.images = bots.Select(item => item.img).ToList();
-        listObj.ChangeOption(-1);
+        listObj.ChangeOption(0);
     }
 
 }

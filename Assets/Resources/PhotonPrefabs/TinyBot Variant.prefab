@@ -400,7 +400,7 @@ MonoBehaviour:
   m_SynchronizePosition: 1
   m_SynchronizeRotation: 0
   m_SynchronizeScale: 0
-  m_UseLocal: 1
+  m_UseLocal: 0
 --- !u!1 &1711236881597927979
 GameObject:
   m_ObjectHideFlags: 0
@@ -1211,7 +1211,7 @@ MonoBehaviour:
   m_SynchronizePosition: 1
   m_SynchronizeRotation: 0
   m_SynchronizeScale: 0
-  m_UseLocal: 1
+  m_UseLocal: 0
 --- !u!1 &5976242194812590058
 GameObject:
   m_ObjectHideFlags: 0
@@ -1770,7 +1770,7 @@ MonoBehaviour:
   m_SynchronizePosition: 1
   m_SynchronizeRotation: 0
   m_SynchronizeScale: 0
-  m_UseLocal: 1
+  m_UseLocal: 0
 --- !u!1 &7008603446781371832
 GameObject:
   m_ObjectHideFlags: 0
@@ -1813,6 +1813,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1721470693526421944}
   - component: {fileID: 3050750245696809809}
+  - component: {fileID: 39290823592247311}
   m_Layer: 0
   m_Name: SpinJoint
   m_TagString: Untagged
@@ -1856,6 +1857,22 @@ MonoBehaviour:
   rotLimitMax: 0
   rotLimitMin: 0
   reverseDirection: 0
+--- !u!114 &39290823592247311
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7090249290100174008}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SynchronizePosition: 0
+  m_SynchronizeRotation: 1
+  m_SynchronizeScale: 0
+  m_UseLocal: 0
 --- !u!1 &7295575781286632773
 GameObject:
   m_ObjectHideFlags: 0
@@ -2730,21 +2747,26 @@ PrefabInstance:
     - target: {fileID: 2868534714585168199, guid: ae3de9d833a0c624daaf2d240b5224b4,
         type: 3}
       propertyPath: ObservedComponents.Array.size
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 2868534714585168199, guid: ae3de9d833a0c624daaf2d240b5224b4,
         type: 3}
       propertyPath: ObservedComponents.Array.data[1]
       value: 
-      objectReference: {fileID: 8526886015846899941}
+      objectReference: {fileID: 39290823592247311}
     - target: {fileID: 2868534714585168199, guid: ae3de9d833a0c624daaf2d240b5224b4,
         type: 3}
       propertyPath: ObservedComponents.Array.data[2]
       value: 
-      objectReference: {fileID: 1310021298935859586}
+      objectReference: {fileID: 8526886015846899941}
     - target: {fileID: 2868534714585168199, guid: ae3de9d833a0c624daaf2d240b5224b4,
         type: 3}
       propertyPath: ObservedComponents.Array.data[3]
+      value: 
+      objectReference: {fileID: 1310021298935859586}
+    - target: {fileID: 2868534714585168199, guid: ae3de9d833a0c624daaf2d240b5224b4,
+        type: 3}
+      propertyPath: ObservedComponents.Array.data[4]
       value: 
       objectReference: {fileID: 1033687769437133032}
     - target: {fileID: 2987282200790851813, guid: ae3de9d833a0c624daaf2d240b5224b4,
