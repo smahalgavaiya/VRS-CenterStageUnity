@@ -68,7 +68,7 @@ public class ReleaseSubstationCone : MonoBehaviourPunCallbacks
                 if(PhotonNetwork.IsConnected)
                 {
                     int viewNum  = SpawnCone(conePositions[i].transform.position);
-                    view.RPC("SpawnCone", RpcTarget.OthersBuffered, conePositions[i].transform.position,viewNum);
+                    view.RPC("SpawnCone", RpcTarget.MasterClient, conePositions[i].transform.position,viewNum);
                 }
                 else
                 {
@@ -79,18 +79,25 @@ public class ReleaseSubstationCone : MonoBehaviourPunCallbacks
             }
         }
     }
-
+    /*
+     *
+    GameObject initialSpawnCone(Vector3 position)
+    {
+        GameObject newCone = PhotonNetwork.InstantiateRoomObject("cone", position, Quaternion.identity);
+    }*/
+    //instantiate room object for proper instantiation but master client needs to be the client to spawn it.
     [PunRPC]
     int SpawnCone(Vector3 position, int view=-1)
     {
         GameObject newCone = Instantiate(cone);
+        //GameObject newCone = PhotonNetwork.InstantiateRoomObject("cone", position, Quaternion.identity);
         //GameObject newCone = FieldManager.createGameObj(cone, position, name, Quaternion.identity);
         newCone.GetComponent<ColorSwitcher>().TeamColor_ = teamColor;
         newCone.GetComponent<ColorSwitcher>().SetColor();
         newCone.GetComponent<ScoreObjectTypeLink>().LastTouchedTeamColor = teamColor;
         newCone.transform.position = position;
         newCone.GetComponent<Cone>().MakeScorable();
-        numberOfConesReleased++;
+        numberOfConesReleased++;    
 
         if (PhotonNetwork.IsConnected)
         {
@@ -110,7 +117,7 @@ public class ReleaseSubstationCone : MonoBehaviourPunCallbacks
             }
             else { v.ViewID = PhotonNetwork.AllocateViewID(view); }
             v.Synchronization = ViewSynchronization.ReliableDeltaCompressed;
-
+            
             //Debug
             DisplayViewInfo inf = FindObjectOfType<DisplayViewInfo>();
             inf.SetNewConeView(newCone);

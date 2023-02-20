@@ -728,6 +728,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5724653529559603113}
   - component: {fileID: 8323447621693363591}
+  - component: {fileID: 7554117828501235888}
   m_Layer: 0
   m_Name: middle stage:1
   m_TagString: Untagged
@@ -770,6 +771,22 @@ MonoBehaviour:
   moveLimitMax: 0.0745
   moveLimitMin: -0.041
   attachedTo: {fileID: 1116331995368153214}
+--- !u!114 &7554117828501235888
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 155043875101922976}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SynchronizePosition: 1
+  m_SynchronizeRotation: 1
+  m_SynchronizeScale: 0
+  m_UseLocal: 0
 --- !u!1 &157946676699947151
 GameObject:
   m_ObjectHideFlags: 0
@@ -2591,6 +2608,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4979511251052670437}
   - component: {fileID: 2311237226175253885}
+  - component: {fileID: 897390154439207719}
   m_Layer: 0
   m_Name: last stage:1
   m_TagString: Untagged
@@ -2633,6 +2651,22 @@ MonoBehaviour:
   moveLimitMax: 0.1861
   moveLimitMin: 0.07
   attachedTo: {fileID: 2842504042937187461}
+--- !u!114 &897390154439207719
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 836102861272582184}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SynchronizePosition: 1
+  m_SynchronizeRotation: 1
+  m_SynchronizeScale: 0
+  m_UseLocal: 0
 --- !u!1 &840461719693517168
 GameObject:
   m_ObjectHideFlags: 0
@@ -9827,6 +9861,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2756882058782227697}
   - component: {fileID: 9161448980649644771}
+  - component: {fileID: 5993494494929087270}
   m_Layer: 0
   m_Name: GameObject
   m_TagString: Untagged
@@ -9869,6 +9904,22 @@ MonoBehaviour:
   rotLimitMax: 0
   rotLimitMin: 0
   reverseDirection: 0
+--- !u!114 &5993494494929087270
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2981206560405544634}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SynchronizePosition: 0
+  m_SynchronizeRotation: 1
+  m_SynchronizeScale: 0
+  m_UseLocal: 0
 --- !u!1 &2984521734247122069
 GameObject:
   m_ObjectHideFlags: 0
@@ -18761,6 +18812,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3211734758642954150}
   - component: {fileID: 1116331995368153214}
+  - component: {fileID: 1983428491602150892}
   m_Layer: 0
   m_Name: middle stage:2
   m_TagString: Untagged
@@ -18803,6 +18855,22 @@ MonoBehaviour:
   moveLimitMax: 0.1196
   moveLimitMin: 0.0045
   attachedTo: {fileID: 2311237226175253885}
+--- !u!114 &1983428491602150892
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5403023714664421509}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SynchronizePosition: 1
+  m_SynchronizeRotation: 1
+  m_SynchronizeScale: 0
+  m_UseLocal: 0
 --- !u!1 &5436259879008561472
 GameObject:
   m_ObjectHideFlags: 0
@@ -23387,6 +23455,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2338994381846552602}
   - component: {fileID: 2842504042937187461}
+  - component: {fileID: 7027690256790016492}
   m_Layer: 0
   m_Name: Grabber Base v1:1
   m_TagString: Untagged
@@ -23434,6 +23503,22 @@ MonoBehaviour:
   moveLimitMax: 0.07
   moveLimitMin: -0.063
   attachedTo: {fileID: 0}
+--- !u!114 &7027690256790016492
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6778628147699980695}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SynchronizePosition: 1
+  m_SynchronizeRotation: 1
+  m_SynchronizeScale: 0
+  m_UseLocal: 0
 --- !u!1 &6829463072109285962
 GameObject:
   m_ObjectHideFlags: 0
@@ -31320,6 +31405,41 @@ PrefabInstance:
       propertyPath: m_ParentAnchorPosition.z
       value: 0.09750005
       objectReference: {fileID: 0}
+    - target: {fileID: 2868534714585168199, guid: ae3de9d833a0c624daaf2d240b5224b4,
+        type: 3}
+      propertyPath: Synchronization
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2868534714585168199, guid: ae3de9d833a0c624daaf2d240b5224b4,
+        type: 3}
+      propertyPath: ObservedComponents.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2868534714585168199, guid: ae3de9d833a0c624daaf2d240b5224b4,
+        type: 3}
+      propertyPath: ObservedComponents.Array.data[1]
+      value: 
+      objectReference: {fileID: 5993494494929087270}
+    - target: {fileID: 2868534714585168199, guid: ae3de9d833a0c624daaf2d240b5224b4,
+        type: 3}
+      propertyPath: ObservedComponents.Array.data[2]
+      value: 
+      objectReference: {fileID: 7554117828501235888}
+    - target: {fileID: 2868534714585168199, guid: ae3de9d833a0c624daaf2d240b5224b4,
+        type: 3}
+      propertyPath: ObservedComponents.Array.data[3]
+      value: 
+      objectReference: {fileID: 1983428491602150892}
+    - target: {fileID: 2868534714585168199, guid: ae3de9d833a0c624daaf2d240b5224b4,
+        type: 3}
+      propertyPath: ObservedComponents.Array.data[4]
+      value: 
+      objectReference: {fileID: 897390154439207719}
+    - target: {fileID: 2868534714585168199, guid: ae3de9d833a0c624daaf2d240b5224b4,
+        type: 3}
+      propertyPath: ObservedComponents.Array.data[5]
+      value: 
+      objectReference: {fileID: 7027690256790016492}
     - target: {fileID: 2987282200790851813, guid: ae3de9d833a0c624daaf2d240b5224b4,
         type: 3}
       propertyPath: m_RootOrder
