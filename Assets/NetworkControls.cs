@@ -8,10 +8,14 @@ public class NetworkControls : MonoBehaviour
 {
     public void ExitGame()
     {
-        SettingsControl.RemoveMPComponents();
-        PhotonNetwork.LeaveRoom();
-        //PhotonNetwork.LeaveLobby();
-        PhotonNetwork.Disconnect();
+        if(PhotonNetwork.InRoom)
+        {
+            SettingsControl.RemoveMPComponents();
+            PhotonNetwork.LeaveRoom();
+            //PhotonNetwork.LeaveLobby();
+            PhotonNetwork.Disconnect();
+        }
+        
     }
 
     public void Reconnect()
