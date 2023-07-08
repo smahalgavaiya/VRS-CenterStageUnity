@@ -48,16 +48,17 @@ public class GamepieceStack : MonoBehaviour
 
     private IEnumerator clearAndRestack()
     {
-        yield return new WaitForEndOfFrame();
+        //wait for end of frame only works if game view is active.
+        //yield return new WaitForEndOfFrame();
         yield return StartCoroutine(clearStack());
-        yield return new WaitForEndOfFrame();
+        //yield return new WaitForEndOfFrame();
         CreateStack();
     }
     private IEnumerator clearStack()
     {
         Transform[] objs = GetComponentsInChildren<Transform>();
-
-        yield return new WaitForEndOfFrame();
+        yield return new WaitForSecondsRealtime(0.01f);
+        //yield return new WaitForEndOfFrame();
         for(int i = 0; i < objs.Length; i++)
         {
             if (objs[i] == this.transform || objs[i] == false) { continue; }
