@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2184114396959031660}
   - component: {fileID: 4630844523094148986}
   m_Layer: 0
-  m_Name: TapeMarker
+  m_Name: left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -110,7 +110,7 @@ GameObject:
   - component: {fileID: 3432360342188791863}
   - component: {fileID: 2471479926108409993}
   m_Layer: 0
-  m_Name: TapeMarker (1)
+  m_Name: right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -207,7 +207,7 @@ GameObject:
   - component: {fileID: 4585644170533105913}
   - component: {fileID: 1157303552094116172}
   m_Layer: 0
-  m_Name: TapeMarker (2)
+  m_Name: top
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -300,6 +300,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4492955821408046079}
+  - component: {fileID: 4179086930743729334}
   m_Layer: 0
   m_Name: MarkerGroup
   m_TagString: Untagged
@@ -325,3 +326,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4179086930743729334
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8368855275997733464}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf726af8979fb0f4e81372b6d6a3f60e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  owningTeam: 0
+  objectPrefab: {fileID: 447702195542794710, guid: f730c0de3d8637a42908fcc1152175b8,
+    type: 3}
