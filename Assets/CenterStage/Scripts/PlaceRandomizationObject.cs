@@ -14,7 +14,7 @@ public class PlaceRandomizationObject : MonoBehaviour
 
     private void Awake()
     {
-        randomizationLocations = new Dictionary<string, Transform>()
+        randomizationLocations = new Dictionary<string, Transform>();
         foreach (Transform t in transform)
         {
             randomizationLocations.Add(t.name, t);
