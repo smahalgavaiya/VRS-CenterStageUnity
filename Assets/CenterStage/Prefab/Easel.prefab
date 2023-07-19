@@ -162,6 +162,37 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &1479300844971443935
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5315290769741831865}
+  m_Layer: 15
+  m_Name: RayCast
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5315290769741831865
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1479300844971443935}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.259, y: -0.345, z: 0.0123}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8728967242254331520}
+  m_RootOrder: 15
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1609360217766543081
 GameObject:
   m_ObjectHideFlags: 0
@@ -259,6 +290,7 @@ Transform:
   - {fileID: 7805831626950251214}
   - {fileID: 1034710554301750305}
   - {fileID: 3995940678132756358}
+  - {fileID: 5315290769741831865}
   m_Father: {fileID: 8330540649025521963}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -811,6 +843,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8330540649025521963}
+  - component: {fileID: 4597075046625725875}
   m_Layer: 0
   m_Name: Easel
   m_TagString: Untagged
@@ -835,6 +868,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4597075046625725875
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8330540649025521964}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eccdeb4167b479545905cd90f29059c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  team: 0
+  lineOrigin: {fileID: 5315290769741831865}
+  verticalSpacing: 6.5
+  numLines: 12
 --- !u!1 &8626273773642777288
 GameObject:
   m_ObjectHideFlags: 0

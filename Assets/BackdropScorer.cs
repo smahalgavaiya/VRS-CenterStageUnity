@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SocialPlatforms.Impl;
 using static TMPro.SpriteAssetUtilities.TexturePacker_JsonArray;
 using static UnityEditor.PlayerSettings;
 
@@ -59,22 +60,53 @@ public class BackdropScorer : MonoBehaviour
                         score += 3;//diff points for autonomous
                         scoredObjects.Add(g);
                     }
-                    /*int number_of_rays = 6;
-                    float totalAngle = 360;
-
-                    float delta = totalAngle / number_of_rays;
-                    const float magnitude = 0.1f;
-                    for (int h = 0; h< number_of_rays; h++)
-                    {
-                        var dir = Quaternion.Euler(0, h*delta,0 ) * g.transform.up;
-                        Debug.DrawRay(g.transform.position, dir * magnitude, Color.green);
-                    }*/
+                    if(sc.ScoreObjectType_.name == "WhitePixel") { continue; }
+                    DetectTriplet(g);
+                    
                 }
                 //prevent scoring same obj twice.
             }
             
         }
         Debug.Log(score);
+    }
+
+    public bool DetectTriplet(GameObject obj)
+    {
+        int number_of_rays = 6;
+        float totalAngle = 360;
+
+        float delta = totalAngle / number_of_rays;
+        const float magnitude = 0.05f;
+        RaycastHit[] hits;
+        for (int h = 0; h < number_of_rays; h++)
+        {
+
+            Quaternion q = Quaternion.AngleAxis(h * delta + 31, obj.transform.up);
+            var dir = q * obj.transform.right;
+
+            Debug.DrawRay(obj.transform.position, dir * magnitude, Color.red);
+            hits = Physics.RaycastAll(obj.transform.position, dir * magnitude, 0.52f);
+            foreach (RaycastHit hit in hits)
+            {
+                GameObject g = hit.collider.transform.root.gameObject;
+                ScoreObjectTypeLink sc = g.GetComponent<ScoreObjectTypeLink>();
+                if (sc != null)
+                {
+                    if (sc.ScoreObjectType_.name == "WhitePixel") 
+                    {
+                        Debug.DrawRay(obj.transform.position, dir * magnitude, Color.red);
+                        continue;
+                    }
+                    else
+                    {
+                        Debug.DrawRay(obj.transform.position, dir * magnitude, Color.green);
+                    }
+                }
+                //prevent scoring same obj twice.
+            }
+        }
+        return false;
     }
 
     private void OnDrawGizmos()
