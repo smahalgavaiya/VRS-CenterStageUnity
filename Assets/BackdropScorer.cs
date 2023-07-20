@@ -79,14 +79,16 @@ public class BackdropScorer : MonoBehaviour
         float delta = totalAngle / number_of_rays;
         const float magnitude = 0.05f;
         RaycastHit[] hits;
+        bool lastWasGood = false;
+        List<GameObject> potentialTriplets = new List<GameObject>();
         for (int h = 0; h < number_of_rays; h++)
         {
 
             Quaternion q = Quaternion.AngleAxis(h * delta + 31, obj.transform.up);
             var dir = q * obj.transform.right;
 
-            Debug.DrawRay(obj.transform.position, dir * magnitude, Color.red);
-            hits = Physics.RaycastAll(obj.transform.position, dir * magnitude, 0.52f);
+            //Debug.DrawRay(obj.transform.position, dir * magnitude, Color.red);
+            hits = Physics.RaycastAll(obj.transform.position, dir, magnitude);
             foreach (RaycastHit hit in hits)
             {
                 GameObject g = hit.collider.transform.root.gameObject;
@@ -95,15 +97,27 @@ public class BackdropScorer : MonoBehaviour
                 {
                     if (sc.ScoreObjectType_.name == "WhitePixel") 
                     {
+                        lastWasGood = false;
                         Debug.DrawRay(obj.transform.position, dir * magnitude, Color.red);
                         continue;
                     }
                     else
                     {
                         Debug.DrawRay(obj.transform.position, dir * magnitude, Color.green);
+                        potentialTriplets.Add(g);
+                        
+                        if(potentialTriplets.Count > 2) { return false; }
+                        lastWasGood = true;
+                        
                     }
                 }
                 //prevent scoring same obj twice.
+            }
+            if (lastWasGood && potentialTriplets.Count == 2)
+            {
+                Debug.DrawRay(obj.transform.position,obj.transform.up * magnitude, Color.yellow);
+                Debug.Log("Triplet");
+                return true;
             }
         }
         return false;
