@@ -31,6 +31,7 @@ public class BackdropScorer : MonoBehaviour
         Vector3 curRayStart = lineOrigin.localPosition;
         int score = 0;
         List<GameObject> scoredObjects = new List<GameObject>();
+        int tripletsFound = 0;
         for (int i = 0; i < numLines; i++)
         {
             bool threshold = false;
@@ -61,26 +62,28 @@ public class BackdropScorer : MonoBehaviour
                         scoredObjects.Add(g);
                     }
                     if(sc.ScoreObjectType_.name == "WhitePixel") { continue; }
-                    DetectTriplet(g);
-                    
+                    bool found = DetectTriplet(g);
+                    if (found) { tripletsFound++; }
                 }
                 //prevent scoring same obj twice.
             }
-            
+            //if(tripletUnits == 3) { tripletsFound++; }
+           //run through triplets after initial score?
         }
+
+        Debug.Log("Triplets:" + tripletsFound /3);
         Debug.Log(score);
     }
 
-    public bool DetectTriplet(GameObject obj)
+    public Dictionary<int,ScoreObjectTypeLink> GetNeighbors(GameObject obj)
     {
+        RaycastHit[] hits;
         int number_of_rays = 6;
         float totalAngle = 360;
 
         float delta = totalAngle / number_of_rays;
         const float magnitude = 0.05f;
-        RaycastHit[] hits;
-        bool lastWasGood = false;
-        List<GameObject> potentialTriplets = new List<GameObject>();
+        Dictionary<int,ScoreObjectTypeLink> neighbors = new Dictionary<int,ScoreObjectTypeLink>();
         for (int h = 0; h < number_of_rays; h++)
         {
 
@@ -93,33 +96,44 @@ public class BackdropScorer : MonoBehaviour
             {
                 GameObject g = hit.collider.transform.root.gameObject;
                 ScoreObjectTypeLink sc = g.GetComponent<ScoreObjectTypeLink>();
-                if (sc != null)
+                if (sc != null && sc.ScoreObjectType_.name != "WhitePixel")
                 {
-                    if (sc.ScoreObjectType_.name == "WhitePixel") 
-                    {
-                        lastWasGood = false;
-                        Debug.DrawRay(obj.transform.position, dir * magnitude, Color.red);
-                        continue;
-                    }
-                    else
-                    {
-                        Debug.DrawRay(obj.transform.position, dir * magnitude, Color.green);
-                        potentialTriplets.Add(g);
-                        
-                        if(potentialTriplets.Count > 2) { return false; }
-                        lastWasGood = true;
-                        
-                    }
+                    Debug.DrawRay(obj.transform.position, dir * magnitude, Color.green);
+                    neighbors.Add(h, sc);
                 }
-                //prevent scoring same obj twice.
-            }
-            if (lastWasGood && potentialTriplets.Count == 2)
-            {
-                Debug.DrawRay(obj.transform.position,obj.transform.up * magnitude, Color.yellow);
-                Debug.Log("Triplet");
-                return true;
             }
         }
+        return neighbors;
+    }
+
+    public bool DetectTriplet(GameObject obj)
+    {
+        Dictionary<int, ScoreObjectTypeLink> neighbors = GetNeighbors(obj);
+        List<int> potentialTriplets = new List<int>();
+        foreach(KeyValuePair<int,ScoreObjectTypeLink> sc in neighbors)
+        {
+            //Debug.DrawRay(obj.transform.position, dir * magnitude, Color.green);
+            potentialTriplets.Add(sc.Key);
+            if (potentialTriplets.Count > 2) { return false; }
+        }
+        if (potentialTriplets.Count == 2)
+        {
+            int diff = Mathf.Abs(potentialTriplets[0] - potentialTriplets[1]);
+            if (diff == 1 || diff == 5)
+            {
+                int count_n1 = this.GetNeighbors(neighbors[potentialTriplets[0]].gameObject).Count;
+                int count_n2 = this.GetNeighbors(neighbors[potentialTriplets[1]].gameObject).Count;
+                if(count_n1 > 2 || count_n2 > 2) { return false; }
+                //check same color or all diff colors!!
+                Debug.DrawRay(obj.transform.position, obj.transform.up * 0.2f, Color.yellow);
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
         return false;
     }
 
