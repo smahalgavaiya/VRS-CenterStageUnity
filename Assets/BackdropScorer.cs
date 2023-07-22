@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SocialPlatforms.Impl;
+using System.Linq;
 using static TMPro.SpriteAssetUtilities.TexturePacker_JsonArray;
 using static UnityEditor.PlayerSettings;
 
@@ -62,7 +63,7 @@ public class BackdropScorer : MonoBehaviour
                         scoredObjects.Add(g);
                     }
                     if(sc.ScoreObjectType_.name == "WhitePixel") { continue; }
-                    bool found = DetectTriplet(g);
+                    bool found = DetectTriplet(sc);
                     if (found) { tripletsFound++; }
                 }
                 //prevent scoring same obj twice.
@@ -106,8 +107,11 @@ public class BackdropScorer : MonoBehaviour
         return neighbors;
     }
 
-    public bool DetectTriplet(GameObject obj)
+    public bool DetectTriplet(ScoreObjectTypeLink scoringObj)
     {
+        GameObject obj = scoringObj.gameObject;
+
+
         Dictionary<int, ScoreObjectTypeLink> neighbors = GetNeighbors(obj);
         List<int> potentialTriplets = new List<int>();
         foreach(KeyValuePair<int,ScoreObjectTypeLink> sc in neighbors)
@@ -121,10 +125,31 @@ public class BackdropScorer : MonoBehaviour
             int diff = Mathf.Abs(potentialTriplets[0] - potentialTriplets[1]);
             if (diff == 1 || diff == 5)
             {
+                //Must be Touching Check
                 int count_n1 = this.GetNeighbors(neighbors[potentialTriplets[0]].gameObject).Count;
                 int count_n2 = this.GetNeighbors(neighbors[potentialTriplets[1]].gameObject).Count;
-                if(count_n1 > 2 || count_n2 > 2) { return false; }
-                //check same color or all diff colors!!
+
+                if (count_n1 > 2 || count_n2 > 2) { return false; }
+
+                //Color Checks
+                ScoreObjectTypeLink[] triplet = { scoringObj, neighbors[potentialTriplets[0]], neighbors[potentialTriplets[1]] };
+
+                bool allSame = true;
+                bool allDifferent = false;
+                string firstName = "";
+                string lastName = "";
+                foreach (ScoreObjectTypeLink s in triplet)
+                {
+
+                    if (firstName == "") { firstName = s.ScoreObjectType_.name; }
+                    if (firstName != s.ScoreObjectType_.name && !allSame && lastName != s.ScoreObjectType_.name) { allDifferent = true; }
+                    if (firstName != s.ScoreObjectType_.name) { allSame = false; }
+                    lastName = s.ScoreObjectType_.name;
+                }
+
+                if (!allSame && !allDifferent) { return false; }
+                //Color Check
+
                 Debug.DrawRay(obj.transform.position, obj.transform.up * 0.2f, Color.yellow);
                 return true;
             }
