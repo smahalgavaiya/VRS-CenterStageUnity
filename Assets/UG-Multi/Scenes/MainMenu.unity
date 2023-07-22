@@ -1380,7 +1380,7 @@ MonoBehaviour:
       m_Calls: []
   m_Sprite: {fileID: 21300000, guid: f318aaabdbd117240a433b5cafb57185, type: 3}
   m_Type: 0
-  m_PreserveAspect: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
@@ -4191,7 +4191,7 @@ MonoBehaviour:
   animationPreset: {fileID: 11400000, guid: fcb0e9b4fb47d492aa521651b7f71c66, type: 2}
 --- !u!95 &1349085274844931811
 Animator:
-  serializedVersion: 4
+  serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -4208,7 +4208,8 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1349085274844931838
 GameObject:
   m_ObjectHideFlags: 0
@@ -5048,7 +5049,7 @@ MonoBehaviour:
   animationPreset: {fileID: 11400000, guid: addbfb1fa62c04357bc150407ba9878d, type: 2}
 --- !u!95 &3408320466167052103
 Animator:
-  serializedVersion: 4
+  serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -5065,7 +5066,8 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!224 &3422403881242432853
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6591,7 +6593,7 @@ MonoBehaviour:
   optionIndex: 0
   option: 
   onlyAdminCanChange: 0
-  hackForGameType: 0
+  set_change_on_start: 0
 --- !u!222 &6322079261606958073
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -8396,7 +8398,7 @@ MonoBehaviour:
   animationPreset: {fileID: 11400000, guid: 4a5e3dcfd58db4ef99e35e5e106df150, type: 2}
 --- !u!95 &7983586053535921351
 Animator:
-  serializedVersion: 4
+  serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -8413,7 +8415,8 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!222 &7983586053535921352
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -8615,7 +8618,7 @@ MonoBehaviour:
   animationPreset: {fileID: 11400000, guid: 4a5e3dcfd58db4ef99e35e5e106df150, type: 2}
 --- !u!95 &7983586053547024147
 Animator:
-  serializedVersion: 4
+  serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -8632,7 +8635,8 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &7983586053547024152
 GameObject:
   m_ObjectHideFlags: 0
@@ -8772,7 +8776,7 @@ RectTransform:
   m_Pivot: {x: 0.5, y: 0}
 --- !u!95 &7983586053656513040
 Animator:
-  serializedVersion: 4
+  serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -8789,7 +8793,8 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!114 &7983586053656513041
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9388,7 +9393,7 @@ MonoBehaviour:
         m_CallState: 2
 --- !u!95 &7983586054940908506
 Animator:
-  serializedVersion: 4
+  serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -9405,7 +9410,8 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!114 &7983586054940908507
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9436,7 +9442,7 @@ MonoBehaviour:
   animationPreset: {fileID: 11400000, guid: af87d0d4b348642d5b343be73cb56e9e, type: 2}
 --- !u!95 &7983586055034539737
 Animator:
-  serializedVersion: 4
+  serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -9453,7 +9459,8 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!224 &7983586055034539738
 RectTransform:
   m_ObjectHideFlags: 0
@@ -9609,7 +9616,7 @@ MonoBehaviour:
   animationPreset: {fileID: 11400000, guid: af87d0d4b348642d5b343be73cb56e9e, type: 2}
 --- !u!95 &7983586055061447949
 Animator:
-  serializedVersion: 4
+  serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -9626,7 +9633,8 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!224 &7983586055061447950
 RectTransform:
   m_ObjectHideFlags: 0
