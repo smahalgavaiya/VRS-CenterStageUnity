@@ -12,7 +12,9 @@ public class TeamInventory : MonoBehaviour
 
     public Team assignedTeam;
 
-    public string CurrentPiece { get { return $"{stackTypes[activePiece]} : {CurrentCount()}";  } } // this needs to be optimized or displayobjval shouldnt call per frame
+    public string CurrentPiece { get { return $"{stackTypes[activePiece]}";  } } // this needs to be optimized or displayobjval shouldnt call per frame
+    public string PieceCount { get { return $"x{CurrentCount()}";  } } // this needs to be optimized or displayobjval shouldnt call per frame
+    public Color Color { get { return CurrentColor();  } } 
     void Start()
     {
         List<GamepieceStack> stacks = GetComponentsInChildren<GamepieceStack>().ToList();
@@ -44,6 +46,25 @@ public class TeamInventory : MonoBehaviour
             cnt += stack.Count;
         }
         return cnt;
+    }
+
+    public Color CurrentColor()
+    {
+        string active = stackTypes[activePiece];
+        Color purple = new Color32(191, 64, 191,255);
+        string color = active.Split("Pixel")[0];
+        switch(color)
+        {
+            case "White":
+                return Color.white;
+            case "Purple":
+                return purple;
+            case "Green":
+                return Color.green;
+            case "Yellow":
+                return Color.yellow;
+        }
+        return Color.red;
     }
 
     public void Release()

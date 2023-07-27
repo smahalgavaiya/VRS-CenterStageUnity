@@ -62,7 +62,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a74898dfa2709d143b3e9cc9c82de7d8, type: 2}
+  - {fileID: 2100000, guid: 86f7ec49fba4f2d4dbd8102f175555fe, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -159,7 +159,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a74898dfa2709d143b3e9cc9c82de7d8, type: 2}
+  - {fileID: 2100000, guid: 86f7ec49fba4f2d4dbd8102f175555fe, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -256,7 +256,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a74898dfa2709d143b3e9cc9c82de7d8, type: 2}
+  - {fileID: 2100000, guid: 86f7ec49fba4f2d4dbd8102f175555fe, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -301,6 +301,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4492955821408046079}
   - component: {fileID: 4179086930743729334}
+  - component: {fileID: 7860182656242011099}
+  - component: {fileID: 8753412814922288660}
   m_Layer: 0
   m_Name: MarkerGroup
   m_TagString: Untagged
@@ -317,7 +319,7 @@ Transform:
   m_GameObject: {fileID: 8368855275997733464}
   m_LocalRotation: {x: 0, y: 0.70710576, z: 0, w: 0.7071079}
   m_LocalPosition: {x: -0.90000004, y: 0.01273, z: 0.8877}
-  m_LocalScale: {x: 0.30358177, y: 0.0079899905, z: 0.025455264}
+  m_LocalScale: {x: 0.30358177, y: 0.0079899905, z: 0.025455268}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 542313418053213970}
@@ -341,3 +343,33 @@ MonoBehaviour:
   owningTeam: 0
   objectPrefab: {fileID: 447702195542794710, guid: f730c0de3d8637a42908fcc1152175b8,
     type: 3}
+--- !u!114 &7860182656242011099
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8368855275997733464}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63055af2e21ff1c4988e684a9b71b4f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  setChildren: 1
+--- !u!114 &8753412814922288660
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8368855275997733464}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6beb7c552af86214c826df4393650a33, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  materialIndex: {fileID: 11400000, guid: 30ac5fa6dc2da624aa23751cddd2c77d, type: 2}
+  scoreTrackerIndex: {fileID: 11400000, guid: 6a1054d5cd9ab4e4a975d016d7c21775, type: 2}
+  scoringGuide: {fileID: 11400000, guid: c2bc84d395bd2ad42ab673b5e2d54e3a, type: 2}
+  hideOnPlay: 0
+  scoreZoneColor: 0

@@ -12,6 +12,9 @@ GameObject:
   - component: {fileID: 7559045269227371716}
   - component: {fileID: 8298679783838637683}
   - component: {fileID: 6674672773533885962}
+  - component: {fileID: 1041168800405588014}
+  - component: {fileID: 6639320097015906191}
+  - component: {fileID: 5510704051734553040}
   m_Layer: 0
   m_Name: PlaneTape (1)
   m_TagString: Untagged
@@ -95,8 +98,53 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 178.20737, z: 23.519785}
-  m_Center: {x: 3.7608358e-14, y: -88.17725, z: 11.259893}
+  m_Size: {x: 1, y: 6.0469294, z: 23.519785}
+  m_Center: {x: -1.0415848e-16, y: -2.097048, z: -11.299999}
+--- !u!114 &1041168800405588014
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1787206309582470307}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66055704a4d3e17459e0531fc84e1c39, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentRoundGlobal: {fileID: 11400000, guid: e39a63664eb39464a9e54eb8282546d7, type: 2}
+  useOptionalBool: 0
+  globalBool: {fileID: 0}
+--- !u!114 &6639320097015906191
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1787206309582470307}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63055af2e21ff1c4988e684a9b71b4f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  setChildren: 1
+--- !u!114 &5510704051734553040
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1787206309582470307}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6beb7c552af86214c826df4393650a33, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  materialIndex: {fileID: 11400000, guid: 30ac5fa6dc2da624aa23751cddd2c77d, type: 2}
+  scoreTrackerIndex: {fileID: 11400000, guid: 6a1054d5cd9ab4e4a975d016d7c21775, type: 2}
+  scoringGuide: {fileID: 11400000, guid: 6c2740f7ccdb3524caeeaba4b8262eb1, type: 2}
+  hideOnPlay: 0
+  scoreZoneColor: 2
 --- !u!1 &3273137499077777698
 GameObject:
   m_ObjectHideFlags: 0
@@ -109,6 +157,9 @@ GameObject:
   - component: {fileID: 4608985449397791373}
   - component: {fileID: 7904427952067489116}
   - component: {fileID: 5179943691969169892}
+  - component: {fileID: 2076862577449780344}
+  - component: {fileID: 3108612416401459268}
+  - component: {fileID: 7099843060307785632}
   m_Layer: 0
   m_Name: PlaneTape
   m_TagString: Untagged
@@ -192,8 +243,53 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 178.20737, z: 23.519785}
-  m_Center: {x: 3.7608358e-14, y: -88.17725, z: 11.259893}
+  m_Size: {x: 1, y: 6.833442, z: 23.519785}
+  m_Center: {x: 2.5414072e-15, y: -2.4902706, z: -11.5}
+--- !u!114 &2076862577449780344
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3273137499077777698}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63055af2e21ff1c4988e684a9b71b4f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  setChildren: 1
+--- !u!114 &3108612416401459268
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3273137499077777698}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66055704a4d3e17459e0531fc84e1c39, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentRoundGlobal: {fileID: 11400000, guid: e39a63664eb39464a9e54eb8282546d7, type: 2}
+  useOptionalBool: 0
+  globalBool: {fileID: 0}
+--- !u!114 &7099843060307785632
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3273137499077777698}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6beb7c552af86214c826df4393650a33, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  materialIndex: {fileID: 11400000, guid: 30ac5fa6dc2da624aa23751cddd2c77d, type: 2}
+  scoreTrackerIndex: {fileID: 11400000, guid: 6a1054d5cd9ab4e4a975d016d7c21775, type: 2}
+  scoringGuide: {fileID: 11400000, guid: b02c0e891096b434c91300968f7e9d69, type: 2}
+  hideOnPlay: 0
+  scoreZoneColor: 2
 --- !u!1 &3409342026461978717
 GameObject:
   m_ObjectHideFlags: 0
@@ -206,6 +302,9 @@ GameObject:
   - component: {fileID: 3294252845046351137}
   - component: {fileID: 4128241419151304829}
   - component: {fileID: 6231594940106777271}
+  - component: {fileID: 8211224315650565695}
+  - component: {fileID: 8603505345661427487}
+  - component: {fileID: 1891541217425229681}
   m_Layer: 0
   m_Name: PlaneTape (2)
   m_TagString: Untagged
@@ -289,8 +388,53 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 178.20737, z: 126.69579}
-  m_Center: {x: 1.7404332e-14, y: -88.17725, z: 62.847874}
+  m_Size: {x: 1, y: 4.6410093, z: 23.77315}
+  m_Center: {x: 1.750382e-16, y: -1.3940669, z: -10.961299}
+--- !u!114 &8211224315650565695
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3409342026461978717}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63055af2e21ff1c4988e684a9b71b4f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  setChildren: 1
+--- !u!114 &8603505345661427487
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3409342026461978717}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6beb7c552af86214c826df4393650a33, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  materialIndex: {fileID: 11400000, guid: 30ac5fa6dc2da624aa23751cddd2c77d, type: 2}
+  scoreTrackerIndex: {fileID: 11400000, guid: 6a1054d5cd9ab4e4a975d016d7c21775, type: 2}
+  scoringGuide: {fileID: 11400000, guid: 87b7b0692d517e44781a26390ce7919d, type: 2}
+  hideOnPlay: 0
+  scoreZoneColor: 2
+--- !u!114 &1891541217425229681
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3409342026461978717}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66055704a4d3e17459e0531fc84e1c39, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentRoundGlobal: {fileID: 11400000, guid: e39a63664eb39464a9e54eb8282546d7, type: 2}
+  useOptionalBool: 0
+  globalBool: {fileID: 0}
 --- !u!1 &8955923581017808726
 GameObject:
   m_ObjectHideFlags: 0
@@ -300,6 +444,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 51631084445628999}
+  - component: {fileID: 1243328406227746903}
   m_Layer: 0
   m_Name: PlaneTapeMarkers
   m_TagString: Untagged
@@ -325,3 +470,16 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &1243328406227746903
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8955923581017808726}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 3.770781, y: 0.04973799, z: 3.1467628}
+  m_Center: {x: -0.014984369, y: -0.0069999993, z: 0.40138942}

@@ -28,7 +28,7 @@ public class PlaceRandomizationObject : MonoBehaviour
         {
             GameObject obj = GameObject.Instantiate(objectPrefab);
             obj.transform.position = randomizationLocations[loc].position;
-            obj.transform.parent = transform;
+            //obj.transform.parent = transform;
         }
     }
 }
