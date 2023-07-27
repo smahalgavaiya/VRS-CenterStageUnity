@@ -2,11 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlaceRandomizationObject : MonoBehaviour
+public class PlaceRandomizationObject : MonoBehaviour, ICustomGoalChecker
 {
     public Team owningTeam;
     public GameObject objectPrefab;
     public Dictionary<string, Transform> randomizationLocations = new Dictionary<string, Transform>();
+
+
+    private Collider[] colliders;
+    private string pickedRandomization = "none";
     // Start is called before the first frame update
 
     //get all instances of placeR_obj, have a master class that will set randomization and wait on an event from field manager.
@@ -14,6 +18,7 @@ public class PlaceRandomizationObject : MonoBehaviour
 
     private void Awake()
     {
+        colliders = GetComponentsInChildren<Collider>();
         randomizationLocations = new Dictionary<string, Transform>();
         foreach (Transform t in transform)
         {
@@ -28,7 +33,39 @@ public class PlaceRandomizationObject : MonoBehaviour
         {
             GameObject obj = GameObject.Instantiate(objectPrefab);
             obj.transform.position = randomizationLocations[loc].position;
+            pickedRandomization = loc;
             //obj.transform.parent = transform;
         }
+    }
+
+    public GameObject GetCallingTrigger(GameObject objToCheck)
+    {
+        Collider other = objToCheck.GetComponent<Collider>();
+        foreach(Collider c in colliders)
+        {
+            if(c.bounds.Intersects(other.bounds))
+            {
+                return c.gameObject;
+            }
+        }
+        return null;
+    }
+
+    public void DoCustomCheck()
+    {
+        
+    }
+
+    public void DoCustomCheck(GameObject objectToCheck, int scoreDirection)
+    {
+        GameObject triggeringObj = GetCallingTrigger(objectToCheck);
+        GoalZoneScoreLink goal = GetComponent<GoalZoneScoreLink>();
+        if(triggeringObj == null) { return; }
+        if(triggeringObj.name == pickedRandomization)
+        {
+            goal.OptionalBoolValue = true;
+        }
+        else { goal.OptionalBoolValue = false; }
+        Debug.Log(objectToCheck.name);
     }
 }

@@ -109,6 +109,8 @@ GameObject:
   - component: {fileID: 4102496500895925956}
   - component: {fileID: 2415978608840726083}
   - component: {fileID: 406632823861671794}
+  - component: {fileID: 1118325503421918565}
+  - component: {fileID: 150132937027756488}
   m_Layer: 0
   m_Name: PlacementBoundsRed 1
   m_TagString: Untagged
@@ -180,6 +182,35 @@ MonoBehaviour:
   scoringGuide: {fileID: 11400000, guid: 240b1291d22e7964d98b1196a19320a4, type: 2}
   hideOnPlay: 0
   scoreZoneColor: 1
+--- !u!54 &1118325503421918565
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2740414382279354327}
+  serializedVersion: 2
+  m_Mass: 0.0000001
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!114 &150132937027756488
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2740414382279354327}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cca37804ac06e2d4d88a958af0a1b228, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentRound: {fileID: 0}
 --- !u!1 &2996982592004034503
 GameObject:
   m_ObjectHideFlags: 0

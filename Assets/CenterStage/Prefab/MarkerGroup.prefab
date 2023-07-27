@@ -95,8 +95,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1.426461, z: 0.9999998}
-  m_Center: {x: 0, y: 0.21323058, z: 0}
+  m_Size: {x: 1, y: 6.082373, z: 0.9999999}
+  m_Center: {x: 0, y: 2.5411863, z: 0}
 --- !u!1 &1979715113931565642
 GameObject:
   m_ObjectHideFlags: 0
@@ -192,8 +192,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1.426461, z: 0.9999998}
-  m_Center: {x: 0, y: 0.21323058, z: 0}
+  m_Size: {x: 1, y: 6.3912315, z: 0.9999999}
+  m_Center: {x: 0, y: 2.695616, z: 0}
 --- !u!1 &5125949928060632126
 GameObject:
   m_ObjectHideFlags: 0
@@ -289,8 +289,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1.426461, z: 0.9999998}
-  m_Center: {x: 0, y: 0.21323058, z: 0}
+  m_Size: {x: 1, y: 7.5408573, z: 0.9999999}
+  m_Center: {x: 0, y: 3.2704291, z: 0}
 --- !u!1 &8368855275997733464
 GameObject:
   m_ObjectHideFlags: 0
@@ -303,6 +303,8 @@ GameObject:
   - component: {fileID: 4179086930743729334}
   - component: {fileID: 7860182656242011099}
   - component: {fileID: 8753412814922288660}
+  - component: {fileID: 7249210196921790047}
+  - component: {fileID: 7920065853638997364}
   m_Layer: 0
   m_Name: MarkerGroup
   m_TagString: Untagged
@@ -373,3 +375,34 @@ MonoBehaviour:
   scoringGuide: {fileID: 11400000, guid: c2bc84d395bd2ad42ab673b5e2d54e3a, type: 2}
   hideOnPlay: 0
   scoreZoneColor: 0
+--- !u!54 &7249210196921790047
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8368855275997733464}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!114 &7920065853638997364
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8368855275997733464}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66055704a4d3e17459e0531fc84e1c39, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentRoundGlobal: {fileID: 11400000, guid: e39a63664eb39464a9e54eb8282546d7, type: 2}
+  useOptionalBool: 1
+  globalBool: {fileID: 0}
