@@ -14,25 +14,36 @@ public class BackdropScorer : MonoBehaviour
     public Transform lineOrigin;
     public float verticalSpacing;
     public int numLines = 10;
+    private int lastScore = 0;
     // Start is called before the first frame update
+
+    //Should have lists for scored triplets, pixels, etc.
     void Start()
     {
-        
+        InvokeRepeating("CastRays", 1,1);
     }
 
     // Update is called once per frame
     void Update()
     {
-        Debug.DrawRay(lineOrigin.position, lineOrigin.up * 100, Color.red);
+        //CastRays();
     }
 
-    public void CastRays()
+    private void OnCollisionEnter(Collision collision)
+    {
+        //CastRays();
+    }
+
+    public void CastRays(bool noScore = false)
     {
         float vspace = verticalSpacing * 0.01f;
         Vector3 curRayStart = lineOrigin.localPosition;
         int score = 0;
         List<GameObject> scoredObjects = new List<GameObject>();
         int tripletsFound = 0;
+        if (!noScore) { ScoringManager.ScoreEvent(team, -lastScore, "Resetting Board", gameObject); }
+        
+
         for (int i = 0; i < numLines; i++)
         {
             bool threshold = false;
@@ -56,10 +67,16 @@ public class BackdropScorer : MonoBehaviour
                 ScoreObjectTypeLink sc = g.GetComponent<ScoreObjectTypeLink>();
                 if(sc != null)
                 {
-                    if (threshold) { score += 10; threshold = false; }//only one pixel may score threshold bonus
+                    if (threshold) 
+                    { 
+                        score += 10;
+                        if (!noScore) { ScoringManager.ScoreEvent(team, 10, "Threshold Reached", gameObject); }
+                        threshold = false; 
+                    }//only one pixel may score threshold bonus
                     if(!scoredObjects.Contains(g))
                     {
                         score += 3;//diff points for autonomous
+                        if (!noScore) { ScoringManager.ScoreEvent(team, 3, "Pixel On Board", gameObject); }
                         scoredObjects.Add(g);
                     }
                     if(sc.ScoreObjectType_.name == "WhitePixel") { continue; }
@@ -72,8 +89,13 @@ public class BackdropScorer : MonoBehaviour
            //run through triplets after initial score?
         }
 
-        Debug.Log("Triplets:" + tripletsFound /3);
-        Debug.Log(score);
+        //Debug.Log("Triplets:" + tripletsFound /3);
+        for(int i = 0; i< tripletsFound/3; i++)
+        {
+            if (!noScore) { ScoringManager.ScoreEvent(team, 10, "Triplets", gameObject); }
+        }
+        lastScore = score;
+        if (noScore) { Debug.Log("Triplets:" + tripletsFound / 3); Debug.Log(score); }
     }
 
     public Dictionary<int,ScoreObjectTypeLink> GetNeighbors(GameObject obj)
@@ -164,7 +186,7 @@ public class BackdropScorer : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        CastRays();
+        CastRays(true);
         
     }
 }

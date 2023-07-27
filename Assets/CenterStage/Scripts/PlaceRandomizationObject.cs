@@ -66,6 +66,6 @@ public class PlaceRandomizationObject : MonoBehaviour, ICustomGoalChecker
             goal.OptionalBoolValue = true;
         }
         else { goal.OptionalBoolValue = false; }
-        Debug.Log(objectToCheck.name);
+        //Debug.Log(objectToCheck.name);
     }
 }
