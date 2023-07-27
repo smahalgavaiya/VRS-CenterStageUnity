@@ -28,7 +28,7 @@ public class GateMotor : MonoBehaviour
         joints[0].useSpring = true;
         yield return new WaitForSeconds(0.01f);
         joints[1].useSpring = true;
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(10);
         ToggleMotor(false);
         yield return null;
     }
