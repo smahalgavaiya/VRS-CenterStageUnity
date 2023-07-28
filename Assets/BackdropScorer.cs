@@ -20,7 +20,7 @@ public class BackdropScorer : MonoBehaviour
     //Should have lists for scored triplets, pixels, etc.
     void Start()
     {
-        InvokeRepeating("CastRays", 1,1);
+        InvokeRepeating("CastRaysScore", 1,1);
     }
 
     // Update is called once per frame
@@ -32,6 +32,11 @@ public class BackdropScorer : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         //CastRays();
+    }
+
+    public void CastRaysScore()
+    {
+        CastRays();
     }
 
     public void CastRays(bool noScore = false)
