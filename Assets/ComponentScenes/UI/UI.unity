@@ -5074,7 +5074,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1245255891
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7430,22 +7430,10 @@ MonoBehaviour:
   onChangeOptionIndex:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: PowerPlayFieldManager, GameScripts
-        m_MethodName: SetGameMode
+      - m_Target: {fileID: 1817348647}
+        m_TargetAssemblyTypeName: FieldControl, Assembly-CSharp
+        m_MethodName: SetMode
         m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: GameTimeManager, com.vftc.robotconstructionkit
-        m_MethodName: SetUpTimer
-        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -7721,7 +7709,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1692753870
 RectTransform:
   m_ObjectHideFlags: 0
@@ -8555,6 +8543,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1817348645}
   - component: {fileID: 1817348646}
+  - component: {fileID: 1817348647}
   m_Layer: 0
   m_Name: GUI
   m_TagString: Untagged
@@ -8598,6 +8587,18 @@ MonoBehaviour:
   sceneChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &1817348647
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1817348644}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9393e5e2ec0acb04ebd39a2864d7527c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1835090496
 GameObject:
   m_ObjectHideFlags: 0
@@ -10192,7 +10193,7 @@ PrefabInstance:
         type: 3}
       propertyPath: FinishedStart.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1817348647}
     - target: {fileID: 2052488632633872130, guid: 48c536067d378154ba46c62111292966,
         type: 3}
       propertyPath: FinishedStart.m_PersistentCalls.m_Calls.Array.data[2].m_Target
@@ -10201,7 +10202,7 @@ PrefabInstance:
     - target: {fileID: 2052488632633872130, guid: 48c536067d378154ba46c62111292966,
         type: 3}
       propertyPath: FinishedStart.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: Play
+      value: StartTimer
       objectReference: {fileID: 0}
     - target: {fileID: 2052488632633872130, guid: 48c536067d378154ba46c62111292966,
         type: 3}
@@ -10211,7 +10212,7 @@ PrefabInstance:
     - target: {fileID: 2052488632633872130, guid: 48c536067d378154ba46c62111292966,
         type: 3}
       propertyPath: FinishedStart.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
-      value: GameTimeManager, com.vftc.robotconstructionkit
+      value: FieldControl, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 2052488632633872130, guid: 48c536067d378154ba46c62111292966,
         type: 3}

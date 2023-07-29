@@ -14,18 +14,16 @@ public class SelectBotOptions : MonoBehaviour
     bool useLowerSpawn = false;
     bool preloadCone = false;
 
-    public List<Transform> spawnPoints = new List<Transform>();
-    public GameObject ConePrefab;
+    private List<Transform> spawnPoints = new List<Transform>();
 
     public UnityEvent FinishedStart;
+    [HideInInspector]
     public GameObject spawnedBot;
     public GameObject selectBotScreen;
 
     bool useCustomBot = false;
     GameObject customPrefab;
     private bool autostart = false;
-
-    public BuiltInBots botList;
 
     // Start is called before the first frame update
 
@@ -121,6 +119,8 @@ public class SelectBotOptions : MonoBehaviour
 
     public void StartGame()
     {
+        spawnPoints = FieldManager.fm.spawnPositions.ToList();
+
         if (spawnedBot) { Destroy(spawnedBot); }
         int spawnIdx = (int)color;
         if (useLowerSpawn) { spawnIdx += 2; }
