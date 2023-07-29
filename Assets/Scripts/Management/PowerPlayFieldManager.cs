@@ -32,6 +32,8 @@ public class PowerPlayFieldManager : FieldManager
 
     [SerializeField] GlobalInt currentSession;
 
+    
+
     public UnityEvent onResetField;
     public UnityEvent onStartMP;
 

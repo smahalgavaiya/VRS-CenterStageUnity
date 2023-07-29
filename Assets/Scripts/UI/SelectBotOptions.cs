@@ -25,6 +25,8 @@ public class SelectBotOptions : MonoBehaviour
     GameObject customPrefab;
     private bool autostart = false;
 
+    public BuiltInBots botList;
+
     // Start is called before the first frame update
 
     public void SelectBot(int index)
@@ -153,15 +155,15 @@ public class SelectBotOptions : MonoBehaviour
 
     IEnumerator DoPreload(GameObject bot)
     {
-        GameObject cone = GameObject.Instantiate(ConePrefab, bot.transform.position, bot.transform.rotation);
-        cone.GetComponent<ColorSwitcher>().TeamColor_ = color;
-        cone.GetComponent<ColorSwitcher>().SetColor();
-        cone.GetComponent<ScoreObjectTypeLink>().LastTouchedTeamColor = color;
+        GameObject prop = GameObject.Instantiate(FieldData.ins.loadedPropPrefab, bot.transform.position, bot.transform.rotation);
+        prop.GetComponent<ColorSwitcher>().TeamColor_ = color;
+        prop.GetComponent<ColorSwitcher>().SetColor();
+        prop.GetComponent<ScoreObjectTypeLink>().LastTouchedTeamColor = color;
         ObjectGrabber grabber = bot.GetComponentInChildren<ObjectGrabber>();
         ObjectChecker checker = grabber.GetComponent<ObjectChecker>();
         checker.CanPickUp = true;
-        checker.ObjectInTrigger = cone;
-        cone.transform.position = grabber.transform.position;
+        checker.ObjectInTrigger = prop;
+        prop.transform.position = grabber.transform.position;
         yield return new WaitForFixedUpdate();
         yield return new WaitForEndOfFrame();
         grabber.PickUpOrPutDownObject();

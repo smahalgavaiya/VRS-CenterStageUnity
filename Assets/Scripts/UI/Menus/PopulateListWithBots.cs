@@ -12,7 +12,7 @@ public class PopulateListWithBots : MonoBehaviour
     void Start()
     {
         listObj = GetComponent<OptionListImage>();
-        List<BotData> bots = BuiltInBots.GetBotList();
+        List<BotData> bots = FieldData.bots.GetBotListLocal();
         listObj.options = bots.Select(item => item.name).ToList();
         listObj.images = bots.Select(item => item.img).ToList();
         listObj.ChangeOption(0);

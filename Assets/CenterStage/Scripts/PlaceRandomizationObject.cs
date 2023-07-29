@@ -11,6 +11,8 @@ public class PlaceRandomizationObject : MonoBehaviour, ICustomGoalChecker
 
     private Collider[] colliders;
     private string pickedRandomization = "none";
+
+    public bool leaveObjAsChild = false;//leave object as a child of the creating object.
     // Start is called before the first frame update
 
     //get all instances of placeR_obj, have a master class that will set randomization and wait on an event from field manager.
@@ -33,7 +35,9 @@ public class PlaceRandomizationObject : MonoBehaviour, ICustomGoalChecker
         {
             GameObject obj = GameObject.Instantiate(objectPrefab);
             obj.transform.position = randomizationLocations[loc].position;
+            obj.transform.rotation = randomizationLocations[loc].rotation;
             pickedRandomization = loc;
+            if (leaveObjAsChild) { obj.transform.parent = transform; }
             //obj.transform.parent = transform;
         }
     }
@@ -61,7 +65,7 @@ public class PlaceRandomizationObject : MonoBehaviour, ICustomGoalChecker
         GameObject triggeringObj = GetCallingTrigger(objectToCheck);
         GoalZoneScoreLink goal = GetComponent<GoalZoneScoreLink>();
         if(triggeringObj == null) { return; }
-        if(triggeringObj.name == pickedRandomization)
+        if(triggeringObj.name == pickedRandomization || triggeringObj.transform.parent.name == pickedRandomization)
         {
             goal.OptionalBoolValue = true;
         }
