@@ -142,7 +142,7 @@ public class SelectBotOptions : MonoBehaviour
         }
 
         AdjustLaser laser = bot.GetComponentInChildren<AdjustLaser>();
-        laser.ToggleLaser(false,true);
+        if (laser) { laser.ToggleLaser(false, true); }
         spawnedBot = bot;
         PowerPlayFieldManager.botColor = color;
         if (preloadCone)
@@ -156,8 +156,12 @@ public class SelectBotOptions : MonoBehaviour
     IEnumerator DoPreload(GameObject bot)
     {
         GameObject prop = GameObject.Instantiate(FieldData.ins.loadedPropPrefab, bot.transform.position, bot.transform.rotation);
-        prop.GetComponent<ColorSwitcher>().TeamColor_ = color;
-        prop.GetComponent<ColorSwitcher>().SetColor();
+        ColorSwitcher colorS = prop.GetComponent<ColorSwitcher>();
+        if(colorS)
+        {
+            prop.GetComponent<ColorSwitcher>().TeamColor_ = color;
+            prop.GetComponent<ColorSwitcher>().SetColor();
+        }
         prop.GetComponent<ScoreObjectTypeLink>().LastTouchedTeamColor = color;
         ObjectGrabber grabber = bot.GetComponentInChildren<ObjectGrabber>();
         ObjectChecker checker = grabber.GetComponent<ObjectChecker>();
