@@ -101,8 +101,9 @@ public class SelectBotOptions : MonoBehaviour
         DriveReceiver[] rcvrs = bot.GetComponentsInChildren<DriveReceiver>();
         foreach( DriveReceiver rcvr in rcvrs)
         {
-            if (rcvr.drive == null) { continue; }
+            if (rcvr.drive == null ) { continue; }
             string drvName = rcvr.drive.name;
+            if (!drives.ContainsKey(drvName)) { continue; }  
             rcvr.drive = drives[drvName];
         }
         ObjectGrabber grabber = bot.GetComponentInChildren<ObjectGrabber>();
@@ -176,7 +177,7 @@ public class SelectBotOptions : MonoBehaviour
 
     void Start()
     {
-        List<BotData> bots = BuiltInBots.GetBotList();
+        List<BotData> bots = FieldData.bots.GetBotListLocal();
         botPrefabs = bots.Select(item => item.prefab).ToList();
         AutoStartGame();
     }
