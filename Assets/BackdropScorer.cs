@@ -20,7 +20,7 @@ public class BackdropScorer : MonoBehaviour
     //Should have lists for scored triplets, pixels, etc.
     void Start()
     {
-        InvokeRepeating("CastRaysScore", 1,1);
+        InvokeRepeating("CastRaysScore", 5,1);
     }
 
     // Update is called once per frame
@@ -47,7 +47,7 @@ public class BackdropScorer : MonoBehaviour
         List<GameObject> scoredObjects = new List<GameObject>();
         int tripletsFound = 0;
         if (!noScore) { ScoringManager.ScoreEvent(team, -lastScore, "Resetting Board", gameObject); }
-        
+        int pixelsScore = 0;
 
         for (int i = 0; i < numLines; i++)
         {
@@ -80,8 +80,8 @@ public class BackdropScorer : MonoBehaviour
                     }//only one pixel may score threshold bonus
                     if(!scoredObjects.Contains(g))
                     {
-                        score += 3;//diff points for autonomous
-                        if (!noScore) { ScoringManager.ScoreEvent(team, 3, "Pixel On Board", gameObject); }
+                        pixelsScore += 3;//diff points for autonomous
+                        
                         scoredObjects.Add(g);
                     }
                     if(sc.ScoreObjectType_.name == "WhitePixel") { continue; }
@@ -93,13 +93,17 @@ public class BackdropScorer : MonoBehaviour
             //if(tripletUnits == 3) { tripletsFound++; }
            //run through triplets after initial score?
         }
-
-        //Debug.Log("Triplets:" + tripletsFound /3);
-        for(int i = 0; i< tripletsFound/3; i++)
-        {
-            if (!noScore) { ScoringManager.ScoreEvent(team, 10, "Triplets", gameObject); }
+        if (!noScore)
+        { 
+            ScoringManager.ScoreEvent(team, pixelsScore, "Pixels On Board x"+pixelsScore/3, gameObject);
+            //Debug.Log("Triplets:" + tripletsFound /3);
+            for (int i = 0; i < tripletsFound / 3; i++)
+            {
+                score += 10; ScoringManager.ScoreEvent(team, 10, "Triplets", gameObject); 
+            }
+            lastScore = score + pixelsScore;
         }
-        lastScore = score;
+        
         if (noScore) { Debug.Log("Triplets:" + tripletsFound / 3); Debug.Log(score); }
     }
 
