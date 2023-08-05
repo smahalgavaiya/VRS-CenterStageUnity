@@ -9,27 +9,19 @@ public class GateMotor : MonoBehaviour
     void Start()
     {
         joints = GetComponents<HingeJoint>();
-        StartCoroutine(Toggle());
     }
 
     public void ToggleMotor(bool enable = true)
     {
-        //joints[1].useSpring = enable;
-        foreach(HingeJoint j in joints)
-        {
-            j.useSpring = enable;
-        }
+        StartCoroutine(Toggle(enable));
     }
 
-    IEnumerator Toggle()
+    IEnumerator Toggle(bool enable)
     {
-        yield return new WaitForSeconds(10);
         //Weirdly the springs arent as strong if they are enabled at the same time??? so have to do individually.
-        joints[0].useSpring = true;
+        joints[0].useSpring = enable;
         yield return new WaitForSeconds(0.01f);
-        joints[1].useSpring = true;
-        yield return new WaitForSeconds(10);
-        ToggleMotor(false);
+        joints[1].useSpring = enable;
         yield return null;
     }
 }

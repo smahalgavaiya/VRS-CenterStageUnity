@@ -1,6 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+
+public class ReleaseDetails
+{
+    public string name;
+    public Team team;
+}
 
 public class FieldControl : MonoBehaviour
 {
@@ -24,5 +31,8 @@ public class FieldControl : MonoBehaviour
         gameTime.SetUpTimer();
     }
 
-
+    public void ReleaseObj(string team)
+    {
+        gameTime.SetUpTimer();
+    }
 }
