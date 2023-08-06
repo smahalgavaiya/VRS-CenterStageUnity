@@ -36,7 +36,7 @@ public class GrabberMP : MonoBehaviourPunCallbacks
         
         if(view.IsMine && grabber)
         {
-            if (grabber.checkDrive())
+            if (grabber.checkDrive() != GrabberAction.NoAction)
             {
                 //grabber.PickUpOrPutDownObject();
                 view.RPC("runGrab", RpcTarget.AllBuffered);

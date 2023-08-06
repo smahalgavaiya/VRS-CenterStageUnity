@@ -68,10 +68,12 @@ public class BackdropScorer : MonoBehaviour
             hits = Physics.RaycastAll(rayPos, -lineOrigin.right , 0.52f);
             foreach(RaycastHit hit in hits)
             {
+                
                 GameObject g = hit.collider.transform.root.gameObject;
                 ScoreObjectTypeLink sc = g.GetComponent<ScoreObjectTypeLink>();
                 if(sc != null)
                 {
+                    Debug.DrawRay(sc.gameObject.transform.position, hit.collider.transform.root.up * -0.02f, Color.white);
                     if (threshold) 
                     { 
                         score += 10;
