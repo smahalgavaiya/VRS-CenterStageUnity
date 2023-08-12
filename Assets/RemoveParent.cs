@@ -11,7 +11,11 @@ public class RemoveParent : MonoBehaviour
         {
             child.parent = null;
         }
-        Destroy(gameObject);
+        Invoke("Die", 1);
     }
 
+    void Die()
+    {
+        Destroy(gameObject);
+    }
 }

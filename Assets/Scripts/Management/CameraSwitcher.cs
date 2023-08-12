@@ -7,6 +7,8 @@ public class CameraSwitcher : MonoBehaviour
     [SerializeField] List<GameObject> cameras = new List<GameObject>();
     int currentCameraNumber;
     // Start is called before the first frame update
+
+    public static CameraSwitcher ins;
     void Start()
     {
         currentCameraNumber = 0;

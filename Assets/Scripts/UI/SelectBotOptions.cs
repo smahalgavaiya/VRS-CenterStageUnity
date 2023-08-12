@@ -138,8 +138,11 @@ public class SelectBotOptions : MonoBehaviour
         CameraSwitcher cams = FindObjectOfType<CameraSwitcher>();
         if (cams != null) 
         {
-            Camera c = bot.GetComponentInChildren<Camera>();
-            if (c) { cams.AddCam(bot.GetComponentInChildren<Camera>().gameObject); }
+            Camera[] c = bot.GetComponentsInChildren<Camera>();
+            foreach(Camera cam in c)
+            {
+                cams.AddCam(bot.GetComponentInChildren<Camera>().gameObject);
+            }
         }
 
         AdjustLaser laser = bot.GetComponentInChildren<AdjustLaser>();
