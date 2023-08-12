@@ -22,6 +22,7 @@ public class KeyBoundButton : MonoBehaviour
 
     private void Start()
     {
+        input = FindFirstObjectByType<PlayerInput>();
         button = GetComponent<Button>();
         currentScheme = input.currentControlScheme;
         

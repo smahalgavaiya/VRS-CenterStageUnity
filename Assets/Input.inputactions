@@ -94,6 +94,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "NextItemType",
+                    "type": "Button",
+                    "id": "6ddb3ad6-981a-407f-98cf-c7f9dfb2ebb9",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -375,7 +384,7 @@
                 {
                     "name": "",
                     "id": "3bcf977d-56ff-43e9-916e-ea9533d2f3d8",
-                    "path": "<Gamepad>/rightTrigger",
+                    "path": "<Gamepad>/rightStickPress",
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
@@ -481,6 +490,17 @@
                     "action": "MotorFour",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "2ae26032-95e2-4dbb-a089-1d125cb0a481",
+                    "path": "<Keyboard>/rightArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "NextItemType",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         }

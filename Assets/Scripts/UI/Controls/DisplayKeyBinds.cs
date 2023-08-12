@@ -24,18 +24,38 @@ public class DisplayKeyBinds : MonoBehaviour
     {
         datafill = GetComponent<UIDataFill>();
         _inputActionMap = controls.FindActionMap("Gameplay");
+        input = FindFirstObjectByType<PlayerInput>();
         foreach(InputAction action in _inputActionMap.actions)
         {
             //Bind b = new Bind { bind = action.GetBindingDisplayString(), name = action.name };
             string bindName = action.name;
+            string origName = action.name;
             foreach(KBindOverride kbind in BindOverrides)
             {
                 if(bindName == kbind.officialName) { bindName = kbind.overrideName; }
             }
 
+            string binding = action.GetBindingDisplayString().ToUpper();
+            if(binding == "")//This was added because unity decided to break getbindingdisplaystring on axis controls
+            {
+                string b = action.ToString();
+                string[] barr = b.Split('/');
+                foreach(string snip in barr)
+                {
+                    if(snip.Contains("Gameplay") || snip.Contains(origName) || snip.Contains("Keyboard"))
+                    {
+                        continue;
+                    }
+                    string outp = snip.TrimEnd(',');
+                    outp = outp.TrimEnd(']');
+                    binding += outp.ToUpper() + "|";
+                }
+                binding = binding.TrimEnd('|');
+            }
+
             Dictionary<string, string> data = new Dictionary<string, string>()
             {
-                { "bind", action.GetBindingDisplayString().ToUpper() },
+                { "bind", binding },
                 { "name", bindName},
                 { "controlScheme", input.currentControlScheme }
             };
