@@ -8,9 +8,9 @@ public enum MoveDir { right = 0, up = 1, forward = 2 };
 public class DriveReceiverMoveRelative : DriveReceiver
 {
     // Start is called before the first frame update
-    public float movementScale = 0.01f;
+    public float movementScalePos = 0.01f;
+    public float movementScaleNeg = 0.0001f;
     public MoveDir moveAxis = MoveDir.right;
-    public float moveLimitMax;
     public float moveLimitMin;
     public bool AtMaxLimit { get { return limitMax; } }
     public bool AtMinLimit { get { return limitMin; } }
@@ -22,46 +22,76 @@ public class DriveReceiverMoveRelative : DriveReceiver
 
     private float moveAmt = 0;
 
+    public float MoveAmount { get { return moveAmt; } }
+    public float Distance { get; set; }
+
     public UnityEvent<float> onLimitReached;
+
+    private float maxExtReached = 0;
+
+    public Transform maxLimitPos;
+    public Transform minLimitPos;
 
     void Start()
     {
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         Vector3 moveDir = new Vector3();
         Vector3 oldPos = transform.position;
+        float oldPosition = 0;
+        Vector3 moveLimitMaxPos = transform.position;
+        Vector3 moveLimitMinPos = transform.position;
         switch (moveAxis)
         {
             case MoveDir.right:
                 moveDir = transform.right * drive.driveAmount.x;
+                moveLimitMinPos.x = moveLimitMin;
+                oldPosition = transform.position.x;
                 break;
             case MoveDir.up:
                 moveDir = transform.up * drive.driveAmount.x;
+                moveLimitMinPos.y = moveLimitMin;
+                oldPosition = transform.position.y;
                 break;
             case MoveDir.forward:
                 moveDir = transform.forward * drive.driveAmount.x;
+                moveLimitMinPos.z = moveLimitMin;
+                oldPosition = transform.position.z;
                 break;
         }
-        /*Debug.DrawRay(transform.position, transform.forward * .5f, Color.red);
-        Debug.DrawRay(transform.position, transform.up * .5f, Color.green);
-        Debug.DrawRay(transform.position, transform.right * .5f, Color.yellow);*/
+        float movementScale = movementScaleNeg;
+        if (drive.driveAmount.x > 0)
+        {
+            movementScale = movementScalePos;
+        }
         Vector3 newPos = oldPos + (moveDir * movementScale);
+        if (drive.driveAmount.x > 0) 
+        { 
+            if (Vector3.Distance(oldPos, maxLimitPos.position) < 0.05)
+            {
+                transform.position = maxLimitPos.position;
+                onLimitReached.Invoke((maxExtReached) * (movementScale * 4));
+                return; 
+            }
+        }
+        else
+        {
+            if (Vector3.Distance(oldPos, minLimitPos.position) < 0.05)
+            { return; }
+        }
+
+        
         limitMax = false;
         limitMin = false;
         if (attachedTo != null && (!attachedTo.AtMaxLimit && !attachedTo.AtMinLimit)) { return; }
 
-        moveAmt += drive.driveAmount.x * movementScale;
+        moveAmt = oldPosition + (drive.driveAmount.x * movementScale);
 
-        if (moveAmt >= moveLimitMax || moveAmt <= moveLimitMin)
-        {
-            // Debug.Log(newPos);
-            if (moveAmt >= moveLimitMax) { limitMax = true; moveAmt = moveLimitMax; /*onLimitReached.Invoke();*/ }
-            else { limitMin = true; moveAmt = moveLimitMin; onLimitReached.Invoke(movementScale); onLimitReached.RemoveAllListeners(); }
-            return;
-        }
+        Distance = Vector3.Distance(newPos, oldPos);
+        if ((float)moveAmt - moveLimitMin > maxExtReached) { maxExtReached = (float)moveAmt - moveLimitMin; }
 
 
         transform.position = newPos;
