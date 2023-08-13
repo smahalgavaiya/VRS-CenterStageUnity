@@ -15,12 +15,15 @@ public class BackdropScorer : MonoBehaviour
     public float verticalSpacing;
     public int numLines = 10;
     private int lastScore = 0;
+    public ScoringGuide backdropPixels;
+
+    private int[] scoreIndexPixels = { -1,-1};
     // Start is called before the first frame update
 
     //Should have lists for scored triplets, pixels, etc.
     void Start()
     {
-        InvokeRepeating("CastRaysScore", 5,1);
+        InvokeRepeating("CastRaysScore",1,5);
     }
 
     // Update is called once per frame
@@ -41,12 +44,13 @@ public class BackdropScorer : MonoBehaviour
 
     public void CastRays(bool noScore = false)
     {
+        //CancelInvoke();
         float vspace = verticalSpacing * 0.01f;
         Vector3 curRayStart = lineOrigin.localPosition;
         int score = 0;
         List<GameObject> scoredObjects = new List<GameObject>();
         int tripletsFound = 0;
-        if (!noScore) { ScoringManager.ScoreEvent(team, -lastScore, "Resetting Board", gameObject); }
+        //if (!noScore) { ScoringManager.ScoreEvent(team, -lastScore, "Resetting Board", gameObject); }
         int pixelsScore = 0;
 
         for (int i = 0; i < numLines; i++)
@@ -82,7 +86,8 @@ public class BackdropScorer : MonoBehaviour
                     }//only one pixel may score threshold bonus
                     if(!scoredObjects.Contains(g))
                     {
-                        pixelsScore += 3;//diff points for autonomous
+                        
+                        pixelsScore += 1;//diff points for autonomous
                         
                         scoredObjects.Add(g);
                     }
@@ -96,8 +101,19 @@ public class BackdropScorer : MonoBehaviour
            //run through triplets after initial score?
         }
         if (!noScore)
-        { 
-            ScoringManager.ScoreEvent(team, pixelsScore, "Pixels On Board x"+pixelsScore/3, gameObject);
+        {
+            GameTimeManager gametime = FindFirstObjectByType<GameTimeManager>();
+            int pixelsIdx = scoreIndexPixels[gametime.currentSession.globalInt];
+            if(pixelsIdx > -1)
+            {
+                ScoringManager.OverwriteScore(pixelsIdx, team, pixelsScore, "Pixels On Board", gameObject);
+            }
+            else
+            {
+                scoreIndexPixels[gametime.currentSession.globalInt] = ScoringManager.AddScore(team, backdropPixels, 0, "Pixels On Board", gameObject, pixelsScore);
+            }
+            
+            //ScoringManager.ScoreEvent(team, pixelsScore, "Pixels On Board x"+pixelsScore/3, gameObject);
             //Debug.Log("Triplets:" + tripletsFound /3);
             for (int i = 0; i < tripletsFound / 3; i++)
             {
