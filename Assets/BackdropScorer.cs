@@ -17,12 +17,14 @@ public class BackdropScorer : MonoBehaviour
     private int lastScore = 0;
     public ScoringGuide backdropPixels;
 
-    private int[] scoreIndexPixels = { -1,-1};
+    private int[] scoreIndexPixels = { -1,-1,-1,-1};
     // Start is called before the first frame update
+    private GameTimeManager gametime;
 
     //Should have lists for scored triplets, pixels, etc.
     void Start()
     {
+        gametime = FindFirstObjectByType<GameTimeManager>();
         InvokeRepeating("CastRaysScore",1,5);
     }
 
@@ -44,6 +46,7 @@ public class BackdropScorer : MonoBehaviour
 
     public void CastRays(bool noScore = false)
     {
+        if (!gametime.IsRunning && !noScore) { return; }
         //CancelInvoke();
         float vspace = verticalSpacing * 0.01f;
         Vector3 curRayStart = lineOrigin.localPosition;
@@ -106,7 +109,7 @@ public class BackdropScorer : MonoBehaviour
             int pixelsIdx = scoreIndexPixels[gametime.currentSession.globalInt];
             if(pixelsIdx > -1)
             {
-                ScoringManager.OverwriteScore(pixelsIdx, team, pixelsScore, "Pixels On Board", gameObject);
+                ScoringManager.OverwriteScore(pixelsIdx,team, backdropPixels, 0, "Pixels On Board", gameObject, pixelsScore);
             }
             else
             {

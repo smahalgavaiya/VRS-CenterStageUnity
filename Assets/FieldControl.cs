@@ -35,4 +35,19 @@ public class FieldControl : MonoBehaviour
     {
         gameTime.SetUpTimer();
     }
+
+    public void Play()
+    {
+        gameTime.Play();
+    }
+
+    public void Stop()
+    {
+        gameTime.Stop();
+    }
+
+    public void Reset()
+    {
+        gameTime.ResetTime();
+    }
 }

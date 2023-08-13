@@ -32,6 +32,7 @@ public class ScoringManager : MonoBehaviour
     {
         gametime = FindFirstObjectByType<GameTimeManager>();
         scores.Clear();
+        scoring = new ScoringReporter();
         scores.Add(Team.blue, blueScoreTracker);
         scores.Add(Team.red, redScoreTracker);
     }
@@ -59,6 +60,7 @@ public class ScoringManager : MonoBehaviour
         entry.scoredobj_name = reportingObj.name;
 
         int index = scoring.AddScore(entry);
+        scores[team].AddOrSubtractScore(entry.amount);
 
         return index;
     }
@@ -106,7 +108,7 @@ public class ScoringManager : MonoBehaviour
     {
         int round = gametime.currentSession.globalInt;
 
-        if (round == 2) { round = 1; } // free play, but score as if tele-op.
+        if (round == 3) { round = 1; } // free play, but score as if tele-op.
         if (round == GameTimeManager.NoScoreRound) { Debug.Log("Game is Over, no score"); return null; }
         int scoreAmt = guide.scoresPerSessionPerType[scoreIndex].scoresPerRound[round];
 
