@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Security.Policy;
 using Unity.Burst;
+using UnityEditor;
 using UnityEngine;
 
 public class GamepieceStack : MonoBehaviour
@@ -34,6 +35,8 @@ public class GamepieceStack : MonoBehaviour
         {
             GameObject piece = currentPieces.Pop();
             piece.transform.position = dispenseLocation.position;
+            piece.transform.parent = null;
+            piece.hideFlags = HideFlags.None;
             SetRigidbody(piece, true);
         }
     }
@@ -62,7 +65,7 @@ public class GamepieceStack : MonoBehaviour
         for(int i = 0; i < objs.Length; i++)
         {
             if (objs[i] == this.transform || objs[i] == false) { continue; }
-            if (Application.isEditor)
+            if (Application.isEditor && !Application.isPlaying)
             {
                 UnityEngine.Object.DestroyImmediate(objs[i].gameObject);
             }

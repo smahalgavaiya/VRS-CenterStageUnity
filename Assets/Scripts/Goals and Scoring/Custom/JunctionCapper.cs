@@ -88,13 +88,13 @@ public class JunctionCapper : MonoBehaviour, ICustomGoalEvents, ICustomGoalCheck
         int direction, TeamColor teamColor)
     {
         goalZoneScoreLink.ChangeScore(scoringIndexOfObjectTypeCappingJunction, 
-            cappedScoringGuide, direction, teamColor);
+            cappedScoringGuide, direction, teamColor, gameObject);
     }
     private void ChangeTheScore(GoalZoneScoreLink goalZoneScoreLink, 
         int direction, TeamColor teamColor, int scoreIndexOfObject)
     {
         goalZoneScoreLink.ChangeScore(scoreIndexOfObject, 
-            cappedScoringGuide, direction, teamColor);
+            cappedScoringGuide, direction, teamColor, gameObject);
     }
 
     public void DoCustomCheck()

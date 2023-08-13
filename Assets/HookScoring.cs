@@ -19,7 +19,7 @@ public class HookScoring : MonoBehaviour
         {
             GameObject bot = transform.root.gameObject;
             DistanceToFloor sensor = bot.GetComponentInChildren<DistanceToFloor>();
-            Team t = (Team)bot.GetComponent<ScoreObjectTypeLink>().LastTouchedTeamColor;
+            TeamColor t = bot.GetComponent<ScoreObjectTypeLink>().LastTouchedTeamColor;
             if(sensor != null)
             {
                 if(!sensor.isGrounded && scoreID == -1)

@@ -7,10 +7,11 @@ using UnityEngine.SocialPlatforms.Impl;
 using System.Linq;
 using static TMPro.SpriteAssetUtilities.TexturePacker_JsonArray;
 using static UnityEditor.PlayerSettings;
+using System.Security.Cryptography;
 
 public class BackdropScorer : MonoBehaviour
 {
-    public Team team;
+    public TeamColor team;
     public Transform lineOrigin;
     public float verticalSpacing;
     public int numLines = 10;
@@ -18,6 +19,8 @@ public class BackdropScorer : MonoBehaviour
     public ScoringGuide backdropPixels;
 
     private int[] scoreIndexPixels = { -1,-1,-1,-1};
+    private int scoreIndexThreshold = -1;
+    private int scoreIndexTriplet = -1;
     // Start is called before the first frame update
     private GameTimeManager gametime;
 
@@ -46,7 +49,7 @@ public class BackdropScorer : MonoBehaviour
 
     public void CastRays(bool noScore = false)
     {
-        if (!gametime.IsRunning && !noScore) { return; }
+        if (!noScore && !gametime.IsRunning) { return; }
         //CancelInvoke();
         float vspace = verticalSpacing * 0.01f;
         Vector3 curRayStart = lineOrigin.localPosition;
@@ -84,7 +87,17 @@ public class BackdropScorer : MonoBehaviour
                     if (threshold) 
                     { 
                         score += 10;
-                        if (!noScore) { ScoringManager.ScoreEvent(team, 10, "Threshold Reached", gameObject); }
+                        if (!noScore) 
+                        { 
+                            if (scoreIndexThreshold > -1)
+                            {
+                                ScoringManager.OverwriteScore(scoreIndexThreshold,team, 10, "Threshold Reached", gameObject);
+                            }
+                            else
+                            {
+                                scoreIndexThreshold = ScoringManager.AddScore(team,10, "Threshold Reached", gameObject);
+                            }
+                        }
                         threshold = false; 
                     }//only one pixel may score threshold bonus
                     if(!scoredObjects.Contains(g))
@@ -105,7 +118,7 @@ public class BackdropScorer : MonoBehaviour
         }
         if (!noScore)
         {
-            GameTimeManager gametime = FindFirstObjectByType<GameTimeManager>();
+            
             int pixelsIdx = scoreIndexPixels[gametime.currentSession.globalInt];
             if(pixelsIdx > -1)
             {
@@ -116,11 +129,13 @@ public class BackdropScorer : MonoBehaviour
                 scoreIndexPixels[gametime.currentSession.globalInt] = ScoringManager.AddScore(team, backdropPixels, 0, "Pixels On Board", gameObject, pixelsScore);
             }
             
-            //ScoringManager.ScoreEvent(team, pixelsScore, "Pixels On Board x"+pixelsScore/3, gameObject);
-            //Debug.Log("Triplets:" + tripletsFound /3);
-            for (int i = 0; i < tripletsFound / 3; i++)
+            if (scoreIndexTriplet > -1)
             {
-                score += 10; ScoringManager.ScoreEvent(team, 10, "Triplets", gameObject); 
+                ScoringManager.OverwriteScore(scoreIndexThreshold, team, (tripletsFound/3)*10, "Triplets x"+tripletsFound/3, gameObject);
+            }
+            else
+            {
+                scoreIndexTriplet = ScoringManager.AddScore(team, (tripletsFound / 3) * 10, "Triplets x" + tripletsFound / 3, gameObject);
             }
             lastScore = score + pixelsScore;
         }

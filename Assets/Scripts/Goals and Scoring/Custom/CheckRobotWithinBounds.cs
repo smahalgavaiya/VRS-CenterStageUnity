@@ -56,14 +56,14 @@ public class CheckRobotWithinBounds : MonoBehaviour, ICustomGoalChecker, ICustom
             if (!scoreAdded && containsObject)
             {
                 TeamColor teamColor = goalZoneScoreLink.LastObjectTeamColor;
-                goalZoneScoreLink.ChangeScore(2, scoringGuide, 1, teamColor);
+                goalZoneScoreLink.ChangeScore(2, scoringGuide, 1, teamColor,gameObject);
                 scoreAdded = true;
             }
 
             else if (scoreAdded && !containsObject)
             {
                 TeamColor teamColor = goalZoneScoreLink.LastObjectTeamColor;
-                goalZoneScoreLink.ChangeScore(2, scoringGuide, -1, teamColor);
+                goalZoneScoreLink.ChangeScore(2, scoringGuide, -1, teamColor, gameObject);
                 scoreAdded = false;
             }
 
