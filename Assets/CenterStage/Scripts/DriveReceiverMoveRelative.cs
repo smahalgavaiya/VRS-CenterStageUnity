@@ -73,6 +73,7 @@ public class DriveReceiverMoveRelative : DriveReceiver
             if (Vector3.Distance(oldPos, maxLimitPos.position) < 0.05)
             {
                 transform.position = maxLimitPos.position;
+                Debug.Log($"maxExt{maxExtReached}, moveScale: {movementScale}");
                 onLimitReached.Invoke((maxExtReached) * (movementScale * 4));
                 return; 
             }
@@ -90,9 +91,9 @@ public class DriveReceiverMoveRelative : DriveReceiver
 
         moveAmt = oldPosition + (drive.driveAmount.x * movementScale);
 
-        Distance = Vector3.Distance(newPos, oldPos);
-        if ((float)moveAmt - moveLimitMin > maxExtReached) { maxExtReached = (float)moveAmt - moveLimitMin; }
-
+        Distance = Vector3.Distance(transform.position, maxLimitPos.position);
+        //if ((float)moveAmt - moveLimitMin > maxExtReached) { maxExtReached = (float)moveAmt - moveLimitMin; }
+        if(Distance > maxExtReached) { maxExtReached = Distance; }
 
         transform.position = newPos;
     }
