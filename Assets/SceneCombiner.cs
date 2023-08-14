@@ -1,8 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
-using UnityEditor.SearchService;
-using UnityEditor.VersionControl;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.InputSystem;
@@ -25,6 +23,7 @@ public class SceneCombiner : MonoBehaviour
 
     public IEnumerator StartLoad()
     {
+        Time.timeScale = 0;
         foreach (AssetReference asset in SceneList)
         {
             opHandle = Addressables.LoadSceneAsync(asset.AssetGUID,LoadSceneMode.Additive,true);
@@ -34,7 +33,7 @@ public class SceneCombiner : MonoBehaviour
             {
             }
         }
-            
+        Time.timeScale = 1;
     }
 
 

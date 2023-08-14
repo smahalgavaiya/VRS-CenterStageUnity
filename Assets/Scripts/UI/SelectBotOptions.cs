@@ -26,7 +26,10 @@ public class SelectBotOptions : MonoBehaviour
     private bool autostart = false;
 
     // Start is called before the first frame update
-
+    private void Awake()
+    {
+        FieldManager.OnAutoFieldSetup += () => { SetAutoStart(1); };
+    }
     public void SelectBot(int index)
     {
         selectedBot = index;

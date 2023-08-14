@@ -1710,7 +1710,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d99239ccc6c93649a7ce2ac2627b642, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentSession: {fileID: 0}
 --- !u!1 &264808407
 GameObject:
   m_ObjectHideFlags: 0
@@ -6668,7 +6667,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 0
+  m_Interactable: 1
   m_TargetGraphic: {fileID: 1716237314}
   m_OnClick:
     m_PersistentCalls:
@@ -11336,7 +11335,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d082062807fc36b4faf4e87da61e644f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scoreTracker: {fileID: 11400000, guid: bbb965a835c76194fb579234a329ad37, type: 2}
+  team: 1
   onScoreChanged:
     m_PersistentCalls:
       m_Calls:
@@ -11497,7 +11496,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d082062807fc36b4faf4e87da61e644f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scoreTracker: {fileID: 11400000, guid: 3371bba5e1850d948938eeaa437566a1, type: 2}
+  team: 0
   onScoreChanged:
     m_PersistentCalls:
       m_Calls:
@@ -14890,7 +14889,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d99239ccc6c93649a7ce2ac2627b642, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentSession: {fileID: 11400000, guid: e39a63664eb39464a9e54eb8282546d7, type: 2}
 --- !u!114 &8673716635608674594
 MonoBehaviour:
   m_ObjectHideFlags: 0

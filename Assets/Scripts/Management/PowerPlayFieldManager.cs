@@ -42,10 +42,9 @@ public class PowerPlayFieldManager : FieldManager
     private bool hasCheckedSignalSensor = false;
     int currentGameMode = 0;
 
-    void Awake()
+    PowerPlayFieldManager()
     {
-        base.Awake();
-        if(_instance != null && _instance != this)
+        if (_instance != null && _instance != this)
         {
             Destroy(this.gameObject);
         }
@@ -54,14 +53,26 @@ public class PowerPlayFieldManager : FieldManager
             _instance = this;
         }
     }
+
     public void Start()
     {
         base.Start();
 #if !UNITY_EDITOR
+        GameMode mode = GameMode.Teleop;
         if (vrs_messenger.instance == null)
+        {
             mode = GameMode.Teleop;
-        //else
-            //mode = vrs_messenger.instance.GetPlaymode();
+        }
+        else
+        {
+            mode = (GameMode)vrs_messenger.instance.GetPlaymode();
+        }
+
+        if(mode == GameMode.Autonomous)
+        {
+            SetGameMode((int)mode);
+        }
+        
 #endif
 
         GameTimeReceiver timeReceiver = FindObjectOfType<GameTimeReceiver>();
@@ -106,7 +117,10 @@ public class PowerPlayFieldManager : FieldManager
     void checkSignalSensor()
     {
         int signalType = 0;
-        GameObject signalConeParent = FindObjectOfType<SignalRandomizer>().gameObject;
+        GameObject signalConeParent = null;
+        SignalRandomizer rand = FindObjectOfType<SignalRandomizer>();
+        if (!signalConeParent) { return; }
+        signalConeParent = rand.gameObject;
         foreach(Transform child in signalConeParent.transform)
         {
             signalType++;
@@ -136,6 +150,13 @@ public class PowerPlayFieldManager : FieldManager
         onResetField.Invoke();
     }
 
+    public void autoResetFieldToo()
+    {
+        OnAutoReset();
+        onResetField.Invoke();
+        //this.autoResetField();
+    }
+
     public void SetupCustomBot(string customName, GameObject baseObj)
     {
 
@@ -144,6 +165,7 @@ public class PowerPlayFieldManager : FieldManager
     
     public void SetGameMode(int mode)
     {
+        Debug.Log("Setting Game Mode : " + (GameMode)mode);
         currentGameMode = mode;
 
         Session autonomous = gameTimeManager.sessions[0];

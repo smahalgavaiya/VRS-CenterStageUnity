@@ -10,12 +10,14 @@ public class RandomizationController : MonoBehaviour
     private void Awake()
     {
         FieldManager.OnFieldSetup += SetRandomization;
-        SetRandomization();
+        //SetRandomization();
     }
-    /*static RandomizationController()
+
+    private void OnDestroy()
     {
-        FieldManager.OnFieldSetup += SetRandomization;
-    }*/
+        FieldManager.OnFieldSetup -= SetRandomization;
+    }
+
 
     public void SetRandomization()
     {

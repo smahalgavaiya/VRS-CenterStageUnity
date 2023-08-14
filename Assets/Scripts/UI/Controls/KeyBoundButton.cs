@@ -11,6 +11,7 @@ public class KeyBoundButton : MonoBehaviour
 {
     private InputAction buttonPress;
     [SerializeField] private InputActionAsset controls;
+    [HideInInspector]
     public PlayerInput input;
     private InputActionMap _inputActionMap;
     Button button;
@@ -22,10 +23,20 @@ public class KeyBoundButton : MonoBehaviour
 
     private void Start()
     {
+        SetInput();
+        if(input == null)
+        {
+            InvokeRepeating("SetInput", 1, 1);
+        }
+    }
+
+    private void SetInput()
+    {
+
         input = FindFirstObjectByType<PlayerInput>();
         button = GetComponent<Button>();
-        currentScheme = input.currentControlScheme;
-        
+        currentScheme = input.defaultControlScheme;
+        if(input != null) { CancelInvoke(); }
     }
 
     private void CheckBinding()

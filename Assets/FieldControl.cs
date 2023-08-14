@@ -27,27 +27,30 @@ public class FieldControl : MonoBehaviour
 
     public void SetMode(int gameMode)
     {
+        gameTime = FindFirstObjectByType<GameTimeManager>();
+        FindFirstObjectByType<PowerPlayFieldManager>().SetGameMode(gameMode);
         PowerPlayFieldManager.instance.SetGameMode(gameMode);
-        gameTime.SetUpTimer();
+        GameTimeManager.instance.SetUpTimer();
     }
 
     public void ReleaseObj(string team)
     {
-        gameTime.SetUpTimer();
+        //gameTime.SetUpTimer();
     }
 
     public void Play()
     {
-        gameTime.Play();
+        GameTimeManager.instance.Play();
     }
 
     public void Stop()
     {
-        gameTime.Stop();
+        GameTimeManager.instance.Stop();
     }
 
     public void Reset()
     {
-        gameTime.ResetTime();
+        GameTimeManager.instance.ResetTime();
     }
+
 }
