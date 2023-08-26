@@ -77,23 +77,13 @@ public class BackdropScorer : MonoBehaviour
                 
                 GameObject g = hit.collider.transform.root.gameObject;
                 ScoreObjectTypeLink sc = g.GetComponent<ScoreObjectTypeLink>();
-                if(sc != null)
+                if(sc != null && sc.ScoreObjectType_.name.Contains("Pixel"))
                 {
                     Debug.DrawRay(sc.gameObject.transform.position, hit.collider.transform.root.up * -0.02f, Color.white);
                     if (threshold) 
                     { 
                         score += 10;
-                        if (!noScore) 
-                        { 
-                            if (scoreIndexThreshold > -1)
-                            {
-                                ScoringManager.OverwriteScore(scoreIndexThreshold,team, 10, "Threshold Reached", gameObject);
-                            }
-                            else
-                            {
-                                scoreIndexThreshold = ScoringManager.AddScore(team,10, "Threshold Reached", gameObject);
-                            }
-                        }
+                       
                         threshold = false; 
                     }//only one pixel may score threshold bonus
                     if(!scoredObjects.Contains(g))
@@ -127,11 +117,20 @@ public class BackdropScorer : MonoBehaviour
             
             if (scoreIndexTriplet > -1)
             {
-                ScoringManager.OverwriteScore(scoreIndexThreshold, team, (tripletsFound/3)*10, "Triplets x"+tripletsFound/3, gameObject);
+                ScoringManager.OverwriteScore(scoreIndexTriplet, team, (tripletsFound/3)*10, "Triplets x"+tripletsFound/3, gameObject);
             }
             else
             {
                 scoreIndexTriplet = ScoringManager.AddScore(team, (tripletsFound / 3) * 10, "Triplets x" + tripletsFound / 3, gameObject);
+            }
+
+            if (scoreIndexThreshold > -1)
+            {
+                ScoringManager.OverwriteScore(scoreIndexThreshold, team, score, "Threshold Reached", gameObject);
+            }
+            else
+            {
+                scoreIndexThreshold = ScoringManager.AddScore(team, score, "Threshold Reached", gameObject);
             }
             lastScore = score + pixelsScore;
         }

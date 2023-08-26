@@ -18,6 +18,8 @@ public class Plane : MonoBehaviour
     {
         if(!released)
         {
+            ScoreObjectTypeLink link = GetComponent<ScoreObjectTypeLink>();
+            link.LastTouchedTeamColor = transform.root.gameObject.GetComponent<ScoreObjectTypeLink>().LastTouchedTeamColor;
             transform.parent = null;
             rig.isKinematic = false;
             rig.velocity = -transform.up * (force * power);
