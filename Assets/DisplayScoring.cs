@@ -5,12 +5,13 @@ using UnityEngine;
 
 public class DisplayScoring : MonoBehaviour
 {
-    public ScoringManager scoring;
+    private ScoringManager scoring;
     private List<ScoreEntry> entries;
     private TextMeshProUGUI text;
     // Start is called before the first frame update
     private void OnEnable()
     {
+        scoring = FindFirstObjectByType<ScoringManager>();
         text = GetComponentInChildren<TextMeshProUGUI>();
         List<ScoreEntry> entries = scoring.GetScoreEntries();
         Debug.Log(entries);
