@@ -103,9 +103,7 @@ public class PowerPlayFieldManager : FieldManager
                 }
             }
 
-
-
-            select.FinishedStart.Invoke();
+            SelectBotOptions.autostartMP = true;
             
         }
     }

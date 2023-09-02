@@ -138,6 +138,7 @@ MonoBehaviour:
   rotLimitMax: 0
   rotLimitMin: 0
   reverseDirection: 1
+  useAltMoveLimits: 0
 --- !u!1 &2794621404559361962
 GameObject:
   m_ObjectHideFlags: 0
@@ -356,6 +357,7 @@ MonoBehaviour:
   rotLimitMax: 0
   rotLimitMin: 0
   reverseDirection: 0
+  useAltMoveLimits: 0
 --- !u!1 &4447716859873432499
 GameObject:
   m_ObjectHideFlags: 0
@@ -539,6 +541,7 @@ MonoBehaviour:
   rotLimitMax: 0
   rotLimitMin: 0
   reverseDirection: 1
+  useAltMoveLimits: 0
 --- !u!1 &5614957216703415122
 GameObject:
   m_ObjectHideFlags: 0
@@ -685,6 +688,7 @@ GameObject:
   - component: {fileID: 2203386878986972896}
   - component: {fileID: 7910280682431849838}
   - component: {fileID: -3391205485281301529}
+  - component: {fileID: 1072892030731237094}
   m_Layer: 6
   m_Name: Bot-Frame
   m_TagString: Untagged
@@ -871,6 +875,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2a44fd2e54457824e8678718593a788c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1072892030731237094
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6308832085317127248}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fdf56fbc57ea86418797aeafcde000d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &6308832085699447989
@@ -1893,6 +1909,7 @@ MonoBehaviour:
   rotLimitMax: 0
   rotLimitMin: 0
   reverseDirection: 0
+  useAltMoveLimits: 0
 --- !u!1 &6692630002611844516
 GameObject:
   m_ObjectHideFlags: 0

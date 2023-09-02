@@ -25,6 +25,8 @@ public class SelectBotOptions : MonoBehaviour
     GameObject customPrefab;
     private bool autostart = false;
 
+    public static bool autostartMP = false;
+
     // Start is called before the first frame update
     private void Awake()
     {
@@ -142,7 +144,7 @@ public class SelectBotOptions : MonoBehaviour
         if (cams != null) 
         {
             Camera[] c = bot.GetComponentsInChildren<Camera>();
-            foreach(Camera cam in c)
+            foreach(Camera cam in c)//ToDo: this doesnt get called in MP
             {
                 cams.AddCam(bot.GetComponentInChildren<Camera>().gameObject);
             }
@@ -186,5 +188,10 @@ public class SelectBotOptions : MonoBehaviour
         List<BotData> bots = FieldData.bots.GetBotListLocal();
         botPrefabs = bots.Select(item => item.prefab).ToList();
         AutoStartGame();
+        if(autostartMP)
+        {
+            FinishedStart.Invoke();
+            autostartMP = false;
+        }
     }
 }

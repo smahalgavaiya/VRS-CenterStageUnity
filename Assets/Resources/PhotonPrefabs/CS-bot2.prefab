@@ -107,6 +107,7 @@ MonoBehaviour:
   rotLimitMax: 360
   rotLimitMin: 270
   reverseDirection: 0
+  useAltMoveLimits: 0
 --- !u!65 &1090465842205807570
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -370,6 +371,7 @@ MonoBehaviour:
   customHoldingLocation: {fileID: 6809901760256376764}
   objectLauncher: {fileID: 0}
   mpOverride: 0
+  autoGrab: 0
 --- !u!65 &2131487799056104232
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3460,7 +3462,7 @@ PrefabInstance:
     - target: {fileID: 6308832085317127248, guid: f4279af7348f5ce4f9102ada7113e2c1,
         type: 3}
       propertyPath: m_Name
-      value: Bot2 Variant
+      value: CS-bot2
       objectReference: {fileID: 0}
     - target: {fileID: 6308832085317127251, guid: f4279af7348f5ce4f9102ada7113e2c1,
         type: 3}

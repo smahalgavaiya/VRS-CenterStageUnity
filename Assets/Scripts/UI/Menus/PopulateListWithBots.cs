@@ -12,10 +12,24 @@ public class PopulateListWithBots : MonoBehaviour
     void Start()
     {
         listObj = GetComponent<OptionListImage>();
+        if (FieldData.ins == null) { return;  }
         List<BotData> bots = FieldData.bots.GetBotListLocal();
-        listObj.options = bots.Select(item => item.name).ToList();
-        listObj.images = bots.Select(item => item.img).ToList();
+        SetBotList(FieldData.bots);
+    }
+
+    public void SetBotList(BuiltInBots bots)
+    {
+        listObj = GetComponent<OptionListImage>();
+        List<BotData> botsList = bots.GetBotListLocal();
+        listObj.options = botsList.Select(item => item.name).ToList();
+        listObj.images = botsList.Select(item => item.img).ToList();
         listObj.ChangeOption(0);
+    }
+
+    public void SetBotList(string course)
+    {
+        CourseData courseDat = SimManager.GetCourse(course);
+        if (courseDat) { SetBotList(courseDat.botsList); }
     }
 
 }

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class TeamInventory : MonoBehaviour
 {
@@ -11,6 +12,8 @@ public class TeamInventory : MonoBehaviour
     private int activePiece = 0;
 
     public Team assignedTeam;
+
+    public UnityEvent<GameObject> onRelease;
 
     public string CurrentPiece { get { return $"{stackTypes[activePiece]}";  } } // this needs to be optimized or displayobjval shouldnt call per frame
     public string PieceCount { get { return $"x{CurrentCount()}";  } } // this needs to be optimized or displayobjval shouldnt call per frame
@@ -72,7 +75,12 @@ public class TeamInventory : MonoBehaviour
         List<GamepieceStack> curStacks = inventory[stackTypes[activePiece]];
         foreach(GamepieceStack stack in curStacks)
         {
-            if(stack.Count > 0) { stack.Release(); break; }
+            if(stack.Count > 0) 
+            { 
+                GameObject piece = stack.Release();
+                onRelease.Invoke(piece);
+                break; 
+            }
         }
         if (CurrentCount() == 0) { NextType(); }//should be next type WITH non zero count. and disable button if none left
     }
