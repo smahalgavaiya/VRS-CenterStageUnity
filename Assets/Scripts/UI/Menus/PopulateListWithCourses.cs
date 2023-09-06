@@ -3,18 +3,22 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Events;
 
 //[RequireComponent(typeof(OptionList))]
 public class PopulateListWithCourses : MonoBehaviour
 {
     OptionListImage listObj;
     QUI_OptionList listObjNoImg;
+    public UnityEvent<int> onCourseSet;
+
+    private List<CourseData> courses = new List<CourseData>();
 
     // Start is called before the first frame update
     void Start()
     {
         listObj = GetComponent<OptionListImage>();
-        List<CourseData> courses = Resources.LoadAll<CourseData>("Courses").ToList();
+        courses = Resources.LoadAll<CourseData>("Courses").ToList();
         if(listObj != null )
         {
             listObj.options = courses.Select(item => item.name).ToList();
@@ -28,7 +32,13 @@ public class PopulateListWithCourses : MonoBehaviour
             listObjNoImg.options = courses.Select(item => item.name).ToList();
             listObjNoImg.SetOption(0);
         }
+        //onCourseSet.Invoke(0);
         
+    }
+
+    public void SetCourse(int index)
+    {
+        onCourseSet.Invoke(courses[index].sceneNum);
     }
 
 }
