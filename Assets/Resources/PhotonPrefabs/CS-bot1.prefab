@@ -341,7 +341,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   drive: {fileID: 11400000, guid: 44eac2a824c387347a0d4cb9b5b71fae, type: 2}
-  movementScale: 0.01
+  movementScale: -0.01
   moveAxis: 2
   moveLimitMax: 0
   moveLimitMin: -0.355
@@ -490,7 +490,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   drive: {fileID: 11400000, guid: 44eac2a824c387347a0d4cb9b5b71fae, type: 2}
-  movementScale: 0.01
+  movementScale: -0.01
   moveAxis: 2
   moveLimitMax: 0
   moveLimitMin: -0.394
@@ -1443,6 +1443,7 @@ MonoBehaviour:
   rotLimitMax: 300
   rotLimitMin: 250
   reverseDirection: 0
+  useAltMoveLimits: 0
 --- !u!1 &4306212750971230107
 GameObject:
   m_ObjectHideFlags: 0
@@ -1657,7 +1658,7 @@ Camera:
   field of view: 60.000004
   orthographic: 0
   orthographic size: 5
-  m_Depth: 0
+  m_Depth: -10
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -1777,6 +1778,7 @@ MonoBehaviour:
   customHoldingLocation: {fileID: 505080856297752411}
   objectLauncher: {fileID: 0}
   mpOverride: 0
+  autoGrab: 0
 --- !u!65 &193295045997022688
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2310,7 +2312,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   drive: {fileID: 11400000, guid: 44eac2a824c387347a0d4cb9b5b71fae, type: 2}
-  movementScale: 0.01
+  movementScale: -0.01
   moveAxis: 2
   moveLimitMax: 0
   moveLimitMin: -0.395
@@ -2556,7 +2558,7 @@ Camera:
   field of view: 60.000004
   orthographic: 0
   orthographic size: 5
-  m_Depth: 0
+  m_Depth: -10
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -2880,7 +2882,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   drive: {fileID: 11400000, guid: 44eac2a824c387347a0d4cb9b5b71fae, type: 2}
-  movementScale: 0.01
+  movementScale: -0.01
   moveAxis: 2
   moveLimitMax: 0
   moveLimitMin: -0.391
@@ -3129,7 +3131,7 @@ PrefabInstance:
     - target: {fileID: 6308832085317127248, guid: f4279af7348f5ce4f9102ada7113e2c1,
         type: 3}
       propertyPath: m_Name
-      value: Bot1 Variant
+      value: CS-bot1
       objectReference: {fileID: 0}
     - target: {fileID: 6308832085317127251, guid: f4279af7348f5ce4f9102ada7113e2c1,
         type: 3}
@@ -3276,10 +3278,35 @@ PrefabInstance:
       propertyPath: m_ParentAnchorPosition.z
       value: -0.18005137
       objectReference: {fileID: 0}
+    - target: {fileID: 6692630002611844516, guid: f4279af7348f5ce4f9102ada7113e2c1,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7910280682431849838, guid: f4279af7348f5ce4f9102ada7113e2c1,
         type: 3}
       propertyPath: sceneViewId
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8378748396285302390, guid: f4279af7348f5ce4f9102ada7113e2c1,
+        type: 3}
+      propertyPath: m_Size.z
+      value: 0.46488798
+      objectReference: {fileID: 0}
+    - target: {fileID: 8378748396285302390, guid: f4279af7348f5ce4f9102ada7113e2c1,
+        type: 3}
+      propertyPath: m_Center.x
+      value: -1.18643905e-17
+      objectReference: {fileID: 0}
+    - target: {fileID: 8378748396285302390, guid: f4279af7348f5ce4f9102ada7113e2c1,
+        type: 3}
+      propertyPath: m_Center.y
+      value: 0.120000005
+      objectReference: {fileID: 0}
+    - target: {fileID: 8378748396285302390, guid: f4279af7348f5ce4f9102ada7113e2c1,
+        type: 3}
+      propertyPath: m_Center.z
+      value: -0.0010809228
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f4279af7348f5ce4f9102ada7113e2c1, type: 3}

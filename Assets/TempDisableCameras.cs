@@ -8,7 +8,12 @@ public class TempDisableCameras : MonoBehaviour
     void Start()
     {
         EnableCams(false);
-        Invoke("EnableCams", 1);
+        Invoke("ReEnable", 1);
+    }
+
+    public void ReEnable()
+    {
+        EnableCams();
     }
 
     // Update is called once per frame
@@ -17,7 +22,7 @@ public class TempDisableCameras : MonoBehaviour
         Camera[] cams = GetComponentsInChildren<Camera>(true);
         foreach (Camera c in cams)
         {
-            c.enabled = enable;
+            c.gameObject.SetActive(enable);
         }
     }
 }

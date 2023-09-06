@@ -688,7 +688,6 @@ GameObject:
   - component: {fileID: 2203386878986972896}
   - component: {fileID: 7910280682431849838}
   - component: {fileID: -3391205485281301529}
-  - component: {fileID: 1072892030731237094}
   m_Layer: 6
   m_Name: Bot-Frame
   m_TagString: Untagged
@@ -875,18 +874,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2a44fd2e54457824e8678718593a788c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1072892030731237094
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6308832085317127248}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5fdf56fbc57ea86418797aeafcde000d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &6308832085699447989
@@ -1935,14 +1922,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6692630002611844516}
-  m_LocalRotation: {x: -0, y: 1, z: -0, w: 0.000000014901161}
-  m_LocalPosition: {x: -0.02, y: 0.039, z: -0.177}
+  m_LocalRotation: {x: 0.000000006490353, y: 0.9001597, z: -0.4355601, w: 0.000000013413455}
+  m_LocalPosition: {x: -0.02, y: 0.802, z: 0.329}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6308832085317127252}
   m_RootOrder: 7
-  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+  m_LocalEulerAnglesHint: {x: 51.642, y: 180, z: 0}
 --- !u!20 &8898606655118674053
 Camera:
   m_ObjectHideFlags: 0
@@ -1971,7 +1958,7 @@ Camera:
   field of view: 60.000004
   orthographic: 0
   orthographic size: 5
-  m_Depth: 0
+  m_Depth: -10
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967295

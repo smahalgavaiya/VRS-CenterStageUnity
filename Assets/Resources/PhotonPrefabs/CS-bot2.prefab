@@ -509,7 +509,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   drive: {fileID: 11400000, guid: 44eac2a824c387347a0d4cb9b5b71fae, type: 2}
-  movementScale: 0.005
+  movementScale: -0.005
   moveAxis: 2
   moveLimitMax: 0
   moveLimitMin: -0.1002
@@ -772,7 +772,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   drive: {fileID: 11400000, guid: 44eac2a824c387347a0d4cb9b5b71fae, type: 2}
-  movementScale: 0.005
+  movementScale: -0.005
   moveAxis: 2
   moveLimitMax: 0
   moveLimitMin: -0.0975
@@ -873,7 +873,7 @@ Camera:
   field of view: 60.000004
   orthographic: 0
   orthographic size: 5
-  m_Depth: 0
+  m_Depth: -10
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -1128,7 +1128,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   drive: {fileID: 11400000, guid: 44eac2a824c387347a0d4cb9b5b71fae, type: 2}
-  movementScale: 0.005
+  movementScale: -0.005
   moveAxis: 2
   moveLimitMax: 0
   moveLimitMin: -0.1002
@@ -1774,7 +1774,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   drive: {fileID: 11400000, guid: 44eac2a824c387347a0d4cb9b5b71fae, type: 2}
-  movementScale: 0.005
+  movementScale: -0.005
   moveAxis: 2
   moveLimitMax: 0
   moveLimitMin: -0.1002
@@ -2824,7 +2824,7 @@ Camera:
   field of view: 60.000004
   orthographic: 0
   orthographic size: 5
-  m_Depth: 0
+  m_Depth: -10
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -3597,12 +3597,32 @@ PrefabInstance:
     - target: {fileID: 6692630002611844516, guid: f4279af7348f5ce4f9102ada7113e2c1,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7910280682431849838, guid: f4279af7348f5ce4f9102ada7113e2c1,
         type: 3}
       propertyPath: sceneViewId
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8378748396285302390, guid: f4279af7348f5ce4f9102ada7113e2c1,
+        type: 3}
+      propertyPath: m_Size.z
+      value: 0.4600197
+      objectReference: {fileID: 0}
+    - target: {fileID: 8378748396285302390, guid: f4279af7348f5ce4f9102ada7113e2c1,
+        type: 3}
+      propertyPath: m_Center.x
+      value: -6.860967e-18
+      objectReference: {fileID: 0}
+    - target: {fileID: 8378748396285302390, guid: f4279af7348f5ce4f9102ada7113e2c1,
+        type: 3}
+      propertyPath: m_Center.y
+      value: 0.120000005
+      objectReference: {fileID: 0}
+    - target: {fileID: 8378748396285302390, guid: f4279af7348f5ce4f9102ada7113e2c1,
+        type: 3}
+      propertyPath: m_Center.z
+      value: -0.0039665997
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f4279af7348f5ce4f9102ada7113e2c1, type: 3}
