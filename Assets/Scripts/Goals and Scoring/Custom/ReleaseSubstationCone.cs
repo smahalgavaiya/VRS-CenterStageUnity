@@ -116,6 +116,7 @@ public class ReleaseSubstationCone : MonoBehaviourPunCallbacks
         newCone.GetComponent<ScoreObjectTypeLink>().LastTouchedTeamColor = teamColor;
         newCone.transform.position = position;
         newCone.GetComponent<Cone>().MakeScorable();
+        
         numberOfConesReleased++;    
 
         /*if (PhotonNetwork.IsConnected)

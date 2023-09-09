@@ -20,6 +20,8 @@ public class BackdropScorer : MonoBehaviour
     // Start is called before the first frame update
     private GameTimeManager gametime;
 
+    public bool logScoring = false;
+
     //Should have lists for scored triplets, pixels, etc.
     void Start()
     {
@@ -135,7 +137,7 @@ public class BackdropScorer : MonoBehaviour
             lastScore = score + pixelsScore;
         }
         
-        if (noScore) { Debug.Log("Triplets:" + tripletsFound / 3); Debug.Log(score); }
+        if (noScore && logScoring) { Debug.Log("Triplets:" + tripletsFound / 3); Debug.Log(score); }
     }
 
     public Dictionary<int,ScoreObjectTypeLink> GetNeighbors(GameObject obj)

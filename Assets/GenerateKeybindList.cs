@@ -44,6 +44,8 @@ public class GenerateKeybindList : MonoBehaviour
     {
         Time.timeScale = 0;
         PlayerInput input = FindFirstObjectByType<PlayerInput>();
+        InputActionMap actionMap = input.actions.FindActionMap("Gameplay");
+        actionMap.Disable();
         input.DeactivateInput();
     }
 
@@ -51,6 +53,8 @@ public class GenerateKeybindList : MonoBehaviour
     {
         Time.timeScale = 1;
         PlayerInput input = FindFirstObjectByType<PlayerInput>();
+        InputActionMap actionMap = input.actions.FindActionMap("Gameplay");
+        actionMap.Enable();
         input.ActivateInput();
     }
 

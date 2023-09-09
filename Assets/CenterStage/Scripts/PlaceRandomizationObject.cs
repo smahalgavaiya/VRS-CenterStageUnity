@@ -41,6 +41,7 @@ public class PlaceRandomizationObject : MonoBehaviour, ICustomGoalChecker
             pickedRandomization = loc;
             if (leaveObjAsChild) { obj.transform.parent = randomizationLocations[loc]; }
             OnRandomization.Invoke(randomizationLocations[loc].gameObject);
+            Debug.Log("randomization " + randomizationLocations[loc].name);
             //obj.transform.parent = transform;
         }
     }
