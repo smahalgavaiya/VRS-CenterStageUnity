@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class PlaceRandomizationObject : MonoBehaviour, ICustomGoalChecker
 {
@@ -13,6 +14,7 @@ public class PlaceRandomizationObject : MonoBehaviour, ICustomGoalChecker
     private string pickedRandomization = "none";
 
     public bool leaveObjAsChild = false;//leave object as a child of the creating object.
+    public UnityEvent<GameObject> OnRandomization;
     // Start is called before the first frame update
 
     //get all instances of placeR_obj, have a master class that will set randomization and wait on an event from field manager.
@@ -37,7 +39,8 @@ public class PlaceRandomizationObject : MonoBehaviour, ICustomGoalChecker
             obj.transform.position = randomizationLocations[loc].position;
             obj.transform.rotation = randomizationLocations[loc].rotation;
             pickedRandomization = loc;
-            if (leaveObjAsChild) { obj.transform.parent = transform; }
+            if (leaveObjAsChild) { obj.transform.parent = randomizationLocations[loc]; }
+            OnRandomization.Invoke(randomizationLocations[loc].gameObject);
             //obj.transform.parent = transform;
         }
     }

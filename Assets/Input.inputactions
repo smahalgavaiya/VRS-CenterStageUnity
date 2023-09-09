@@ -24,7 +24,7 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "MotorOne",
+                    "name": "MotorFive",
                     "type": "Value",
                     "id": "367d6983-1e09-4fa2-a4de-a8bdfcbaf39d",
                     "expectedControlType": "Axis",
@@ -33,7 +33,7 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "MotorTwo",
+                    "name": "MotorSix",
                     "type": "Value",
                     "id": "23675e90-1fd3-43ec-9d43-e2cbb4a00839",
                     "expectedControlType": "Axis",
@@ -42,7 +42,7 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "MotorThree",
+                    "name": "MotorSeven",
                     "type": "Value",
                     "id": "43b26dc0-0f36-44cb-a6dc-b0901b842a9d",
                     "expectedControlType": "Axis",
@@ -51,7 +51,7 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "MotorFour",
+                    "name": "MotorEight",
                     "type": "Value",
                     "id": "4cbb87d8-6724-45d3-96d5-1d31b18ce807",
                     "expectedControlType": "Axis",
@@ -60,7 +60,7 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "ReleaseCone",
+                    "name": "ReleaseObject1",
                     "type": "Button",
                     "id": "032b745e-2f45-4d05-8ea8-2b27f8827253",
                     "expectedControlType": "Button",
@@ -69,7 +69,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "ReleaseBeacon",
+                    "name": "ReleaseObject2",
                     "type": "Button",
                     "id": "dbe0758e-fd58-49da-8f81-d53fd35c9656",
                     "expectedControlType": "Button",
@@ -223,7 +223,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "MotorOne",
+                    "action": "MotorFive",
                     "isComposite": true,
                     "isPartOfComposite": false
                 },
@@ -234,7 +234,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard",
-                    "action": "MotorOne",
+                    "action": "MotorFive",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -245,7 +245,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard",
-                    "action": "MotorOne",
+                    "action": "MotorFive",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -256,7 +256,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
-                    "action": "MotorOne",
+                    "action": "MotorFive",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -267,7 +267,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "MotorTwo",
+                    "action": "MotorSix",
                     "isComposite": true,
                     "isPartOfComposite": false
                 },
@@ -278,7 +278,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard",
-                    "action": "MotorTwo",
+                    "action": "MotorSix",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -289,7 +289,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard",
-                    "action": "MotorTwo",
+                    "action": "MotorSix",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -300,7 +300,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "MotorTwo",
+                    "action": "MotorSix",
                     "isComposite": true,
                     "isPartOfComposite": false
                 },
@@ -311,7 +311,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
-                    "action": "MotorTwo",
+                    "action": "MotorSix",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -322,7 +322,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
-                    "action": "MotorTwo",
+                    "action": "MotorSix",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -333,7 +333,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard",
-                    "action": "ReleaseCone",
+                    "action": "ReleaseObject1",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -344,7 +344,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
-                    "action": "ReleaseCone",
+                    "action": "ReleaseObject1",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -355,7 +355,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard",
-                    "action": "ReleaseBeacon",
+                    "action": "ReleaseObject2",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -366,7 +366,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
-                    "action": "ReleaseBeacon",
+                    "action": "ReleaseObject2",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -415,13 +415,24 @@
                     "isPartOfComposite": false
                 },
                 {
+                    "name": "",
+                    "id": "145aa968-a3fa-4490-adb9-c26633f9a6b6",
+                    "path": "<Gamepad>/start",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "Help",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
                     "name": "1D Axis",
                     "id": "6a618c4e-4b18-4625-b9bc-0b8896840efa",
                     "path": "1DAxis",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "MotorThree",
+                    "action": "MotorSeven",
                     "isComposite": true,
                     "isPartOfComposite": false
                 },
@@ -432,7 +443,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard",
-                    "action": "MotorThree",
+                    "action": "MotorSeven",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -443,7 +454,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard",
-                    "action": "MotorThree",
+                    "action": "MotorSeven",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -454,7 +465,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
-                    "action": "MotorThree",
+                    "action": "MotorSeven",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -465,7 +476,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "MotorFour",
+                    "action": "MotorEight",
                     "isComposite": true,
                     "isPartOfComposite": false
                 },
@@ -476,7 +487,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard",
-                    "action": "MotorFour",
+                    "action": "MotorEight",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -487,7 +498,40 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard",
-                    "action": "MotorFour",
+                    "action": "MotorEight",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "1D Axis",
+                    "id": "81de526f-690d-4af8-9614-aecd7ff24c8a",
+                    "path": "1DAxis",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "MotorEight",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "negative",
+                    "id": "9ffa9136-0132-43a7-a204-f0be85f4a85a",
+                    "path": "<Gamepad>/leftTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "MotorEight",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "positive",
+                    "id": "70d40c4e-151d-43d3-a60b-a9013503a38f",
+                    "path": "<Gamepad>/buttonWest",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "MotorEight",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -498,6 +542,17 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
+                    "action": "NextItemType",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "5e7ba501-acab-4036-92fd-775d6d8f0868",
+                    "path": "<Gamepad>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
                     "action": "NextItemType",
                     "isComposite": false,
                     "isPartOfComposite": false

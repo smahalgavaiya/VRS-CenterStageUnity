@@ -12,14 +12,20 @@ public static class GamepadUI
                 return "8";
             case "RS X":
                 return "]";
-            case "D-Pad Y":
+            case "D-PAD Y":
                 return "A";
+            case "D-PAD X":
+                return "S";
+            case "A":
+                return ",";
             case "B":
                 return ".";
             case "Y":
                 return "/";
             case "Press RT":
                 return "b";
+            case "PRESS RIGHT STICK PRESS":
+                return "\\";
             case "Select":
                 return "B";
             case "LB | RB":

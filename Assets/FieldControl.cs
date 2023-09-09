@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Events;
 
 public class ReleaseDetails
 {
@@ -13,12 +14,19 @@ public class FieldControl : MonoBehaviour
 {
     //For UI to interface with field managers/timers etc
     private GameTimeManager gameTime;
+    public UnityEvent onPause;
     private void Start()
     {
         gameTime = FindFirstObjectByType<GameTimeManager>();
         RoundReceiver round = FindFirstObjectByType<RoundReceiver>();
         GameTimeManager.instance.onPauseEv += round.SetPausedText;
         GameTimeManager.instance.onResumeEv += round.SetRoundText;
+        GameTimeManager.instance.onPause.AddListener(RunOnPause);
+    }
+
+    private void RunOnPause()
+    {
+        onPause.Invoke();
     }
     public void StartTimer()
     {

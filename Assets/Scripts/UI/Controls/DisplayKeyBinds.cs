@@ -18,23 +18,20 @@ public class DisplayKeyBinds : MonoBehaviour
     public GameObject bindPrefab;
     private InputActionMap _inputActionMap;
     private UIDataFill datafill;
-    public List<KBindOverride> BindOverrides = new List<KBindOverride>();
     // Start is called before the first frame update
     void Start()
     {
         datafill = GetComponent<UIDataFill>();
         _inputActionMap = controls.FindActionMap("Gameplay");
         input = FindFirstObjectByType<PlayerInput>();
-        foreach(InputAction action in _inputActionMap.actions)
+        CourseData course = SimManager.CurrentCourse;
+        foreach (InputAction action in _inputActionMap.actions)
         {
             //Bind b = new Bind { bind = action.GetBindingDisplayString(), name = action.name };
             string bindName = action.name;
             string origName = action.name;
-            foreach(KBindOverride kbind in BindOverrides)
-            {
-                if(bindName == kbind.officialName) { bindName = kbind.overrideName; }
-            }
-
+            string newName = course.getBindName(bindName);
+            if (newName!="") { bindName = newName; }
             string binding = action.GetBindingDisplayString().ToUpper();
             if(binding == "")//This was added because unity decided to break getbindingdisplaystring on axis controls
             {
@@ -51,6 +48,11 @@ public class DisplayKeyBinds : MonoBehaviour
                     binding += outp.ToUpper() + "|";
                 }
                 binding = binding.TrimEnd('|');
+            }
+
+            if(bindName == "Unused" || bindName == "Help")
+            {
+                continue;
             }
 
             Dictionary<string, string> data = new Dictionary<string, string>()

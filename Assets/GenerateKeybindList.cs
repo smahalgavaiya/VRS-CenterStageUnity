@@ -18,6 +18,8 @@ public class GenerateKeybindList : MonoBehaviour
     {
         InputActionMap _inputActionMap = actions.FindActionMap(actionMapName);
         //InputDevice[] devices = actions.devices.Value.ToArray();
+        CourseData course = SimManager.CurrentCourse;
+
 
         foreach (InputAction action in _inputActionMap.actions)
         {
@@ -29,6 +31,12 @@ public class GenerateKeybindList : MonoBehaviour
             bind.bindingId = action.bindings[bindingsOffset].id.ToString();
             bind.rebindOverlay = bindOverlay;
             bind.rebindPrompt = bindOverlay.GetComponentInChildren<Text>();
+            string rename = course.getBindName(bind.actionLabel.text);
+            if (rename!="")
+            {
+                bind.actionLabel.text = rename;
+            }
+            
         }
     }
 
