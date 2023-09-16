@@ -37,7 +37,7 @@ public class DisplayKeyBinds : MonoBehaviour
             {
                 string b = action.ToString();
                 string[] barr = b.Split('/');
-                foreach(string snip in barr)
+                foreach (string snip in barr)
                 {
                     if(snip.Contains("Gameplay") || snip.Contains(origName) || snip.Contains("Keyboard"))
                     {
@@ -50,7 +50,7 @@ public class DisplayKeyBinds : MonoBehaviour
                 binding = binding.TrimEnd('|');
             }
 
-            if(bindName == "Unused" || bindName == "Help")
+            if(bindName == "Unused" || bindName == "ShowControls")
             {
                 continue;
             }
@@ -62,7 +62,17 @@ public class DisplayKeyBinds : MonoBehaviour
                 { "controlScheme", input.currentControlScheme }
             };
 
-
+#if UNITY_WEBGL && !UNITY_EDITOR
+            if(input.currentControlScheme.ToLower() == "gamepad")
+            {
+                data["bind"] = binding.Split('|')[1];
+                data["bind"] = data["bind"].TrimStart(' ');
+            }
+            else
+            {
+                data["bind"] = binding.Split('|')[0];
+            }
+#endif
             GameObject kb = Instantiate(bindPrefab, transform);
             datafill.Fill(data, kb);
         }

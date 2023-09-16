@@ -56,7 +56,7 @@ public class ReleaseObjectInField : MonoBehaviourPunCallbacks
 
         if (PhotonNetwork.IsConnected)
         {
-            PowerPlayFieldManager.attachView(obj,true);
+                PowerPlayFieldManager.attachView(obj,true);
         }
 
     }

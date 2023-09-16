@@ -39,6 +39,7 @@ public class PopulateListWithCourses : MonoBehaviour
     public void SetCourse(int index)
     {
         onCourseSet.Invoke(courses[index].sceneNum);
+        SimManager.SetCourse(courses[index].name);
     }
 
 }

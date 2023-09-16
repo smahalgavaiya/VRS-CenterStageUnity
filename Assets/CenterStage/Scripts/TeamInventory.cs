@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics.Contracts;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
@@ -23,6 +24,7 @@ public class TeamInventory : MonoBehaviour
         List<GamepieceStack> stacks = GetComponentsInChildren<GamepieceStack>().ToList();
         foreach(GamepieceStack stack in stacks)
         {
+            stack.onRelease.AddListener(setOnRelease);
             if(!inventory.ContainsKey(stack.piecePrefab.name))
             {
                 List<GamepieceStack> st = new List<GamepieceStack>();
@@ -35,6 +37,11 @@ public class TeamInventory : MonoBehaviour
                 inventory[stack.piecePrefab.name].Add(stack);
             }
         }
+    }
+
+    public void setOnRelease(GameObject obj)
+    {
+        onRelease.Invoke(obj);
     }
     //change prefab to scoring type and get prefab from that?
 

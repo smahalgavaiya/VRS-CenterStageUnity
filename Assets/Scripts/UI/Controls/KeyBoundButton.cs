@@ -82,6 +82,7 @@ public class KeyBoundButton : MonoBehaviour
 
     private void OnInputAction(InputAction.CallbackContext obj)
     {
+        Debug.Log("PRESSED " + name);
         if(checkCanPress())
         {
             button.onClick.Invoke();

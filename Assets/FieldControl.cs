@@ -19,9 +19,13 @@ public class FieldControl : MonoBehaviour
     {
         gameTime = FindFirstObjectByType<GameTimeManager>();
         RoundReceiver round = FindFirstObjectByType<RoundReceiver>();
+        SessionEventHandler sessions = gameTime.GetComponent<SessionEventHandler>();
         GameTimeManager.instance.onPauseEv += round.SetPausedText;
         GameTimeManager.instance.onResumeEv += round.SetRoundText;
         GameTimeManager.instance.onPause.AddListener(RunOnPause);
+        SessionEvent ev = sessions.getSession(GameTimeManager.GameOverRound);
+        ev.actions.AddListener(GameOver);
+        sessions.setSession(GameTimeManager.GameOverRound, ev);
     }
 
     private void RunOnPause()
@@ -59,6 +63,12 @@ public class FieldControl : MonoBehaviour
     public void Reset()
     {
         GameTimeManager.instance.ResetTime();
+    }
+
+    public void GameOver()
+    {
+        RoundReceiver round = FindFirstObjectByType<RoundReceiver>();
+        round.SetText("GameOver");
     }
 
 }

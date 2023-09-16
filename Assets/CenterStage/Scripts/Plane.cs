@@ -1,3 +1,4 @@
+using Photon.Pun;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -20,11 +21,16 @@ public class Plane : MonoBehaviour
         {
             ScoreObjectTypeLink link = GetComponent<ScoreObjectTypeLink>();
             link.LastTouchedTeamColor = transform.root.gameObject.GetComponent<ScoreObjectTypeLink>().LastTouchedTeamColor;
+            if (PhotonNetwork.IsConnected)
+            {
+                FieldManager.fm.quickAttachPhotonView(gameObject);
+            }
             transform.parent = null;
             rig.isKinematic = false;
             rig.velocity = -transform.up * (force * power);
             //rig.AddRelativeForce(-transform.forward* (force * 100));
             released = true;
+            
         }
 
 
