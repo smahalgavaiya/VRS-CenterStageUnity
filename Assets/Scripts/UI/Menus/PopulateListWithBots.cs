@@ -1,3 +1,4 @@
+using Photon.Pun;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,7 +24,11 @@ public class PopulateListWithBots : MonoBehaviour
         List<BotData> botsList = bots.GetBotListLocal();
         listObj.options = botsList.Select(item => item.name).ToList();
         listObj.images = botsList.Select(item => item.img).ToList();
-        listObj.ChangeOption(0);
+        if(!PhotonNetwork.IsConnected || PhotonNetwork.IsMasterClient)
+        {
+            listObj.ChangeOption(0);
+        }
+        //
     }
 
     public void SetBotList(string course)

@@ -335,6 +335,8 @@ GameObject:
   - component: {fileID: 6600731913766812103}
   - component: {fileID: 594394276882038536}
   - component: {fileID: 2131487799056104232}
+  - component: {fileID: 5275968520869350575}
+  - component: {fileID: 1029422342226981121}
   m_Layer: 6
   m_Name: Grabber
   m_TagString: Robot
@@ -417,6 +419,34 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.1, y: 0.05, z: 0.1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &5275968520869350575
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 721420092604772311}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SynchronizePosition: 1
+  m_SynchronizeRotation: 1
+  m_SynchronizeScale: 0
+  m_UseLocal: 1
+--- !u!114 &1029422342226981121
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 721420092604772311}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 014c32d3a4792874f93ac52b49359b5b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &745781872934596310
 GameObject:
   m_ObjectHideFlags: 0
@@ -512,6 +542,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1507814347965719323}
   - component: {fileID: 2199122747919299100}
+  - component: {fileID: 1230091046259323086}
   m_Layer: 6
   m_Name: Drawer Slide v3:2
   m_TagString: Untagged
@@ -555,6 +586,22 @@ MonoBehaviour:
   moveLimitMin: -0.1002
   attachedTo: {fileID: 1225991357714912884}
   slowdownFactor: 0.1
+--- !u!114 &1230091046259323086
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1242352098153504395}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SynchronizePosition: 1
+  m_SynchronizeRotation: 1
+  m_SynchronizeScale: 0
+  m_UseLocal: 1
 --- !u!1 &1920234356701981403
 GameObject:
   m_ObjectHideFlags: 0
@@ -665,6 +712,7 @@ GameObject:
   - component: {fileID: 7611468705563104433}
   - component: {fileID: 8938799852230100166}
   - component: {fileID: 1691831147345357528}
+  - component: {fileID: 308046133603506678}
   m_Layer: 6
   m_Name: Body1.010
   m_TagString: Untagged
@@ -773,6 +821,22 @@ MonoBehaviour:
         m_CallState: 2
   maxLimitPos: {fileID: 971244194458824481}
   minLimitPos: {fileID: 2003692352191065767}
+--- !u!114 &308046133603506678
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1961541872576617441}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SynchronizePosition: 1
+  m_SynchronizeRotation: 1
+  m_SynchronizeScale: 0
+  m_UseLocal: 1
 --- !u!1 &2021399629058034028
 GameObject:
   m_ObjectHideFlags: 0
@@ -783,6 +847,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6876581132222675755}
   - component: {fileID: 614866208644737619}
+  - component: {fileID: 7703373179398009019}
   m_Layer: 6
   m_Name: Drawer Slide v3:1.001
   m_TagString: Untagged
@@ -826,6 +891,22 @@ MonoBehaviour:
   moveLimitMin: -0.0975
   attachedTo: {fileID: 2199122747919299100}
   slowdownFactor: 0.1
+--- !u!114 &7703373179398009019
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2021399629058034028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SynchronizePosition: 1
+  m_SynchronizeRotation: 1
+  m_SynchronizeScale: 0
+  m_UseLocal: 1
 --- !u!1 &2057889905985111711
 GameObject:
   m_ObjectHideFlags: 0
@@ -1166,6 +1247,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3616898776205360505}
   - component: {fileID: 1225991357714912884}
+  - component: {fileID: 1831987989227936728}
   m_Layer: 6
   m_Name: Drawer Slide v3:3
   m_TagString: Untagged
@@ -1209,6 +1291,22 @@ MonoBehaviour:
   moveLimitMin: -0.1002
   attachedTo: {fileID: 2895655268279759907}
   slowdownFactor: 0.1
+--- !u!114 &1831987989227936728
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2984728325488889308}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SynchronizePosition: 1
+  m_SynchronizeRotation: 1
+  m_SynchronizeScale: 0
+  m_UseLocal: 1
 --- !u!1 &2996868848574435240
 GameObject:
   m_ObjectHideFlags: 0
@@ -1875,6 +1973,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4120832048236402753}
   - component: {fileID: 2895655268279759907}
+  - component: {fileID: 2865983939066200501}
   m_Layer: 6
   m_Name: Drawer Slide v4:1
   m_TagString: Untagged
@@ -1919,6 +2018,22 @@ MonoBehaviour:
   moveLimitMin: -0.1002
   attachedTo: {fileID: 0}
   slowdownFactor: 0.1
+--- !u!114 &2865983939066200501
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4813901632652247573}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SynchronizePosition: 1
+  m_SynchronizeRotation: 1
+  m_SynchronizeScale: 0
+  m_UseLocal: 1
 --- !u!1 &4857503101630364299
 GameObject:
   m_ObjectHideFlags: 0
@@ -3880,6 +3995,46 @@ PrefabInstance:
       propertyPath: sceneViewId
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7910280682431849838, guid: f4279af7348f5ce4f9102ada7113e2c1,
+        type: 3}
+      propertyPath: Synchronization
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7910280682431849838, guid: f4279af7348f5ce4f9102ada7113e2c1,
+        type: 3}
+      propertyPath: ObservedComponents.Array.size
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 7910280682431849838, guid: f4279af7348f5ce4f9102ada7113e2c1,
+        type: 3}
+      propertyPath: ObservedComponents.Array.data[1]
+      value: 
+      objectReference: {fileID: 7703373179398009019}
+    - target: {fileID: 7910280682431849838, guid: f4279af7348f5ce4f9102ada7113e2c1,
+        type: 3}
+      propertyPath: ObservedComponents.Array.data[2]
+      value: 
+      objectReference: {fileID: 308046133603506678}
+    - target: {fileID: 7910280682431849838, guid: f4279af7348f5ce4f9102ada7113e2c1,
+        type: 3}
+      propertyPath: ObservedComponents.Array.data[3]
+      value: 
+      objectReference: {fileID: 1230091046259323086}
+    - target: {fileID: 7910280682431849838, guid: f4279af7348f5ce4f9102ada7113e2c1,
+        type: 3}
+      propertyPath: ObservedComponents.Array.data[4]
+      value: 
+      objectReference: {fileID: 1831987989227936728}
+    - target: {fileID: 7910280682431849838, guid: f4279af7348f5ce4f9102ada7113e2c1,
+        type: 3}
+      propertyPath: ObservedComponents.Array.data[5]
+      value: 
+      objectReference: {fileID: 2865983939066200501}
+    - target: {fileID: 7910280682431849838, guid: f4279af7348f5ce4f9102ada7113e2c1,
+        type: 3}
+      propertyPath: ObservedComponents.Array.data[6]
+      value: 
+      objectReference: {fileID: 5275968520869350575}
     - target: {fileID: 8378748396285302390, guid: f4279af7348f5ce4f9102ada7113e2c1,
         type: 3}
       propertyPath: m_Size.z

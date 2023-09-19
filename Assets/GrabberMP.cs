@@ -3,16 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 using Photon.Realtime;
+using ExitGames.Client.Photon;
 
-public class GrabberMP : MonoBehaviourPunCallbacks
+public class GrabberMP : MonoBehaviour, IOnEventCallback
 {
     ObjectGrabber grabber;
-    PhotonView view;
+    PhotonView parentView;
     // Start is called before the first frame update
     void Start()
     {
         grabber = GetComponent<ObjectGrabber>();
-        view = GetComponent<PhotonView>();
+        parentView = transform.root.GetComponent<PhotonView>();
         Invoke("CheckMP", 0.5f);
     }
 
@@ -21,28 +22,46 @@ public class GrabberMP : MonoBehaviourPunCallbacks
         if(PhotonNetwork.IsConnected)
         {
             grabber.mpOverride = true;
+            CancelInvoke();
         }
-    }
-
-    [PunRPC]
-    void runGrab()
-    {
-        grabber.PickUpOrPutDownObject();
     }
 
     // Update is called once per frame
     void Update()
     {
         
-        if(view.IsMine && grabber)
+        if(parentView.IsMine && grabber)
         {
             if (grabber.checkDrive() != GrabberAction.NoAction)
             {
                 //grabber.PickUpOrPutDownObject();
-                view.RPC("runGrab", RpcTarget.AllBuffered);
+                //view.RPC("runGrab", RpcTarget.AllBuffered);
+                int actor = parentView.OwnerActorNr;
+                RaiseEventOptions raiseEventOptions = new RaiseEventOptions
+                {
+                    Receivers = ReceiverGroup.All,
+                    CachingOption = EventCaching.AddToRoomCache
+                };
+                SendOptions sendOptions = new SendOptions
+                {
+                    Reliability = true
+                };
+                PhotonNetwork.RaiseEvent((byte)FTC_EventCode.grabber,actor,raiseEventOptions,sendOptions);
             }
             //runGrab();
 
+        }
+    }
+
+    public void OnEvent(EventData photonEvent)
+    {
+        if (photonEvent.Code == (byte)FTC_EventCode.grabber)
+        {
+            int actor = (int)photonEvent.CustomData;
+            if(parentView.OwnerActorNr == actor)
+            {
+                grabber.pickupCheck();
+            }
         }
     }
 }

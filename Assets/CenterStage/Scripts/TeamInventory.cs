@@ -1,3 +1,4 @@
+using Photon.Pun;
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics.Contracts;
@@ -5,7 +6,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class TeamInventory : MonoBehaviour
+public class TeamInventory : MonoBehaviourPunCallbacks
 {
     // Start is called before the first frame update
     private Dictionary<string,List<GamepieceStack>> inventory = new Dictionary<string,List<GamepieceStack>>();
@@ -18,9 +19,13 @@ public class TeamInventory : MonoBehaviour
 
     public string CurrentPiece { get { return $"{stackTypes[activePiece]}";  } } // this needs to be optimized or displayobjval shouldnt call per frame
     public string PieceCount { get { return $"x{CurrentCount()}";  } } // this needs to be optimized or displayobjval shouldnt call per frame
-    public Color Color { get { return CurrentColor();  } } 
+    public Color Color { get { return CurrentColor();  } }
+
+    PhotonView view;
     void Start()
     {
+        //view = FieldManager.addView(gameObject);
+        view = FieldManager.attachView(gameObject);
         List<GamepieceStack> stacks = GetComponentsInChildren<GamepieceStack>().ToList();
         foreach(GamepieceStack stack in stacks)
         {
@@ -79,14 +84,28 @@ public class TeamInventory : MonoBehaviour
 
     public void Release()
     {
-        List<GamepieceStack> curStacks = inventory[stackTypes[activePiece]];
-        foreach(GamepieceStack stack in curStacks)
+        if (PhotonNetwork.IsConnected)
         {
-            if(stack.Count > 0) 
-            { 
-                GameObject piece = stack.Release();
+            view.RPC("Release", RpcTarget.All, activePiece);
+        }
+        else
+        {
+            Release(activePiece);
+        }
+        
+    }
+
+    [PunRPC]
+    public void Release(int stackNum)
+    {
+        List<GamepieceStack> curStacks = inventory[stackTypes[stackNum]];
+        foreach (GamepieceStack stack in curStacks)
+        {
+            if (stack.Count > 0)
+            {
+                GameObject piece = stack.Release(false);
                 onRelease.Invoke(piece);
-                break; 
+                break;
             }
         }
         if (CurrentCount() == 0) { NextType(); }//should be next type WITH non zero count. and disable button if none left
