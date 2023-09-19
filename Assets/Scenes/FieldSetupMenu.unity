@@ -4025,6 +4025,76 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1304570114}
     m_Modifications:
+    - target: {fileID: 5728716177041640040, guid: 91f22e253204eb941bcc6f21fb2beee5,
+        type: 3}
+      propertyPath: waitForConnect
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5728716177041640040, guid: 91f22e253204eb941bcc6f21fb2beee5,
+        type: 3}
+      propertyPath: onChangeList.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5728716177041640040, guid: 91f22e253204eb941bcc6f21fb2beee5,
+        type: 3}
+      propertyPath: onChangeList.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5728716177041640040, guid: 91f22e253204eb941bcc6f21fb2beee5,
+        type: 3}
+      propertyPath: onChangeList.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5728716177041640040, guid: 91f22e253204eb941bcc6f21fb2beee5,
+        type: 3}
+      propertyPath: onChangeList.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 768679934}
+    - target: {fileID: 5728716177041640040, guid: 91f22e253204eb941bcc6f21fb2beee5,
+        type: 3}
+      propertyPath: onChangeList.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 818715134236927614}
+    - target: {fileID: 5728716177041640040, guid: 91f22e253204eb941bcc6f21fb2beee5,
+        type: 3}
+      propertyPath: onChangeList.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5728716177041640040, guid: 91f22e253204eb941bcc6f21fb2beee5,
+        type: 3}
+      propertyPath: onChangeList.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5728716177041640040, guid: 91f22e253204eb941bcc6f21fb2beee5,
+        type: 3}
+      propertyPath: onChangeList.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: setAllBots
+      objectReference: {fileID: 0}
+    - target: {fileID: 5728716177041640040, guid: 91f22e253204eb941bcc6f21fb2beee5,
+        type: 3}
+      propertyPath: onChangeList.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: RaiseEventToRefreshList
+      objectReference: {fileID: 0}
+    - target: {fileID: 5728716177041640040, guid: 91f22e253204eb941bcc6f21fb2beee5,
+        type: 3}
+      propertyPath: onChangeList.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: SettingsControl, com.vftc.robotmultiplayer
+      objectReference: {fileID: 0}
+    - target: {fileID: 5728716177041640040, guid: 91f22e253204eb941bcc6f21fb2beee5,
+        type: 3}
+      propertyPath: onChangeList.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: PlayerListPanel, com.vftc.robotmultiplayer
+      objectReference: {fileID: 0}
+    - target: {fileID: 5728716177041640040, guid: 91f22e253204eb941bcc6f21fb2beee5,
+        type: 3}
+      propertyPath: onChangeList.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 5728716177041640040, guid: 91f22e253204eb941bcc6f21fb2beee5,
+        type: 3}
+      propertyPath: onChangeList.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 7284624327910399290, guid: 91f22e253204eb941bcc6f21fb2beee5,
         type: 3}
       propertyPath: m_AnchoredPosition.x

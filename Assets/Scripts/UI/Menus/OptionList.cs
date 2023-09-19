@@ -56,6 +56,11 @@ public class OptionList : MonoBehaviour
     /// <param name="direction"></param>
     public void ChangeOption(int direction)
     {
+        ChangeOptionFull(direction);
+    }
+
+    public void ChangeOptionFull(int direction, bool notify = true)
+    {
         optionIndex += direction;
 
         if (optionIndex < 0)
@@ -64,8 +69,11 @@ public class OptionList : MonoBehaviour
             optionIndex = 0;
 
         SetOption(optionIndex);
-        onChangeOption.Invoke(options[optionIndex]);
-        onChangeOptionIndex.Invoke(optionIndex);
+        if(notify)
+        {
+            onChangeOption.Invoke(options[optionIndex]);
+            onChangeOptionIndex.Invoke(optionIndex);
+        }
     }
 
     public void SetAllOptions(List<string> options)

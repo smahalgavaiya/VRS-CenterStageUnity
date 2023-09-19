@@ -3,17 +3,25 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Events;
 
 [RequireComponent(typeof(OptionListImage))]
 public class PopulateListWithBots : MonoBehaviour
 {
     OptionListImage listObj;
 
+    public UnityEvent onChangeList;
+
     // Start is called before the first frame update
     void Start()
     {
         listObj = GetComponent<OptionListImage>();
         if (FieldData.ins == null) { return;  }
+        InitBots();
+    }
+
+    public void InitBots()
+    {
         List<BotData> bots = FieldData.bots.GetBotListLocal();
         SetBotList(FieldData.bots);
     }
@@ -26,9 +34,9 @@ public class PopulateListWithBots : MonoBehaviour
         listObj.images = botsList.Select(item => item.img).ToList();
         if(!PhotonNetwork.IsConnected || PhotonNetwork.IsMasterClient)
         {
-            listObj.ChangeOption(0);
+            listObj.ChangeOptionFull(0,false);
+            onChangeList.Invoke();
         }
-        //
     }
 
     public void SetBotList(string course)
