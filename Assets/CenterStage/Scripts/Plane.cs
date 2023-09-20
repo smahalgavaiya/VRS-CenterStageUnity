@@ -16,13 +16,18 @@ public class Plane : MonoBehaviour, IOnEventCallback
     {
         rig = GetComponentInChildren<Rigidbody>();
         parentView = GetComponentInParent<PhotonView>();
+        if (PhotonNetwork.IsConnected)
+        {
+            //req'd for scripts that dont have a photonview on the same gameobject. otherwise onevent doesnt fire.
+            PhotonNetwork.AddCallbackTarget(this);
+        }
+        
     }
 
     public void Release(float force)
     {
-        if(!released)
+        if (!released)
         {
-            
             if (PhotonNetwork.IsConnected && parentView.IsMine)
             {
 
@@ -40,15 +45,32 @@ public class Plane : MonoBehaviour, IOnEventCallback
                 };
                 PhotonNetwork.RaiseEvent((byte)FTC_EventCode.plane, data, raiseEventOptions, sendOptions);
             }
-            
-            
+            else
+            {
+                DoRelease(force);
+            }
         }
 
+    }
 
+    private void DoRelease(float force)
+    {
+        ScoreObjectTypeLink link = GetComponent<ScoreObjectTypeLink>();
+        link.LastTouchedTeamColor = transform.root.gameObject.GetComponent<ScoreObjectTypeLink>().LastTouchedTeamColor;
+        transform.parent = null;
+        rig.isKinematic = false;
+        rig.velocity = -transform.up * (force * power);
+        //rig.AddRelativeForce(-transform.forward* (force * 100));
+        released = true;
+        if(PhotonNetwork.IsConnected)
+        {
+            //FieldManager.fm.quickAttachPhotonView(gameObject);
+        }
     }
 
     public void OnEvent(EventData photonEvent)
     {
+        Debug.Log("plane event");
         if (photonEvent.Code == (byte)FTC_EventCode.plane)
         {
             System.Object[] data = (System.Object[])photonEvent.CustomData;
@@ -56,14 +78,7 @@ public class Plane : MonoBehaviour, IOnEventCallback
             float force = (float)data[1];
             if (parentView.OwnerActorNr == actor)
             {
-                ScoreObjectTypeLink link = GetComponent<ScoreObjectTypeLink>();
-                link.LastTouchedTeamColor = transform.root.gameObject.GetComponent<ScoreObjectTypeLink>().LastTouchedTeamColor;
-                transform.parent = null;
-                rig.isKinematic = false;
-                rig.velocity = -transform.up * (force * power);
-                //rig.AddRelativeForce(-transform.forward* (force * 100));
-                released = true;
-
+                DoRelease(force);
             }
         }
     }

@@ -16,14 +16,14 @@ public class PopulateListWithBots : MonoBehaviour
     void Start()
     {
         listObj = GetComponent<OptionListImage>();
-        if (FieldData.ins == null) { return;  }
+        //if (FieldData.ins == null) { return;  }
         InitBots();
     }
 
     public void InitBots()
     {
-        List<BotData> bots = FieldData.bots.GetBotListLocal();
-        SetBotList(FieldData.bots);
+        BuiltInBots bots = SimManager.CurrentCourse.botsList;
+        SetBotList(bots);
     }
 
     public void SetBotList(BuiltInBots bots)
@@ -34,9 +34,9 @@ public class PopulateListWithBots : MonoBehaviour
         listObj.images = botsList.Select(item => item.img).ToList();
         if(!PhotonNetwork.IsConnected || PhotonNetwork.IsMasterClient)
         {
-            listObj.ChangeOptionFull(0,false);
             onChangeList.Invoke();
         }
+        listObj.ChangeOptionFull(0, false);
     }
 
     public void SetBotList(string course)

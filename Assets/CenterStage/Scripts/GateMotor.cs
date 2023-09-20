@@ -1,3 +1,4 @@
+using Photon.Pun;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,7 +14,10 @@ public class GateMotor : MonoBehaviour
 
     public void ToggleMotor(bool enable = true)
     {
-        StartCoroutine(Toggle(enable));
+        if(PhotonNetwork.IsMasterClient || !PhotonNetwork.IsConnected)
+        {
+            StartCoroutine(Toggle(enable));
+        }
     }
 
     IEnumerator Toggle(bool enable)
