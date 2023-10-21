@@ -128,8 +128,10 @@ public class SelectBotOptions : MonoBehaviour
         spawnPoints = FieldManager.fm.spawnPositions.ToList();
 
         if (spawnedBot) { Destroy(spawnedBot); }
-        int spawnIdx = (int)color;
-        if (useLowerSpawn) { spawnIdx += 2; }
+        int spawnIdx;
+        if (color == TeamColor.Blue) { spawnIdx = 0; }
+        else { spawnIdx = 2; }
+        if (useLowerSpawn) { spawnIdx += 1; }
 
         GameObject prefab = botPrefabs[selectedBot];
         if (useCustomBot) { prefab = customPrefab; }

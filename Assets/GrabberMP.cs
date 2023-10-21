@@ -14,6 +14,11 @@ public class GrabberMP : MonoBehaviour, IOnEventCallback
     {
         grabber = GetComponent<ObjectGrabber>();
         parentView = transform.root.GetComponent<PhotonView>();
+        if (PhotonNetwork.IsConnected)
+        {
+            //req'd for scripts that dont have a photonview on the same gameobject. otherwise onevent doesnt fire.
+            PhotonNetwork.AddCallbackTarget(this);
+        }
         Invoke("CheckMP", 0.5f);
     }
 

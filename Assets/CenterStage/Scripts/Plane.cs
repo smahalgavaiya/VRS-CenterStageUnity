@@ -11,6 +11,7 @@ public class Plane : MonoBehaviour, IOnEventCallback
     bool released = false;
     public float power = 50;
     private PhotonView parentView;
+    bool canScore = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -21,7 +22,23 @@ public class Plane : MonoBehaviour, IOnEventCallback
             //req'd for scripts that dont have a photonview on the same gameobject. otherwise onevent doesnt fire.
             PhotonNetwork.AddCallbackTarget(this);
         }
-        
+        CollisionNotifier.onCollideGlobal += SetInCorrectZone;
+    }
+
+    private void OnDestroy()
+    {
+        CollisionNotifier.onCollideGlobal -= SetInCorrectZone;
+    }
+
+    public void SetInCorrectZone(GameObject collidingObj, bool isEntering)
+    {
+        //in this case the colliding object should be the root robot.
+        ScoreObjectTypeLink link = collidingObj.transform.root.gameObject.GetComponent<ScoreObjectTypeLink>();
+        if (link && link.ScoreObjectType_.name == "Robot")
+        {
+            canScore = isEntering;
+        }
+
     }
 
     public void Release(float force)
@@ -30,10 +47,12 @@ public class Plane : MonoBehaviour, IOnEventCallback
         {
             if (PhotonNetwork.IsConnected && parentView.IsMine)
             {
+                ScoreObjectTypeLink link = GetComponent<ScoreObjectTypeLink>();
+                link.LastTouchedTeamColor = transform.root.gameObject.GetComponent<ScoreObjectTypeLink>().LastTouchedTeamColor;
 
                 FieldManager.fm.quickAttachPhotonView(gameObject);
                 int actor = parentView.OwnerActorNr;
-                System.Object[] data = { actor, force };
+                System.Object[] data = { actor, force, link.LastTouchedTeamColor };
                 RaiseEventOptions raiseEventOptions = new RaiseEventOptions
                 {
                     Receivers = ReceiverGroup.All,
@@ -53,10 +72,23 @@ public class Plane : MonoBehaviour, IOnEventCallback
 
     }
 
-    private void DoRelease(float force)
+    private void DoRelease(float force, TeamColor color = TeamColor.Either)
     {
         ScoreObjectTypeLink link = GetComponent<ScoreObjectTypeLink>();
-        link.LastTouchedTeamColor = transform.root.gameObject.GetComponent<ScoreObjectTypeLink>().LastTouchedTeamColor;
+        if (color == TeamColor.Either)
+        {
+            link.LastTouchedTeamColor = transform.root.gameObject.GetComponent<ScoreObjectTypeLink>().LastTouchedTeamColor;
+        }
+        else
+        {
+            link.LastTouchedTeamColor = color;
+        }
+        
+        if(!canScore)
+        {
+            link.LastTouchedTeamColor = TeamColor.Either;
+        }
+        
         transform.parent = null;
         rig.isKinematic = false;
         rig.velocity = -transform.up * (force * power);
@@ -76,9 +108,10 @@ public class Plane : MonoBehaviour, IOnEventCallback
             System.Object[] data = (System.Object[])photonEvent.CustomData;
             int actor = (int)data[0];
             float force = (float)data[1];
+            TeamColor color = (TeamColor)data[2];
             if (parentView.OwnerActorNr == actor)
             {
-                DoRelease(force);
+                DoRelease(force,color);
             }
         }
     }
