@@ -175,13 +175,17 @@ public class SelectBotOptions : MonoBehaviour
         }
         prop.GetComponent<ScoreObjectTypeLink>().LastTouchedTeamColor = color;
         ObjectGrabber grabber = bot.GetComponentInChildren<ObjectGrabber>();
-        ObjectChecker checker = grabber.GetComponent<ObjectChecker>();
-        checker.CanPickUp = true;
-        checker.ObjectInTrigger = prop;
-        prop.transform.position = grabber.transform.position;
-        yield return new WaitForFixedUpdate();
-        yield return new WaitForEndOfFrame();
-        grabber.PickUpOrPutDownObject();
+        if(grabber)
+        {
+            ObjectChecker checker = grabber.GetComponent<ObjectChecker>();
+            checker.CanPickUp = true;
+            checker.ObjectInTrigger = prop;
+            prop.transform.position = grabber.transform.position;
+            yield return new WaitForFixedUpdate();
+            yield return new WaitForEndOfFrame();
+            grabber.PickUpOrPutDownObject();
+        }
+        
         FinishedStart.Invoke();
     }
 
