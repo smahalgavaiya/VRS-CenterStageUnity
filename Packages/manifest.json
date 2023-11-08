@@ -4,7 +4,7 @@
     "com.unity.addressables": "1.21.17",
     "com.unity.ide.visualstudio": "2.0.20",
     "com.unity.ide.vscode": "1.2.5",
-    "com.unity.inputsystem": "1.6.3",
+    "com.unity.inputsystem": "1.7.0",
     "com.unity.postprocessing": "3.2.2",
     "com.unity.render-pipelines.universal": "14.0.8",
     "com.unity.textmeshpro": "3.0.6",
@@ -13,6 +13,7 @@
     "com.vftc.robotconstructionkit": "file:../Modules/UPM-RobotConstructorKit",
     "com.vftc.robotmultiplayer": "file:../Modules/UPM-VRSMultiplayer",
     "com.vftc.ui": "file:../Modules/UPM-UI",
+    "jp.keijiro.apriltag": "1.0.2",
     "com.unity.modules.ai": "1.0.0",
     "com.unity.modules.androidjni": "1.0.0",
     "com.unity.modules.animation": "1.0.0",
@@ -47,10 +48,10 @@
   },
   "scopedRegistries": [
     {
-      "name": "Virtual FTC Repo",
-      "url": "https://repo.vrobotsim.online:4879",
+      "name": "Keijiro",
+      "url": "https://registry.npmjs.com",
       "scopes": [
-        "com.vftc"
+        "jp.keijiro"
       ]
     }
   ]
