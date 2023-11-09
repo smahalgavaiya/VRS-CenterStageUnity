@@ -148,7 +148,9 @@ public class SelectBotOptions : MonoBehaviour
             Camera[] c = bot.GetComponentsInChildren<Camera>();
             foreach(Camera cam in c)//ToDo: this doesnt get called in MP
             {
-                cams.AddCam(bot.GetComponentInChildren<Camera>().gameObject);
+                if(cam.tag.Equals("AprilTag")) continue;
+
+                cams.AddCam(cam.gameObject);
             }
         }
 
