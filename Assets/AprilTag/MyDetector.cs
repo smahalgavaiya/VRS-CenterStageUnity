@@ -15,9 +15,11 @@ public class MyDetector :MonoBehaviour {
     [SerializeField] RawImage _webcamPreview = null;
     //[SerializeField] TMP_Text _debugText = null;
     [SerializeField] CameraSwitcher cameraSwitcher;
+    [SerializeField] TMP_Text showText;
+
 
     AprilTag.TagDetector _detector;
-    //TagDrawer _drawer;
+    TagDrawer _drawer;
 
     private Camera _referenceCamera;
     private Camera _aprilTagCamera;
@@ -34,7 +36,7 @@ public class MyDetector :MonoBehaviour {
     private void StartRendering() {
         var dims = new Vector2Int(_renderTexture.width, _renderTexture.height); // Use the Render Texture dimensions.
         _detector = new TagDetector(dims.x, dims.y, _decimation);
-        //_drawer = new TagDrawer(_tagMaterial);
+        _drawer = new TagDrawer(_tagMaterial);
 
         // Initialize the Texture2D with the dimensions of the Render Texture.
         _textureData = new Texture2D(_renderTexture.width, _renderTexture.height, TextureFormat.RGBA32, false);
@@ -57,7 +59,7 @@ public class MyDetector :MonoBehaviour {
 
     void OnDestroy() {
         _detector.Dispose();
-        //_drawer.Dispose();
+       // _drawer.Dispose();
     }
 
     void LateUpdate() {
@@ -82,8 +84,11 @@ public class MyDetector :MonoBehaviour {
 
             // Detected tag visualization
             foreach(var tag in _detector.DetectedTags) {
-                //_drawer.Draw(tag.ID, tag.Position, tag.Rotation, _tagSize);
+
+                _drawer.Draw(tag.ID, tag.Position, tag.Rotation, _tagSize);
                 Debug.Log(tag.Position);
+                showText.text = "April Tag Detected :  " + tag.Position.ToString();
+
             }
 
             // Profile data output (with 30 frame interval)
