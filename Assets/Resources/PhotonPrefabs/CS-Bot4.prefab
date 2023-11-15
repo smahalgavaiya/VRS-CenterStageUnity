@@ -963,10 +963,10 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
-  m_Size: {x: 0.048280936, y: 0.08382895, z: 0.29790023}
-  m_Center: {x: -0.025859576, y: 0.045481082, z: 0.11911869}
+  m_Size: {x: 0.048280936, y: 0.023026053, z: 0.18380676}
+  m_Center: {x: -0.025859578, y: 0.040510323, z: 0.14209305}
 --- !u!114 &2096427596360115904
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1941,8 +1941,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.048280936, y: 0.08382895, z: 0.29790023}
-  m_Center: {x: -0.025859576, y: 0.045481082, z: 0.11911869}
+  m_Size: {x: 0.048280936, y: 0.023026053, z: 0.18380676}
+  m_Center: {x: -0.025859578, y: 0.040510323, z: 0.14209305}
 --- !u!114 &5275756802300735670
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4200,6 +4200,12 @@ PrefabInstance:
       propertyPath: objectsToRecolor.Array.data[0]
       value: 
       objectReference: {fileID: 542506084857996359}
+    - target: {fileID: 1606999729625136676, guid: f4279af7348f5ce4f9102ada7113e2c1,
+        type: 3}
+      propertyPath: scoreObjectType
+      value: 
+      objectReference: {fileID: 11400000, guid: 729788915eb28ab48a598c7a5a8af8fe,
+        type: 2}
     - target: {fileID: 6308832085317127248, guid: f4279af7348f5ce4f9102ada7113e2c1,
         type: 3}
       propertyPath: m_Name
