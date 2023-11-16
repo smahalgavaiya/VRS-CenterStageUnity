@@ -97,37 +97,38 @@ public class MyDetector :MonoBehaviour {
                 Debug.Log("Tag Position : " + tag.Position);
                 showText.text = "April Tag Detected: " + tag.Position.ToString();
 
-               GameObject A = GameObject.FindGameObjectWithTag(tag.ID.ToString());
+               GameObject currentGameObject = GameObject.FindGameObjectWithTag(tag.ID.ToString());
             
 
-                if (A != null)
+                if (currentGameObject != null)
                 {
-                    Renderer renderer = A.GetComponent<Renderer>();
+                    Renderer renderer = currentGameObject.GetComponent<Renderer>();
                     Material material = renderer.material;
+                    //  material.EnableKeyword("_EMISSION");
+
+                    if (previousTag != "")
+                    {
+                        GameObject previousGameObject = GameObject.FindGameObjectWithTag(previousTag);
+                        if (previousGameObject != null)
+                        {
+                            Renderer previousRenderer = previousGameObject.GetComponent<Renderer>();
+                            Material previousMaterial = previousRenderer.material;
+                            previousMaterial.DisableKeyword("_EMISSION");
+                        }
+                    }
+
+                    // Enable emission for the current GameObject
                     material.EnableKeyword("_EMISSION");
 
-                    if (tag.ID.ToString() != previousTag)
-                    {
-                        previousTag = tag.ID.ToString();
-                        // Enable emission
-                        material.EnableKeyword("_EMISSION");
-                    }
-                    //else
-                    //{
-                    //    // Disable emission
-                    //    material.DisableKeyword("_EMISSION");
-                    //}
-
                     // Update the previousTag for the next iteration
-              
-                    
-                    Debug.Log("Privious tag is" + previousTag);
+                    previousTag = tag.ID.ToString();
+
+                    Debug.Log("Previous tag is " + previousTag);
                 }
                 else
                 {
-                    Debug.LogError("GameObject with tag 'tag.ID' not found.");
+                    Debug.LogError("GameObject with tag '" + tag.ID + "' not found.");
                 }
-                
 
             }
 
