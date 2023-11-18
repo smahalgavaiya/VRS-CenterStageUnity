@@ -62,7 +62,8 @@ public class RandomizationController : MonoBehaviour, IOnEventCallback
         foreach (PlaceRandomizationObject obj in objs)
         {
             obj.OnRandomization.AddListener((obj) => FieldManager.fm.quickAttachPhotonView(obj));
-            obj.Place(randomLocs[chosenLoc]);
+            GameTimeManager.instance.onResume.AddListener(() => obj.Place(randomLocs[chosenLoc]));
+            //obj.Place(randomLocs[chosenLoc]);
         }
     }
 

@@ -16,10 +16,13 @@ public class PlaceRandomizationObject : MonoBehaviour, ICustomGoalChecker
     public bool leaveObjAsChild = false;//leave object as a child of the creating object.
     public UnityEvent<GameObject> OnRandomization;
     public UnityEvent<GameObject> OnPrefabSpawn;
+
+    public bool useCoursePrefab = false;
     // Start is called before the first frame update
 
     //get all instances of placeR_obj, have a master class that will set randomization and wait on an event from field manager.
     //
+    bool placed = false;
 
     private void Awake()
     {
@@ -29,14 +32,24 @@ public class PlaceRandomizationObject : MonoBehaviour, ICustomGoalChecker
         {
             randomizationLocations.Add(t.name, t);
         }
+        
     }
 
     public void Place(string loc)
     {
         Awake();
+        if (placed) { return; }
         if(randomizationLocations.ContainsKey(loc))
         {
-            GameObject obj = GameObject.Instantiate(objectPrefab);
+            GameObject obj;
+            if (!useCoursePrefab)
+            {
+                obj = GameObject.Instantiate(objectPrefab);
+            }
+            else
+            {
+                obj = GameObject.Instantiate(SimManager.CurrentCourse.getCurrentRandomizationPrefab());
+            }
             obj.transform.position = randomizationLocations[loc].position;
             obj.transform.rotation = randomizationLocations[loc].rotation;
             pickedRandomization = loc;
@@ -46,6 +59,7 @@ public class PlaceRandomizationObject : MonoBehaviour, ICustomGoalChecker
             Debug.Log("randomization " + randomizationLocations[loc].name);
             //obj.transform.parent = transform;
         }
+        
     }
 
     public GameObject GetCallingTrigger(GameObject objToCheck)
