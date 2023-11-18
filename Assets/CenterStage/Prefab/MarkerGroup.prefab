@@ -329,6 +329,7 @@ GameObject:
   - component: {fileID: 8753412814922288660}
   - component: {fileID: 7249210196921790047}
   - component: {fileID: 7920065853638997364}
+  - component: {fileID: 4487794754995243691}
   m_Layer: 0
   m_Name: MarkerGroup
   m_TagString: Untagged
@@ -367,12 +368,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   owningTeam: 0
-  objectPrefab: {fileID: 447702195542794710, guid: f730c0de3d8637a42908fcc1152175b8,
+  objectPrefab: {fileID: 447702195542794710, guid: 90f7d06e4b303eb48b25f171626523c3,
     type: 3}
   leaveObjAsChild: 0
   OnRandomization:
     m_PersistentCalls:
       m_Calls: []
+  OnPrefabSpawn:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4487794754995243691}
+        m_TargetAssemblyTypeName: SetMaterialOnChildren, Assembly-CSharp
+        m_MethodName: SetColorOnNew
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &7860182656242011099
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -447,3 +463,16 @@ MonoBehaviour:
   globalBool: {fileID: 0}
   customCheckerObj: {fileID: 0}
   otherTeamCanScore: 1
+--- !u!114 &4487794754995243691
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8368855275997733464}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9c8d571ccd17cd409ea4fdca46a156c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  material: {fileID: 2100000, guid: de8533516acd4dd40beaa2c35168c40a, type: 2}

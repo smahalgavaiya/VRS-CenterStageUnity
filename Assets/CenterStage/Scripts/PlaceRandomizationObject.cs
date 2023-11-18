@@ -15,6 +15,7 @@ public class PlaceRandomizationObject : MonoBehaviour, ICustomGoalChecker
 
     public bool leaveObjAsChild = false;//leave object as a child of the creating object.
     public UnityEvent<GameObject> OnRandomization;
+    public UnityEvent<GameObject> OnPrefabSpawn;
     // Start is called before the first frame update
 
     //get all instances of placeR_obj, have a master class that will set randomization and wait on an event from field manager.
@@ -41,6 +42,7 @@ public class PlaceRandomizationObject : MonoBehaviour, ICustomGoalChecker
             pickedRandomization = loc;
             if (leaveObjAsChild) { obj.transform.parent = randomizationLocations[loc]; }
             OnRandomization.Invoke(randomizationLocations[loc].gameObject);
+            OnPrefabSpawn.Invoke(obj);
             Debug.Log("randomization " + randomizationLocations[loc].name);
             //obj.transform.parent = transform;
         }

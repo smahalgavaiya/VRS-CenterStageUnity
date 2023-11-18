@@ -22,5 +22,17 @@ public class SetMaterialOnChildren : MonoBehaviour
             SetColor();
         }
     }
+
+    public void SetColorOnNew(GameObject obj)
+    {
+        foreach (Transform t in obj.transform)
+        {
+            Renderer[] renderers = t.gameObject.GetComponentsInChildren<Renderer>();
+            foreach(Renderer r in renderers)
+            {
+                r.material = material;
+            }
+        }
+    }
 }
 
