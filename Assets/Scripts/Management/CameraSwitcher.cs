@@ -1,17 +1,24 @@
-using System.Collections;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class CameraSwitcher : MonoBehaviour
+
 {
+
+
     [SerializeField] List<GameObject> cameras = new List<GameObject>();
     int currentCameraNumber;
     // Start is called before the first frame update
 
     public static CameraSwitcher ins;
+    public Action<Camera> OnCameraSwitch;
     void Start()
     {
         currentCameraNumber = 0;
+
+        OnCameraSwitch?.Invoke(cameras[currentCameraNumber].GetComponent<Camera>());
+
     }
 
     public void SwitchCamera(int cameraNumber)
@@ -30,6 +37,8 @@ public class CameraSwitcher : MonoBehaviour
         cameras[currentCameraNumber].SetActive(true);
         int previousCamera = currentCameraNumber - 1 < 0 ? cameras.Count - 1 : currentCameraNumber - 1;
         cameras[previousCamera].SetActive(false);
+
+        OnCameraSwitch?.Invoke(cameras[currentCameraNumber].GetComponent<Camera>());
     }
     public void PrevCamera()
     {
@@ -37,6 +46,8 @@ public class CameraSwitcher : MonoBehaviour
         cameras[currentCameraNumber].SetActive(true);
         int previousCamera = currentCameraNumber + 1 > cameras.Count - 1 ? 0 : currentCameraNumber + 1;
         cameras[previousCamera].SetActive(false);
+
+        OnCameraSwitch?.Invoke(cameras[currentCameraNumber].GetComponent<Camera>());
     }
 
     public void AddCam(GameObject cam)
