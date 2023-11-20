@@ -87,7 +87,8 @@ public class MyDetector :MonoBehaviour {
             // AprilTag detection
             var fov = _referenceCamera.fieldOfView * Mathf.Deg2Rad;
            _detector.ProcessImage(_textureData.GetPixels32(), fov, _tagSize);
-            
+
+            string allTagsInfo = "";
             // Detected tag visualization
             foreach (var tag in _detector.DetectedTags) {
                 
@@ -95,9 +96,13 @@ public class MyDetector :MonoBehaviour {
                 _drawer.Draw(tag.ID, tag.Position, tag.Rotation, _tagSize);
                 Debug.Log(tag.ID);
                 Debug.Log("Tag Position : " + tag.Position);
-                showText.text = "April Tag Detected: " + tag.Position.ToString();
 
-               GameObject currentGameObject = GameObject.FindGameObjectWithTag(tag.ID.ToString());
+                allTagsInfo += $"Tag ID: {tag.ID}, Position: {tag.Position}\n";
+                showText.text = allTagsInfo;
+
+                // showText.text = "April Tag Detected: " + tag.Position.ToString();
+
+                GameObject currentGameObject = GameObject.FindGameObjectWithTag(tag.ID.ToString());
             
 
                 if (currentGameObject != null)
@@ -131,6 +136,8 @@ public class MyDetector :MonoBehaviour {
                 }
 
             }
+
+            
 
             // Profile data output (with 30 frame interval)
             //if(Time.frameCount % 30 == 0)
