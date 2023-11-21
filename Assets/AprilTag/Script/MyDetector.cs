@@ -6,6 +6,7 @@ using System.Linq;
 using UnityEngine.UI;
 using TMPro;
 using System;
+using static Photon.Pun.UtilityScripts.TabViewManager;
 
 public class MyDetector : MonoBehaviour
 {
@@ -19,7 +20,6 @@ public class MyDetector : MonoBehaviour
     [SerializeField] TMP_Text showText;
     [SerializeField] Color _emissionColor = Color.green;
     string previousTag = "";
-
 
     AprilTag.TagDetector _detector;
     TagDrawer _drawer;
@@ -58,8 +58,6 @@ public class MyDetector : MonoBehaviour
             {
                 StartRendering();
                 _isAprilTagCameraActive = true;
-
-
             }
         }
         else
@@ -109,9 +107,11 @@ public class MyDetector : MonoBehaviour
                 Debug.Log(tag.ID);
                 Debug.Log("Tag Position : " + tag.Position);
 
-                detectedTagIDs.Add($" {tag.ID} - Position: {tag.Position}");
+                Vector3 eulerRotation = tag.Rotation.eulerAngles;
 
-                
+                detectedTagIDs.Add($" {tag.ID} - Position: {tag.Position} " + $"\nPitch: {eulerRotation.x:F2}, Roll: {eulerRotation.y:F2}, Yaw: {eulerRotation.z:F2}");
+
+
             }
             showText.text = GetDetectedTagsInfo(detectedTagIDs);
             ToggleEmissionForDetectedTags(detectedTagIDs);
