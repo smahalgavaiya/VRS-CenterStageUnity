@@ -1,11 +1,12 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using AprilTag;
-using System.Linq;
 using UnityEngine.UI;
-using TMPro;
 using System;
+
+using System.IO;
+using System.Net;
+using System.Text;
+using Newtonsoft.Json.Linq;
 
 public class MyDetector :MonoBehaviour {
     [SerializeField] int _decimation = 4;
@@ -60,12 +61,160 @@ public class MyDetector :MonoBehaviour {
         //_drawer.Dispose();
     }
 
+    bool isProcessing = false;
+
+    void DrawRect()
+    {
+
+        Vector3 rectanglePosition = new Vector3(0f, 0f, 0f);
+        float width_ = 5f;
+        float height_ = 5f;
+        Color rectangleColor = Color.blue;
+        Gizmos.color = rectangleColor;
+        Material rectangleMaterial = new Material(Shader.Find("Standard"));
+        rectangleMaterial.color = Color.cyan;
+
+
+        Mesh mesh = new Mesh();
+
+        // Define vertices for a rectangle
+        Vector3[] vertices = new Vector3[]
+        {
+            new Vector3(-width_ * 0.5f, -height_ * 0.5f, 0f),
+            new Vector3(width_ * 0.5f, -height_ * 0.5f, 0f),
+            new Vector3(width_ * 0.5f, height_ * 0.5f, 0f),
+            new Vector3(-width_ * 0.5f, height_ * 0.5f, 0f),
+        };
+
+        // Define triangles
+        int[] triangles = new int[] { 0, 1, 2, 0, 2, 3 };
+
+        // Set vertices and triangles
+        mesh.vertices = vertices;
+        mesh.triangles = triangles;
+
+        // Draw the mesh
+        Graphics.DrawMesh(mesh, Matrix4x4.TRS(rectanglePosition, Quaternion.identity, Vector3.one), rectangleMaterial, 0);
+
+
+    }
+    void processImageForCubesDetectionAsync()
+    {
+        if (isProcessing)
+        {
+            //Debug.Log("Locked!");
+            return;
+        }
+
+        isProcessing = true;
+
+        //byte[] imageArray = System.IO.File.ReadAllBytes(@"YOUR_IMAGE.jpg");
+        byte[] imageArray = _textureData.EncodeToJPG();
+        string encoded = Convert.ToBase64String(imageArray);
+        byte[] data = Encoding.ASCII.GetBytes(encoded);
+
+        // Construct the URL
+        string uploadURL = "https://detect.roboflow.com/cube-detection-orbbf/1?api_key=1lPOuGzdqyHSz7qqWycT";
+
+
+        // Service Request Config
+        ServicePointManager.Expect100Continue = true;
+        ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
+
+        // Configure Request
+        WebRequest request = WebRequest.Create(uploadURL);
+        request.Method = "POST";
+        request.ContentType = "application/x-www-form-urlencoded";
+        request.ContentLength = data.Length;
+
+
+        //Debug.Log("Sending Image");
+        // Write Data
+        using (Stream stream = request.GetRequestStream())
+        {
+            stream.Write(data, 0, data.Length);
+        }
+
+
+        //Debug.Log("Processing Stream");
+        // Get Response
+        string responseContent = null;
+        using (WebResponse response = request.GetResponse())
+        {
+            using (Stream stream = response.GetResponseStream())
+            {
+                using (StreamReader sr99 = new StreamReader(stream))
+                {
+                    responseContent = sr99.ReadToEnd();
+                }
+            }
+        }
+
+        dynamic jsonData = JObject.Parse(responseContent);
+        JArray predictions = jsonData["predictions"];
+        if (predictions.Count == 0)
+        {
+            Debug.Log("No Cube Detected");
+        }
+        else
+        {
+            //Debug.Log("** Detection Results ** ");
+            foreach (var bounding_box in predictions)
+            {
+                float x = (float) bounding_box["x"];
+                float y = (float)bounding_box["y"];
+                float width = (float)bounding_box["width"];
+                float height = (float)bounding_box["height"];
+                var x1 = x - width / 2;
+                var x2 = x + width / 2;
+                var y1 = y - height / 2;
+                var y2 = y + height / 2;
+                var box = (x1, x2, y1, y2);
+                Debug.Log("Detected Cube (x1, x2, y1, y2) :: " + box);
+            }
+
+        }
+
+        //Debug.Log("Detection Response"+responseContent);
+        DrawRect();
+        isProcessing = false;
+        
+    }
+
+
+
+
+
+
+    int skip_frames = 0;
+    void detect_cubes()
+    {
+        //processImageForCubesDetectionAsync();
+
+        if (skip_frames <= 30)
+        {
+            skip_frames++;
+            return;
+
+        }
+        else
+        {
+            //Debug.Log("Detecting Cubes Now...");
+            skip_frames = 0;
+            processImageForCubesDetectionAsync();
+        }
+
+    } 
+
     void LateUpdate() {
         if(_aprilTagCamera == null) return;
 
         if(_isAprilTagCameraActive || _aprilTagCamera.gameObject.activeInHierarchy) {
+
+     
+
             // Set the Render Texture as the source for _webcamPreview if needed.
-            if(_webcamPreview != null) {
+            if (_webcamPreview != null) {
                 _webcamPreview.texture = _renderTexture;
             }
 
@@ -76,6 +225,8 @@ public class MyDetector :MonoBehaviour {
             _textureData.ReadPixels(new Rect(0, 0, _renderTexture.width, _renderTexture.height), 0, 0);
             _textureData.Apply();
 
+
+            detect_cubes();
             // AprilTag detection
             var fov = _referenceCamera.fieldOfView * Mathf.Deg2Rad;
             _detector.ProcessImage(_textureData.GetPixels32(), fov, _tagSize);
