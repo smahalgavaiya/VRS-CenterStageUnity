@@ -7,8 +7,14 @@ using System.IO;
 using System.Net;
 using System.Text;
 using Newtonsoft.Json.Linq;
+using System.Runtime.InteropServices;
 
 public class MyDetector :MonoBehaviour {
+
+    [DllImport("__Internal")]
+    private static extern void updateAprilTagDetectionData(float posX, float  posY, float  posZ, float pitch, float  roll, float  yaw);
+
+
     [SerializeField] int _decimation = 4;
     [SerializeField] float _tagSize = 0.05f;
     [SerializeField] Material _tagMaterial = null;
@@ -235,6 +241,29 @@ public class MyDetector :MonoBehaviour {
             foreach(var tag in _detector.DetectedTags) {
                 //_drawer.Draw(tag.ID, tag.Position, tag.Rotation, _tagSize);
                 Debug.Log(tag.Position);
+                float posX = tag.Position.x;
+                float posY = tag.Position.y;
+                float posZ = tag.Position.z;
+
+                Vector3 eulerAngles = tag.Rotation.eulerAngles;
+
+                float pitch = eulerAngles.x;
+                float roll = eulerAngles.y;
+                float yaw = eulerAngles.z;
+
+
+
+#if UNITY_WEBGL && !UNITY_EDITOR
+                try
+                {
+                    updateAprilTagDetectionData: function (posX, posY, posZ, pitch, roll, yaw);
+                }
+                catch {
+                    Debug.LogError("Error invoking updateAprilTagDetectionData");
+                }
+#endif
+
+
             }
 
             // Profile data output (with 30 frame interval)
