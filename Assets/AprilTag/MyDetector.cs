@@ -258,7 +258,7 @@ public class MyDetector :MonoBehaviour {
 #if UNITY_WEBGL && !UNITY_EDITOR
                 try
                 {
-                    updateAprilTagDetectionData: function (posX, posY, posZ, pitch, roll, yaw);
+                    updateAprilTagDetectionData(posX, posY, posZ, pitch, roll, yaw);
                 }
                 catch {
                     Debug.LogError("Error invoking updateAprilTagDetectionData");
