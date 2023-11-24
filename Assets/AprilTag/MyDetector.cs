@@ -100,7 +100,7 @@ public class MyDetector :MonoBehaviour {
         mesh.triangles = triangles;
 
         // Draw the mesh
-        Graphics.DrawMesh(mesh, Matrix4x4.TRS(rectanglePosition, Quaternion.identity, Vector3.one), rectangleMaterial, 0);
+        //Graphics.DrawMesh(mesh, Matrix4x4.TRS(rectanglePosition, Quaternion.identity, Vector3.one), rectangleMaterial, 0);
 
 
     }
@@ -182,7 +182,7 @@ public class MyDetector :MonoBehaviour {
         }
 
         //Debug.Log("Detection Response"+responseContent);
-        DrawRect();
+        //DrawRect();
         isProcessing = false;
         
     }
@@ -251,6 +251,8 @@ public class MyDetector :MonoBehaviour {
                 float roll = eulerAngles.y;
                 float yaw = eulerAngles.z;
 
+                Debug.Log("PosX: " +posX+", PosY: "+posY+", PosZ:"+ posZ+", Pitch:"+ pitch+", Roll:"+ roll+", Yaw:"+yaw);
+
 
 
 #if UNITY_WEBGL && !UNITY_EDITOR
@@ -264,6 +266,7 @@ public class MyDetector :MonoBehaviour {
 #endif
 
 
+                break;
             }
 
             // Profile data output (with 30 frame interval)
