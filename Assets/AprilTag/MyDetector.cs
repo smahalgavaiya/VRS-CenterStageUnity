@@ -1,5 +1,5 @@
 using UnityEngine;
-using AprilTag;
+//using AprilTag;
 using UnityEngine.UI;
 using System;
 
@@ -8,11 +8,62 @@ using System.Net;
 using System.Text;
 using Newtonsoft.Json.Linq;
 using System.Runtime.InteropServices;
+using UnityEngine;
+using UnityEngine.Networking;
+using System.Collections;
+
+
+
+
+[Serializable]
+public class Prediction
+{
+    public float x;
+    public float y;
+    public float width;
+    public float height;
+    public float confidence;
+  
+
+}
+
+[Serializable]
+public class DetectionImage
+{
+    public float width;
+    public float height;
+}
+
+[Serializable]
+public class DetectionResponseObj
+{
+    public float time;
+    public DetectionImage img;
+    public Prediction[] predictions;
+
+}
+
+
+
 
 public class MyDetector :MonoBehaviour {
 
     [DllImport("__Internal")]
     private static extern void updateAprilTagDetectionData(float posX, float  posY, float  posZ, float pitch, float  roll, float  yaw);
+
+    [DllImport("__Internal")]
+    private static extern void updateVisionMessage(string msg, float value);
+
+    [DllImport("__Internal")]
+    private static extern void updateCubeDetectionData(string detectionResponse);
+
+    [DllImport("__Internal")]
+    private static extern void UploadImage(string url, string formDataName, string fileName, byte[] fileData, int fileDataLength, string otherData);
+
+    
+
+
+
 
 
     [SerializeField] int _decimation = 4;
@@ -23,7 +74,7 @@ public class MyDetector :MonoBehaviour {
     //[SerializeField] TMP_Text _debugText = null;
     [SerializeField] CameraSwitcher cameraSwitcher;
 
-    AprilTag.TagDetector _detector;
+    //AprilTag.TagDetector _detector;
     //TagDrawer _drawer;
 
     private Camera _referenceCamera;
@@ -40,7 +91,7 @@ public class MyDetector :MonoBehaviour {
 
     private void StartRendering() {
         var dims = new Vector2Int(_renderTexture.width, _renderTexture.height); // Use the Render Texture dimensions.
-        _detector = new TagDetector(dims.x, dims.y, _decimation);
+        //_detector = new TagDetector(dims.x, dims.y, _decimation);
         //_drawer = new TagDrawer(_tagMaterial);
 
         // Initialize the Texture2D with the dimensions of the Render Texture.
@@ -63,7 +114,7 @@ public class MyDetector :MonoBehaviour {
     }
 
     void OnDestroy() {
-        _detector.Dispose();
+        //_detector.Dispose();
         //_drawer.Dispose();
     }
 
@@ -104,6 +155,104 @@ public class MyDetector :MonoBehaviour {
 
 
     }
+
+
+    IEnumerator PostRequestWithImage()
+    {
+        // Load the image file as binary data
+
+        Debug.Log("Requesting Now ...");
+
+        byte[] imageArray = _textureData.EncodeToJPG();
+        string encoded = Convert.ToBase64String(imageArray);
+        byte[] imageBytes = Encoding.ASCII.GetBytes(encoded);
+
+        string apiUrl = "https://detect.roboflow.com/cube-detection-orbbf/1?api_key=1lPOuGzdqyHSz7qqWycT";
+
+        // Create a UnityWebRequest object
+        UnityWebRequest www = UnityWebRequest.PostWwwForm(apiUrl, "POST");
+
+        // Set the image data in the request
+        www.uploadHandler = new UploadHandlerRaw(imageBytes);
+        www.uploadHandler.contentType = "image/png";
+
+        // Set other headers if needed
+        www.SetRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+        // Send the request
+        yield return www.SendWebRequest();
+
+        // Check for errors
+        if (www.result != UnityWebRequest.Result.Success)
+        {
+            Debug.LogError("Error: " + www.error);
+            Debug.LogError("Response Code: " + www.responseCode);
+            Debug.LogError("Response Text: " + www.downloadHandler.text);
+        }
+        else
+        {
+            // Request successful
+            Debug.Log("Upload complete!");
+            string responseContent = www.downloadHandler.text;
+            Debug.Log("Server response (DetectionResult): " + responseContent);
+
+#if UNITY_WEBGL && !UNITY_EDITOR
+                try
+                {
+                    updateCubeDetectionData(responseContent);
+                }
+                catch {
+                    Debug.LogError("Error invoking updateAprilTagDetectionData");
+                }
+#endif
+
+
+
+
+
+
+            dynamic jsonData = JObject.Parse(responseContent);
+            JArray predictions = jsonData["predictions"];
+            if (predictions.Count == 0)
+            {
+                Debug.Log("DetectionResult: No Cube Detected");
+            }
+            else
+            {
+                //Debug.Log("** Detection Results ** ");
+                foreach (var bounding_box in predictions)
+                {
+                    float x = (float)bounding_box["x"];
+                    float y = (float)bounding_box["y"];
+                    float width = (float)bounding_box["width"];
+                    float height = (float)bounding_box["height"];
+                    float x1 = x - width / 2;
+                    float x2 = x + width / 2;
+                    float y1 = y - height / 2;
+                    float y2 = y + height / 2;
+                    var box = (x1, x2, y1, y2);
+                    Debug.Log("DetectionResult: Detected Cube (x1, x2, y1, y2) :: " + box);
+                    //updateAprilTagDetectionData(x1, x2, y1, y2, 0.2f, 0.1f);
+#if UNITY_WEBGL && !UNITY_EDITOR
+                try
+                {
+                
+                }
+                catch {
+                    Debug.LogError("Error invoking updateAprilTagDetectionData");
+                }
+#endif
+                }
+
+            }
+
+
+        }
+
+    }
+
+
+
     void processImageForCubesDetectionAsync()
     {
         if (isProcessing)
@@ -113,19 +262,20 @@ public class MyDetector :MonoBehaviour {
         }
 
         isProcessing = true;
-
         //byte[] imageArray = System.IO.File.ReadAllBytes(@"YOUR_IMAGE.jpg");
         byte[] imageArray = _textureData.EncodeToJPG();
         string encoded = Convert.ToBase64String(imageArray);
         byte[] data = Encoding.ASCII.GetBytes(encoded);
+
+
 
         // Construct the URL
         string uploadURL = "https://detect.roboflow.com/cube-detection-orbbf/1?api_key=1lPOuGzdqyHSz7qqWycT";
 
 
         // Service Request Config
-        ServicePointManager.Expect100Continue = true;
-        ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
+        //ServicePointManager.Expect100Continue = true;
+        //ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
 
         // Configure Request
         WebRequest request = WebRequest.Create(uploadURL);
@@ -142,6 +292,7 @@ public class MyDetector :MonoBehaviour {
         }
 
 
+  
         //Debug.Log("Processing Stream");
         // Get Response
         string responseContent = null;
@@ -171,12 +322,23 @@ public class MyDetector :MonoBehaviour {
                 float y = (float)bounding_box["y"];
                 float width = (float)bounding_box["width"];
                 float height = (float)bounding_box["height"];
-                var x1 = x - width / 2;
-                var x2 = x + width / 2;
-                var y1 = y - height / 2;
-                var y2 = y + height / 2;
+                float x1 = x - width / 2;
+                float x2 = x + width / 2;
+                float y1 = y - height / 2;
+                float y2 = y + height / 2;
                 var box = (x1, x2, y1, y2);
                 Debug.Log("Detected Cube (x1, x2, y1, y2) :: " + box);
+#if UNITY_WEBGL && !UNITY_EDITOR
+                try
+                {
+                    float v = 123.33f;
+                    updateVisionMessage("CubeDetectionData",v);
+                    updateAprilTagDetectionData(x1, x2, y1, y2, 0.2f, 0.1f);
+                }
+                catch {
+                    Debug.LogError("Error invoking updateAprilTagDetectionData");
+                }
+#endif
             }
 
         }
@@ -197,7 +359,7 @@ public class MyDetector :MonoBehaviour {
     {
         //processImageForCubesDetectionAsync();
 
-        if (skip_frames <= 30)
+        if (skip_frames <= 35)
         {
             skip_frames++;
             return;
@@ -205,9 +367,13 @@ public class MyDetector :MonoBehaviour {
         }
         else
         {
-            //Debug.Log("Detecting Cubes Now...");
+
+            Debug.Log("Detecting Cubes Now...");
             skip_frames = 0;
-            processImageForCubesDetectionAsync();
+            //processImageForCubesDetectionAsync();
+            //PostRequestWithImage();
+            StartCoroutine(PostRequestWithImage());
+
         }
 
     } 
@@ -235,9 +401,10 @@ public class MyDetector :MonoBehaviour {
             detect_cubes();
             // AprilTag detection
             var fov = _referenceCamera.fieldOfView * Mathf.Deg2Rad;
-            _detector.ProcessImage(_textureData.GetPixels32(), fov, _tagSize);
+            //_detector.ProcessImage(_textureData.GetPixels32(), fov, _tagSize);
 
             // Detected tag visualization
+            /*
             foreach(var tag in _detector.DetectedTags) {
                 //_drawer.Draw(tag.ID, tag.Position, tag.Rotation, _tagSize);
                 Debug.Log(tag.Position);
@@ -268,6 +435,7 @@ public class MyDetector :MonoBehaviour {
 
                 break;
             }
+            */
 
             // Profile data output (with 30 frame interval)
             //if(Time.frameCount % 30 == 0)
