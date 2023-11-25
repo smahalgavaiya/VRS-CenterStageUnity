@@ -94,6 +94,8 @@ public class MyDetector :MonoBehaviour {
         string encoded = Convert.ToBase64String(imageArray);
         byte[] imageBytes = Encoding.ASCII.GetBytes(encoded);
 
+        //File.WriteAllBytes("/Users/umarfarooq/Downloads/image-to-test-.png", imageArray);
+
         string apiUrl = "https://detect.roboflow.com/cube-detection-orbbf/1?api_key=1lPOuGzdqyHSz7qqWycT";
 
         // Create a UnityWebRequest object
