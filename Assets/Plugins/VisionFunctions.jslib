@@ -3,8 +3,8 @@ mergeInto(LibraryManager.library, {
     setAprilTagDetectionData(posX, posY, posZ, pitch, roll, yaw);
   },
 
-  updateAprilTagDetectionData: function (detectionResponse) {
-    console.log({ detectionResponse: Pointer_stringify(detectionResponse) });
+  updateCubeDetectionData: function (detectionResponse) {
+    setCubeDetectionData(Pointer_stringify(detectionResponse));
   },
 
   updateVisionMessage: function (msg, value) {
