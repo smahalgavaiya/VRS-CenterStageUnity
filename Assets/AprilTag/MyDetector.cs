@@ -38,6 +38,10 @@ public class MyDetector :MonoBehaviour {
     //[SerializeField] TMP_Text _debugText = null;
     [SerializeField] CameraSwitcher cameraSwitcher;
 
+    [SerializeField]
+    Camera cam;
+
+
     //AprilTag.TagDetector _detector;
     //TagDrawer _drawer;
 
@@ -83,20 +87,118 @@ public class MyDetector :MonoBehaviour {
     }
 
 
+    Texture2D ResizeTextureMethod(Texture2D sourceTexture, int targetWidth, int targetHeight)
+    {
+        // Create a new texture with the desired dimensions
+        Texture2D resizedTexture = new Texture2D(targetWidth, targetHeight);
+
+        // Calculate the ratio between the source and target dimensions
+        float xRatio = (float)sourceTexture.width / targetWidth;
+        float yRatio = (float)sourceTexture.height / targetHeight;
+
+        Debug.Log("ResizeTextureInfor"+ targetWidth+" "+ targetHeight+", "+ xRatio+", "+yRatio);
+
+        // Iterate through the pixels of the new texture and sample from the original texture
+        for (int y = 0; y < targetHeight; y++)
+        {
+            for (int x = 0; x < targetWidth; x++)
+            {
+                // Calculate the corresponding coordinates in the original texture
+                int sourceX = Mathf.FloorToInt(x * xRatio);
+                int sourceY = Mathf.FloorToInt(y * yRatio);
+
+                // Sample the color from the original texture
+                Color color = sourceTexture.GetPixel(sourceX, sourceY);
+
+                // Set the color in the new texture
+                resizedTexture.SetPixel(x, y, color);
+            }
+        }
+
+        // Apply changes to the new texture
+        resizedTexture.Apply();
+
+        return resizedTexture;
+    }
 
     IEnumerator PostRequestWithImage()
     {
+
+        cam = _aprilTagCamera;
+
+        RenderTexture mRt = new RenderTexture(_renderTexture.width, _renderTexture.height, _renderTexture.depth, RenderTextureFormat.ARGB32, RenderTextureReadWrite.sRGB);
+        mRt.antiAliasing = _renderTexture.antiAliasing;
+
+        float aspect_ratio = (float) mRt.width / mRt.height;
+
+     
+        int target_text_width = 340;
+        int target_text_height = Convert.ToInt32(target_text_width / aspect_ratio);
+        Debug.Log("mRt Values"+", "+aspect_ratio +", "+ target_text_width +" "+ mRt.width+", "+ mRt.height + ", " + target_text_height);
+
+        var tex = new Texture2D(mRt.width, mRt.height, TextureFormat.ARGB32, false);
+        cam.targetTexture = mRt;
+        cam.Render();
+        RenderTexture.active = mRt;
+
+        tex.ReadPixels(new Rect(0, 0, mRt.width, mRt.height), 0, 0);
+        tex.Apply();
+        //tex.Reinitialize(target_text_width, target_text_height);
+
+        var path = Path.Combine(Application.persistentDataPath, "Umar.png");
+        File.WriteAllBytes(path, tex.EncodeToPNG());
+        Debug.Log("Saved file to: " + path);
+
+        //DestroyImmediate(tex);
+
+        //cam.targetTexture = _renderTexture;
+        //cam.Render();
+        //RenderTexture.active = _renderTexture;
+
+        //DestroyImmediate(mRt);
+
+
+
         // Load the image file as binary data
 
         Debug.Log("Requesting Now ...");
 
-        byte[] imageArray = _textureData.EncodeToJPG();
-        string encoded = Convert.ToBase64String(imageArray);
-        byte[] imageBytes = Encoding.ASCII.GetBytes(encoded);
+        //byte[] imageArray = _textureData.EncodeToPNG();
+        //string encoded = Convert.ToBase64String(imageArray);
+
+   
+        
+        byte[] imageBytes_ = _textureData.EncodeToPNG();
+        //string encoded = Convert.ToBase64String(imageArray);
+        //byte[] imageBytes_= Encoding.ASCII.GetBytes(encoded);
+
+
+        //byte[] textData = Encoding.ASCII.GetBytes(encoded);
+
+
+
+        string fileName = "SavedImage.png";
+        string filePath = Path.Combine(Application.persistentDataPath, fileName);
+        Debug.Log("filePath" + filePath);
+
+        // Write the image bytes to the file
+        File.WriteAllBytes(filePath, imageBytes_);
+
+ 
+
+
+
+
+        byte[] imageBytes = File.ReadAllBytes(filePath);
+
+
 
         //File.WriteAllBytes("/Users/umarfarooq/Downloads/image-to-test-.png", imageArray);
 
-        string apiUrl = "https://detect.roboflow.com/cube-detection-orbbf/1?api_key=1lPOuGzdqyHSz7qqWycT";
+        string apiUrl = "http://54.206.117.183:4008/detectCubes";
+        apiUrl = "http://0.0.0.0:4008/detectCubes";
+
+        /*
 
         // Create a UnityWebRequest object
         UnityWebRequest www = UnityWebRequest.PostWwwForm(apiUrl, "POST");
@@ -104,12 +206,40 @@ public class MyDetector :MonoBehaviour {
         // Set the image data in the request
         www.uploadHandler = new UploadHandlerRaw(imageBytes);
         www.uploadHandler.contentType = "image/png";
+        
 
         // Set other headers if needed
         www.SetRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        //www.SetRequestHeader("Content-Type", "multipart/form-data");
+        //www.SetRequestHeader("Key", "frame"); // Set the file key here
+
 
         // Send the request
         yield return www.SendWebRequest();
+
+        */
+
+        
+
+        WWWForm form = new WWWForm();
+
+        // Load the file into a byte array
+
+
+        // Add the file data to the form with a specified key and file name
+
+        Texture2D resizedTexture = ResizeTextureMethod(tex, target_text_width, target_text_height);
+
+
+        form.AddBinaryData("frame", resizedTexture.EncodeToPNG(), "frame.png", "image/png");
+
+        UnityWebRequest www = UnityWebRequest.Post(apiUrl, form);
+        //www.SetRequestHeader("Content-Type", "application/octet-stream");
+
+        yield return www.SendWebRequest();
+
+       
+
 
         // Check for errors
         if (www.result != UnityWebRequest.Result.Success)
