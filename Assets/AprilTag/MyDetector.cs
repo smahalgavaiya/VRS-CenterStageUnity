@@ -134,7 +134,7 @@ public class MyDetector :MonoBehaviour {
      
         int target_text_width = 340;
         int target_text_height = Convert.ToInt32(target_text_width / aspect_ratio);
-        Debug.Log("mRt Values"+", "+aspect_ratio +", "+ target_text_width +" "+ mRt.width+", "+ mRt.height + ", " + target_text_height);
+        //Debug.Log("mRt Values"+", "+aspect_ratio +", "+ target_text_width +" "+ mRt.width+", "+ mRt.height + ", " + target_text_height);
 
         var tex = new Texture2D(mRt.width, mRt.height, TextureFormat.ARGB32, false);
         cam.targetTexture = mRt;
@@ -145,100 +145,21 @@ public class MyDetector :MonoBehaviour {
         tex.Apply();
         //tex.Reinitialize(target_text_width, target_text_height);
 
-        var path = Path.Combine(Application.persistentDataPath, "Umar.png");
-        File.WriteAllBytes(path, tex.EncodeToPNG());
-        Debug.Log("Saved file to: " + path);
-
-        //DestroyImmediate(tex);
-
-        //cam.targetTexture = _renderTexture;
-        //cam.Render();
-        //RenderTexture.active = _renderTexture;
-
-        //DestroyImmediate(mRt);
-
-
-
-        // Load the image file as binary data
-
-        Debug.Log("Requesting Now ...");
-
-        //byte[] imageArray = _textureData.EncodeToPNG();
-        //string encoded = Convert.ToBase64String(imageArray);
-
-   
-        
-        byte[] imageBytes_ = _textureData.EncodeToPNG();
-        //string encoded = Convert.ToBase64String(imageArray);
-        //byte[] imageBytes_= Encoding.ASCII.GetBytes(encoded);
-
-
-        //byte[] textData = Encoding.ASCII.GetBytes(encoded);
-
-
-
-        string fileName = "SavedImage.png";
-        string filePath = Path.Combine(Application.persistentDataPath, fileName);
-        Debug.Log("filePath" + filePath);
-
-        // Write the image bytes to the file
-        File.WriteAllBytes(filePath, imageBytes_);
-
  
 
-
-
-
-        byte[] imageBytes = File.ReadAllBytes(filePath);
-
-
-
-        //File.WriteAllBytes("/Users/umarfarooq/Downloads/image-to-test-.png", imageArray);
+        Debug.Log("Requesting Now ...");
 
         string apiUrl = "http://54.206.117.183:4008/detectCubes";
         apiUrl = "http://0.0.0.0:4008/detectCubes";
 
-        /*
-
-        // Create a UnityWebRequest object
-        UnityWebRequest www = UnityWebRequest.PostWwwForm(apiUrl, "POST");
-
-        // Set the image data in the request
-        www.uploadHandler = new UploadHandlerRaw(imageBytes);
-        www.uploadHandler.contentType = "image/png";
-        
-
-        // Set other headers if needed
-        www.SetRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-        //www.SetRequestHeader("Content-Type", "multipart/form-data");
-        //www.SetRequestHeader("Key", "frame"); // Set the file key here
-
-
-        // Send the request
-        yield return www.SendWebRequest();
-
-        */
-
-        
-
         WWWForm form = new WWWForm();
-
-        // Load the file into a byte array
-
-
-        // Add the file data to the form with a specified key and file name
-
         Texture2D resizedTexture = ResizeTextureMethod(tex, target_text_width, target_text_height);
-
-
         form.AddBinaryData("frame", resizedTexture.EncodeToPNG(), "frame.png", "image/png");
 
         UnityWebRequest www = UnityWebRequest.Post(apiUrl, form);
         //www.SetRequestHeader("Content-Type", "application/octet-stream");
 
         yield return www.SendWebRequest();
-
-       
 
 
         // Check for errors
