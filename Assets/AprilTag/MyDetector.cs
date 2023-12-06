@@ -150,14 +150,13 @@ public class MyDetector :MonoBehaviour {
         Debug.Log("Requesting Now ...");
 
         string apiUrl = "http://54.206.117.183:4008/detectCubes";
-        apiUrl = "http://0.0.0.0:4008/detectCubes";
+        //apiUrl = "http://0.0.0.0:4008/detectCubes";
 
         WWWForm form = new WWWForm();
         Texture2D resizedTexture = ResizeTextureMethod(tex, target_text_width, target_text_height);
-        form.AddBinaryData("frame", resizedTexture.EncodeToPNG(), "frame.png", "image/png");
+        form.AddBinaryData("frame", tex.EncodeToPNG(), "frame.png", "image/png");
 
         UnityWebRequest www = UnityWebRequest.Post(apiUrl, form);
-        //www.SetRequestHeader("Content-Type", "application/octet-stream");
 
         yield return www.SendWebRequest();
 
