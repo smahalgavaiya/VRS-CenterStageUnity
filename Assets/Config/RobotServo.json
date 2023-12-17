@@ -1,0 +1,27 @@
+{
+	"brands": [{
+		"name": "REV Smart Servo",
+		"default": 0,
+		"subtype": [],
+		"speed": {
+			"values": [0.14],
+			"units": "sec/60°"
+		},
+		"torque": {
+			"values": [13.5],
+			"units": "kg-cm"
+		}
+	}, {
+		"name": "GoBilda Dual Mode",
+		"default": 0,
+		"subtype": ["Torque", "Speed", "Super Speed"],
+		"speed": {
+			"values": [0.20, 0.09, 0.043],
+			"units": "sec/60°"
+		},
+		"torque": {
+			"values": [21.6, 9.3, 4.7],
+			"units": "kg-cm"
+		}
+	}]
+}

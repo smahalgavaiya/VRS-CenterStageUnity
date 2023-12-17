@@ -1,0 +1,92 @@
+{
+    "brands": [{
+            "name": "TorqueNADO",
+            "default": ["gearbox", 2],
+            "gearbox": {
+                "values": [20, 40, 60]
+            },
+            "speed": {
+                "gearbox-ratio": 6000,
+                "units": "RPM"
+            },
+            "torque": {
+                "gearbox-mult": 11.66,
+                "units": "oz-in",
+            },
+            "encoder": {
+                "gearbox-mult": 24
+            }
+        }, {
+            "name": "YellowJacket",
+            "default": ["speed", 4],
+            "gearbox": {
+                "values": [1, 3.7, 5.2, 13.7, 19.2, 26.9, 50.9, 71.2, 99.5, 139, 188],
+		"speed-ratio": 5985.7
+            },
+            "speed": {
+                "values": [6000, 1620, 1150, 435, 312, 223, 117, 84, 60, 43, 30],
+                "gearbox-ratio": 5985.7,
+                "units": "RPM"
+            },
+            "torque": {
+                "gearbox-mult": 1.3274,
+                "value-offset": 0.4802,
+                "units": "kg-cm"
+            },
+            "encoder": {
+                "gearbox-mult": 28
+            }
+        }, {
+            "name": "NeveRest",
+            "default": ["gearbox", 6],
+            "gearbox": {
+                "values": [3.7, 13.7, 19.2, 20, 40, 50.9, 60, 263.7]
+            },
+            "speed": {
+                "gearbox-ratio": 6605.4,
+                "units": "RPM"
+            },
+            "torque": {
+                "gearbox-mult": 8.75,
+                "units": "oz-in"
+            },
+            "encoder": {
+                "gearbox-mult": 28
+            }
+        }, {
+            "name": "REV HD Hex",
+            "default": ["gearbox", 1],
+            "gearbox": {
+                "values": [20, 40]
+            },
+            "speed": {
+                "gearbox-ratio": 6000,
+                "units": "RPM"
+            },
+            "torque": {
+                "gearbox-mult": 14.87,
+                "units": "oz-in"
+            },
+            "encoder": {
+                "gearbox-mult": 28
+            }
+        }, {
+            "name": "REV Core Hex",
+            "default": ["gearbox", 0],
+            "gearbox": {
+                "values": [72]
+            },
+            "speed": {
+                "gearbox-ratio": 9000,
+                "units": "RPM"
+            },
+            "torque": {
+                "gearbox-mult": 0.0444,
+                "units": "Nm"
+            },
+            "encoder": {
+                "gearbox-mult": 4
+            }
+        }
+    ]
+}

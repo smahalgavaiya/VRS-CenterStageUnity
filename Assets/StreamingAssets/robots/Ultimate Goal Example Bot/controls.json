@@ -1,0 +1,562 @@
+{
+  "maps": [
+    {
+      "name": "Driver Controls",
+      "id": "2fd10d8f-edf9-4878-936d-6791f2f6bb27",
+      "actions": [
+        {
+          "name": "Drive",
+          "type": "Value",
+          "id": "79bbcab6-c5f1-4d2c-a7d8-9c95a9f991ca",
+          "expectedControlType": "Axis",
+          "processors": "",
+          "interactions": "",
+          "initialStateCheck": true
+        },
+        {
+          "name": "Strafe",
+          "type": "Value",
+          "id": "426ba58f-acbc-4550-8765-5312477228d0",
+          "expectedControlType": "Axis",
+          "processors": "",
+          "interactions": "",
+          "initialStateCheck": true
+        },
+        {
+          "name": "Rotate",
+          "type": "Value",
+          "id": "b470a476-e965-44eb-bd87-e76d9a23436a",
+          "expectedControlType": "Axis",
+          "processors": "",
+          "interactions": "",
+          "initialStateCheck": true
+        },
+        {
+          "name": "RotatePOV",
+          "type": "Value",
+          "id": "a6e7f89c-71aa-408d-b850-9f02b65dca6d",
+          "expectedControlType": "Axis",
+          "processors": "",
+          "interactions": "",
+          "initialStateCheck": true
+        },
+        {
+          "name": "RDriveTank",
+          "type": "Value",
+          "id": "a3a306e9-b2d2-426f-9604-43ee377b9c64",
+          "expectedControlType": "Axis",
+          "processors": "",
+          "interactions": "",
+          "initialStateCheck": true
+        },
+        {
+          "name": "Motor0",
+          "type": "Button",
+          "id": "8f6844ed-4c92-41c9-8a26-76130f4e0a98",
+          "expectedControlType": "Button",
+          "processors": "",
+          "interactions": "",
+          "initialStateCheck": false
+        },
+        {
+          "name": "Motor1",
+          "type": "Button",
+          "id": "8ef223ce-165a-45c4-9c5f-337630a9e6c0",
+          "expectedControlType": "Button",
+          "processors": "",
+          "interactions": "",
+          "initialStateCheck": false
+        },
+        {
+          "name": "Motor2",
+          "type": "Button",
+          "id": "61127630-e19e-45b9-afe3-7c88fac4206a",
+          "expectedControlType": "Button",
+          "processors": "",
+          "interactions": "",
+          "initialStateCheck": false
+        },
+        {
+          "name": "Motor3",
+          "type": "Button",
+          "id": "bfca9a79-5a25-432e-8d01-74fab19f6cd6",
+          "expectedControlType": "Button",
+          "processors": "",
+          "interactions": "",
+          "initialStateCheck": false
+        },
+        {
+          "name": "Motor4",
+          "type": "Button",
+          "id": "ce3b73fd-c683-4fb5-8abf-2efd6a26d023",
+          "expectedControlType": "Button",
+          "processors": "",
+          "interactions": "",
+          "initialStateCheck": false
+        },
+        {
+          "name": "Motor5",
+          "type": "Button",
+          "id": "d3bd3375-81a8-46c5-8a33-090a54fd1b97",
+          "expectedControlType": "Button",
+          "processors": "",
+          "interactions": "",
+          "initialStateCheck": false
+        },
+        {
+          "name": "Motor6",
+          "type": "Button",
+          "id": "dbb91f3a-c685-4b76-b0c2-4750f0830cef",
+          "expectedControlType": "Button",
+          "processors": "",
+          "interactions": "",
+          "initialStateCheck": false
+        },
+        {
+          "name": "Motor7",
+          "type": "Button",
+          "id": "18dbb174-32f8-4520-bcb7-c5eaf49409f1",
+          "expectedControlType": "Button",
+          "processors": "",
+          "interactions": "",
+          "initialStateCheck": false
+        }
+      ],
+      "bindings": [
+        {
+          "name": "1D Axis",
+          "id": "",
+          "path": "1DAxis",
+          "interactions": "",
+          "processors": "",
+          "groups": "",
+          "action": "Drive",
+          "isComposite": true,
+          "isPartOfComposite": false
+        },
+        {
+          "name": "positive",
+          "id": "",
+          "path": "<Keyboard>/w",
+          "interactions": "",
+          "processors": "",
+          "groups": "",
+          "action": "Drive",
+          "isComposite": false,
+          "isPartOfComposite": true
+        },
+        {
+          "name": "negative",
+          "id": "",
+          "path": "<Keyboard>/s",
+          "interactions": "",
+          "processors": "",
+          "groups": "",
+          "action": "Drive",
+          "isComposite": false,
+          "isPartOfComposite": true
+        },
+        {
+          "name": "",
+          "id": "",
+          "path": "<Gamepad>/leftStick/y",
+          "interactions": "",
+          "processors": "",
+          "groups": "",
+          "action": "Drive",
+          "isComposite": false,
+          "isPartOfComposite": false
+        },
+        {
+          "name": "1D Axis",
+          "id": "",
+          "path": "1DAxis",
+          "interactions": "",
+          "processors": "",
+          "groups": "",
+          "action": "Strafe",
+          "isComposite": true,
+          "isPartOfComposite": false
+        },
+        {
+          "name": "positive",
+          "id": "",
+          "path": "<Keyboard>/d",
+          "interactions": "",
+          "processors": "",
+          "groups": "",
+          "action": "Strafe",
+          "isComposite": false,
+          "isPartOfComposite": true
+        },
+        {
+          "name": "negative",
+          "id": "",
+          "path": "<Keyboard>/a",
+          "interactions": "",
+          "processors": "",
+          "groups": "",
+          "action": "Strafe",
+          "isComposite": false,
+          "isPartOfComposite": true
+        },
+        {
+          "name": "",
+          "id": "",
+          "path": "<Gamepad>/leftStick/x",
+          "interactions": "",
+          "processors": "",
+          "groups": "",
+          "action": "Strafe",
+          "isComposite": false,
+          "isPartOfComposite": false
+        },
+        {
+          "name": "1D Axis",
+          "id": "",
+          "path": "1DAxis",
+          "interactions": "",
+          "processors": "",
+          "groups": "",
+          "action": "Rotate",
+          "isComposite": true,
+          "isPartOfComposite": false
+        },
+        {
+          "name": "positive",
+          "id": "",
+          "path": "<Keyboard>/e",
+          "interactions": "",
+          "processors": "",
+          "groups": "",
+          "action": "Rotate",
+          "isComposite": false,
+          "isPartOfComposite": true
+        },
+        {
+          "name": "negative",
+          "id": "",
+          "path": "<Keyboard>/q",
+          "interactions": "",
+          "processors": "",
+          "groups": "",
+          "action": "Rotate",
+          "isComposite": false,
+          "isPartOfComposite": true
+        },
+        {
+          "name": "",
+          "id": "",
+          "path": "<Gamepad>/rightStick/x",
+          "interactions": "",
+          "processors": "",
+          "groups": "",
+          "action": "Rotate",
+          "isComposite": false,
+          "isPartOfComposite": false
+        },
+        {
+          "name": "",
+          "id": "",
+          "path": "<Gamepad>/dpad/down",
+          "interactions": "",
+          "processors": "Scale",
+          "groups": "",
+          "action": "Motor0",
+          "isComposite": false,
+          "isPartOfComposite": false
+        },
+        {
+          "name": "",
+          "id": "",
+          "path": "<Keyboard>/1",
+          "interactions": "",
+          "processors": "Scale",
+          "groups": "",
+          "action": "Motor0",
+          "isComposite": false,
+          "isPartOfComposite": false
+        },
+        {
+          "name": "",
+          "id": "",
+          "path": "<Gamepad>/dpad/right",
+          "interactions": "",
+          "processors": "Scale",
+          "groups": "",
+          "action": "Motor1",
+          "isComposite": false,
+          "isPartOfComposite": false
+        },
+        {
+          "name": "",
+          "id": "",
+          "path": "<Keyboard>/2",
+          "interactions": "",
+          "processors": "Scale",
+          "groups": "",
+          "action": "Motor1",
+          "isComposite": false,
+          "isPartOfComposite": false
+        },
+        {
+          "name": "",
+          "id": "",
+          "path": "<Gamepad>/dpad/left",
+          "interactions": "",
+          "processors": "Scale",
+          "groups": "",
+          "action": "Motor2",
+          "isComposite": false,
+          "isPartOfComposite": false
+        },
+        {
+          "name": "",
+          "id": "",
+          "path": "<Keyboard>/3",
+          "interactions": "",
+          "processors": "Scale",
+          "groups": "",
+          "action": "Motor2",
+          "isComposite": false,
+          "isPartOfComposite": false
+        },
+        {
+          "name": "",
+          "id": "",
+          "path": "<Gamepad>/dpad/up",
+          "interactions": "",
+          "processors": "Scale",
+          "groups": "",
+          "action": "Motor3",
+          "isComposite": false,
+          "isPartOfComposite": false
+        },
+        {
+          "name": "",
+          "id": "",
+          "path": "<Keyboard>/4",
+          "interactions": "",
+          "processors": "Scale",
+          "groups": "",
+          "action": "Motor3",
+          "isComposite": false,
+          "isPartOfComposite": false
+        },
+        {
+          "name": "1D Axis",
+          "id": "",
+          "path": "1DAxis",
+          "interactions": "",
+          "processors": "",
+          "groups": "",
+          "action": "RDriveTank",
+          "isComposite": true,
+          "isPartOfComposite": false
+        },
+        {
+          "name": "positive",
+          "id": "",
+          "path": "<Keyboard>/upArrow",
+          "interactions": "",
+          "processors": "",
+          "groups": "",
+          "action": "RDriveTank",
+          "isComposite": false,
+          "isPartOfComposite": true
+        },
+        {
+          "name": "negative",
+          "id": "",
+          "path": "<Keyboard>/downArrow",
+          "interactions": "",
+          "processors": "",
+          "groups": "",
+          "action": "RDriveTank",
+          "isComposite": false,
+          "isPartOfComposite": true
+        },
+        {
+          "name": "",
+          "id": "",
+          "path": "<Gamepad>/rightStick/y",
+          "interactions": "",
+          "processors": "",
+          "groups": "",
+          "action": "RDriveTank",
+          "isComposite": false,
+          "isPartOfComposite": false
+        },
+        {
+          "name": "1D Axis",
+          "id": "",
+          "path": "1DAxis",
+          "interactions": "",
+          "processors": "",
+          "groups": "",
+          "action": "RotatePOV",
+          "isComposite": true,
+          "isPartOfComposite": false
+        },
+        {
+          "name": "positive",
+          "id": "",
+          "path": "<Keyboard>/d",
+          "interactions": "",
+          "processors": "",
+          "groups": "",
+          "action": "RotatePOV",
+          "isComposite": false,
+          "isPartOfComposite": true
+        },
+        {
+          "name": "negative",
+          "id": "",
+          "path": "<Keyboard>/a",
+          "interactions": "",
+          "processors": "",
+          "groups": "",
+          "action": "RotatePOV",
+          "isComposite": false,
+          "isPartOfComposite": true
+        },
+        {
+          "name": "",
+          "id": "",
+          "path": "<Gamepad>/rightStick/x",
+          "interactions": "",
+          "processors": "",
+          "groups": "",
+          "action": "RotatePOV",
+          "isComposite": false,
+          "isPartOfComposite": false
+        },
+        {
+          "name": "",
+          "id": "",
+          "path": "<Gamepad>/buttonSouth",
+          "interactions": "",
+          "processors": "Scale",
+          "groups": "",
+          "action": "Motor4",
+          "isComposite": false,
+          "isPartOfComposite": false
+        },
+        {
+          "name": "",
+          "id": "",
+          "path": "<Keyboard>/5",
+          "interactions": "",
+          "processors": "Scale",
+          "groups": "",
+          "action": "Motor4",
+          "isComposite": false,
+          "isPartOfComposite": false
+        },
+        {
+          "name": "",
+          "id": "",
+          "path": "<Gamepad>/buttonEast",
+          "interactions": "",
+          "processors": "Scale",
+          "groups": "",
+          "action": "Motor5",
+          "isComposite": false,
+          "isPartOfComposite": false
+        },
+        {
+          "name": "",
+          "id": "",
+          "path": "<Keyboard>/6",
+          "interactions": "",
+          "processors": "Scale",
+          "groups": "",
+          "action": "Motor5",
+          "isComposite": false,
+          "isPartOfComposite": false
+        },
+        {
+          "name": "",
+          "id": "",
+          "path": "<Gamepad>/buttonWest",
+          "interactions": "",
+          "processors": "Scale",
+          "groups": "",
+          "action": "Motor6",
+          "isComposite": false,
+          "isPartOfComposite": false
+        },
+        {
+          "name": "",
+          "id": "",
+          "path": "<Keyboard>/a",
+          "interactions": "",
+          "processors": "scale(factor=.5)",
+          "groups": "",
+          "action": "Motor6",
+          "isComposite": false,
+          "isPartOfComposite": false
+        },
+        {
+          "name": "",
+          "id": "",
+          "path": "<Gamepad>/buttonNorth",
+          "interactions": "",
+          "processors": "Scale",
+          "groups": "",
+          "action": "Motor7",
+          "isComposite": false,
+          "isPartOfComposite": false
+        },
+        {
+          "name": "",
+          "id": "",
+          "path": "<Keyboard>/b",
+          "interactions": "",
+          "processors": "scale(factor=.5)",
+          "groups": "",
+          "action": "Motor7",
+          "isComposite": false,
+          "isPartOfComposite": false
+        }
+      ]
+    }
+  ],
+  "OtherData": {
+    "DriveType": 3,
+    "Motors": [
+      {
+        "Telemetry": "100",
+        "ToggleKeys": false
+      },
+      {
+        "Telemetry": "100",
+        "ToggleKeys": false
+      },
+      {
+        "Telemetry": "100",
+        "ToggleKeys": false
+      },
+      {
+        "Telemetry": "100",
+        "ToggleKeys": false
+      },
+      {
+        "Telemetry": "000",
+        "ToggleKeys": true
+      },
+      {
+        "Telemetry": "010",
+        "ToggleKeys": true
+      },
+      {
+        "Telemetry": "000",
+        "ToggleKeys": false
+      },
+      {
+        "Telemetry": "000",
+        "ToggleKeys": false
+      }
+    ]
+  }
+}
