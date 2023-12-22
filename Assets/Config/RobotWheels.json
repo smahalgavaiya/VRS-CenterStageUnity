@@ -1,0 +1,21 @@
+{
+	"brands": [{
+		"name": "Regular Wheel",
+		"uuid": "reg.wheel",
+		"default": 0,
+		"subtype": []
+	}, 
+	{
+		"name": "Omni Wheel",
+		"uuid": "omni.wheel",
+		"default": 0,
+		"subtype": ["Torque", "Speed", "Super Speed"]
+	},
+	{
+		"name": "Mecanum Wheel",
+		"uuid": "mecanum.wheel",
+		"default": 0,
+		"subtype": ["Torque", "Speed", "Super Speed"]
+	}
+	]
+}
