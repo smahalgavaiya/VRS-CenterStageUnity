@@ -23,7 +23,7 @@ public class UIDataFill : MonoBehaviour
 
     public void Fill(Dictionary<string,string> dataObject, GameObject objToFill)
     {
-        UIDataTag[] tags = objToFill.GetComponentsInChildren<UIDataTag>();
+        /*UIDataTag[] tags = objToFill.GetComponentsInChildren<UIDataTag>();
         //some kind of interface that will notify when data is changed.
         foreach (UIDataTag tag in tags)
         {
@@ -41,6 +41,6 @@ public class UIDataFill : MonoBehaviour
             {
                 fill.FillData(dataObject[fill.Tag]);
             }
-        }
+        }*/
     }
 }

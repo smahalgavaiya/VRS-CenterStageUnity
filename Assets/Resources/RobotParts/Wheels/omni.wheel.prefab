@@ -43,6 +43,7 @@ GameObject:
   - component: {fileID: 428167514710689749}
   - component: {fileID: 8597051796045723187}
   - component: {fileID: 4728414481651468679}
+  - component: {fileID: 5986121686239088618}
   m_Layer: 6
   m_Name: omni.wheel
   m_TagString: Untagged
@@ -121,6 +122,19 @@ MonoBehaviour:
   floorOffset: 0.0508
   wheelRopPos: 0
   receivingRb: {fileID: 0}
+--- !u!114 &5986121686239088618
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1687567553130339836}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d13453c10b7aaad4ba379f38629da85a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  selectMaterial: {fileID: 0}
 --- !u!1 &2355664193714514830
 GameObject:
   m_ObjectHideFlags: 0

@@ -4,6 +4,12 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
+public enum UIDataType
+{
+    Text, Number, Image
+}
+
+
 public class ShowControlGraphic : MonoBehaviour,I_UIDataFill
 {
     public string Tag { get { return datatag; } set { datatag = value; } }
