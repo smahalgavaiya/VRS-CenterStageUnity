@@ -4712,7 +4712,7 @@ GameObject:
   - component: {fileID: 2290712594954845046}
   - component: {fileID: 2290712594954845045}
   - component: {fileID: 7783722831666801697}
-  - component: {fileID: 545467288699734115}
+  - component: {fileID: 227752878098309943}
   m_Layer: 5
   m_Name: MotorConfig
   m_TagString: Untagged
@@ -4782,7 +4782,7 @@ MonoBehaviour:
   curMicroStep: 0
   microSteps: []
   requiredToContinue: 0
-  autoCompleteOnInteract: 0
+  autoCompleteOnInteract: 1
   stepComplete: 0
   autoStartInteraction: 1
   stepObj: {fileID: 0}
@@ -4798,9 +4798,9 @@ MonoBehaviour:
   StepStartInteraction:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: VFTC.Wizard.MotorConfigStep, com.vftc.robotimporter
-        m_MethodName: StartSelection
+      - m_Target: {fileID: 227752878098309943}
+        m_TargetAssemblyTypeName: SensorConfigStep, com.vftc.robotimporter
+        m_MethodName: setupStep
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4813,7 +4813,7 @@ MonoBehaviour:
   LoadStepConfig:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &545467288699734115
+--- !u!114 &227752878098309943
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4822,20 +4822,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 2290712594954845047}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b2c67bab96a9ed64daaa8e9f31cd8b77, type: 3}
+  m_Script: {fileID: 11500000, guid: 70ae158435f148e44adb2c3da63ce213, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  motorSettings: {fileID: 0}
-  motorItemPrefab: {fileID: 2065990827371765094, guid: 3cecb18060737794aa891e618ce28696,
-    type: 3}
-  motorList: {fileID: 0}
-  selectEffect: {fileID: 2100000, guid: 0e9339916a304244a8279d0b292fb797, type: 2}
-  motorIndex: 0
-  jointDisplay: {fileID: 0}
-  addMotorButton: {fileID: 0}
-  robotControl: {fileID: 0}
-  motorList_CH: {fileID: 0}
-  motorList_EH: {fileID: 0}
+  stepType: 0
+  bus_CH: {fileID: 2285504501493225161}
+  bus_EH: {fileID: 5685174310172660538}
 --- !u!1 &2290712594954886051
 GameObject:
   m_ObjectHideFlags: 0
@@ -5938,6 +5930,18 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 1218674819475643559}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &5685174310172660538 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6776881301745799069, guid: 937618646a0789d42bf0c25900f130ba,
+    type: 3}
+  m_PrefabInstance: {fileID: 1218674819475643559}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6085621312df011448478b104e3a32a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2340782164088365395
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6435,6 +6439,18 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 937618646a0789d42bf0c25900f130ba, type: 3}
+--- !u!114 &2285504501493225161 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6776881301745799069, guid: 937618646a0789d42bf0c25900f130ba,
+    type: 3}
+  m_PrefabInstance: {fileID: 4736642900824480084}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6085621312df011448478b104e3a32a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &2290712594403744448 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 6805450759165313940, guid: 937618646a0789d42bf0c25900f130ba,
