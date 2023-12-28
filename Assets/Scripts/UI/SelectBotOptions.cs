@@ -26,6 +26,7 @@ public class SelectBotOptions : MonoBehaviour
     private bool autostart = false;
 
     public static bool autostartMP = false;
+    private GameObject importedBot = null;
 
     // Start is called before the first frame update
     private void Awake()
@@ -123,6 +124,11 @@ public class SelectBotOptions : MonoBehaviour
         }
     }
 
+    public void SetImportedBot(GameObject bot)
+    {
+        importedBot = bot;
+    }
+
     public void StartGame()
     {
         spawnPoints = FieldManager.fm.spawnPositions.ToList();
@@ -136,7 +142,20 @@ public class SelectBotOptions : MonoBehaviour
         GameObject prefab = botPrefabs[selectedBot];
         if (useCustomBot) { prefab = customPrefab; }
 
-        GameObject bot = GameObject.Instantiate(prefab,spawnPoints[spawnIdx].position, spawnPoints[spawnIdx].rotation);
+        GameObject bot;
+        /*if (importedBot != null)
+        {
+            bot = importedBot;
+        }
+        else
+        {
+            
+        }*/
+        bot = GameObject.Instantiate(prefab, spawnPoints[spawnIdx].position, spawnPoints[spawnIdx].rotation);
+        if(prefab.activeInHierarchy)
+        {
+            prefab.SetActive(false);
+        }
         bot.GetComponent<ColorSwitcher>().TeamColor_ = color;
         bot.GetComponent<ColorSwitcher>().SetColor();
         bot.GetComponent<ScoreObjectTypeLink>().LastTouchedTeamColor = color;
