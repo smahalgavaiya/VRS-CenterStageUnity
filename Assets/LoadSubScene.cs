@@ -19,7 +19,9 @@ public class LoadSubScene : MonoBehaviour
     private SceneInstance subSceneInstance;
 
     public UnityEvent<GameObject> onFinishSubScene;
+    public float delay = 1;
 
+    private GameObject go;
 
     public void LoadScene()
     {
@@ -54,15 +56,20 @@ public class LoadSubScene : MonoBehaviour
 
     public void UnloadScene()
     {
+        Scene curScene = SceneManager.GetActiveScene();
+        go.transform.parent = null;
+        SceneManager.MoveGameObjectToScene(go, curScene);
 
+        Addressables.UnloadSceneAsync(subSceneInstance);
+        onFinishSubScene.Invoke(go);
     }
 
     public void GetConfigObject(GameObject go)
     {
-        Scene curScene = SceneManager.GetActiveScene();
-        go.transform.parent = null;
-        SceneManager.MoveGameObjectToScene(go, curScene);
-        Addressables.UnloadSceneAsync(subSceneInstance);
-        onFinishSubScene.Invoke(go);
+        this.go = go;
+       
+
+        Invoke("UnloadScene", delay);
+        
     }
 }

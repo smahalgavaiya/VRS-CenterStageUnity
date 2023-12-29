@@ -156,6 +156,7 @@ public class SelectBotOptions : MonoBehaviour
         {
             prefab.SetActive(false);
         }
+        bot.SetActive(true);
         bot.GetComponent<ColorSwitcher>().TeamColor_ = color;
         bot.GetComponent<ColorSwitcher>().SetColor();
         bot.GetComponent<ScoreObjectTypeLink>().LastTouchedTeamColor = color;

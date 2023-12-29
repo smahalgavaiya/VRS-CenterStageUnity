@@ -7321,7 +7321,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 209743715}
   m_HandleRect: {fileID: 209743714}
   m_Direction: 0
-  m_Value: 1
+  m_Value: 0
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -8258,8 +8258,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: -0.00002861023}
+  m_SizeDelta: {x: 0, y: 0.000005722}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &464815842
 MonoBehaviour:
@@ -8281,7 +8281,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\\uF078\t\t\t\t\\uF078"
+  m_text: "\\uF078\t\t                            \t\t\\uF078"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 2fb2738ffe3789142bdbcbddeb737c7f, type: 2}
   m_sharedMaterial: {fileID: -5567258429543509122, guid: 2fb2738ffe3789142bdbcbddeb737c7f,
@@ -8291,8 +8291,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4290953923
+  m_fontColor: {r: 0.764151, g: 0.7605465, b: 0.7605465, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -15603,7 +15603,7 @@ PrefabInstance:
     - target: {fileID: 1038980583219083777, guid: 9c6ccbf2d20439645a05cfee39c4b807,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 15.800003
+      value: 15.799988
       objectReference: {fileID: 0}
     - target: {fileID: 1038980583219083777, guid: 9c6ccbf2d20439645a05cfee39c4b807,
         type: 3}
@@ -21629,6 +21629,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c84495fc5dbbc74b9178fcfee428291, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  drives:
+  - {fileID: 11400000, guid: c65d4419894956e498e0e196dbd8cf34, type: 2}
+  - {fileID: 11400000, guid: c3d6c00f4bbf09842a8621a7be11d1ef, type: 2}
+  - {fileID: 11400000, guid: e5e38ab27152279469350330b1a1380a, type: 2}
+  - {fileID: 11400000, guid: cf8eca3df09ad3748ad0499a41f88342, type: 2}
 --- !u!1 &1400360504
 GameObject:
   m_ObjectHideFlags: 0

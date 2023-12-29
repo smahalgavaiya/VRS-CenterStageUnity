@@ -847,8 +847,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   runWithEncoder: 1
   wheelSubtype: 0
-  axisOffset: 0
-  axisFlip: 0
   colorMats:
   - {fileID: 2100000, guid: 92bd9e866b4762e43a1d06a1e6ce23f4, type: 2}
   - {fileID: 2100000, guid: b7fd789ee5746254f8fe99af53c2065c, type: 2}
@@ -856,6 +854,8 @@ MonoBehaviour:
   floorOffset: 0.049
   wheelRopPos: 0
   receivingRb: {fileID: 0}
+  leftTreads: {fileID: 5384327631217255787}
+  rightTreads: {fileID: 4915614248345527656}
 --- !u!1 &9044906693956274565
 GameObject:
   m_ObjectHideFlags: 0
