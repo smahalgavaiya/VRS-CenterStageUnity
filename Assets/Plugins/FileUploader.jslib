@@ -16,7 +16,7 @@ var UploaderPlugin = {
 			function readFile(index) {
 			// end of folder
 			if (index >= files.length) {
-			  UnityInstance.SendMessage("RobotFileManager", 'parseFiles');
+			  UnityInstance.SendMessage("RobotConfigScripts", 'parseFiles');
 			  return;
 			}
 			var file = files[index];
@@ -26,12 +26,12 @@ var UploaderPlugin = {
 			  if (file.name != "robotfile.urdf") {
 				bin = btoa(e.target.result)
 				while (bin.length != 0) {
-				  UnityInstance.SendMessage("RobotFileManager", "receiveRobotFile", JSON.stringify({ name: file.name, data: bin.slice(0, 300000) }))
+				  UnityInstance.SendMessage("RobotConfigScripts", "receiveRobotFile", JSON.stringify({ name: file.name, data: bin.slice(0, 300000) }))
 				  bin = bin.slice(300000);
 				  console.log("File Name: " + file.name + "BIN: " + bin.length);
 				}
 			  } else {
-				UnityInstance.SendMessage("RobotFileManager", "receiveRobotFile", JSON.stringify({ name: file.name, data: bin }))
+				UnityInstance.SendMessage("RobotConfigScripts", "receiveRobotFile", JSON.stringify({ name: file.name, data: bin }))
 				console.log(file.name + ": " + bin);
 			  }
 			  readFile(index + 1)

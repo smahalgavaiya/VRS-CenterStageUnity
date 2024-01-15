@@ -173,6 +173,7 @@ PlayerSettings:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  - {fileID: 11400000, guid: 040d77afd71907842ba812e70f1d2c55, type: 2}
   metroInputSource: 0
   wsaTransparentSwapchain: 0
   m_HolographicPauseOnTrackingLoss: 1
@@ -204,7 +205,7 @@ PlayerSettings:
   AndroidTargetSdkVersion: 0
   AndroidPreferredInstallLocation: 1
   aotOptions: 
-  stripEngineCode: 1
+  stripEngineCode: 0
   iPhoneStrippingLevel: 0
   iPhoneScriptCallOptimization: 0
   ForceInternetPermission: 0
@@ -842,7 +843,7 @@ PlayerSettings:
   blurSplashScreenBackground: 1
   spritePackerPolicy: 
   webGLMemorySize: 16
-  webGLExceptionSupport: 3
+  webGLExceptionSupport: 2
   webGLNameFilesAsHashes: 0
   webGLShowDiagnostics: 0
   webGLDataCaching: 1
@@ -899,7 +900,7 @@ PlayerSettings:
     PS4: 1
     PS5: 1
     Stadia: 1
-    WebGL: 1
+    WebGL: 4
     Windows Store Apps: 1
     XboxOne: 1
     iPhone: 1

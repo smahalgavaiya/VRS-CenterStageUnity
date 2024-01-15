@@ -64,14 +64,24 @@ public class MakePartsSelectable : MonoBehaviour
 
     public void AddSelectableToNewObj(GameObject oldObj, GameObject newObj, object dat)
     {
-        DataInteractionPair pair = RobotConfig.ins.getPart(oldObj);
+        List<DataInteractionPair> pairs = RobotConfig.ins.getPart(oldObj);
+        DataInteractionPair chosenPair = pairs[0];
         HoverEffect e = newObj.AddComponent<HoverEffect>();
         EventTrigger trig = newObj.AddComponent<EventTrigger>();
         e.BindHover(newObj, selectionMat);
         EventTrigger.Entry entry = new EventTrigger.Entry();
-        pair.obj = newObj;
+
+        foreach(DataInteractionPair pair in pairs)
+        {
+            pair.obj = newObj;
+            if(pair.partType == partType)
+            {
+                chosenPair = pair;
+            }
+        }
+        
         entry.eventID = EventTriggerType.PointerDown;
-        entry.callback.AddListener((data) => { ProcessClick((PointerEventData)data, pair); });
+        entry.callback.AddListener((data) => { ProcessClick((PointerEventData)data, chosenPair); });
         trig.triggers.Add(entry);
     }
 
@@ -84,4 +94,9 @@ public class MakePartsSelectable : MonoBehaviour
         boundData.SetData(pair.data);
         Debug.Log("Clicked "+obj.name);
     }
+
+    //for joints. on click, stop selection. assign new joint to motor
+    //then assign that joint to list, and glow the joint when its hovered over.
+    //we also need to add the highlight graphic on top of it(rotate/etc).
+    //
 }
